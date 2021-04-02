@@ -11,14 +11,11 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     backgroundColor: theme.palette.primary.main,
   },
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    height: 224,
-  },
   tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
+    ...theme.tabs,
+  },
+  tab: {
+    ...theme.tab,
   },
 }));
 
@@ -41,7 +38,7 @@ export default function LefNav() {
         md={2}
         xs={2}
       >
-        <Grid item style={{ width: "100%" }}>
+        <Grid item style={{ width: "100%;" }}>
           <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -50,11 +47,68 @@ export default function LefNav() {
             aria-label="Vertical tabs"
             className={classes.tabs}
           >
-            <Tab label="Resume" to="/" component={Link} />
-            <Tab label="Project" to="/project" component={Link} />
-            <Tab label="Blog" to="/blog" component={Link} />
-            <Tab label="HireMe" to="/hireme" component={Link} />
-            <Tab label="Profile" to="/profile" component={Link} />
+            {/* <Grid
+              container
+              direction="column"
+              className={classes.LefNavWrapper}
+            >
+              <Grid item container xl lg md sm xs>
+                <Grid item>
+                  <Tab label="Resume" to="/" component={Link} />
+                </Grid>
+              </Grid>
+              <Grid item container xl lg md sm xs>
+                <Grid item>
+                  <Tab label="Project" to="/project" component={Link} />
+                </Grid>
+              </Grid>
+              <Grid item container xl lg md sm xs>
+                <Grid item>
+                  <Tab label="Blog" to="/blog" component={Link} />
+                </Grid>
+              </Grid>
+              <Grid item container xl lg md sm xs>
+                <Grid item>
+                  <Tab label="HireMe" to="/hireme" component={Link} />
+                </Grid>
+              </Grid>
+              <Grid item container xl lg md sm xs>
+                <Grid item>
+                  <Tab label="Profile" to="/profile" component={Link} />
+                </Grid>
+              </Grid>
+            </Grid> */}
+
+            <Tab
+              label="Resume"
+              to="/"
+              component={Link}
+              className={classes.tab}
+            />
+            <Tab
+              label="Project"
+              to="/project"
+              component={Link}
+              className={classes.tab}
+            />
+            <Tab
+              label="Blog"
+              to="/blog"
+              component={Link}
+              className={classes.tab}
+            />
+            <Tab
+              label="HireMe"
+              to="/hireme"
+              component={Link}
+              className={classes.tab}
+            />
+            <Tab
+              label="Profile"
+              to="/profile"
+              component={Link}
+              className={classes.tab}
+            />
           </Tabs>
         </Grid>
       </Grid>

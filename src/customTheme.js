@@ -21,9 +21,11 @@ const customTheme = createMuiTheme({
       main: `${arcOrange}`,
     },
   },
-  outline: {
-    border: "1px solid grey",
-    padding: "1px",
+  tabs: {
+    borderRight: `1px solid ${arcOrange}`,
+  },
+  tab: {
+    backgroundColor: "green",
   },
 });
 
