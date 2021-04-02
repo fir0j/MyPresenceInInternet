@@ -6,7 +6,7 @@ const arcGrey = "#868686";
 
 // It is the global theme(Style) which can be accessed all over the application.
 // It is also the place to visit if MU-Default-Theme-Style needs to be overwritten/modified with our custom variant.
-const theme = createMuiTheme({
+const customTheme = createMuiTheme({
   // Palette provides  color system
   // Typograpy provides text presentation system like <p>, h1...h6 and so on
   palette: {
@@ -21,6 +21,10 @@ const theme = createMuiTheme({
       main: `${arcOrange}`,
     },
   },
+  outline: {
+    border: "1px solid grey",
+    padding: "1px",
+  },
 });
 
-export default theme;
+export default customTheme;
