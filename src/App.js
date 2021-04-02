@@ -1,24 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import theme from "./theme";
+import LeftNav from "./components/LeftNav.component";
+import Home from "./components/Home.component";
+import RightNav from "./components/RightNav.component";
+
+const useStyles = makeStyles((theme) => ({
+  outline: {
+    border: "1px solid grey",
+    padding: "1px",
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+  const theme = useTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <React.Fragment>
+      <Grid container direction="row" className={classes.outline}>
+        <Grid
+          item
+          container
+          className={classes.outline}
+          xl={2}
+          lg={2}
+          md={2}
+          xs={2}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Grid item>
+            <LeftNav />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          className={classes.outline}
+          xl={9}
+          lg={9}
+          md={9}
+          xs={9}
+        >
+          <Grid item>
+            <Home />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          className={classes.outline}
+          xl={1}
+          lg={1}
+          md={1}
+          xs={1}
+        >
+          <Grid item>
+            <RightNav />
+          </Grid>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 }
 
