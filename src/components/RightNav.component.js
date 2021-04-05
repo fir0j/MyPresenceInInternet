@@ -1,20 +1,188 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  RightNavWrapper: {
+    // border: "1px solid black",
+  },
+  widgetContainer: {
+    position: "relative",
+    // border: "1px solid black",
+    backgroundColor: "lightblue",
+    flexGrow: 1,
+    width: "7em",
+    cursor: "pointer",
+    margin: 1,
+  },
+  invisibleHandler: {
+    position: "absolute",
+    inset: 0,
+  },
+  widget: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    marginLeft: "-10em",
+    width: "10em",
+    height: "100%",
+    cursor: "pointer",
+    backgroundColor: "green",
+  },
+}));
 
 export default function RightNav() {
+  const classes = useStyles();
+  const [activeTool, setActiveTool] = useState("");
+  const [isActive, setIsActive] = useState(false);
+
+  const handleToolClick = (toolname) => {
+    if (!isActive) {
+      setIsActive(true);
+      setActiveTool(toolname);
+      return;
+    }
+    setActiveTool(toolname);
+  };
+  const handleOutsideClick = () => {
+    setIsActive(false);
+    setActiveTool("");
+  };
+
+  function NightMode() {
+    return (
+      <Grid item className={classes.widget}>
+        Night Mode
+      </Grid>
+      // <div className="absolute left-0 -ml-40 w-40 border h-full flex justify-center items-center cursor-pointer bg-green-800">
+      // 	Night Mode tools
+      // </div>
+    );
+  }
+  function Theme() {
+    return (
+      <Grid item className={classes.widget}>
+        Theme Mode
+      </Grid>
+    );
+  }
+
+  function Music() {
+    return (
+      <Grid item className={classes.widget}>
+        Music Mode
+      </Grid>
+    );
+  }
+
+  function Review() {
+    return (
+      <Grid item className={classes.widget}>
+        Review
+      </Grid>
+    );
+  }
+  function SocialLink() {
+    return (
+      <Grid item className={classes.widget}>
+        Social Link
+      </Grid>
+    );
+  }
+
+  const displayTool = (action) => {
+    switch (action) {
+      case "nightmode":
+        return NightMode();
+      case "theme":
+        return Theme();
+      case "music":
+        return Music();
+      case "review":
+        return Review();
+      case "sociallink":
+        return SocialLink();
+      default:
+        return "";
+    }
+  };
   return (
-    <React.Fragment>
+    <Fragment>
       <Grid
         item
         container
+        direction="column"
+        alignItems="flex-end"
         xl={1}
         lg={1}
         md={1}
         xs={1}
-        style={{ border: "1px solid grey" }}
+        className={classes.RightNavWrapper}
       >
-        <Grid item>Right Nav</Grid>
+        {isActive && (
+          <Grid
+            item
+            onClick={handleOutsideClick}
+            className={classes.invisibleHandler}
+          />
+        )}
+
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          onClick={() => handleToolClick("nightmode")}
+          className={classes.widgetContainer}
+        >
+          Night Mode
+          {activeTool === "nightmode" ? displayTool(activeTool) : ""}
+        </Grid>
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          onClick={() => handleToolClick("theme")}
+          className={classes.widgetContainer}
+        >
+          Theme
+          {activeTool === "theme" ? displayTool(activeTool) : ""}
+        </Grid>
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          onClick={() => handleToolClick("music")}
+          className={classes.widgetContainer}
+        >
+          Music
+          {activeTool === "music" ? displayTool(activeTool) : ""}
+        </Grid>
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          onClick={() => handleToolClick("review")}
+          className={classes.widgetContainer}
+        >
+          Review
+          {activeTool === "review" ? displayTool(activeTool) : ""}
+        </Grid>
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          onClick={() => handleToolClick("sociallink")}
+          className={classes.widgetContainer}
+        >
+          Social Link
+          {activeTool === "sociallink" ? displayTool(activeTool) : ""}
+        </Grid>
       </Grid>
-    </React.Fragment>
+    </Fragment>
   );
 }

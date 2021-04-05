@@ -1,3 +1,4 @@
+import { Grow } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const arcBlue = "#0B72B9";
@@ -20,12 +21,6 @@ const customTheme = createMuiTheme({
     secondary: {
       main: `${arcOrange}`,
     },
-  },
-  tabs: {
-    borderRight: `1px solid ${arcOrange}`,
-  },
-  tab: {
-    backgroundColor: "green",
   },
 });
 
