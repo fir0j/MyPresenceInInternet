@@ -7,6 +7,8 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import LeftNav from "./components/LeftNav.component";
 import Home from "./components/Home.component";
 import RightNav from "./components/RightNav.component";
+import MobileNav from "./components/MobileNav.component";
+import Hidden from "@material-ui/core/Hidden";
 
 function App() {
   return (
@@ -19,12 +21,49 @@ function App() {
               justify="center"
               alignItems="center"
               direction="row"
+              style={{
+                position: "relative",
+                height: "100vh",
+                maxHeight: "100vh",
+              }}
             >
-              <Grid item container style={{ maxWidth: "1920px" }}>
-                <LeftNav />
-                <Home />
-                <RightNav />
-              </Grid>
+              <Hidden xsDown>
+                <Grid item container style={{ maxWidth: "1920px" }}>
+                  <LeftNav />
+                  <Home />
+                  <RightNav />
+                </Grid>
+              </Hidden>
+              <Hidden smUp>
+                <Grid
+                  item
+                  container
+                  direction="column"
+                  justify="space-between"
+                  style={{
+                    height: "100%",
+                    maxHeight: "100vh",
+                    flexBasis: "100%",
+                    flexWrap: "nowrap",
+                  }}
+                >
+                  <Grid item style={{ width: "100%" }}>
+                    <MobileNav />
+                  </Grid>
+                  <Grid
+                    item
+                    style={{
+                      flexGrow: 1,
+                      overflow: "scroll",
+                    }}
+                  >
+                    <Home />
+                  </Grid>
+                  <Grid item style={{ width: "100%" }}>
+                    <RightNav />
+                  </Grid>
+                </Grid>
+              </Hidden>
             </Grid>
           </Switch>
         </BrowserRouter>

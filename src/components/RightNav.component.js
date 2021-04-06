@@ -1,12 +1,16 @@
 import React, { Fragment, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   RightNavWrapper: {
-    // border: "1px solid black",
+    border: "1px solid black",
     flexBasis: "100%",
+    flexWrap: "nowrap",
   },
+
   widgetContainer: {
     flexGrow: 1,
     position: "relative",
@@ -15,25 +19,30 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1px",
     marginBottom: "1px",
   },
+
   invisibleHandler: {
     position: "absolute",
     inset: 0,
   },
 
+  // adjust this settings for desktop view aswell
   widget: {
     position: "absolute",
     top: "0",
-    left: "0",
-    marginLeft: "-5em",
-    width: "5em",
-    height: "100%",
+    bottom: "0",
+    marginTop: "-5em",
+    height: "5em",
     cursor: "pointer",
+    width: "100%",
     backgroundColor: "green",
+    border: "1px solid red",
   },
 }));
 
 export default function RightNav() {
+  const theme = useTheme();
   const classes = useStyles();
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [activeTool, setActiveTool] = useState("");
   const [isActive, setIsActive] = useState(false);
 
@@ -107,24 +116,24 @@ export default function RightNav() {
 
   return (
     <Fragment>
+      {isActive && (
+        <Grid
+          item
+          onClick={handleOutsideClick}
+          className={classes.invisibleHandler}
+        />
+      )}
       <Grid
         item
         container
-        direction="column"
+        direction={matchesXS ? "row" : "column"}
         alignItems="center"
-        xl={1}
-        lg={1}
-        md={1}
-        xs={1}
+        xl={matchesXS ? undefined : 1}
+        lg={matchesXS ? undefined : 1}
+        md={matchesXS ? undefined : 1}
+        xs={matchesXS ? undefined : 1}
         className={classes.RightNavWrapper}
       >
-        {isActive && (
-          <Grid
-            item
-            onClick={handleOutsideClick}
-            className={classes.invisibleHandler}
-          />
-        )}
         <Grid
           item
           container

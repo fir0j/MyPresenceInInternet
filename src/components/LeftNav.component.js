@@ -57,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
   indicator: {
     // backgroundColor: "red",
   },
+  root: {
+    flexGrow: 1,
+    maxWidth: 500,
+  },
 }));
 
 export default function LefNav() {
@@ -66,6 +70,38 @@ export default function LefNav() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const verticalTabs = (
+    <Tabs
+      orientation="vertical"
+      value={value}
+      onChange={handleChange}
+      aria-label="Vertical tabs"
+      className={classes.tabs}
+      indicator="false"
+      classes={{ indicator: classes.indicator }}
+    >
+      <Tab label="Resume" to="/" component={Link} className={classes.tab} />
+      <Tab
+        label="Project"
+        to="/project"
+        component={Link}
+        className={classes.tab}
+      />
+      <Tab label="Blog" to="/blog" component={Link} className={classes.tab} />
+      <Tab
+        label="HireMe"
+        to="/hireme"
+        component={Link}
+        className={classes.tab}
+      />
+      <Tab
+        label="Profile"
+        to="/profile"
+        component={Link}
+        className={classes.tab}
+      />
+    </Tabs>
+  );
 
   return (
     <Fragment>
@@ -77,46 +113,7 @@ export default function LefNav() {
           direction="column"
           className={classes.LefNavWrapper}
         >
-          <Tabs
-            orientation="vertical"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs"
-            className={classes.tabs}
-            indicator="false"
-            classes={{ indicator: classes.indicator }}
-          >
-            <Tab
-              label="Resume"
-              to="/"
-              component={Link}
-              className={classes.tab}
-            />
-            <Tab
-              label="Project"
-              to="/project"
-              component={Link}
-              className={classes.tab}
-            />
-            <Tab
-              label="Blog"
-              to="/blog"
-              component={Link}
-              className={classes.tab}
-            />
-            <Tab
-              label="HireMe"
-              to="/hireme"
-              component={Link}
-              className={classes.tab}
-            />
-            <Tab
-              label="Profile"
-              to="/profile"
-              component={Link}
-              className={classes.tab}
-            />
-          </Tabs>
+          {verticalTabs}
         </Grid>
       </Grid>
     </Fragment>

@@ -1,7 +1,19 @@
 import React, { Fragment } from "react";
-// import Grid from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid";
 // import { Typography } from "@material-ui/core";
 
 export default function Resume() {
-  return <Fragment>Resume Page</Fragment>;
+  return (
+    <Fragment>
+      <Grid item container>
+        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
+        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
+        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
+        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
+        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
+        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
+        Resume Page
+      </Grid>
+    </Fragment>
+  );
 }
