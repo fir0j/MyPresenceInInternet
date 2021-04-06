@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Project() {
-  return "Project Page";
+  return <React.Fragment>Project Page</React.Fragment>;
 }

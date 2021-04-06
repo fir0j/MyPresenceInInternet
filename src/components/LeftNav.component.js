@@ -4,23 +4,55 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
+
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  "@global": {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    ".MuiTabs-scroller": {
+      display: "flex",
+      flexDirection: "column",
+    },
+    ".MuiTabs-flexContainer": {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      flexBasis: "100%",
+    },
+    ".MuiTab-root": {
+      flexGrow: 1,
+    },
+  },
+})(() => null);
 
 const useStyles = makeStyles((theme) => ({
   LefNavWrapper: {
-    maxWidth: "100vh",
+    // backgroundColor: "lightgrey",
     // border: "1px solid black",
-    backgroundColor: "lightgrey",
+    width: "100%",
+    maxWidth: "100%",
+    height: "100vh",
+    maxHeight: "100vh",
   },
   tabs: {
-    // width: "80%",
+    // border: "1px solid blue",
+    height: "100vh",
+    maxHeight: "100vh",
+    flexBasis: "100%",
   },
+
   tab: {
-    // width: "100%",
+    // removing default min-width and max-width , also should come after width declaration
+    width: "100%",
+    minWidth: "0px",
     maxWidth: "100%",
-    margin: 1,
-    height: "calc((100vh/5) - 2px)",
+    // removing default max-height , and max-height should come after width declaration
+    // height: "calc((100vh/5) - 2px)",
     maxHeight: "calc(100vh/5)",
+    // minHeight: "0px",
     backgroundColor: theme.palette.primary.main,
+    margin: 1,
   },
   indicator: {
     // backgroundColor: "red",
@@ -37,6 +69,7 @@ export default function LefNav() {
 
   return (
     <Fragment>
+      <GlobalCss />
       <Grid item container xl={2} lg={2} md={2} xs={2}>
         <Grid
           item
@@ -89,3 +122,4 @@ export default function LefNav() {
     </Fragment>
   );
 }
+// .MuiTabs-flexContainerVertical

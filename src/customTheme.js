@@ -1,9 +1,8 @@
-import { Grow } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const arcBlue = "#0B72B9";
 const arcOrange = "#FFBA60";
-const arcGrey = "#868686";
+// const arcGrey = "#868686";
 
 // It is the global theme(Style) which can be accessed all over the application.
 // It is also the place to visit if MU-Default-Theme-Style needs to be overwritten/modified with our custom variant.

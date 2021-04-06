@@ -5,26 +5,27 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   RightNavWrapper: {
     // border: "1px solid black",
+    flexBasis: "100%",
   },
   widgetContainer: {
-    position: "relative",
-    // border: "1px solid black",
-    backgroundColor: "lightblue",
     flexGrow: 1,
-    width: "7em",
+    position: "relative",
+    backgroundColor: "lightblue",
     cursor: "pointer",
-    margin: 1,
+    marginTop: "1px",
+    marginBottom: "1px",
   },
   invisibleHandler: {
     position: "absolute",
     inset: 0,
   },
+
   widget: {
     position: "absolute",
     top: "0",
     left: "0",
-    marginLeft: "-10em",
-    width: "10em",
+    marginLeft: "-5em",
+    width: "5em",
     height: "100%",
     cursor: "pointer",
     backgroundColor: "green",
@@ -54,9 +55,6 @@ export default function RightNav() {
       <Grid item className={classes.widget}>
         Night Mode
       </Grid>
-      // <div className="absolute left-0 -ml-40 w-40 border h-full flex justify-center items-center cursor-pointer bg-green-800">
-      // 	Night Mode tools
-      // </div>
     );
   }
   function Theme() {
@@ -106,13 +104,14 @@ export default function RightNav() {
         return "";
     }
   };
+
   return (
     <Fragment>
       <Grid
         item
         container
         direction="column"
-        alignItems="flex-end"
+        alignItems="center"
         xl={1}
         lg={1}
         md={1}
@@ -126,7 +125,6 @@ export default function RightNav() {
             className={classes.invisibleHandler}
           />
         )}
-
         <Grid
           item
           container

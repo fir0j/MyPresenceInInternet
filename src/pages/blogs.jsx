@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Blog() {
-  return "Blogs Page";
+  return <React.Fragment>"Blogs Page"</React.Fragment>;
 }

@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function HireMe() {
-  return "Hire Me Page";
+  return <React.Fragment>Hire Me</React.Fragment>;
 }

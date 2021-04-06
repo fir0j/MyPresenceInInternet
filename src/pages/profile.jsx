@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Profile() {
-  return "Profile Page";
+  return <React.Fragment>Profile Page</React.Fragment>;
 }
