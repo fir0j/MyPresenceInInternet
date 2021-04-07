@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     height: "300px",
     cursor: "pointer",
     // overflowY: "scroll",
-    // border: "1px solid red",
   },
   settingWrapper: {
     flexWrap: "nowrap",

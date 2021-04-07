@@ -21,6 +21,13 @@ const customTheme = createMuiTheme({
       main: `${arcOrange}`,
     },
   },
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The default props to change
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
 });
 
 export default customTheme;

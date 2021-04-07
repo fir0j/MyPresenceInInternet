@@ -4,7 +4,7 @@ import customTheme from "./customTheme";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter, Switch } from "react-router-dom";
 
-import LeftNav from "./components/LeftNav.component";
+import Navigation from "./components/Navigation.component";
 import Home from "./components/Home.component";
 import SettingPanel from "./components/SettingPanel.component";
 import MobileNav from "./components/MobileNav.component";
@@ -18,22 +18,28 @@ function App() {
           <Switch>
             <Grid
               container
+              direction="row"
               justify="center"
               alignItems="center"
-              direction="row"
               style={{
                 position: "relative",
                 height: "100vh",
+                width: "100vw",
                 maxHeight: "100vh",
+                maxWidth: "2560px",
               }}
             >
               <Hidden xsDown>
                 <Grid
                   item
                   container
-                  style={{ maxWidth: "1920px", flexWrap: "nowrap" }}
+                  style={{
+                    position: "relative",
+                    flexWrap: "nowrap",
+                    // border: "1px solid red",
+                  }}
                 >
-                  <LeftNav />
+                  <Navigation />
                   <Home />
                   <SettingPanel />
                 </Grid>

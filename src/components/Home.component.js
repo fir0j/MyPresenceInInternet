@@ -6,7 +6,7 @@ import { Route } from "react-router-dom";
 
 import Resume from "../pages/resume";
 import Project from "../pages/project";
-import Blog from "../pages/blogs";
+import Blog from "../pages/feedback";
 import HireMe from "../pages/hireme";
 
 export default function HomeNav() {
@@ -23,9 +23,11 @@ export default function HomeNav() {
         lg={matchesXS ? 12 : undefined}
         md={matchesXS ? 12 : undefined}
         xs={matchesXS ? 12 : undefined}
-        style={{
-          border: "1px solid green",
-        }}
+        style={
+          {
+            // border: "1px solid blue",
+          }
+        }
       >
         <Grid item>
           <Route exact path="/" render={(props) => <Resume />} />
