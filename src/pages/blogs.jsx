@@ -5,7 +5,7 @@ export default function Blog() {
   return (
     <React.Fragment>
       <Grid item container>
-        Blog Page
+        Feedback
       </Grid>
     </React.Fragment>
   );

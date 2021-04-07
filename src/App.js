@@ -6,7 +6,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 
 import LeftNav from "./components/LeftNav.component";
 import Home from "./components/Home.component";
-import RightNav from "./components/RightNav.component";
+import SettingPanel from "./components/SettingPanel.component";
 import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
@@ -28,10 +28,14 @@ function App() {
               }}
             >
               <Hidden xsDown>
-                <Grid item container style={{ maxWidth: "1920px" }}>
+                <Grid
+                  item
+                  container
+                  style={{ maxWidth: "1920px", flexWrap: "nowrap" }}
+                >
                   <LeftNav />
                   <Home />
-                  <RightNav />
+                  <SettingPanel />
                 </Grid>
               </Hidden>
               <Hidden smUp>
@@ -60,7 +64,7 @@ function App() {
                     <Home />
                   </Grid>
                   <Grid item style={{ width: "100%" }}>
-                    <RightNav />
+                    <SettingPanel />
                   </Grid>
                 </Grid>
               </Hidden>

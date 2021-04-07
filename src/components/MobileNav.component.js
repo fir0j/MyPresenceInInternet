@@ -57,13 +57,6 @@ export default function MobilieNav() {
               to="/hireme"
               component={Link}
             />
-
-            <Tab
-              icon={<PersonPinIcon />}
-              label="PROFILE"
-              to="/profile"
-              component={Link}
-            />
           </Tabs>
         </Paper>
       </Grid>

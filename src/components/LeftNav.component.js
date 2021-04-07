@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     // removing default max-height , and max-height should come after width declaration
     // height: "calc((100vh/5) - 2px)",
-    maxHeight: "calc(100vh/5)",
+    maxHeight: "calc(100vh/4)",
     // minHeight: "0px",
     backgroundColor: theme.palette.primary.main,
     margin: 1,
@@ -87,16 +87,15 @@ export default function LefNav() {
         component={Link}
         className={classes.tab}
       />
-      <Tab label="Blog" to="/blog" component={Link} className={classes.tab} />
       <Tab
-        label="HireMe"
-        to="/hireme"
+        label="Feedback"
+        to="/feedback"
         component={Link}
         className={classes.tab}
       />
       <Tab
-        label="Profile"
-        to="/profile"
+        label="HireMe"
+        to="/hireme"
         component={Link}
         className={classes.tab}
       />

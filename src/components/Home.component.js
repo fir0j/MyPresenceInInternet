@@ -8,8 +8,6 @@ import Resume from "../pages/resume";
 import Project from "../pages/project";
 import Blog from "../pages/blogs";
 import HireMe from "../pages/hireme";
-import Profile from "../pages/profile";
-import RightNav from "./RightNav.component";
 
 export default function HomeNav() {
   const theme = useTheme();
@@ -21,10 +19,10 @@ export default function HomeNav() {
         container
         justify="center"
         alignItems="center"
-        xl={matchesXS ? 12 : 9}
-        lg={matchesXS ? 12 : 9}
-        md={matchesXS ? 12 : 9}
-        xs={matchesXS ? 12 : 9}
+        xl={matchesXS ? 12 : undefined}
+        lg={matchesXS ? 12 : undefined}
+        md={matchesXS ? 12 : undefined}
+        xs={matchesXS ? 12 : undefined}
         style={{
           border: "1px solid green",
         }}
@@ -32,9 +30,8 @@ export default function HomeNav() {
         <Grid item>
           <Route exact path="/" render={(props) => <Resume />} />
           <Route exact path="/project" render={(props) => <Project />} />
-          <Route exact path="/blog" render={(props) => <Blog />} />
+          <Route exact path="/feedback" render={(props) => <Blog />} />
           <Route exact path="/hireme" render={(props) => <HireMe />} />
-          <Route exact path="/profile" render={(props) => <Profile />} />
         </Grid>
       </Grid>
     </React.Fragment>
