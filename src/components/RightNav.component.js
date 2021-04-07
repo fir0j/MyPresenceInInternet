@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   // adjust this settings for desktop view aswell
-  widget: {
+  mobileWidget: {
     position: "absolute",
     top: "0",
     bottom: "0",
@@ -34,6 +34,17 @@ const useStyles = makeStyles((theme) => ({
     height: "5em",
     cursor: "pointer",
     width: "100%",
+    backgroundColor: "green",
+    border: "1px solid red",
+  },
+  desktopWidget: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    marginLeft: "-5em",
+    width: "5em",
+    height: "100%",
+    cursor: "pointer",
     backgroundColor: "green",
     border: "1px solid red",
   },
@@ -61,14 +72,20 @@ export default function RightNav() {
 
   function NightMode() {
     return (
-      <Grid item className={classes.widget}>
+      <Grid
+        item
+        className={matchesXS ? classes.mobileWidget : classes.desktopWidget}
+      >
         Night Mode
       </Grid>
     );
   }
   function Theme() {
     return (
-      <Grid item className={classes.widget}>
+      <Grid
+        item
+        className={matchesXS ? classes.mobileWidget : classes.desktopWidget}
+      >
         Theme Mode
       </Grid>
     );
@@ -76,7 +93,10 @@ export default function RightNav() {
 
   function Music() {
     return (
-      <Grid item className={classes.widget}>
+      <Grid
+        item
+        className={matchesXS ? classes.mobileWidget : classes.desktopWidget}
+      >
         Music Mode
       </Grid>
     );
@@ -84,14 +104,20 @@ export default function RightNav() {
 
   function Review() {
     return (
-      <Grid item className={classes.widget}>
+      <Grid
+        item
+        className={matchesXS ? classes.mobileWidget : classes.desktopWidget}
+      >
         Review
       </Grid>
     );
   }
   function SocialLink() {
     return (
-      <Grid item className={classes.widget}>
+      <Grid
+        item
+        className={matchesXS ? classes.mobileWidget : classes.desktopWidget}
+      >
         Social Link
       </Grid>
     );
