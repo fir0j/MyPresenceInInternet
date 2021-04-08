@@ -23,11 +23,10 @@ export default function HomeNav() {
         lg={matchesXS ? 12 : undefined}
         md={matchesXS ? 12 : undefined}
         xs={matchesXS ? 12 : undefined}
-        style={
-          {
-            // border: "1px solid blue",
-          }
-        }
+        style={{
+          // border: "1px solid blue",
+          backgroundColor: "teal",
+        }}
       >
         <Grid item>
           <Route exact path="/" render={(props) => <Resume />} />
