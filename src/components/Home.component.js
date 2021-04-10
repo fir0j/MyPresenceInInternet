@@ -25,7 +25,7 @@ export default function HomeNav() {
         xs={matchesXS ? 12 : undefined}
         style={{
           // border: "1px solid blue",
-          backgroundColor: "teal",
+          backgroundColor: "#2C2C2c",
         }}
       >
         <Grid item>

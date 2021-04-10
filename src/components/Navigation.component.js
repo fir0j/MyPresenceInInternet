@@ -4,6 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import resume from "../assets/resume.svg";
+import hireme from "../assets/hireme.svg";
+import projectIcon from "../assets/projectIcon.svg";
+import feedbackIcon from "../assets/feedbackIcon.svg";
+
 // import { withStyles } from "@material-ui/core/styles";
 
 // const GlobalCss = withStyles({
@@ -41,16 +47,10 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
   },
   tab: {
-    // border: "1px solid red",
     width: "100%",
-    // height: "calc(100vh/4)",
     maxWidth: "100%",
     maxHeight: "100%",
-    backgroundColor: "lightblue",
-    // marginTop: 1,
-    // marginBottom: 1,
-    // borderTopRightRadius: "20px",
-    // borderBottomRightRadius: "20px",
+    // backgroundColor: "#69F0AE",
   },
 
   // CSS RULE NAME
@@ -62,43 +62,44 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: "teal",
+    backgroundColor: "#2C2C2C",
     // overwriting class .flexContainerVertical.MuiTab-root globally without using {withStyle} HOC
     "&>.MuiTab-root": {
       flexGrow: 1,
+      backgroundColor: "black",
       // border: "1px solid blue",
     },
+
     "&>.Mui-selected": {
-      backgroundColor: "teal",
+      backgroundColor: "#2C2C2C",
       borderTopLeftRadius: "50px",
       borderBottomLeftRadius: "50px",
       position: "relative",
-      marginLeft: "20px",
-      marginTop: "20px",
-      marginBottom: "20px",
-      // paddingTop: "30px",
-      // paddingBottom: "30px",
-      // paddingRight: "30px",
+      margin: "50px",
+
       "&>.MuiTab-wrapper": {
-        // position: "absolute",
-        backgroundColor: "#009688 ",
-        // backgroundColor: "lightpink",
+        // backgroundColor: "#009688 ",
         width: "100%",
         height: "100%",
         borderTopRightRadius: "120px",
         borderBottomRightRadius: "120px",
       },
     },
+    "&>.Mui-disabled": {
+      // backgroundColor: "transparent",
+      backgroundColor: "black",
+    },
   },
   indicator: {
-    backgroundColor: "teal",
-    width: "1px",
+    // backgroundColor: "#009688",
+    backgroundColor: "transparent",
+    width: "2px",
   },
 }));
 
 export default function Navigation() {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -112,7 +113,6 @@ export default function Navigation() {
       value={value}
       onChange={handleChange}
       aria-label="Vertical tabs"
-      indicator
       classes={{
         flexContainerVertical: classes.flexContainerVertical,
         indicator: classes.indicator,
@@ -120,18 +120,33 @@ export default function Navigation() {
       className={classes.tabsContainer}
     >
       <Tab
-        label="Resume"
-        to="/"
-        component={Link}
+        label="LOGO"
+        icon={
+          <img
+            alt="resume icon"
+            style={{ width: "140px", height: "140px" }}
+            src={logo}
+          ></img>
+        }
+        disabled
         className={classes.tab}
         style={{
           borderBottomRightRadius:
             value - getIndex(0) === 1 ? "80px" : undefined,
+          height: "150px",
         }}
       />
+
       <Tab
-        label="Project"
-        to="/project"
+        label="Resume"
+        icon={
+          <img
+            alt="resume icon"
+            style={{ width: "150px", height: "150px" }}
+            src={resume}
+          ></img>
+        }
+        to="/"
         component={Link}
         className={classes.tab}
         style={{
@@ -140,23 +155,55 @@ export default function Navigation() {
         }}
       />
       <Tab
-        label="Feedback"
-        to="/feedback"
+        label="Project"
+        icon={
+          <img
+            alt="resume icon"
+            style={{ width: "96px", height: "96px" }}
+            src={projectIcon}
+          ></img>
+        }
+        to="/project"
         component={Link}
         className={classes.tab}
         style={{
-          borderTopRightRadius: value + getIndex(2) === 3 ? "80px" : undefined,
+          borderTopRightRadius: value - getIndex(2) === -1 ? "80px" : undefined,
           borderBottomRightRadius:
             value - getIndex(2) === 1 ? "80px" : undefined,
         }}
       />
       <Tab
-        label="HireMe"
-        to="/hireme"
+        label="Feedback"
+        icon={
+          <img
+            alt="resume icon"
+            style={{ width: "96px", height: "96px" }}
+            src={feedbackIcon}
+          ></img>
+        }
+        to="/feedback"
         component={Link}
         className={classes.tab}
         style={{
-          borderTopRightRadius: value + getIndex(2) === 4 ? "80px" : undefined,
+          borderTopRightRadius: value + getIndex(3) === 5 ? "80px" : undefined,
+          borderBottomRightRadius:
+            value + getIndex(3) === 7 ? "80px" : undefined,
+        }}
+      />
+      <Tab
+        label="HireMe"
+        to="/hireme"
+        icon={
+          <img
+            alt="resume icon"
+            style={{ width: "96px", height: "96px" }}
+            src={hireme}
+          ></img>
+        }
+        component={Link}
+        className={classes.tab}
+        style={{
+          borderTopRightRadius: value + getIndex(4) === 7 ? "80px" : undefined,
         }}
       />
       <Tab
@@ -164,7 +211,7 @@ export default function Navigation() {
         disabled
         className={classes.tab}
         style={{
-          borderTopRightRadius: value + getIndex(3) === 6 ? "80px" : undefined,
+          borderTopRightRadius: value + getIndex(5) === 9 ? "80px" : undefined,
           maxHeight: "100px",
         }}
       />

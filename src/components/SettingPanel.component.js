@@ -71,7 +71,7 @@ export default function SettingPanel() {
             justify="center"
             alignItems="center"
             style={{
-              backgroundColor: "lightblue",
+              backgroundColor: "#69F0AE",
               maxHeight: "50px",
               maxWidth: "50px",
               borderTopLeftRadius: "20px",
@@ -88,7 +88,7 @@ export default function SettingPanel() {
               alignItems="center"
               style={{
                 // border: "1px dotted blue",
-                backgroundColor: "lightblue",
+                backgroundColor: "#69F0AE",
                 width: "100%",
                 height: "50px",
               }}
@@ -101,7 +101,7 @@ export default function SettingPanel() {
               justify="center"
               alignItems="center"
               style={{
-                backgroundColor: "lightblue",
+                backgroundColor: "#69F0AE",
                 height: "100%",
                 flexGrow: 1,
                 overflowY: "scroll",
@@ -149,7 +149,7 @@ export default function SettingPanel() {
           onClick={() => handleToolClick("setting")}
           className={classes.settingContainer}
           style={{
-            backgroundColor: activeTool === "setting" ? null : "lightblue",
+            backgroundColor: activeTool === "setting" ? null : "#69F0AE",
           }}
         >
           {activeTool === "setting" ? null : <Settings />}

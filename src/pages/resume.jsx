@@ -6,12 +6,6 @@ export default function Resume() {
   return (
     <Fragment>
       <Grid item container>
-        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
-        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
-        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
-        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
-        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
-        Resume Page Resume Page Resume Page Resume Page Resume Page Resume Page
         Resume Page
       </Grid>
     </Fragment>

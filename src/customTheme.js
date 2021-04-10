@@ -1,8 +1,12 @@
+import { lightBlue } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const arcBlue = "#0B72B9";
 const arcOrange = "#FFBA60";
-// const arcGrey = "#868686";
+const lightgreen = "#69F0AE";
+const green = "#2C2C2C";
+const ocean = "#07C3E2";
+// const bgdark = "#2C2C2C";
 
 // It is the global theme(Style) which can be accessed all over the application.
 // It is also the place to visit if MU-Default-Theme-Style needs to be overwritten/modified with our custom variant.
@@ -13,6 +17,8 @@ const customTheme = createMuiTheme({
     common: {
       blue: `${arcBlue}`,
       orange: `${arcOrange}`,
+      lightgreen: lightBlue,
+      green: green,
     },
     primary: {
       main: `${arcBlue}`,
@@ -21,11 +27,27 @@ const customTheme = createMuiTheme({
       main: `${arcOrange}`,
     },
   },
+  typography: {
+    // h6:{
+    // }
+  },
+
   props: {
     // Name of the component ⚛️
     MuiButtonBase: {
       // The default props to change
       disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+
+  overrides: {
+    // Style sheet name ⚛️
+    MuiTab: {
+      root: {
+        "&$disabled": {
+          backgroundColor: "blue",
+        },
+      },
     },
   },
 });
