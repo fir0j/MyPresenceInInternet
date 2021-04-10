@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SettingPanel() {
   const theme = useTheme();
   const classes = useStyles();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+
   const [activeTool, setActiveTool] = useState("");
   const [isActive, setIsActive] = useState(false);
 

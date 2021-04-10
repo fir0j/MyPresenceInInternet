@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
@@ -10,31 +11,8 @@ import hireme from "../assets/hireme.svg";
 import projectIcon from "../assets/projectIcon.svg";
 import feedbackIcon from "../assets/feedbackIcon.svg";
 
-// import { withStyles } from "@material-ui/core/styles";
-
-// const GlobalCss = withStyles({
-//   // @global is handled by jss-plugin-global.
-//   "@global": {
-//     // You should target [class*="MuiButton-root"] instead if you nest themes.
-//     ".MuiTabs-scroller": {
-//       display: "flex",
-//       flexDirection: "column",
-//     },
-//     ".MuiTabs-flexContainer": {
-//       display: "flex",
-//       flexDirection: "column",
-//       justifyContent: "center",
-//       flexBasis: "100%",
-//     },
-//     ".MuiTab-root": {
-//       flexGrow: 1,
-//     },
-//   },
-// })(() => null);
-
 const useStyles = makeStyles((theme) => ({
   navigationWrapper: {
-    // border: "5px solid black",
     width: "100%",
     maxWidth: "100%",
     height: "100vh",
@@ -48,37 +26,52 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     width: "100%",
+    minWidth: "100px",
+    // minHeight: "100px",
     maxWidth: "100%",
     maxHeight: "100%",
-    // backgroundColor: "#69F0AE",
+    fontFamily: "Raleway;sans-serif",
+    fontWeight: "bold",
+    [theme.breakpoints.down("sm")]: {
+      maxHeight: "150px",
+    },
   },
 
   // CSS RULE NAME
   flexContainerVertical: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: "#2C2C2C",
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
     // overwriting class .flexContainerVertical.MuiTab-root globally without using {withStyle} HOC
     "&>.MuiTab-root": {
       flexGrow: 1,
-      backgroundColor: "black",
-      // border: "1px solid blue",
+      backgroundColor: theme.palette.common.pureblack,
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+    "&>.MuiTab-labelIcon": {
+      paddingTop: "0px",
     },
 
     "&>.Mui-selected": {
-      backgroundColor: "#2C2C2C",
-      borderTopLeftRadius: "50px",
-      borderBottomLeftRadius: "50px",
+      backgroundColor: theme.palette.secondary.main,
       position: "relative",
-      margin: "50px",
+      marginTop: "2em",
+      marginBottom: "2em",
+      borderTopRightRadius: "5px",
+      borderBottomRightRadius: "100px",
+
+      [theme.breakpoints.down("md")]: {
+        borderTopRightRadius: "5px",
+        borderBottomRightRadius: "40px",
+      },
 
       "&>.MuiTab-wrapper": {
-        // backgroundColor: "#009688 ",
         width: "100%",
         height: "100%",
         borderTopRightRadius: "120px",
@@ -86,20 +79,32 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     "&>.Mui-disabled": {
-      // backgroundColor: "transparent",
-      backgroundColor: "black",
+      backgroundColor: theme.palette.common.pureblack,
     },
   },
   indicator: {
-    // backgroundColor: "#009688",
     backgroundColor: "transparent",
-    width: "2px",
+    width: "1px",
+  },
+  iconDimension: {
+    width: "96px",
+    height: "96px",
+    [theme.breakpoints.down("lg")]: {
+      width: "64px",
+      height: "64px",
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "48px",
+      height: "48px",
+    },
   },
 }));
 
 export default function Navigation() {
+  const theme = useTheme();
   const classes = useStyles();
   const [value, setValue] = useState(1);
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -120,11 +125,11 @@ export default function Navigation() {
       className={classes.tabsContainer}
     >
       <Tab
-        label="LOGO"
+        label=""
         icon={
           <img
             alt="resume icon"
-            style={{ width: "140px", height: "140px" }}
+            className={classes.iconDimension}
             src={logo}
           ></img>
         }
@@ -132,8 +137,11 @@ export default function Navigation() {
         className={classes.tab}
         style={{
           borderBottomRightRadius:
-            value - getIndex(0) === 1 ? "80px" : undefined,
-          height: "150px",
+            value - getIndex(0) === 1
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
         }}
       />
 
@@ -142,7 +150,7 @@ export default function Navigation() {
         icon={
           <img
             alt="resume icon"
-            style={{ width: "150px", height: "150px" }}
+            className={classes.iconDimension}
             src={resume}
           ></img>
         }
@@ -151,7 +159,11 @@ export default function Navigation() {
         className={classes.tab}
         style={{
           borderBottomRightRadius:
-            value - getIndex(1) === 1 ? "80px" : undefined,
+            value - getIndex(1) === 1
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
         }}
       />
       <Tab
@@ -159,7 +171,7 @@ export default function Navigation() {
         icon={
           <img
             alt="resume icon"
-            style={{ width: "96px", height: "96px" }}
+            className={classes.iconDimension}
             src={projectIcon}
           ></img>
         }
@@ -167,9 +179,18 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         style={{
-          borderTopRightRadius: value - getIndex(2) === -1 ? "80px" : undefined,
+          borderTopRightRadius:
+            value - getIndex(2) === -1
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
           borderBottomRightRadius:
-            value - getIndex(2) === 1 ? "80px" : undefined,
+            value - getIndex(2) === 1
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
         }}
       />
       <Tab
@@ -177,7 +198,7 @@ export default function Navigation() {
         icon={
           <img
             alt="resume icon"
-            style={{ width: "96px", height: "96px" }}
+            className={classes.iconDimension}
             src={feedbackIcon}
           ></img>
         }
@@ -185,9 +206,18 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         style={{
-          borderTopRightRadius: value + getIndex(3) === 5 ? "80px" : undefined,
+          borderTopRightRadius:
+            value + getIndex(3) === 5
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
           borderBottomRightRadius:
-            value + getIndex(3) === 7 ? "80px" : undefined,
+            value + getIndex(3) === 7
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
         }}
       />
       <Tab
@@ -196,23 +226,33 @@ export default function Navigation() {
         icon={
           <img
             alt="resume icon"
-            style={{ width: "96px", height: "96px" }}
+            className={classes.iconDimension}
             src={hireme}
           ></img>
         }
         component={Link}
         className={classes.tab}
         style={{
-          borderTopRightRadius: value + getIndex(4) === 7 ? "80px" : undefined,
+          borderTopRightRadius:
+            value + getIndex(4) === 7
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
         }}
       />
       <Tab
-        label="Sound"
+        label=""
         disabled
         className={classes.tab}
         style={{
-          borderTopRightRadius: value + getIndex(5) === 9 ? "80px" : undefined,
-          maxHeight: "100px",
+          borderTopRightRadius:
+            value + getIndex(5) === 9
+              ? matchesMD
+                ? "40px"
+                : "80px"
+              : undefined,
+          maxHeight: matchesMD ? "60px" : "100px",
         }}
       />
     </Tabs>
@@ -220,7 +260,6 @@ export default function Navigation() {
 
   return (
     <Fragment>
-      {/* <GlobalCss /> */}
       <Grid item container xl={2} lg={2} md={2} xs={2}>
         <Grid item container className={classes.navigationWrapper}>
           {verticalTabs}
