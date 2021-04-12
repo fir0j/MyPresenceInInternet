@@ -6,7 +6,7 @@ import { Route } from "react-router-dom";
 
 import Resume from "../pages/resume";
 import Project from "../pages/project";
-import Blog from "../pages/feedback";
+import Feedback from "../pages/feedback";
 import HireMe from "../pages/hireme";
 
 export default function HomeNav() {
@@ -25,13 +25,13 @@ export default function HomeNav() {
         xs={matchesXS ? 12 : undefined}
         style={{
           // border: "1px solid blue",
-          backgroundColor: "#2C2C2c",
+          backgroundColor: theme.palette.primary.main,
         }}
       >
         <Grid item>
           <Route exact path="/" render={(props) => <Resume />} />
           <Route exact path="/project" render={(props) => <Project />} />
-          <Route exact path="/feedback" render={(props) => <Blog />} />
+          <Route exact path="/feedback" render={(props) => <Feedback />} />
           <Route exact path="/hireme" render={(props) => <HireMe />} />
         </Grid>
       </Grid>

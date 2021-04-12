@@ -1,13 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Grid from "@material-ui/core/Grid";
-
-export default function Blog() {
+export default function Feedback() {
   return (
-    <React.Fragment>
-      <Grid item container>
-        Feedback
-        {/* modelcomment */}
+    <Fragment>
+      <Grid item container style={{ height: "100vh" }}>
+        Feedback Page
       </Grid>
-    </React.Fragment>
+    </Fragment>
   );
 }

@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 export default function Resume() {
   return (
     <Fragment>
-      <Grid item container>
+      <Grid item container style={{ height: "100vh" }}>
         Resume Page
       </Grid>
     </Fragment>

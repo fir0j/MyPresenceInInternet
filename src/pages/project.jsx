@@ -1,5 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Grid from "@material-ui/core/Grid";
 
 export default function Project() {
-  return <React.Fragment>Project Page</React.Fragment>;
+  return (
+    <Fragment>
+      <Grid item container style={{ height: "100vh" }}>
+        Project Page
+      </Grid>
+    </Fragment>
+  );
 }

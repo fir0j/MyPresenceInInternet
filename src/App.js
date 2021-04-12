@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
-import customTheme from "./customTheme";
+import { lightTheme, darkTheme } from "./customTheme";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter, Switch } from "react-router-dom";
 
@@ -11,9 +11,11 @@ import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
 function App() {
+  const [isNightmode, setNightmode] = useState(true);
+
   return (
     <React.Fragment>
-      <ThemeProvider theme={customTheme}>
+      <ThemeProvider theme={isNightmode ? darkTheme : lightTheme}>
         <BrowserRouter>
           <Switch>
             <Grid
@@ -41,7 +43,10 @@ function App() {
                 >
                   <Navigation />
                   <Home />
-                  <SettingPanel />
+                  <SettingPanel
+                    isNightmode={isNightmode}
+                    setNightmode={setNightmode}
+                  />
                 </Grid>
               </Hidden>
               <Hidden smUp>
@@ -49,7 +54,7 @@ function App() {
                   item
                   container
                   direction="column"
-                  justify="space-between"
+                  justify="space-evenly"
                   style={{
                     height: "100%",
                     maxHeight: "100vh",
@@ -57,9 +62,6 @@ function App() {
                     flexWrap: "nowrap",
                   }}
                 >
-                  <Grid item style={{ width: "100%" }}>
-                    <MobileNav />
-                  </Grid>
                   <Grid
                     item
                     style={{
@@ -70,7 +72,13 @@ function App() {
                     <Home />
                   </Grid>
                   <Grid item style={{ width: "100%" }}>
-                    <SettingPanel />
+                    <SettingPanel
+                      isNightmode={isNightmode}
+                      setNightmode={setNightmode}
+                    />
+                  </Grid>
+                  <Grid item style={{ width: "100%" }}>
+                    <MobileNav />
                   </Grid>
                 </Grid>
               </Hidden>

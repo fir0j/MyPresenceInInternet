@@ -5,20 +5,49 @@ import Paper from "@material-ui/core/Paper";
 import PhoneIcon from "@material-ui/icons/Phone";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-const useStyles = makeStyles({
+import { ReactComponent as Resume } from "../assets/resume.svg";
+import { ReactComponent as Hireme } from "../assets/hireme.svg";
+import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
+import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
+
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   flexContainer: {
     flexDirection: "row",
+    "&>.MuiTab-root": {
+      flexGrow: 1,
+      backgroundColor: theme.palette.tabColor,
+      border: `1px solid ${theme.palette.accent.main}`,
+    },
+    "&>.MuiTab-labelIcon": {
+      paddingTop: "0px",
+    },
+
+    "&>.Mui-selected": {
+      backgroundColor: theme.palette.primary.main,
+      position: "relative",
+
+      "&>.MuiTab-wrapper": {
+        width: "100%",
+        height: "100%",
+      },
+    },
+    "&>.Mui-disabled": {
+      backgroundColor: theme.palette.tabColor,
+    },
   },
-});
+  iconDimension: { ...theme.iconDimension },
+}));
 
 export default function MobilieNav() {
+  const theme = useTheme();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -38,24 +67,69 @@ export default function MobilieNav() {
             aria-label="icon label tabs example"
             classes={{ flexContainer: classes.flexContainer }}
           >
-            <Tab icon={<PhoneIcon />} label="RESUME" to="/" component={Link} />
             <Tab
-              icon={<PersonPinIcon />}
+              icon={
+                <Resume
+                  fill={theme.palette.accent.main}
+                  stroke={theme.palette.accent.main}
+                  className={classes.iconDimension}
+                />
+              }
+              label="RESUME"
+              to="/"
+              component={Link}
+              style={{
+                backgroundColor: theme.tabColor,
+                color: theme.palette.accent.main,
+              }}
+            />
+            <Tab
+              icon={
+                <ProjectIcon
+                  fill={theme.palette.accent.main}
+                  stroke={theme.palette.accent.main}
+                  className={classes.iconDimension}
+                />
+              }
               label="PROJECT"
               to="/project"
               component={Link}
+              style={{
+                backgroundColor: theme.tabColor,
+                color: theme.palette.accent.main,
+              }}
             />
             <Tab
-              icon={<PersonPinIcon />}
-              label="BLOG"
-              to="/blog"
+              icon={
+                <FeedbackIcon
+                  fill={theme.palette.accent.main}
+                  stroke={theme.palette.accent.main}
+                  className={classes.iconDimension}
+                />
+              }
+              label="FEEDBACK"
+              to="/feedback"
               component={Link}
+              style={{
+                backgroundColor: theme.tabColor,
+                color: theme.palette.accent.main,
+              }}
             />
             <Tab
-              icon={<FavoriteIcon />}
+              icon={
+                <Hireme
+                  fill={theme.palette.accent.main}
+                  stroke={theme.palette.accent.main}
+                  className={classes.iconDimension}
+                />
+              }
               label="HIREME"
               to="/hireme"
               component={Link}
+              style={{
+                backgroundColor: theme.tabColor,
+                color: theme.palette.accent.main,
+              }}
             />
           </Tabs>
         </Paper>

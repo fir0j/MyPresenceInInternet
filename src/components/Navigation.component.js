@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.svg";
-import resume from "../assets/resume.svg";
-import hireme from "../assets/hireme.svg";
-import projectIcon from "../assets/projectIcon.svg";
-import feedbackIcon from "../assets/feedbackIcon.svg";
+import { ReactComponent as Logo } from "../assets/logo.svg";
+import { ReactComponent as Resume } from "../assets/resume.svg";
+import { ReactComponent as Hireme } from "../assets/hireme.svg";
+import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
+import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
 
 const useStyles = makeStyles((theme) => ({
   navigationWrapper: {
@@ -46,20 +46,20 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.accent.main,
     // overwriting class .flexContainerVertical.MuiTab-root globally without using {withStyle} HOC
     "&>.MuiTab-root": {
       flexGrow: 1,
-      backgroundColor: theme.palette.common.pureblack,
-      border: `1px solid ${theme.palette.primary.main}`,
+      backgroundColor: theme.palette.tabColor,
+      border: `1px solid ${theme.palette.accent.main}`,
     },
     "&>.MuiTab-labelIcon": {
       paddingTop: "0px",
     },
 
     "&>.Mui-selected": {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.primary.main,
       position: "relative",
       marginTop: "2em",
       marginBottom: "2em",
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     "&>.Mui-disabled": {
-      backgroundColor: theme.palette.common.pureblack,
+      backgroundColor: theme.palette.tabColor,
     },
   },
   indicator: {
@@ -87,16 +87,7 @@ const useStyles = makeStyles((theme) => ({
     width: "1px",
   },
   iconDimension: {
-    width: "96px",
-    height: "96px",
-    [theme.breakpoints.down("lg")]: {
-      width: "64px",
-      height: "64px",
-    },
-    [theme.breakpoints.down("md")]: {
-      width: "48px",
-      height: "48px",
-    },
+    ...theme.iconDimension,
   },
 }));
 
@@ -105,6 +96,26 @@ export default function Navigation() {
   const classes = useStyles();
   const [value, setValue] = useState(1);
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+
+  useEffect(() => {
+    switch (window.location.pathname) {
+      case "/":
+        setValue(1);
+        break;
+      case "/project":
+        setValue(2);
+        break;
+      case "/feedback":
+        setValue(3);
+        break;
+      case "/hireme":
+        setValue(4);
+        break;
+      default:
+        setValue(1);
+        break;
+    }
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -126,14 +137,16 @@ export default function Navigation() {
     >
       <Tab
         label=""
-        icon={
-          <img
-            alt="resume icon"
-            className={classes.iconDimension}
-            src={logo}
-          ></img>
-        }
         disabled
+        icon={
+          <div>
+            <Logo
+              fill={theme.palette.accent.main}
+              stroke={theme.palette.accent.main}
+              className={classes.iconDimension}
+            />
+          </div>
+        }
         className={classes.tab}
         style={{
           borderBottomRightRadius:
@@ -148,11 +161,13 @@ export default function Navigation() {
       <Tab
         label="Resume"
         icon={
-          <img
-            alt="resume icon"
-            className={classes.iconDimension}
-            src={resume}
-          ></img>
+          <div>
+            <Resume
+              fill={theme.palette.accent.main}
+              stroke={theme.palette.accent.main}
+              className={classes.iconDimension}
+            />
+          </div>
         }
         to="/"
         component={Link}
@@ -169,11 +184,13 @@ export default function Navigation() {
       <Tab
         label="Project"
         icon={
-          <img
-            alt="resume icon"
-            className={classes.iconDimension}
-            src={projectIcon}
-          ></img>
+          <div>
+            <ProjectIcon
+              fill={theme.palette.accent.main}
+              stroke={theme.palette.accent.main}
+              className={classes.iconDimension}
+            />
+          </div>
         }
         to="/project"
         component={Link}
@@ -196,11 +213,13 @@ export default function Navigation() {
       <Tab
         label="Feedback"
         icon={
-          <img
-            alt="resume icon"
-            className={classes.iconDimension}
-            src={feedbackIcon}
-          ></img>
+          <div>
+            <FeedbackIcon
+              fill={theme.palette.accent.main}
+              stroke={theme.palette.accent.main}
+              className={classes.iconDimension}
+            />
+          </div>
         }
         to="/feedback"
         component={Link}
@@ -224,11 +243,13 @@ export default function Navigation() {
         label="HireMe"
         to="/hireme"
         icon={
-          <img
-            alt="resume icon"
-            className={classes.iconDimension}
-            src={hireme}
-          ></img>
+          <div>
+            <Hireme
+              fill={theme.palette.accent.main}
+              stroke={theme.palette.accent.main}
+              className={classes.iconDimension}
+            />
+          </div>
         }
         component={Link}
         className={classes.tab}

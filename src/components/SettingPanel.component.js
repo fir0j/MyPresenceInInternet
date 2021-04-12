@@ -2,9 +2,9 @@ import React, { Fragment, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Settings from "@material-ui/icons/Settings";
 import Typography from "@material-ui/core/Typography";
+import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
@@ -37,31 +37,28 @@ const useStyles = makeStyles((theme) => ({
     // overflowY: "scroll",
   },
   settingWrapper: {
+    color: theme.palette.accent.main,
     flexWrap: "nowrap",
   },
 }));
 
-export default function SettingPanel() {
+export default function SettingPanel({ isNightmode, setNightmode }) {
   const theme = useTheme();
   const classes = useStyles();
 
-  const [activeTool, setActiveTool] = useState("");
   const [isActive, setIsActive] = useState(false);
 
-  const handleToolClick = (toolname) => {
+  const handleToolClick = () => {
     if (!isActive) {
       setIsActive(true);
-      setActiveTool(toolname);
-      return;
     }
-    setActiveTool(toolname);
-  };
-  const handleOutsideClick = () => {
-    setIsActive(false);
-    setActiveTool("");
   };
 
-  function Setting() {
+  const handleOutsideClick = () => {
+    setIsActive(false);
+  };
+
+  function SettingBoard({ isNightmode, setNightmode }) {
     return (
       <Grid item container className={classes.setting}>
         <Grid item container className={classes.settingWrapper}>
@@ -71,7 +68,7 @@ export default function SettingPanel() {
             justify="center"
             alignItems="center"
             style={{
-              backgroundColor: "#69F0AE",
+              backgroundColor: theme.palette.tabColor,
               maxHeight: "50px",
               maxWidth: "50px",
               borderTopLeftRadius: "20px",
@@ -88,7 +85,7 @@ export default function SettingPanel() {
               alignItems="center"
               style={{
                 // border: "1px dotted blue",
-                backgroundColor: "#69F0AE",
+                backgroundColor: theme.palette.tabColor,
                 width: "100%",
                 height: "50px",
               }}
@@ -101,18 +98,19 @@ export default function SettingPanel() {
               justify="center"
               alignItems="center"
               style={{
-                backgroundColor: "#69F0AE",
+                backgroundColor: theme.palette.tabColor,
                 height: "100%",
                 flexGrow: 1,
                 overflowY: "scroll",
                 // border: "1px solid red",
               }}
             >
+              <Grid item>Nightmode</Grid>
               <Grid item>
-                <Typography align="center" variant="body1">
-                  Nightmode, Theme and Sound Nightmode, Theme and Sound
-                  Nightmode, Theme and Sound Nightmode,Sound
-                </Typography>
+                <Switch
+                  checked={isNightmode}
+                  onChange={() => setNightmode(!isNightmode)}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -120,16 +118,6 @@ export default function SettingPanel() {
       </Grid>
     );
   }
-
-  const displayTool = (action) => {
-    switch (action) {
-      case "setting":
-        return Setting();
-
-      default:
-        return "";
-    }
-  };
 
   return (
     <Fragment>
@@ -149,11 +137,25 @@ export default function SettingPanel() {
           onClick={() => handleToolClick("setting")}
           className={classes.settingContainer}
           style={{
-            backgroundColor: activeTool === "setting" ? null : "#69F0AE",
+            backgroundColor: theme.palette.tabColor,
           }}
         >
-          {activeTool === "setting" ? null : <Settings />}
-          {activeTool === "setting" ? displayTool(activeTool) : ""}
+          {/* hiding setting icon when setting tool is active */}
+          {!isActive ? (
+            <div style={{ color: theme.palette.accent.main }}>
+              <Settings />
+            </div>
+          ) : (
+            ""
+          )}
+          {isActive ? (
+            <SettingBoard
+              isNightmode={isNightmode}
+              setNightmode={setNightmode}
+            />
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
     </Fragment>
