@@ -28,7 +28,7 @@ export default function HomeNav() {
           backgroundColor: theme.palette.primary.main,
         }}
       >
-        <Grid item>
+        <Grid item style={{ width: "100%", height: "100%" }}>
           <Route exact path="/" render={(props) => <Resume />} />
           <Route exact path="/project" render={(props) => <Project />} />
           <Route exact path="/feedback" render={(props) => <Feedback />} />
