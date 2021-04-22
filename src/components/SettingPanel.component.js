@@ -13,10 +13,23 @@ const useStyles = makeStyles((theme) => ({
   },
   absoluteContainer: {
     position: "absolute",
-    top: "12em",
+    top: theme.spacing(28),
+    [theme.breakpoints.down("lg")]: {
+      top: theme.spacing(23),
+    },
+    [theme.breakpoints.down("md")]: {
+      top: theme.spacing(17),
+    },
+    [theme.breakpoints.down("sm")]: {
+      top: theme.spacing(15),
+    },
     right: 0,
-    width: "70px",
-    height: "50px",
+    width: theme.spacing(8),
+    height: theme.spacing(6),
+    [theme.breakpoints.down("sm")]: {
+      width: theme.spacing(6),
+      height: theme.spacing(5),
+    },
   },
 
   settingContainer: {

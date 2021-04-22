@@ -6,12 +6,14 @@ import { Typography } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import dp from "../assets/founder3.png";
+import CallIcon from "@material-ui/icons/Call";
+import EmailIcon from "@material-ui/icons/Email";
+import RoomIcon from "@material-ui/icons/Room";
+import PhoneInTalkOutlinedIcon from "@material-ui/icons/PhoneInTalkOutlined";
+import { ReactComponent as Education } from "../assets/education.svg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    // flexGrow: 1,
-    // flexBasis: "25%",
-    // border: "1px solid lightcyan",
     position: "relative",
     flexGrow: 1,
     flexWrap: "nowrap",
@@ -21,30 +23,40 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: "15em",
     borderBottomRightRadius: "15em",
     flexWrap: "nowrap",
-    maxHeight: "350px",
+    maxHeight: theme.spacing(44),
   },
   dp: {
     width: "70%",
-    minWidth: "170px",
+    minWidth: theme.spacing(21),
     height: "auto",
     overflow: "hidden",
-    margin: "15px",
+    margin: theme.spacing(2),
   },
 
   contact: {
-    border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.accent.main}`,
+    flexWrap: "nowrap",
+    paddingTop: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
+  contactItem: {
+    // border: "1px solid blue",
+    alignItems: "center",
+    "&>*": {
+      paddingRight: theme.spacing(1),
+    },
   },
   education: {
-    border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.accent.main}`,
   },
   language: {
-    border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.accent.main}`,
   },
   skills: {
-    border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.accent.main}`,
   },
   passion: {
-    border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.accent.main}`,
   },
 }));
 export default function Resume() {
@@ -63,9 +75,9 @@ export default function Resume() {
         justify="space-around"
         style={{
           height: "100%",
-          paddingTop: "1em",
-          paddingBottom: "10px",
-          paddingLeft: "1em",
+          paddingTop: theme.spacing(1),
+          paddingBottom: theme.spacing(1),
+          paddingLeft: matchesMD ? theme.spacing(2) : theme.spacing(8),
         }}
       >
         <Grid
@@ -98,8 +110,10 @@ export default function Resume() {
                   alignSelf: "center",
                 }}
               >
-                <Typography variant="h4">NAME SURNAME</Typography>
-                <Typography variant="h6">GRAPHIC DESIGNER</Typography>
+                <Typography variant="h3">NAME SURNAME</Typography>
+                <Typography variant="h6" style={{ letterSpacing: "0.3rem" }}>
+                  WEB ENGINEER
+                </Typography>
               </Grid>
             </Grid>
             <Grid
@@ -158,6 +172,8 @@ export default function Resume() {
                 style={{
                   // border: `1px solid ${theme.palette.accent.main}`,
                   flexGrow: 1,
+                  width: "100%",
+                  maxWidth: "100%",
                 }}
               />
               <Grid
@@ -172,9 +188,13 @@ export default function Resume() {
                 style={{
                   flexGrow: 1,
                   flexWrap: "nowrap",
+
                   // border: `1px solid ${theme.palette.accent.main}`,
+                  width: "100%",
+                  maxWidth: "calc(100% - 100px)",
                 }}
               >
+                {/* top recatangle */}
                 <Grid
                   item
                   container
@@ -182,10 +202,9 @@ export default function Resume() {
                     position: "relative",
                     border: "1px solid grey",
                     flexGrow: 1,
-                    // width: matchesXL ? "300px" : "200px",
                     borderBottom: "none",
                     borderLeft: "none",
-                    minWidth: "120px",
+                    minWidth: "110px",
                   }}
                 >
                   <WallpaperIcon
@@ -193,14 +212,14 @@ export default function Resume() {
                       width: matchesLG ? (matchesMD ? "60px" : "75px") : "85px",
                       height: "auto",
                       color: "grey",
-                      backgroundColor: `${theme.palette.primary.main}`,
+                      backgroundColor: `${theme.palette.common.dark}`,
                       position: "absolute",
                       top: "-40px",
                       right: "-40px",
                     }}
                   />
                 </Grid>
-
+                {/* bottom rectangle */}
                 <Grid
                   item
                   style={{
@@ -219,16 +238,19 @@ export default function Resume() {
                       bottom: "calc(-3em / 2)",
                       right: "-35px",
                       color: "lightblue",
-                      backgroundColor: `${theme.palette.primary.main}`,
+                      backgroundColor: `${theme.palette.common.dark}`,
                       // border: "1px solid red",
                     }}
                   >
                     <Typography
+                      variant="subtitle1"
                       align="center"
                       style={{
                         marginLeft: "1%",
                         maxHeight: "70px",
-                        fontSize: "2em",
+                        fontSize: "2rem",
+                        fontStyle: "bold",
+                        letterSpacing: "0.1rem",
                         margin: 0,
                         paddingLeft: "0.1em",
                       }}
@@ -243,12 +265,147 @@ export default function Resume() {
           </Grid>
         </Grid>
         {/* contact section */}
-        <Grid item container className={classes.container}>
-          <Grid item container className={classes.contact}>
-            contact
+        <Grid item container justify="flex-end" className={classes.container}>
+          <Grid item container justify="center" className={classes.contact}>
+            <Grid
+              item
+              container
+              style={{
+                position: "relative",
+                border: "1px solid grey",
+                maxWidth: "100px",
+                minWidth: theme.spacing(8),
+                maxHeight: "200px",
+                marginTop: theme.spacing(4),
+                marginLeft: theme.spacing(4),
+                borderBottom: "none",
+                borderRight: "none",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  position: "absolute",
+                  bottom: -theme.spacing(1),
+                  left: -theme.spacing(4),
+                }}
+              >
+                <PhoneInTalkOutlinedIcon
+                  color="primary"
+                  style={{
+                    width: theme.spacing(9),
+                    height: "auto",
+                    backgroundColor: theme.palette.common.dark,
+                  }}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid
+              item
+              xl={8}
+              container
+              justify="center"
+              style={{
+                border: `5px solid ${theme.palette.accent.main}`,
+                maxWidth: theme.spacing(36),
+                maxHeight: theme.spacing(26),
+                padding: theme.spacing(1),
+              }}
+            >
+              <Grid
+                item
+                container
+                style={{
+                  // border: "1px solid red",
+                  minWidth: "250px",
+                  height: "180px",
+                  flexShrink: 0,
+                }}
+              >
+                <Grid item container>
+                  <Typography variant="h4">Contact</Typography>
+                </Grid>
+
+                <Grid item container style={{ maxHeight: "170px" }}>
+                  <Grid item container className={classes.contactItem}>
+                    <Grid item>
+                      <CallIcon color="primary" />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body1" align="center">
+                        9847021971
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container className={classes.contactItem}>
+                    <Grid item>
+                      <EmailIcon color="primary" />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body1" align="center">
+                        firoj.is.available@gmail.com
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container className={classes.contactItem}>
+                    <Grid item>
+                      <RoomIcon color="primary" />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body1" align="center">
+                        Nawalparasi, Nepal
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item container>
-            col 2
+          <Grid
+            item
+            alignItems="center"
+            container
+            direction="row"
+            style={{
+              paddingRight: matchesSM ? theme.spacing(2) : theme.spacing(8),
+
+              border: `1px solid ${theme.palette.accent.main}`,
+              position: "relative",
+              marginLeft: theme.spacing(2),
+            }}
+          >
+            <Grid
+              style={{
+                position: "absolute",
+                top: 0,
+                left: -theme.spacing(3),
+                backgroundColor: theme.palette.common.dark,
+              }}
+            >
+              <Education
+                fill={theme.palette.primary.main}
+                stroke={theme.palette.primary.main}
+              />
+            </Grid>
+            <Grid
+              item
+              style={{
+                paddingLeft: matchesSM ? theme.spacing(2) : theme.spacing(8),
+              }}
+            >
+              <Typography variant="body1" align="right">
+                Lorem ipsum is a placeholder text commonly used to demonstrate
+                the visual form of a document or a typeface without relying on
+                meaningful content.
+              </Typography>
+              <Typography variant="body1" align="right">
+                lipsum as it is sometimes known, is dummy text used in laying
+                out print, graphic or web designs. The passage is attributed to
+                an unknown typesetter in the 15th century.
+              </Typography>
+            </Grid>
+            <Grid item container style={{ border: "1px solid grey" }} />
           </Grid>
         </Grid>
         <Grid item container className={classes.container}>

@@ -2,11 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import PhoneIcon from "@material-ui/icons/Phone";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -14,11 +10,19 @@ import { ReactComponent as Resume } from "../assets/resume.svg";
 import { ReactComponent as Hireme } from "../assets/hireme.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
 import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
-
 const useStyles = makeStyles((theme) => ({
+  iconDimension: {
+    width: "48px",
+    height: "48px",
+  },
+  tab: {
+    color: theme.palette.accent.main,
+  },
+
   root: {
     flexGrow: 1,
   },
+
   flexContainer: {
     flexDirection: "row",
     "&>.MuiTab-root": {
@@ -31,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&>.Mui-selected": {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.common.dark,
       position: "relative",
 
       "&>.MuiTab-wrapper": {
@@ -43,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.tabColor,
     },
   },
-  iconDimension: { ...theme.iconDimension },
 }));
 
 export default function MobilieNav() {
@@ -78,10 +81,7 @@ export default function MobilieNav() {
               label="RESUME"
               to="/"
               component={Link}
-              style={{
-                backgroundColor: theme.tabColor,
-                color: theme.palette.accent.main,
-              }}
+              className={classes.tab}
             />
             <Tab
               icon={
@@ -94,10 +94,7 @@ export default function MobilieNav() {
               label="PROJECT"
               to="/project"
               component={Link}
-              style={{
-                backgroundColor: theme.tabColor,
-                color: theme.palette.accent.main,
-              }}
+              className={classes.tab}
             />
             <Tab
               icon={
@@ -110,10 +107,7 @@ export default function MobilieNav() {
               label="FEEDBACK"
               to="/feedback"
               component={Link}
-              style={{
-                backgroundColor: theme.tabColor,
-                color: theme.palette.accent.main,
-              }}
+              className={classes.tab}
             />
             <Tab
               icon={
@@ -126,10 +120,7 @@ export default function MobilieNav() {
               label="HIREME"
               to="/hireme"
               component={Link}
-              style={{
-                backgroundColor: theme.tabColor,
-                color: theme.palette.accent.main,
-              }}
+              className={classes.tab}
             />
           </Tabs>
         </Paper>

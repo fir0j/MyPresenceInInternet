@@ -36,6 +36,18 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: "150px",
     },
   },
+  iconDimension: {
+    width: "96px",
+    height: "96px",
+    [theme.breakpoints.down("lg")]: {
+      width: "64px",
+      height: "64px",
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "48px",
+      height: "48px",
+    },
+  },
 
   // CSS RULE NAME
   flexContainerVertical: {
@@ -46,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.common.dark,
     color: theme.palette.accent.main,
     // overwriting class .flexContainerVertical.MuiTab-root globally without using {withStyle} HOC
     "&>.MuiTab-root": {
@@ -59,17 +71,18 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&>.Mui-selected": {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.common.dark,
       position: "relative",
       marginTop: "2em",
       marginBottom: "2em",
-      borderTopRightRadius: "5px",
-      borderBottomRightRadius: "100px",
+      // borderTopRightRadius: "5px",
+      // borderBottomRightRadius: "100px",
 
-      [theme.breakpoints.down("md")]: {
-        borderTopRightRadius: "5px",
-        borderBottomRightRadius: "40px",
-      },
+      // [theme.breakpoints.down("md")]: {
+      //   borderTopRightRadius: "5px",
+      //   borderBottomRightRadius: "40px",
+      // },
+      border: "none",
 
       "&>.MuiTab-wrapper": {
         width: "100%",
@@ -85,9 +98,6 @@ const useStyles = makeStyles((theme) => ({
   indicator: {
     backgroundColor: "transparent",
     width: "1px",
-  },
-  iconDimension: {
-    ...theme.iconDimension,
   },
 }));
 
@@ -169,6 +179,7 @@ export default function Navigation() {
             />
           </div>
         }
+        undefined
         to="/"
         component={Link}
         className={classes.tab}

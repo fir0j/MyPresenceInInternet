@@ -25,7 +25,7 @@ export default function HomeNav() {
         xs={matchesXS ? 12 : undefined}
         style={{
           // border: "1px solid blue",
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: theme.palette.common.dark,
         }}
       >
         <Grid item style={{ width: "100%", height: "100%" }}>
