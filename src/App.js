@@ -29,6 +29,7 @@ function App() {
                 width: "100vw",
                 maxHeight: "100vh",
                 maxWidth: "2560px",
+                // border: "1px solid red",
               }}
             >
               <Hidden xsDown>
@@ -38,7 +39,7 @@ function App() {
                   style={{
                     position: "relative",
                     flexWrap: "nowrap",
-                    // border: "1px solid red",
+                    // border: "1px solid green",
                   }}
                 >
                   <Navigation />
