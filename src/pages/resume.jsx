@@ -943,10 +943,10 @@ export default function Resume() {
               justify="center"
               style={{
                 position: "relative",
-                border: `3px solid ${theme.palette.accent.main}`,
                 padding: theme.spacing(1),
                 paddingBottom: theme.spacing(5),
                 height: "calc(100% - 72px)",
+                border: `3px solid ${theme.palette.accent.main}`,
               }}
             >
               <Grid
@@ -1016,13 +1016,13 @@ export default function Resume() {
           direction="column"
           justify="flex-end"
           style={{
+            // border: `1px solid red`,
             position: "relative",
             width: matchesXL
               ? matchesLG
                 ? theme.spacing(200)
                 : theme.spacing(400)
               : undefined,
-            // border: `1px solid red`,
           }}
         >
           <Grid
@@ -1038,6 +1038,7 @@ export default function Resume() {
                 position: "relative",
                 height: theme.spacing(55),
                 // border: `1px solid yellow`,
+                paddingLeft: matchesLG ? theme.spacing(1) : undefined,
               }}
             >
               <Grid
@@ -1204,15 +1205,15 @@ export default function Resume() {
                   borderBottom: "none",
                   borderLeft: "none",
                   backgroundColor: theme.palette.common.dark,
-                  height: theme.spacing(9),
-                  marginTop: theme.spacing(9),
+                  height: matchesLG ? theme.spacing(12) : theme.spacing(9),
+                  marginTop: matchesLG ? theme.spacing(15) : theme.spacing(9),
                 }}
               >
                 <HobbyIcon
                   className={classes.svgIcon}
                   style={{
                     position: "absolute",
-                    left: -theme.spacing(6),
+                    left: 0,
                     top: -theme.spacing(6),
                   }}
                 />
@@ -1222,10 +1223,10 @@ export default function Resume() {
             <Grid
               item
               container
-              justify="flex-end"
+              justify="center"
               style={{
                 position: "relative",
-                // border: "1px solid blue",
+                border: `3px solid ${theme.palette.accent.main}`,
               }}
             >
               <Grid
@@ -1236,7 +1237,6 @@ export default function Resume() {
                 alignItems="center"
                 style={{
                   flexWrap: "nowrap",
-                  border: `3px solid ${theme.palette.accent.main}`,
                   maxWidth: theme.spacing(35),
                   marginBottom: theme.spacing(5),
                 }}
