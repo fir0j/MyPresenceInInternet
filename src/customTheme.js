@@ -1,12 +1,14 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import teal from "@material-ui/core/colors/teal";
+import grey from "@material-ui/core/colors/grey";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 
 const breakpoints = createBreakpoints({});
 const black = "#000";
 const white = "#FFF";
 const dark = "#2C2C2C";
-const grey = "#8b8b8b";
+const offWhite = grey[400];
+const portfolioGrey = "#8b8b8b";
 const green = "#4ae4b8";
 
 // It is EXACTLY the place to visit if MUI-DEFAUL-THEME needs to be CUSTOMIZED/OVERWRITTEN with our custom variant GLOBALLY.
@@ -19,13 +21,14 @@ const darkTheme = createMuiTheme({
     common: {
       black: black,
       dark: dark,
+      offWhite: offWhite,
       white: white,
 
       // contrastText: "",
     },
     primary: {
       // light: dark,
-      main: grey,
+      main: portfolioGrey,
       // dark: dark,
       contrastText: "black",
     },
@@ -42,7 +45,7 @@ const darkTheme = createMuiTheme({
   },
   typography: {
     body1: {
-      color: grey,
+      color: portfolioGrey,
     },
     h3: {
       // fontFamily: "Raleway",
@@ -63,7 +66,7 @@ const darkTheme = createMuiTheme({
       color: green,
     },
     h6: {
-      color: green,
+      color: offWhite,
       [breakpoints.down("md")]: {
         fontSize: "1rem",
       },

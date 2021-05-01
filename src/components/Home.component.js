@@ -12,7 +12,10 @@ import HireMe from "../pages/hireme";
 export default function HomeNav() {
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
+  const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
   return (
     <React.Fragment>
       <Grid
@@ -26,14 +29,26 @@ export default function HomeNav() {
         xs={matchesXS ? 12 : undefined}
         style={{
           // border: "1px solid blue",
-          paddingTop: theme.spacing(1),
-          paddingLeft: matchesMD ? theme.spacing(2) : theme.spacing(8),
-          paddingRight: matchesMD ? theme.spacing(2) : theme.spacing(8),
+          paddingLeft: matchesXL
+            ? matchesLG
+              ? matchesSM
+                ? theme.spacing(2)
+                : theme.spacing(7)
+              : theme.spacing(20)
+            : undefined,
+          paddingRight: matchesXL
+            ? matchesLG
+              ? matchesSM
+                ? theme.spacing(2)
+                : theme.spacing(7)
+              : theme.spacing(20)
+            : undefined,
           backgroundColor: theme.palette.common.dark,
           height: "100vh",
           maxHeight: "100vh",
           width: "100%",
           overflowY: "scroll",
+          paddingTop: theme.spacing(5),
         }}
       >
         <Route exact path="/" render={(props) => <Resume />} />
