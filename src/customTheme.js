@@ -16,6 +16,9 @@ const green = "#4ae4b8";
 const darkTheme = createMuiTheme({
   // Palette provides  color system
   // Typograpy provides text presentation system like <p>, h1...h6 and so on
+  // Primary 60%
+  // Secondary 30%
+  // Accent 10%
   palette: {
     type: "dark",
     common: {
@@ -44,34 +47,33 @@ const darkTheme = createMuiTheme({
     },
   },
   typography: {
+    fontFamily: "Lora",
     body1: {
       color: portfolioGrey,
+      fontSize: "1.11rem",
     },
     h3: {
-      // fontFamily: "Raleway",
-      // fontWeight: 700,
-      // fontSize: "1.75rem",
+      // fontFamily: "Lora",
       color: green,
-      [breakpoints.down("lg")]: {
-        // fontSize: "2rem",
-      },
       [breakpoints.down("md")]: {
-        fontSize: "2rem",
-      },
-      [breakpoints.down("sm")]: {
-        fontSize: "1.5rem",
+        fontSize: "2.1rem",
       },
     },
     h4: {
       color: green,
+      // fontFamily: "Lora",
     },
     h6: {
+      // fontFamily: "Lora",
       color: offWhite,
-      [breakpoints.down("md")]: {
-        fontSize: "1rem",
-      },
       [breakpoints.down("sm")]: {
-        fontSize: "0.75rem",
+        fontSize: "1.1rem",
+      },
+    },
+    caption: {
+      fontSize: "1rem",
+      [breakpoints.down("md")]: {
+        fontSize: "0.8rem",
       },
     },
   },

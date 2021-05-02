@@ -30,10 +30,11 @@ const useStyles = makeStyles((theme) => ({
     // minHeight: "100px",
     maxWidth: "100%",
     maxHeight: "100%",
-    fontFamily: "Raleway;sans-serif",
+    letterSpacing: "0.1rem",
+    fontSize: "1rem",
     fontWeight: "bold",
     [theme.breakpoints.down("sm")]: {
-      maxHeight: "150px",
+      maxHeight: theme.spacing(19),
     },
   },
   iconDimension: {

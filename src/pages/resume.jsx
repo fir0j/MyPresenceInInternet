@@ -22,6 +22,7 @@ import { ReactComponent as ProgrammingIcon } from "../assets/programming.svg";
 import LinearProgressGraph from "../components/LinearProgressGraph.component";
 import CircularProgressWithLabel from "../components/CircularProgressWithLabel.component";
 import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
+import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -29,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexWrap: "nowrap",
     marginBottom: theme.spacing(5),
+    [theme.breakpoints.down("md")]: {
+      marginBottom: theme.spacing(0),
+    },
   },
   name: {
     border: `3px solid ${theme.palette.accent.main}`,
@@ -134,13 +138,22 @@ export default function Resume() {
       className={classes.container}
       // style={{ border: "1px solid red" }}
     >
-      <Grid item container xl={8} lg={8} md={8} sm={8} className={classes.name}>
+      <Grid
+        item
+        container
+        xl={8}
+        lg={8}
+        md={8}
+        sm={matchesSM ? 12 : 8}
+        className={classes.name}
+      >
         <Grid
           item
           container
           direction="column"
           justify="center"
           alignItems="flex-between"
+          style={{ paddingLeft: theme.spacing(1) }}
         >
           <Grid
             item
@@ -148,8 +161,20 @@ export default function Resume() {
               alignSelf: "center",
             }}
           >
-            <Typography variant="h3">FIROJ SIDDIKI</Typography>
-            <Typography variant="h6" style={{ letterSpacing: "0.3rem" }}>
+            <Typography
+              variant="h3"
+              style={{
+                letterSpacing: "0.2rem",
+              }}
+            >
+              FIROJ SIDDIKI
+            </Typography>
+            <Typography
+              variant="h6"
+              style={{
+                letterSpacing: "0.3rem",
+              }}
+            >
               WEB ENGINEER
             </Typography>
           </Grid>
@@ -169,135 +194,137 @@ export default function Resume() {
         </Grid>
       </Grid>
       {/* hello section */}
-      <Grid
-        item
-        container
-        xl={4}
-        lg={4}
-        md={4}
-        sm={4}
-        direction="column"
-        justify="center"
-        style={{
-          height: "100%",
-          maxHeight: "350px",
-          flexWrap: "nowrap",
-          // border: `1px solid ${theme.palette.accent.main}`,
-        }}
-      >
+      <Hidden smDown>
         <Grid
           item
           container
+          xl={4}
+          lg={4}
+          md={4}
+          sm={4}
           direction="column"
-          justify="flex-end"
+          justify="center"
           style={{
-            flexBasis: matchesLG ? (matchesMD ? "65%" : "75%") : "90%",
+            height: "100%",
+            maxHeight: "350px",
             flexWrap: "nowrap",
-            // border: `1px solid red`,
+            // border: `1px solid ${theme.palette.accent.main}`,
           }}
         >
           <Grid
             item
-            xl={4}
-            lg={4}
-            md={4}
-            sm={4}
-            container
-            style={{
-              // border: `1px solid ${theme.palette.accent.main}`,
-              flexGrow: 1,
-              width: "100%",
-              maxWidth: "100%",
-            }}
-          />
-          <Grid
-            item
-            xl={8}
-            lg={8}
-            md={8}
-            sm={8}
             container
             direction="column"
             justify="flex-end"
             style={{
-              flexGrow: 1,
+              flexBasis: matchesLG ? (matchesMD ? "65%" : "75%") : "90%",
               flexWrap: "nowrap",
-              width: "100%",
-              maxWidth: "calc(100% - 37.5px)",
+              // border: `1px solid red`,
             }}
           >
-            {/* top recatangle */}
             <Grid
               item
+              xl={4}
+              lg={4}
+              md={4}
+              sm={4}
               container
               style={{
-                position: "relative",
-                border: "1px solid grey",
+                // border: `1px solid ${theme.palette.accent.main}`,
                 flexGrow: 1,
-                borderBottom: "none",
-                borderLeft: "none",
-                minWidth: "110px",
+                width: "100%",
+                maxWidth: "100%",
               }}
-            >
-              <Gallery
-                style={{
-                  position: "absolute",
-                  top: "-50px",
-                  right: "-50px",
-                  width: matchesXL
-                    ? matchesLG
-                      ? matchesSM
-                        ? theme.spacing(6)
-                        : theme.spacing(7)
-                      : theme.spacing(9)
-                    : undefined,
-                }}
-                className={classes.svgIcon}
-              />
-            </Grid>
-            {/* bottom rectangle */}
+            />
             <Grid
               item
+              xl={8}
+              lg={8}
+              md={8}
+              sm={8}
+              container
+              direction="column"
+              justify="flex-end"
               style={{
-                position: "relative",
-                border: "1px solid grey",
-                borderRight: "none",
                 flexGrow: 1,
-                minWidth: "80px",
-                marginLeft: matchesSM ? "30px" : "50px",
+                flexWrap: "nowrap",
+                width: "100%",
+                maxWidth: "calc(100% - 37.5px)",
               }}
             >
+              {/* top recatangle */}
+              <Grid
+                item
+                container
+                style={{
+                  position: "relative",
+                  border: "1px solid grey",
+                  flexGrow: 1,
+                  borderBottom: "none",
+                  borderLeft: "none",
+                  minWidth: "110px",
+                }}
+              >
+                <Gallery
+                  style={{
+                    position: "absolute",
+                    top: "-50px",
+                    right: "-50px",
+                    width: matchesXL
+                      ? matchesLG
+                        ? matchesSM
+                          ? theme.spacing(6)
+                          : theme.spacing(7)
+                        : theme.spacing(9)
+                      : undefined,
+                  }}
+                  className={classes.svgIcon}
+                />
+              </Grid>
+              {/* bottom rectangle */}
               <Grid
                 item
                 style={{
-                  position: "absolute",
-                  bottom: "calc(-3em / 2)",
-                  right: "-35px",
-                  color: "lightblue",
-                  backgroundColor: `${theme.palette.common.dark}`,
-                  // border: "1px solid red",
+                  position: "relative",
+                  border: "1px solid grey",
+                  borderRight: "none",
+                  flexGrow: 1,
+                  minWidth: "80px",
+                  marginLeft: matchesSM ? "30px" : "50px",
                 }}
               >
-                <Typography
-                  variant="h4"
-                  align="center"
+                <Grid
+                  item
                   style={{
-                    marginLeft: "1%",
-                    maxHeight: "70px",
-                    fontSize: "2.5rem",
-                    fontStyle: "bold",
-                    letterSpacing: "0.1rem",
-                    margin: 0,
-                    paddingLeft: "0.1em",
+                    position: "absolute",
+                    bottom: "calc(-3em / 2)",
+                    right: "-35px",
+                    color: "lightblue",
+                    backgroundColor: `${theme.palette.common.dark}`,
+                    // border: "1px solid red",
                   }}
                 >
-                  Hello!
-                </Typography>
+                  <Typography
+                    variant="h4"
+                    align="center"
+                    style={{
+                      marginLeft: "1%",
+                      maxHeight: "70px",
+                      fontSize: "2.5rem",
+                      fontStyle: "bold",
+                      letterSpacing: "0.1rem",
+                      margin: 0,
+                      paddingLeft: "0.1em",
+                    }}
+                  >
+                    Hello!
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </Hidden>
     </Grid>
   );
 
@@ -307,104 +334,110 @@ export default function Resume() {
       container
       justify="flex-end"
       className={classes.container}
-      // style={{ border: "1px solid orange" }}
+      style={
+        {
+          // border: "1px solid orange",
+        }
+      }
     >
-      <Grid
-        item
-        container
-        justify="center"
-        className={classes.contact}
-        // style={{ border: "1px solid orange" }}
-      >
+      <Hidden mdDown>
         <Grid
           item
-          container
-          style={{
-            position: "relative",
-            border: "1px solid grey",
-            maxWidth: theme.spacing(12),
-            minWidth: theme.spacing(8),
-            maxHeight: theme.spacing(25),
-            marginTop: theme.spacing(4),
-            marginLeft: theme.spacing(4),
-            borderBottom: "none",
-            borderRight: "none",
-          }}
-        >
-          <Grid
-            item
-            style={{
-              position: "absolute",
-              bottom: -theme.spacing(1),
-              left: -theme.spacing(6),
-            }}
-          >
-            <Telephone className={classes.svgIcon} />
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          xl={8}
           container
           justify="center"
-          style={{
-            border: `3px solid ${theme.palette.accent.main}`,
-            maxWidth: theme.spacing(36),
-            maxHeight: theme.spacing(36),
-            padding: theme.spacing(1),
-          }}
+          className={classes.contact}
+          // style={{ border: "1px solid orange" }}
         >
           <Grid
             item
             container
             style={{
-              minWidth: "250px",
-              height: "250px",
-              flexShrink: 0,
+              position: "relative",
+              border: "1px solid grey",
+              borderBottom: "none",
+              borderRight: "none",
+              maxWidth: theme.spacing(12),
+              minWidth: theme.spacing(8),
+              maxHeight: theme.spacing(25),
+              marginTop: theme.spacing(4),
+              marginLeft: theme.spacing(4),
             }}
           >
-            <Grid item container justify="center" alignItems="center">
-              <Grid item>
-                <Typography variant="h4">Contact</Typography>
-              </Grid>
+            <Grid
+              item
+              style={{
+                position: "absolute",
+                bottom: -theme.spacing(1),
+                left: -theme.spacing(6),
+              }}
+            >
+              <Telephone className={classes.svgIcon} />
             </Grid>
+          </Grid>
 
-            <Grid item container style={{ maxHeight: "200px" }}>
-              <Grid item container className={classes.contactItem}>
+          <Grid
+            item
+            xl={8}
+            container
+            justify="center"
+            style={{
+              border: `3px solid ${theme.palette.accent.main}`,
+              maxWidth: theme.spacing(36),
+              maxHeight: theme.spacing(36),
+              padding: theme.spacing(1),
+            }}
+          >
+            <Grid
+              item
+              container
+              style={{
+                minWidth: "250px",
+                height: "250px",
+                flexShrink: 0,
+              }}
+            >
+              <Grid item container justify="center" alignItems="center">
                 <Grid item>
-                  <CallIcon color="primary" />
-                </Grid>
-                <Grid item>
-                  <Typography variant="body1" align="center">
-                    9847021971
-                  </Typography>
+                  <Typography variant="h4">Contact</Typography>
                 </Grid>
               </Grid>
-              <Grid item container className={classes.contactItem}>
-                <Grid item>
-                  <EmailIcon color="primary" />
+
+              <Grid item container style={{ maxHeight: "200px" }}>
+                <Grid item container className={classes.contactItem}>
+                  <Grid item>
+                    <CallIcon color="primary" />
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body1" align="center">
+                      9847021971
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body1" align="center">
-                    firoj.is.available@gmail.com
-                  </Typography>
+                <Grid item container className={classes.contactItem}>
+                  <Grid item>
+                    <EmailIcon color="primary" />
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body1" align="center">
+                      firoj.is.available@gmail.com
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-              <Grid item container className={classes.contactItem}>
-                <Grid item>
-                  <RoomIcon color="primary" />
-                </Grid>
-                <Grid item>
-                  <Typography variant="body1" align="center">
-                    Nawalparasi, Nepal
-                  </Typography>
+                <Grid item container className={classes.contactItem}>
+                  <Grid item>
+                    <RoomIcon color="primary" />
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body1" align="center">
+                      Nawalparasi, Nepal
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </Hidden>
       <Grid
         item
         container
@@ -413,8 +446,13 @@ export default function Resume() {
         style={{
           position: "relative",
           marginLeft: theme.spacing(8),
-          marginTop: theme.spacing(3),
-          maxHeight: matchesLG ? theme.spacing(30) : theme.spacing(30),
+          marginTop: theme.spacing(matchesMD ? 8 : 2),
+          maxHeight: matchesLG
+            ? matchesSM
+              ? theme.spacing(40)
+              : theme.spacing(30)
+            : theme.spacing(30),
+          flexWrap: "nowrap",
         }}
       >
         {/* education icon */}
@@ -422,13 +460,13 @@ export default function Resume() {
           item
           style={{
             position: "absolute",
-            top: 0,
-            left: -theme.spacing(8),
+            top: -theme.spacing(matchesMD ? 3 : 0),
+            left: -theme.spacing(matchesMD ? 7 : 8),
             backgroundColor: theme.palette.common.dark,
           }}
         >
           <Education
-            style={{ width: theme.spacing(12) }}
+            style={{ width: matchesMD ? theme.spacing(9) : theme.spacing(12) }}
             className={classes.svgIcon}
           />
         </Grid>
@@ -441,7 +479,9 @@ export default function Resume() {
             borderBottom: "none",
             borderRight: "none",
             borderTop: "none",
-            paddingLeft: matchesSM ? theme.spacing(2) : theme.spacing(8),
+            paddingLeft: matchesMD ? theme.spacing(12) : theme.spacing(9),
+            paddingBottom: theme.spacing(matchesMD ? 5 : 2),
+            // hmm
           }}
         >
           <Typography variant="body1" align="right">
@@ -461,9 +501,8 @@ export default function Resume() {
           item
           container
           style={{
-            height: theme.spacing(matchesLG ? 8 : 10),
+            height: theme.spacing(5),
             flexWrap: "nowrap",
-            // border: "1px solid blue",
           }}
         >
           <Grid
@@ -473,23 +512,29 @@ export default function Resume() {
               border: `1px solid ${theme.palette.primary.main}`,
               borderBottom: "none",
               borderLeft: "none",
+              height: "100%",
             }}
           />
-          <Grid item container />
+          <Grid item container style={{ height: "100%" }} />
         </Grid>
       </Grid>
     </Grid>
   );
 
   const education = (
-    <Grid item container className={classes.container}>
-      <Grid item container>
-        <Grid
-          item
-          container
-          justify="center"
-          // style={{ border: "1px solid red" }}
-        >
+    <Grid
+      item
+      container
+      direction={matchesMD ? "column-reverse" : "row"}
+      className={classes.container}
+    >
+      {/* work section */}
+      <Grid
+        item
+        container
+        // style={{ border: "1px solid red" }}
+      >
+        <Grid item container justify="center">
           <Grid item container xl lg md sm xs />
           <Grid
             item
@@ -506,17 +551,20 @@ export default function Resume() {
               borderRight: "none",
               borderBottom: "none",
               backgroundColor: theme.palette.common.dark,
-              marginTop: theme.spacing(8),
+              marginTop: theme.spacing(12),
             }}
           >
             <Work
               className={classes.svgIcon}
-              style={{ position: "absolute", top: -theme.spacing(7), right: 0 }}
+              style={{
+                position: "absolute",
+                top: -theme.spacing(7),
+                right: 0,
+              }}
             />
           </Grid>
         </Grid>
 
-        {/* work experience 1 */}
         <Grid
           item
           container
@@ -591,7 +639,6 @@ export default function Resume() {
               </Grid>
             </Grid>
           </Grid>
-          {/* work experience 2 */}
           <Grid
             item
             container
@@ -599,7 +646,7 @@ export default function Resume() {
             style={{
               flexWrap: "nowrap",
               marginTop: theme.spacing(2),
-              marginBottom: theme.spacing(2),
+              marginBottom: theme.spacing(6),
             }}
           >
             <Grid
@@ -656,29 +703,33 @@ export default function Resume() {
           </Grid>
         </Grid>
       </Grid>
+      {/* education section */}
       <Grid
         item
         container
         className={classes.education}
         style={{
           position: "relative",
-          marginLeft: theme.spacing(3),
+          marginLeft: matchesMD ? 0 : theme.spacing(3),
           // border: "1px solid blue",
         }}
       >
         <Grid
           container
           style={{
-            position: "absolute",
+            position: matchesMD ? undefined : "absolute",
             border: `3px solid ${theme.palette.accent.main}`,
             padding: theme.spacing(1),
             bottom: -theme.spacing(25),
-            top: matchesXL ? -theme.spacing(8) : undefined,
-            height: matchesXL
-              ? matchesLG
-                ? theme.spacing(115)
-                : theme.spacing(100)
-              : undefined,
+            top: matchesXL ? -theme.spacing(9) : undefined,
+            // height: matchesXL
+            //   ? matchesLG
+            //     ? matchesMD
+            //       ? theme.spacing(70)
+            //       : theme.spacing(115)
+            //     : theme.spacing(100)
+            //   : undefined,
+            height: matchesMD ? theme.spacing(70) : undefined,
           }}
         >
           <Grid
@@ -869,15 +920,18 @@ export default function Resume() {
     </Grid>
   );
 
-  const skills = (
+  const hobbyNlanguage = (
     <Grid item container justify="space-around" className={classes.container}>
       <Grid
         item
         container
+        direction={matchesMD ? "row-reverse" : undefined}
         style={{
           width: "100%",
           flexWrap: "nowrap",
           // border: "1px solid yellow",
+          marginTop: matchesSM ? theme.spacing(3) : undefined,
+          marginBottom: matchesSM ? theme.spacing(12) : undefined,
         }}
       >
         {/* language */}
@@ -888,7 +942,7 @@ export default function Resume() {
             position: "relative",
             padding: theme.spacing(5),
             paddingLeft: 0,
-            marginTop: theme.spacing(8),
+            // marginTop: theme.spacing(26.2),
           }}
         >
           <Grid
@@ -900,42 +954,44 @@ export default function Resume() {
               height: theme.spacing(50),
             }}
           >
-            <Grid
-              item
-              container
-              justify="center"
-              style={{
-                height: theme.spacing(15),
-              }}
-            >
-              <Grid item container xl lg md sm xs />
+            <Hidden mdDown>
               <Grid
                 item
                 container
-                xl
-                lg
-                md
-                sm
-                xs
+                justify="center"
                 style={{
-                  position: "relative",
-                  border: `1px solid ${theme.palette.primary.main}`,
-                  borderRight: "none",
-                  borderBottom: "none",
-                  backgroundColor: theme.palette.common.dark,
+                  height: theme.spacing(15),
                 }}
               >
-                <LangaugeIcon
-                  className={classes.svgIcon}
+                <Grid item container xl lg md sm xs />
+                <Grid
+                  item
+                  container
+                  xl
+                  lg
+                  md
+                  sm
+                  xs
                   style={{
-                    position: "absolute",
-                    top: -theme.spacing(7),
-                    height: theme.spacing(9),
-                    right: -theme.spacing(2),
+                    position: "relative",
+                    border: `1px solid ${theme.palette.primary.main}`,
+                    borderRight: "none",
+                    borderBottom: "none",
+                    backgroundColor: theme.palette.common.dark,
                   }}
-                />
+                >
+                  <LangaugeIcon
+                    className={classes.svgIcon}
+                    style={{
+                      position: "absolute",
+                      top: -theme.spacing(7),
+                      height: theme.spacing(9),
+                      right: -theme.spacing(2),
+                    }}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
+            </Hidden>
 
             <Grid
               item
@@ -945,10 +1001,48 @@ export default function Resume() {
                 position: "relative",
                 padding: theme.spacing(1),
                 paddingBottom: theme.spacing(5),
-                height: "calc(100% - 72px)",
-                border: `3px solid ${theme.palette.accent.main}`,
+                height: "100%",
+                marginLeft: theme.spacing(5),
               }}
             >
+              {/* need to be hidden on mdUP */}
+              <Grid
+                item
+                container
+                justify="center"
+                style={{
+                  height: theme.spacing(11),
+                }}
+              >
+                <Grid
+                  item
+                  container
+                  xl
+                  lg
+                  md
+                  sm
+                  xs
+                  style={{
+                    position: "relative",
+                    border: `1px solid ${theme.palette.primary.main}`,
+                    borderBottom: "none",
+                    borderLeft: "none",
+                    backgroundColor: theme.palette.common.dark,
+                  }}
+                >
+                  <LangaugeIcon
+                    className={classes.svgIcon}
+                    style={{
+                      position: "absolute",
+                      top: -theme.spacing(7),
+                      left: -theme.spacing(0),
+                      height: theme.spacing(9),
+                    }}
+                  />
+                </Grid>
+                <Grid item container md={6} sm={6} xs={6} />
+              </Grid>
+              {/* hidden */}
               <Grid
                 item
                 container
@@ -957,6 +1051,7 @@ export default function Resume() {
                 alignItems="center"
                 style={{
                   flexWrap: "nowrap",
+                  height: "100%",
                 }}
               >
                 <Grid item container direction="column">
@@ -1009,178 +1104,6 @@ export default function Resume() {
           </Grid>
         </Grid>
 
-        {/* technical skills */}
-        <Grid
-          item
-          container
-          direction="column"
-          justify="flex-end"
-          style={{
-            // border: `1px solid red`,
-            position: "relative",
-            width: matchesXL
-              ? matchesLG
-                ? theme.spacing(200)
-                : theme.spacing(400)
-              : undefined,
-          }}
-        >
-          <Grid
-            item
-            container
-            style={{ position: "absolute", bottom: -theme.spacing(15) }}
-          >
-            <Grid
-              item
-              container
-              justify="center"
-              style={{
-                position: "relative",
-                height: theme.spacing(55),
-                // border: `1px solid yellow`,
-                paddingLeft: matchesLG ? theme.spacing(1) : undefined,
-              }}
-            >
-              <Grid
-                item
-                container
-                justify="center"
-                alignItems="center"
-                style={{
-                  height: theme.spacing(11),
-                }}
-              >
-                <Grid item>
-                  <Typography variant="h4">Technical Proficiency</Typography>
-                </Grid>
-              </Grid>
-              <Grid
-                item
-                container
-                justify="center"
-                alignItems="center"
-                className={classes.technologies}
-              >
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={90}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="HTML"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={85}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="CSS"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={80}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="JAVASCRIPT"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={85}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="REACT"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={80}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="Material-UI"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={65}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="REDUX"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={80}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="NodeJS"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={80}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="MongoDB"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={70}
-                    color="secondary"
-                    size={matchesLG ? 100 : 120}
-                    label="REDIS"
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              container
-              justify="center"
-              style={{
-                height: theme.spacing(10),
-              }}
-            >
-              <Grid
-                item
-                container
-                xl
-                lg
-                md
-                sm
-                xs
-                style={{
-                  position: "relative",
-                  border: `1px solid ${theme.palette.primary.main}`,
-                  borderTop: "none",
-                  borderLeft: "none",
-                }}
-              >
-                <ProgrammingIcon
-                  className={classes.svgIcon}
-                  style={{
-                    position: "absolute",
-                    bottom: -theme.spacing(6),
-                    left: 0,
-                  }}
-                />
-              </Grid>
-              <Grid item container xl lg md sm xs />
-            </Grid>
-          </Grid>
-        </Grid>
-
         {/* hobby */}
         <Grid
           item
@@ -1189,44 +1112,17 @@ export default function Resume() {
           justify="center"
           // style={{ border: "1px solid yellow" }}
         >
-          <Grid item container style={{ height: "30%" }}>
-            <Grid item container justify="center">
-              <Grid
-                item
-                container
-                xl={9}
-                lg={9}
-                md={9}
-                sm={9}
-                xs
-                style={{
-                  position: "relative",
-                  border: `1px solid ${theme.palette.primary.main}`,
-                  borderBottom: "none",
-                  borderLeft: "none",
-                  backgroundColor: theme.palette.common.dark,
-                  height: matchesLG ? theme.spacing(12) : theme.spacing(9),
-                  marginTop: matchesLG ? theme.spacing(15) : theme.spacing(9),
-                }}
-              >
-                <HobbyIcon
-                  className={classes.svgIcon}
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: -theme.spacing(6),
-                  }}
-                />
-              </Grid>
-              <Grid item container xl lg md sm xs />
-            </Grid>
+          <Grid
+            item
+            container
+            style={{ height: matchesMD ? undefined : "30%" }}
+          >
             <Grid
               item
               container
               justify="center"
               style={{
                 position: "relative",
-                border: `3px solid ${theme.palette.accent.main}`,
               }}
             >
               <Grid
@@ -1237,8 +1133,7 @@ export default function Resume() {
                 alignItems="center"
                 style={{
                   flexWrap: "nowrap",
-                  maxWidth: theme.spacing(35),
-                  marginBottom: theme.spacing(5),
+                  border: `3px solid ${theme.palette.accent.main}`,
                 }}
               >
                 <Grid
@@ -1375,7 +1270,569 @@ export default function Resume() {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item container justify="center">
+            <Grid item container xl lg md={6} sm={6} xs={6} />
+            <Grid
+              item
+              container
+              md={6}
+              sm={6}
+              xs={6}
+              style={{
+                position: "relative",
+                border: `1px solid ${theme.palette.primary.main}`,
+                borderTop: "none",
+                borderRight: "none",
+                backgroundColor: theme.palette.common.dark,
+                height: matchesLG ? theme.spacing(12) : theme.spacing(9),
+                marginTop: matchesLG
+                  ? matchesMD
+                    ? theme.spacing(0)
+                    : theme.spacing(15)
+                  : theme.spacing(9),
+              }}
+            >
+              <HobbyIcon
+                className={classes.svgIcon}
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  bottom: -theme.spacing(6),
+                }}
+              />
+            </Grid>
+          </Grid>
         </Grid>
+      </Grid>
+    </Grid>
+  );
+
+  const skillsOnDesktop = (
+    <Grid item container justify="space-around" className={classes.container}>
+      <Grid
+        item
+        container
+        direction={matchesMD ? "column" : undefined}
+        style={{
+          width: "100%",
+          flexWrap: "nowrap",
+          // border: "1px solid yellow",
+        }}
+      >
+        {/* language */}
+        <Hidden mdDown>
+          <Grid
+            item
+            container
+            style={{
+              position: "relative",
+              padding: theme.spacing(5),
+              paddingLeft: 0,
+              marginTop: theme.spacing(8),
+            }}
+          >
+            <Grid
+              container
+              style={{
+                position: "absolute",
+                top: 0,
+                // border: "1px solid red",
+                height: theme.spacing(50),
+              }}
+            >
+              <Grid
+                item
+                container
+                justify="center"
+                style={{
+                  height: theme.spacing(15),
+                }}
+              >
+                <Grid item container xl lg md sm xs />
+                <Grid
+                  item
+                  container
+                  xl
+                  lg
+                  md
+                  sm
+                  xs
+                  style={{
+                    position: "relative",
+                    border: `1px solid ${theme.palette.primary.main}`,
+                    borderRight: "none",
+                    borderBottom: "none",
+                    backgroundColor: theme.palette.common.dark,
+                  }}
+                >
+                  <LangaugeIcon
+                    className={classes.svgIcon}
+                    style={{
+                      position: "absolute",
+                      top: -theme.spacing(7),
+                      height: theme.spacing(9),
+                      right: -theme.spacing(2),
+                    }}
+                  />
+                </Grid>
+              </Grid>
+
+              <Grid
+                item
+                container
+                justify="center"
+                style={{
+                  position: "relative",
+                  padding: theme.spacing(1),
+                  paddingBottom: theme.spacing(5),
+                  height: "calc(100% - 72px)",
+                  border: `3px solid ${theme.palette.accent.main}`,
+                }}
+              >
+                <Grid
+                  item
+                  container
+                  direction="column"
+                  justify="space-around"
+                  alignItems="center"
+                  style={{
+                    flexWrap: "nowrap",
+                  }}
+                >
+                  <Grid item container direction="column">
+                    <Grid item style={{ alignSelf: "center" }}>
+                      <Typography variant="h4">Language</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container direction="column">
+                    <Grid item>
+                      <Typography variant="h6">English</Typography>
+                    </Grid>
+                    <LinearProgressGraph
+                      progressPercentage="85%"
+                      height={theme.spacing(1)}
+                      showPercentage={false}
+                    />
+                  </Grid>
+                  <Grid item container direction="column">
+                    <Grid item>
+                      <Typography variant="h6">Nepali</Typography>
+                    </Grid>
+                    <LinearProgressGraph
+                      progressPercentage="90%"
+                      height={theme.spacing(1)}
+                      showPercentage={false}
+                    />
+                  </Grid>
+                  <Grid item container direction="column">
+                    <Grid item>
+                      <Typography variant="h6">Bhojpuri</Typography>
+                    </Grid>
+                    <LinearProgressGraph
+                      progressPercentage="95%"
+                      height={theme.spacing(1)}
+                      showPercentage={false}
+                    />
+                  </Grid>
+                  <Grid item container direction="column">
+                    <Grid item>
+                      <Typography variant="h6">Hindi</Typography>
+                    </Grid>
+                    <LinearProgressGraph
+                      progressPercentage="90%"
+                      height={theme.spacing(1)}
+                      showPercentage={false}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Hidden>
+
+        {/* technical skills */}
+        <Grid
+          item
+          container
+          direction="column"
+          justify="flex-end"
+          style={{
+            position: "relative",
+            // border: `1px solid red`,
+            paddingLeft: matchesXL
+              ? matchesMD
+                ? undefined
+                : theme.spacing(0.5)
+              : undefined,
+            width: matchesXL
+              ? matchesLG
+                ? matchesMD
+                  ? "100%"
+                  : theme.spacing(200)
+                : theme.spacing(400)
+              : undefined,
+            marginBottom: matchesMD ? theme.spacing(10) : undefined,
+            marginLeft: theme.spacing(3),
+            marginRight: theme.spacing(3),
+          }}
+        >
+          <Grid
+            item
+            container
+            style={{
+              position: matchesMD ? undefined : "absolute",
+              bottom: matchesMD ? undefined : -theme.spacing(15),
+              // border: "1px solid blue",
+            }}
+          >
+            <Grid
+              item
+              container
+              justify="center"
+              style={{
+                position: "relative",
+                height: matchesMD ? undefined : theme.spacing(55),
+                // border: `1px solid yellow`,
+              }}
+            >
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                style={{
+                  height: theme.spacing(11),
+                }}
+              >
+                <Grid item>
+                  <Typography variant="h4">Technical Proficiency</Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                className={classes.technologies}
+              >
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={90}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="HTML"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={85}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="CSS"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={80}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="JAVASCRIPT"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={85}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="REACT"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={80}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="Material-UI"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={65}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="REDUX"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={80}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="NodeJS"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={80}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="MongoDB"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={70}
+                    color="secondary"
+                    size={matchesLG ? 100 : 120}
+                    label="REDIS"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              container
+              justify="center"
+              style={{
+                height: theme.spacing(10),
+                marginTop: theme.spacing(2),
+              }}
+            >
+              <Grid
+                item
+                container
+                xl
+                lg
+                md
+                sm
+                xs
+                style={{
+                  position: "relative",
+                  border: `1px solid ${theme.palette.primary.main}`,
+                  borderTop: "none",
+                  borderLeft: "none",
+                }}
+              >
+                <ProgrammingIcon
+                  className={classes.svgIcon}
+                  style={{
+                    position: "absolute",
+                    bottom: -theme.spacing(6),
+                    left: 0,
+                  }}
+                />
+              </Grid>
+              <Grid item container xl lg md sm xs />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        {/* hobby */}
+        <Hidden mdDown>
+          <Grid
+            item
+            container
+            alignItems="center"
+            justify="center"
+            // style={{ border: "1px solid yellow" }}
+          >
+            <Grid item container style={{ height: "30%" }}>
+              <Grid item container justify="center">
+                <Grid
+                  item
+                  container
+                  xl={9}
+                  lg={9}
+                  md={9}
+                  sm={9}
+                  xs
+                  style={{
+                    position: "relative",
+                    border: `1px solid ${theme.palette.primary.main}`,
+                    borderBottom: "none",
+                    borderLeft: "none",
+                    backgroundColor: theme.palette.common.dark,
+                    height: matchesLG ? theme.spacing(12) : theme.spacing(9),
+                    marginTop: matchesLG ? theme.spacing(15) : theme.spacing(9),
+                  }}
+                >
+                  <HobbyIcon
+                    className={classes.svgIcon}
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: -theme.spacing(6),
+                    }}
+                  />
+                </Grid>
+                <Grid item container xl lg md sm xs />
+              </Grid>
+              <Grid
+                item
+                container
+                justify="center"
+                style={{
+                  position: "relative",
+                }}
+              >
+                <Grid
+                  item
+                  container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                  style={{
+                    flexWrap: "nowrap",
+                    border: `3px solid ${theme.palette.accent.main}`,
+                    marginBottom: theme.spacing(5),
+                  }}
+                >
+                  <Grid
+                    item
+                    container
+                    justify="center"
+                    alignItems="center"
+                    style={{ height: theme.spacing(11) }}
+                  >
+                    <Grid item>
+                      <Typography variant="h4">Hobby</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{
+                      flexWrap: "nowrap",
+                    }}
+                  >
+                    {/* item 1 */}
+                    <Grid
+                      item
+                      container
+                      justify="center"
+                      style={{
+                        flexWrap: "nowrap",
+                        // border: "1px solid green",
+                      }}
+                    >
+                      <Grid item style={{ alignSelf: "center" }}>
+                        <Grid item>
+                          <Typography variant="h6">Cooking</Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Cooking
+                          className={classes.svgIcon}
+                          style={{ height: theme.spacing(5) }}
+                        />
+                      </Grid>
+                    </Grid>
+                    {/* item 2 */}
+                    <Grid
+                      item
+                      container
+                      justify="center"
+                      style={{
+                        flexWrap: "nowrap",
+                        // border: "1px solid green",
+                      }}
+                    >
+                      <Grid item>
+                        <Exercise
+                          className={classes.svgIcon}
+                          style={{ height: theme.spacing(5) }}
+                        />
+                      </Grid>
+                      <Grid item style={{ alignSelf: "center" }}>
+                        <Grid item>
+                          <Typography variant="h6">Exercise</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid
+                      item
+                      container
+                      justify="center"
+                      style={{
+                        flexWrap: "nowrap",
+                        // border: "1px solid green",
+                      }}
+                    >
+                      <Grid item style={{ alignSelf: "center" }}>
+                        <Grid item>
+                          <Typography variant="h6">Reading Books</Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <MenuBookOutlinedIcon
+                          className={classes.svgIcon}
+                          style={{ height: theme.spacing(5) }}
+                        />
+                      </Grid>
+                    </Grid>
+
+                    <Grid
+                      item
+                      container
+                      justify="center"
+                      style={{
+                        flexWrap: "nowrap",
+                        // border: "1px solid green",
+                      }}
+                    >
+                      <Grid item>
+                        <Stock
+                          className={classes.svgIcon}
+                          style={{ height: theme.spacing(5) }}
+                        />
+                      </Grid>
+                      <Grid item style={{ alignSelf: "center" }}>
+                        <Grid item>
+                          <Typography variant="h6">Stock Trading</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    <Grid
+                      item
+                      container
+                      justify="center"
+                      style={{
+                        flexWrap: "nowrap",
+                        // border: "1px solid green",
+                      }}
+                    >
+                      <Grid item style={{ alignSelf: "center" }}>
+                        <Grid item>
+                          <Typography variant="h6">Singing</Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Music
+                          className={classes.svgIcon}
+                          style={{ height: theme.spacing(5) }}
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Hidden>
+        {matchesMD ? hobbyNlanguage : undefined}
       </Grid>
     </Grid>
   );
@@ -1394,7 +1851,7 @@ export default function Resume() {
         {hello}
         {contact}
         {education}
-        {skills}
+        {skillsOnDesktop}
       </Grid>
     </Fragment>
   );

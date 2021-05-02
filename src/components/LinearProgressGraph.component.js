@@ -32,7 +32,7 @@ export default function LinearProgressGraph({
           }}
         >
           {showPercentage === true && (
-            <Typography variant="caption1">{progressPercentage}</Typography>
+            <Typography variant="body1">{progressPercentage}</Typography>
           )}
         </Grid>
       </Grid>
