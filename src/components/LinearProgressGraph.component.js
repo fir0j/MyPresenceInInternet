@@ -20,6 +20,7 @@ export default function LinearProgressGraph({
         style={{
           backgroundColor: theme.palette.common.black,
           borderRadius: theme.spacing(1),
+          marginTop: theme.spacing(1),
         }}
       >
         <Grid

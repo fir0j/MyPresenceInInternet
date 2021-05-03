@@ -28,7 +28,7 @@ export default function HomeNav() {
         md={matchesXS ? 12 : undefined}
         xs={matchesXS ? 12 : undefined}
         style={{
-          // border: "1px solid blue",
+          // border: "3px solid blue",
           paddingLeft: matchesXL
             ? matchesLG
               ? matchesSM
@@ -44,11 +44,9 @@ export default function HomeNav() {
               : theme.spacing(20)
             : undefined,
           backgroundColor: theme.palette.common.dark,
-          height: "100vh",
-          maxHeight: "100vh",
+          height: matchesXS ? "calc(100vh - 85px)" : "100vh",
           width: "100%",
           overflowY: "scroll",
-          paddingTop: theme.spacing(5),
         }}
       >
         <Route exact path="/" render={(props) => <Resume />} />

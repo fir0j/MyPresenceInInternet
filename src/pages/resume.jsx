@@ -43,10 +43,13 @@ const useStyles = makeStyles((theme) => ({
   },
   dp: {
     width: "70%",
-    minWidth: theme.spacing(21),
     height: "auto",
     overflow: "hidden",
     margin: theme.spacing(2),
+    minWidth: theme.spacing(21),
+    [theme.breakpoints.down("xs")]: {
+      minWidth: theme.spacing(10),
+    },
   },
 
   contact: {
@@ -69,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.dark,
     clipPath: "polygon(0 40%, 37% 0, 100% 0, 100% 100%, 37% 100%, 0 60%)",
     paddingLeft: theme.spacing(1.5),
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(0.5),
   },
   pointerRight: {
     width: theme.spacing(12),
@@ -78,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.dark,
     clipPath: "polygon(0 0, 63% 0, 100% 40%, 100% 60%, 63% 100%, 0 100%)",
     paddingRight: theme.spacing(1.5),
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
   },
   svgIcon: {
     [theme.breakpoints.down("xl")]: {
@@ -99,8 +103,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
 
-  education: {
-    // border: `1px solid ${theme.palette.accent.main}`,
+  educationContent: {
+    "&>*": {
+      paddingTop: theme.spacing(1),
+    },
   },
   technologies: {
     "&>*": {
@@ -124,6 +130,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Resume() {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
@@ -299,7 +306,6 @@ export default function Resume() {
                     position: "absolute",
                     bottom: "calc(-3em / 2)",
                     right: "-35px",
-                    color: "lightblue",
                     backgroundColor: `${theme.palette.common.dark}`,
                     // border: "1px solid red",
                   }}
@@ -445,7 +451,7 @@ export default function Resume() {
         justify="space-between"
         style={{
           position: "relative",
-          marginLeft: theme.spacing(8),
+          marginLeft: matchesXS ? theme.spacing(4) : theme.spacing(8),
           marginTop: theme.spacing(matchesMD ? 8 : 2),
           maxHeight: matchesLG
             ? matchesSM
@@ -462,7 +468,6 @@ export default function Resume() {
             position: "absolute",
             top: -theme.spacing(matchesMD ? 3 : 0),
             left: -theme.spacing(matchesMD ? 7 : 8),
-            backgroundColor: theme.palette.common.dark,
           }}
         >
           <Education
@@ -479,9 +484,12 @@ export default function Resume() {
             borderBottom: "none",
             borderRight: "none",
             borderTop: "none",
-            paddingLeft: matchesMD ? theme.spacing(12) : theme.spacing(9),
             paddingBottom: theme.spacing(matchesMD ? 5 : 2),
-            // hmm
+            paddingLeft: matchesMD
+              ? matchesXS
+                ? theme.spacing(6.5)
+                : theme.spacing(12)
+              : theme.spacing(9),
           }}
         >
           <Typography variant="body1" align="right">
@@ -489,11 +497,11 @@ export default function Resume() {
             visual form of a document or a typeface without relying on
             meaningful content.
           </Typography>
-          <Typography variant="body1" align="right">
+          {/* <Typography variant="body1" align="right">
             lipsum as it is sometimes known, is dummy text used in laying out
             print, graphic or web designs. The passage is attributed to an
             unknown typesetter in the 15th century.
-          </Typography>
+          </Typography> */}
         </Grid>
 
         {/* design rectangle */}
@@ -587,7 +595,7 @@ export default function Resume() {
               item
               container
               justify="flex-end"
-              alignItems="center"
+              alignItems="flex-start"
               style={{
                 width: "auto",
               }}
@@ -623,7 +631,7 @@ export default function Resume() {
                   As Frontend Intern @Flipr, Bangalore, India
                 </Typography>
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginTop: theme.spacing(1) }}>
                 <Typography variant="body1">
                   It is a startup company. They selected me as intern through
                   thier Practical Web Development Test.
@@ -653,7 +661,7 @@ export default function Resume() {
               item
               container
               justify="flex-end"
-              alignItems="center"
+              alignItems="flex-start"
               style={{
                 width: "auto",
               }}
@@ -689,7 +697,7 @@ export default function Resume() {
                   As Frontend Developer @Flipr, Bangalore, India
                 </Typography>
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginTop: theme.spacing(1) }}>
                 <Typography variant="body1">
                   I just built two Real World Projects as their intern before
                   they offered me job position
@@ -722,14 +730,11 @@ export default function Resume() {
             padding: theme.spacing(1),
             bottom: -theme.spacing(25),
             top: matchesXL ? -theme.spacing(9) : undefined,
-            // height: matchesXL
-            //   ? matchesLG
-            //     ? matchesMD
-            //       ? theme.spacing(70)
-            //       : theme.spacing(115)
-            //     : theme.spacing(100)
-            //   : undefined,
-            height: matchesMD ? theme.spacing(70) : undefined,
+            height: matchesMD
+              ? matchesXS
+                ? theme.spacing(120)
+                : theme.spacing(90)
+              : undefined,
           }}
         >
           <Grid
@@ -744,7 +749,7 @@ export default function Resume() {
             </Grid>
           </Grid>
           {/* engineering education */}
-          <Grid container style={{ height: "80%" }}>
+          <Grid container style={{ height: "100%" }}>
             <Grid
               item
               container
@@ -755,15 +760,16 @@ export default function Resume() {
                 item
                 container
                 direction="column"
-                justify="center"
+                justify="flex-start"
                 alignItems="flex-end"
+                className={classes.educationContent}
               >
                 <Grid item>
                   <Typography variant="h6" align="right">
                     CMR Institue Of Technology, Bangalore, India
                   </Typography>
                 </Grid>
-                <Grid item>
+                <Grid item style={{ maxWidth: "40ch" }}>
                   <Typography variant="body1" align="right">
                     It persued my academic career in COMPUTER SCIENCE & ENGINEER
                     at this place.
@@ -777,7 +783,7 @@ export default function Resume() {
                 item
                 container
                 justify="flex-end"
-                alignItems="center"
+                alignItems="flex-start"
                 style={{
                   width: "auto",
                 }}
@@ -814,8 +820,9 @@ export default function Resume() {
                 item
                 container
                 direction="column"
-                justify="center"
+                justify="flex-start"
                 alignItems="flex-end"
+                className={classes.educationContent}
               >
                 <Grid item>
                   <Typography variant="h6" align="right">
@@ -835,7 +842,7 @@ export default function Resume() {
                 item
                 container
                 justify="flex-end"
-                alignItems="center"
+                alignItems="flex-start"
                 style={{
                   width: "auto",
                 }}
@@ -871,8 +878,9 @@ export default function Resume() {
                 item
                 container
                 direction="column"
-                justify="center"
+                justify="flex-start"
                 alignItems="flex-end"
+                className={classes.educationContent}
               >
                 <Grid item>
                   <Typography variant="h6" align="right">
@@ -889,7 +897,7 @@ export default function Resume() {
                 item
                 container
                 justify="flex-end"
-                alignItems="center"
+                alignItems="flex-start"
                 style={{
                   width: "auto",
                 }}
@@ -925,7 +933,9 @@ export default function Resume() {
       <Grid
         item
         container
-        direction={matchesMD ? "row-reverse" : undefined}
+        direction={
+          matchesMD ? (matchesXS ? "column-reverse" : "row-reverse") : undefined
+        }
         style={{
           width: "100%",
           flexWrap: "nowrap",
@@ -940,16 +950,16 @@ export default function Resume() {
           container
           style={{
             position: "relative",
-            padding: theme.spacing(5),
+            padding: matchesXS ? undefined : theme.spacing(5),
             paddingLeft: 0,
-            // marginTop: theme.spacing(26.2),
+            marginTop: matchesXS ? theme.spacing(10) : undefined,
           }}
         >
           <Grid
             container
             style={{
-              position: "absolute",
-              top: 0,
+              // position: "absolute",
+              // top: 0,
               // border: "1px solid red",
               height: theme.spacing(50),
             }}
@@ -1002,10 +1012,9 @@ export default function Resume() {
                 padding: theme.spacing(1),
                 paddingBottom: theme.spacing(5),
                 height: "100%",
-                marginLeft: theme.spacing(5),
+                marginLeft: matchesXS ? undefined : theme.spacing(5),
               }}
             >
-              {/* need to be hidden on mdUP */}
               <Grid
                 item
                 container
@@ -1040,9 +1049,8 @@ export default function Resume() {
                     }}
                   />
                 </Grid>
-                <Grid item container md={6} sm={6} xs={6} />
+                <Grid item container md={6} sm={3} xs={6} />
               </Grid>
-              {/* hidden */}
               <Grid
                 item
                 container
@@ -1051,7 +1059,7 @@ export default function Resume() {
                 alignItems="center"
                 style={{
                   flexWrap: "nowrap",
-                  height: "100%",
+                  height: matchesXS ? "105%" : "115%",
                 }}
               >
                 <Grid item container direction="column">
@@ -1061,7 +1069,7 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="h6">English</Typography>
+                    <Typography variant="subtitle1">English</Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="85%"
@@ -1071,7 +1079,7 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="h6">Nepali</Typography>
+                    <Typography variant="subtitle1">Nepali</Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="90%"
@@ -1081,7 +1089,7 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="h6">Bhojpuri</Typography>
+                    <Typography variant="subtitle1">Bhojpuri</Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="95%"
@@ -1091,7 +1099,7 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="h6">Hindi</Typography>
+                    <Typography variant="subtitle1">Hindi</Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="90%"
@@ -1169,7 +1177,7 @@ export default function Resume() {
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="h6">Cooking</Typography>
+                        <Typography variant="subtitle1">Cooking</Typography>
                       </Grid>
                     </Grid>
                     <Grid item>
@@ -1197,7 +1205,7 @@ export default function Resume() {
                     </Grid>
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="h6">Exercise</Typography>
+                        <Typography variant="subtitle1">Exercise</Typography>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -1212,7 +1220,9 @@ export default function Resume() {
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="h6">Reading Books</Typography>
+                        <Typography variant="subtitle1">
+                          Reading Books
+                        </Typography>
                       </Grid>
                     </Grid>
                     <Grid item>
@@ -1240,7 +1250,9 @@ export default function Resume() {
                     </Grid>
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="h6">Stock Trading</Typography>
+                        <Typography variant="subtitle1">
+                          Stock Trading
+                        </Typography>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -1256,7 +1268,7 @@ export default function Resume() {
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="h6">Singing</Typography>
+                        <Typography variant="subtitle1">Singing</Typography>
                       </Grid>
                     </Grid>
                     <Grid item>
@@ -1385,7 +1397,7 @@ export default function Resume() {
                   position: "relative",
                   padding: theme.spacing(1),
                   paddingBottom: theme.spacing(5),
-                  height: "calc(100% - 72px)",
+                  height: "calc(105% - 72px)",
                   border: `3px solid ${theme.palette.accent.main}`,
                 }}
               >
@@ -1454,8 +1466,8 @@ export default function Resume() {
         <Grid
           item
           container
-          direction="column"
-          justify="flex-end"
+          direction={matchesXS ? "row" : "column"}
+          justify={matchesXS ? "center" : "flex-end"}
           style={{
             position: "relative",
             // border: `1px solid red`,
@@ -1472,8 +1484,8 @@ export default function Resume() {
                 : theme.spacing(400)
               : undefined,
             marginBottom: matchesMD ? theme.spacing(10) : undefined,
-            marginLeft: theme.spacing(3),
-            marginRight: theme.spacing(3),
+            // marginLeft: matchesXS ? theme.spacing(3) : undefined,
+            // marginRight: matchesXS ? theme.spacing(3) : undefined,
           }}
         >
           <Grid
@@ -1843,9 +1855,11 @@ export default function Resume() {
         item
         container
         style={{
-          // border: "1px solid teal",
+          // border: "5px solid teal",
           height: "auto",
-          marginBottom: "600px",
+          // marginBottom: "600px",
+          paddingTop: theme.spacing(5),
+          marginBottom: theme.spacing(5),
         }}
       >
         {hello}

@@ -13,17 +13,20 @@ const useStyles = makeStyles((theme) => ({
   },
   absoluteContainer: {
     position: "absolute",
-    top: theme.spacing(28),
+    right: 0,
+    top: theme.spacing(26),
     [theme.breakpoints.down("lg")]: {
-      top: theme.spacing(23),
+      top: theme.spacing(20),
     },
     [theme.breakpoints.down("md")]: {
-      top: theme.spacing(17),
+      top: theme.spacing(18),
     },
-    [theme.breakpoints.down("sm")]: {
-      top: theme.spacing(15),
+    [theme.breakpoints.down("md")]: {
+      top: theme.spacing(31),
     },
-    right: 0,
+    [theme.breakpoints.down("xs")]: {
+      top: 1,
+    },
     width: theme.spacing(8),
     height: theme.spacing(6),
     [theme.breakpoints.down("sm")]: {

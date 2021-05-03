@@ -53,23 +53,31 @@ const darkTheme = createMuiTheme({
       fontSize: "1.11rem",
     },
     h3: {
-      // fontFamily: "Lora",
       color: green,
       [breakpoints.down("md")]: {
         fontSize: "2.1rem",
       },
+      [breakpoints.down("xs")]: {
+        fontSize: "1.8rem",
+      },
     },
     h4: {
       color: green,
-      // fontFamily: "Lora",
+      [breakpoints.down("xs")]: {
+        fontSize: "1.8rem",
+      },
     },
     h6: {
-      // fontFamily: "Lora",
       color: offWhite,
       [breakpoints.down("sm")]: {
         fontSize: "1.1rem",
       },
     },
+    subtitle1: {
+      color: offWhite,
+      fontSize: "1rem",
+    },
+
     caption: {
       fontSize: "1rem",
       [breakpoints.down("md")]: {

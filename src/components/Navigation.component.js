@@ -33,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.1rem",
     fontSize: "1rem",
     fontWeight: "bold",
-    [theme.breakpoints.down("sm")]: {
-      maxHeight: theme.spacing(19),
-    },
   },
   iconDimension: {
     width: "96px",
@@ -48,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
       width: "48px",
       height: "48px",
     },
+    // [theme.breakpoints.down("xs")]: {
+    //   width: "96px",
+    //   height: "96px",
+    // },
   },
 
   // CSS RULE NAME
