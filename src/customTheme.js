@@ -50,6 +50,8 @@ const darkTheme = createMuiTheme({
     fontFamily: "Lora",
     body1: {
       color: portfolioGrey,
+      // color: offWhite,
+
       fontSize: "1.11rem",
     },
     h3: {

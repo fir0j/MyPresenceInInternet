@@ -493,9 +493,10 @@ export default function Resume() {
           }}
         >
           <Typography variant="body1" align="right">
-            Lorem ipsum is a placeholder text commonly used to demonstrate the
-            visual form of a document or a typeface without relying on
-            meaningful content.
+            Looking forward to secure a challenging position in a reputable
+            organization which can utilize my learnings, knowledge, and skills
+            while contributing for the company's growth and in turn ensuring
+            personal growth too
           </Typography>
           {/* <Typography variant="body1" align="right">
             lipsum as it is sometimes known, is dummy text used in laying out
