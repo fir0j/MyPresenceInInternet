@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 import { lightTheme, darkTheme } from "./customTheme";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter, Switch } from "react-router-dom";
@@ -11,6 +13,12 @@ import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
 function App() {
+  const theme = useTheme();
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
+  const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
   const [isNightmode, setNightmode] = useState(true);
 
   return (
@@ -29,6 +37,7 @@ function App() {
                 width: "100vw",
                 maxHeight: "100vh",
                 maxWidth: "2560px",
+                backgroundColor: "#2C2C2C",
                 // border: "1px solid red",
               }}
             >
@@ -50,24 +59,40 @@ function App() {
                   />
                 </Grid>
               </Hidden>
+
+              {/* mobile navigation */}
               <Hidden smUp>
                 <Grid
                   item
                   container
                   direction="column"
-                  justify="space-evenly"
                   style={{
-                    height: "100%",
-                    maxHeight: "100vh",
-                    flexBasis: "100%",
+                    height: "100vh",
+                    width: "100vw",
                     flexWrap: "nowrap",
+                    // border: "1px solid red",
                   }}
                 >
                   <Grid
                     item
                     style={{
                       flexGrow: 1,
-                      overflow: "scroll",
+                      // border: "3px solid blue",
+                      overflowY: "scroll",
+                      paddingLeft: matchesXL
+                        ? matchesLG
+                          ? matchesSM
+                            ? theme.spacing(2)
+                            : theme.spacing(7)
+                          : theme.spacing(20)
+                        : undefined,
+                      paddingRight: matchesXL
+                        ? matchesLG
+                          ? matchesSM
+                            ? theme.spacing(2)
+                            : theme.spacing(7)
+                          : theme.spacing(20)
+                        : undefined,
                     }}
                   >
                     <Home />
@@ -78,7 +103,7 @@ function App() {
                       setNightmode={setNightmode}
                     />
                   </Grid>
-                  <Grid item style={{ width: "100%" }}>
+                  <Grid item>
                     <MobileNav />
                   </Grid>
                 </Grid>

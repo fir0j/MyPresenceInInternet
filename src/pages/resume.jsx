@@ -1858,7 +1858,6 @@ export default function Resume() {
         style={{
           // border: "5px solid teal",
           height: "auto",
-          // marginBottom: "600px",
           paddingTop: theme.spacing(5),
           marginBottom: theme.spacing(5),
         }}
