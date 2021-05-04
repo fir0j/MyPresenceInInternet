@@ -59,7 +59,13 @@ export default function MobilieNav() {
   };
   return (
     <React.Fragment>
-      <Grid item container direction="row" justify="center">
+      <Grid
+        item
+        container
+        direction="row"
+        justify="center"
+        style={{ position: "fixed", bottom: 0 }}
+      >
         <Paper square className={classes.root}>
           <Tabs
             value={value}
