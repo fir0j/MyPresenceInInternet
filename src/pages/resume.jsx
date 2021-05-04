@@ -130,6 +130,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Resume() {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesSS = useMediaQuery(theme.breakpoints.down("ss"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -750,7 +751,7 @@ export default function Resume() {
             </Grid>
           </Grid>
           {/* engineering education */}
-          <Grid container style={{ height: "100%" }}>
+          <Grid container style={{ height: "90%" }}>
             <Grid
               item
               container
