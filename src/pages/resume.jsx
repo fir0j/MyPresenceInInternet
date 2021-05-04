@@ -276,7 +276,7 @@ export default function Resume() {
                   style={{
                     position: "absolute",
                     top: "-50px",
-                    right: "-50px",
+                    right: -theme.spacing(3),
                     width: matchesXL
                       ? matchesLG
                         ? matchesSM
@@ -1852,16 +1852,7 @@ export default function Resume() {
 
   return (
     <Fragment>
-      <Grid
-        item
-        container
-        style={{
-          // border: "5px solid teal",
-          height: "auto",
-          paddingTop: theme.spacing(5),
-          marginBottom: theme.spacing(5),
-        }}
-      >
+      <Grid item container>
         {hello}
         {contact}
         {education}
@@ -1870,3 +1861,6 @@ export default function Resume() {
     </Fragment>
   );
 }
+
+// If you're placing an element with respect to absolute position, make sure it is not overflowing the main container
+// if you're assigning height and width of a child container in terms of percentage like 100%, then it's IMMEDIATE PARENT CONTAINER must be explicitly assigned width and height either with percentage like 100vw or fixed unit like 2000px or 200em in order for percentage unit in child conatainer to work

@@ -37,8 +37,6 @@ function App() {
                 width: "100vw",
                 maxHeight: "100vh",
                 maxWidth: "2560px",
-                backgroundColor: "#2C2C2C",
-                // border: "1px solid red",
               }}
             >
               <Hidden xsDown>
@@ -48,7 +46,8 @@ function App() {
                   style={{
                     position: "relative",
                     flexWrap: "nowrap",
-                    // border: "1px solid green",
+                    height: "100%",
+                    width: "100%",
                   }}
                 >
                   <Navigation />
@@ -67,45 +66,18 @@ function App() {
                   container
                   direction="column"
                   style={{
-                    height: "100vh",
-                    width: "100vw",
+                    height: "100%",
+                    width: "100%",
                     flexWrap: "nowrap",
                     // border: "1px solid red",
                   }}
                 >
-                  <Grid
-                    item
-                    style={{
-                      flexGrow: 1,
-                      // border: "3px solid blue",
-                      overflowY: "scroll",
-                      paddingLeft: matchesXL
-                        ? matchesLG
-                          ? matchesSM
-                            ? theme.spacing(2)
-                            : theme.spacing(7)
-                          : theme.spacing(20)
-                        : undefined,
-                      paddingRight: matchesXL
-                        ? matchesLG
-                          ? matchesSM
-                            ? theme.spacing(2)
-                            : theme.spacing(7)
-                          : theme.spacing(20)
-                        : undefined,
-                    }}
-                  >
-                    <Home />
-                  </Grid>
-                  <Grid item style={{ width: "100%" }}>
-                    <SettingPanel
-                      isNightmode={isNightmode}
-                      setNightmode={setNightmode}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <MobileNav />
-                  </Grid>
+                  <Home />
+                  <SettingPanel
+                    isNightmode={isNightmode}
+                    setNightmode={setNightmode}
+                  />
+                  <MobileNav />
                 </Grid>
               </Hidden>
             </Grid>

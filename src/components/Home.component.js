@@ -23,10 +23,31 @@ export default function HomeNav() {
         container
         justify="center"
         alignItems="flex-start"
-        xl={matchesXS ? 12 : undefined}
-        lg={matchesXS ? 12 : undefined}
-        md={matchesXS ? 12 : undefined}
-        xs={matchesXS ? 12 : undefined}
+        xl={10}
+        lg={10}
+        md={10}
+        sm={10}
+        xs={12}
+        style={{
+          // border: "3px solid teal",
+          backgroundColor: theme.palette.common.dark,
+          overflowY: "scroll",
+          paddingTop: theme.spacing(5),
+          paddingLeft: matchesXL
+            ? matchesLG
+              ? matchesSM
+                ? theme.spacing(2)
+                : theme.spacing(7)
+              : theme.spacing(20)
+            : undefined,
+          paddingRight: matchesXL
+            ? matchesLG
+              ? matchesSM
+                ? theme.spacing(2)
+                : theme.spacing(7)
+              : theme.spacing(20)
+            : undefined,
+        }}
       >
         <Route exact path="/" render={(props) => <Resume />} />
         <Route exact path="/project" render={(props) => <Project />} />
