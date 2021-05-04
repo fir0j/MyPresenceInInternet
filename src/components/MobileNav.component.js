@@ -25,12 +25,13 @@ const useStyles = makeStyles((theme) => ({
 
   flexContainer: {
     flexDirection: "row",
-    paddingLeft: 2,
-    paddingRight: 2,
+    paddingLeft: 3,
+    paddingRight: 3,
     "&>.MuiTab-root": {
       flexGrow: 1,
       backgroundColor: theme.palette.tabColor,
       border: `1px solid ${theme.palette.accent.main}`,
+      borderRight: "none",
     },
     "&>.MuiTab-labelIcon": {
       paddingTop: "0px",
@@ -93,6 +94,7 @@ export default function MobilieNav() {
               to="/"
               component={Link}
               className={classes.tab}
+              style={{ borderTop: value === 0 ? "none" : undefined }}
             />
             <Tab
               icon={
@@ -106,6 +108,7 @@ export default function MobilieNav() {
               to="/project"
               component={Link}
               className={classes.tab}
+              style={{ borderTop: value === 1 ? "none" : undefined }}
             />
             <Tab
               icon={
@@ -119,6 +122,7 @@ export default function MobilieNav() {
               to="/feedback"
               component={Link}
               className={classes.tab}
+              style={{ borderTop: value === 2 ? "none" : undefined }}
             />
             <Tab
               icon={
@@ -132,6 +136,10 @@ export default function MobilieNav() {
               to="/hireme"
               component={Link}
               className={classes.tab}
+              style={{
+                borderTop: value === 3 ? "none" : undefined,
+                borderRight: `1px solid ${theme.palette.accent.main}`,
+              }}
             />
           </Tabs>
         </Paper>
