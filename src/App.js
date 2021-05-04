@@ -37,8 +37,10 @@ function App() {
                 width: "100vw",
                 maxHeight: "100vh",
                 maxWidth: "2560px",
+                minWidth: "318px",
               }}
             >
+              {/* Desktop View */}
               <Hidden xsDown>
                 <Grid
                   item
@@ -59,7 +61,7 @@ function App() {
                 </Grid>
               </Hidden>
 
-              {/* mobile navigation */}
+              {/* Mobile View */}
               <Hidden smUp>
                 <Grid
                   item

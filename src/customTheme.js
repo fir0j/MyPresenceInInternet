@@ -14,6 +14,18 @@ const green = "#4ae4b8";
 // It is EXACTLY the place to visit if MUI-DEFAUL-THEME needs to be CUSTOMIZED/OVERWRITTEN with our custom variant GLOBALLY.
 // It is the global theme(Style) which can be accessed all over the application.
 const darkTheme = createMuiTheme({
+  // adding super small (ss) custom breakpoints
+  breakpoints: {
+    keys: ["ss", "xs", "sm", "md", "lg", "xl"],
+    values: {
+      ss: 0,
+      xs: 320,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   // Palette provides  color system
   // Typograpy provides text presentation system like <p>, h1...h6 and so on
   // Primary 60%

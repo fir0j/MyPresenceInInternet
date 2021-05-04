@@ -45,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
       width: "48px",
       height: "48px",
     },
-    // [theme.breakpoints.down("xs")]: {
-    //   width: "96px",
-    //   height: "96px",
-    // },
   },
 
   // CSS RULE NAME
