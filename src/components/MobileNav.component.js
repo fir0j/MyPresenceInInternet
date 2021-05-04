@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
   flexContainer: {
     flexDirection: "row",
+    paddingLeft: 2,
+    paddingRight: 2,
     "&>.MuiTab-root": {
       flexGrow: 1,
       backgroundColor: theme.palette.tabColor,
@@ -64,7 +66,10 @@ export default function MobilieNav() {
         container
         direction="row"
         justify="center"
-        style={{ position: "fixed", bottom: 0 }}
+        style={{
+          position: "fixed",
+          bottom: 0,
+        }}
       >
         <Paper square className={classes.root}>
           <Tabs
