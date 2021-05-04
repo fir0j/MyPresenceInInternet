@@ -955,6 +955,7 @@ export default function Resume() {
             padding: matchesXS ? undefined : theme.spacing(5),
             paddingLeft: 0,
             marginTop: matchesXS ? theme.spacing(10) : undefined,
+            marginBottom: matchesXS ? theme.spacing(15) : undefined,
           }}
         >
           <Grid

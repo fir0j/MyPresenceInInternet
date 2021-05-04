@@ -94,7 +94,9 @@ export default function MobilieNav() {
               to="/"
               component={Link}
               className={classes.tab}
-              style={{ borderTop: value === 0 ? "none" : undefined }}
+              style={{
+                borderTop: value === 0 ? "none" : undefined,
+              }}
             />
             <Tab
               icon={
@@ -108,7 +110,9 @@ export default function MobilieNav() {
               to="/project"
               component={Link}
               className={classes.tab}
-              style={{ borderTop: value === 1 ? "none" : undefined }}
+              style={{
+                borderTop: value === 1 ? "none" : undefined,
+              }}
             />
             <Tab
               icon={
@@ -122,7 +126,9 @@ export default function MobilieNav() {
               to="/feedback"
               component={Link}
               className={classes.tab}
-              style={{ borderTop: value === 2 ? "none" : undefined }}
+              style={{
+                borderTop: value === 2 ? "none" : undefined,
+              }}
             />
             <Tab
               icon={
