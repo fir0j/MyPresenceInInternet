@@ -69,7 +69,7 @@ function App() {
                 width: "100vw",
                 maxHeight: "100vh",
                 maxWidth: "2560px",
-                minWidth: "318px",
+                minWidth: "315px",
               }}
             >
               {/* Desktop View */}

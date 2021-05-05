@@ -10,9 +10,9 @@ import Radio from "@material-ui/core/Radio";
 
 const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
-    position: "absolute",
+    position: "fixed",
     inset: 0,
-    backgroundColor: "red",
+    // backgroundColor: "red",
   },
   absoluteContainer: {
     position: "absolute",
