@@ -56,12 +56,12 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: theme.palette.common.dark,
+    backgroundColor: theme.palette.primary.main,
     color: theme.palette.accent.main,
     // overwriting class .flexContainerVertical.MuiTab-root globally without using {withStyle} HOC
     "&>.MuiTab-root": {
       flexGrow: 1,
-      backgroundColor: theme.palette.tabColor,
+      backgroundColor: theme.palette.common.black,
       border: `1px solid ${theme.palette.accent.main}`,
     },
     "&>.MuiTab-labelIcon": {
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&>.Mui-selected": {
-      backgroundColor: theme.palette.common.dark,
+      backgroundColor: theme.palette.primary.main,
       position: "relative",
       marginTop: "2em",
       marginBottom: "2em",

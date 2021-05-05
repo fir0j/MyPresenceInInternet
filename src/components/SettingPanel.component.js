@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
 import Settings from "@material-ui/icons/Settings";
 import Typography from "@material-ui/core/Typography";
-import Switch from "@material-ui/core/Switch";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
@@ -53,16 +53,21 @@ const useStyles = makeStyles((theme) => ({
     // overflowY: "scroll",
   },
   settingWrapper: {
-    color: theme.palette.accent.main,
+    color: theme.palette.primary.main,
     flexWrap: "nowrap",
   },
 }));
 
-export default function SettingPanel({ isNightmode, setNightmode }) {
+export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
+  const [checked, setChecked] = useState(true);
 
   const [isActive, setIsActive] = useState(false);
+  const handleChange = (hue, event) => {
+    setChecked(event.target.checked);
+    setTheme(hue);
+  };
 
   const handleToolClick = () => {
     if (!isActive) {
@@ -74,7 +79,7 @@ export default function SettingPanel({ isNightmode, setNightmode }) {
     setIsActive(false);
   };
 
-  function SettingBoard({ isNightmode, setNightmode }) {
+  function SettingBoard({ setTheme }) {
     return (
       <Grid item container className={classes.setting}>
         <Grid item container className={classes.settingWrapper}>
@@ -84,7 +89,7 @@ export default function SettingPanel({ isNightmode, setNightmode }) {
             justify="center"
             alignItems="center"
             style={{
-              backgroundColor: theme.palette.tabColor,
+              backgroundColor: theme.palette.accent.main,
               maxHeight: "50px",
               maxWidth: "50px",
               borderTopLeftRadius: "20px",
@@ -101,31 +106,38 @@ export default function SettingPanel({ isNightmode, setNightmode }) {
               alignItems="center"
               style={{
                 // border: "1px dotted blue",
-                backgroundColor: theme.palette.tabColor,
+                backgroundColor: theme.palette.accent.main,
                 width: "100%",
                 height: "50px",
               }}
             >
-              <Typography variant="h5">Settings</Typography>
+              <Typography variant="h6">Settings</Typography>
             </Grid>
             <Grid
               item
               container
+              direction="column"
               justify="center"
               alignItems="center"
               style={{
-                backgroundColor: theme.palette.tabColor,
+                backgroundColor: theme.palette.accent.main,
                 height: "100%",
                 flexGrow: 1,
-                overflowY: "scroll",
-                // border: "1px solid red",
               }}
             >
-              <Grid item>Nightmode</Grid>
               <Grid item>
-                <Switch
-                  checked={isNightmode}
-                  onChange={() => setNightmode(!isNightmode)}
+                <Typography variant="h6">Accent Color</Typography>
+              </Grid>
+              <Grid item>
+                {/* <Checkbox
+                  checked={checked}
+                  onChange={() => handleChange("dark")}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                /> */}
+                <Checkbox
+                  checked={checked}
+                  onChange={(event) => handleChange("light", event)}
+                  inputProps={{ "aria-label": "primary checkbox" }}
                 />
               </Grid>
             </Grid>
@@ -153,25 +165,18 @@ export default function SettingPanel({ isNightmode, setNightmode }) {
           onClick={() => handleToolClick("setting")}
           className={classes.settingContainer}
           style={{
-            backgroundColor: theme.palette.tabColor,
+            backgroundColor: theme.palette.accent.main,
           }}
         >
           {/* hiding setting icon when setting tool is active */}
           {!isActive ? (
-            <div style={{ color: theme.palette.accent.main }}>
+            <div style={{ color: theme.palette.primary.main }}>
               <Settings />
             </div>
           ) : (
             ""
           )}
-          {isActive ? (
-            <SettingBoard
-              isNightmode={isNightmode}
-              setNightmode={setNightmode}
-            />
-          ) : (
-            ""
-          )}
+          {isActive ? <SettingBoard setTheme={setTheme} /> : ""}
         </Grid>
       </Grid>
     </Fragment>

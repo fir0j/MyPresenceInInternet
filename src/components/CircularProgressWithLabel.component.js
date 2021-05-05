@@ -25,11 +25,7 @@ export default function CircularProgressWithLabel(props) {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography
-            variant="caption"
-            component="div"
-            style={{ color: theme.palette.common.offWhite }}
-          >
+          <Typography variant="caption" component="div">
             {props.label}
           </Typography>
         </Box>

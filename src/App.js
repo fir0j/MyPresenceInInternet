@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import { lightTheme, darkTheme } from "./customTheme";
+import { useTheme, makeStyles, withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter, Switch } from "react-router-dom";
+import { lightTheme, darkTheme } from "./customTheme";
 
 import Navigation from "./components/Navigation.component";
 import Home from "./components/Home.component";
@@ -13,17 +12,50 @@ import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
 function App() {
-  const theme = useTheme();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
-  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
-  const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
-  const [isNightmode, setNightmode] = useState(true);
+  const [myTheme, setMyTheme] = useState(darkTheme);
+  const GlobalCss = withStyles({
+    // @global is handled by jss-plugin-global.
+    "@global": {
+      // You should target [class*="MuiButton-root"] instead if you nest themes.
+      "::-webkit-scrollbar": {
+        width: "8px",
+      },
+
+      "::-webkit-scrollbar-thumb": {
+        borderRadius: "10px",
+        backgroundColor: myTheme.palette.secondary.main,
+        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.5)`,
+      },
+      "::-webkit-scrollbar-track": {
+        borderRadius: "10px",
+        backgroundColor: myTheme.palette.primary.main,
+        boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.4)",
+      },
+      // ".MuiCircularProgress-circleDeterminate": {
+      //   stroke: myTheme.palette.accent.main,
+      // },
+    },
+  })(() => null);
+
+  const setTheme = (themeName) => {
+    switch (themeName) {
+      case "light":
+        setMyTheme(lightTheme);
+        break;
+
+      case "dark":
+        setMyTheme(darkTheme);
+        break;
+
+      default:
+        setMyTheme(darkTheme);
+    }
+  };
 
   return (
     <React.Fragment>
-      <ThemeProvider theme={isNightmode ? darkTheme : lightTheme}>
+      <GlobalCss />
+      <ThemeProvider theme={myTheme}>
         <BrowserRouter>
           <Switch>
             <Grid
@@ -54,10 +86,7 @@ function App() {
                 >
                   <Navigation />
                   <Home />
-                  <SettingPanel
-                    isNightmode={isNightmode}
-                    setNightmode={setNightmode}
-                  />
+                  <SettingPanel setTheme={setTheme} />
                 </Grid>
               </Hidden>
 
@@ -75,10 +104,7 @@ function App() {
                   }}
                 >
                   <Home />
-                  <SettingPanel
-                    isNightmode={isNightmode}
-                    setNightmode={setNightmode}
-                  />
+                  <SettingPanel setTheme={setTheme} />
                   <MobileNav />
                 </Grid>
               </Hidden>

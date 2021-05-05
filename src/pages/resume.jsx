@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contact: {
-    // border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.primary.main}`,
     flexWrap: "nowrap",
     paddingTop: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(12),
     height: theme.spacing(5),
     backgroundColor: theme.palette.accent.main,
-    color: theme.palette.common.dark,
+    color: theme.palette.primary.main,
     clipPath: "polygon(0 40%, 37% 0, 100% 0, 100% 100%, 37% 100%, 0 60%)",
     paddingLeft: theme.spacing(1.5),
     marginLeft: theme.spacing(2),
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(12),
     height: theme.spacing(5),
     backgroundColor: theme.palette.accent.main,
-    color: theme.palette.common.dark,
+    color: theme.palette.primary.main,
     clipPath: "polygon(0 0, 63% 0, 100% 40%, 100% 60%, 63% 100%, 0 100%)",
     paddingRight: theme.spacing(1.5),
     marginRight: theme.spacing(2),
@@ -96,10 +96,10 @@ const useStyles = makeStyles((theme) => ({
     },
 
     height: "auto",
-    backgroundColor: theme.palette.common.dark,
-    color: theme.palette.primary.main,
-    fill: theme.palette.primary.main,
-    stock: theme.palette.primary.main,
+    // color: theme.palette.accent.main,
+    backgroundColor: theme.palette.primary.main,
+    fill: theme.palette.secondary.main,
+    // stroke: theme.palette.secondary.main,
     padding: theme.spacing(2),
   },
 
@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(1),
   },
   hobby: {
-    // border: `1px solid ${theme.palette.accent.main}`,
+    // border: `1px solid ${theme.palette.primary.main}`,
     // marginTop: theme.spacing(16),
   },
 }));
@@ -216,7 +216,7 @@ export default function Resume() {
             height: "100%",
             maxHeight: "350px",
             flexWrap: "nowrap",
-            // border: `1px solid ${theme.palette.accent.main}`,
+            // border: `1px solid ${theme.palette.primary.main}`,
           }}
         >
           <Grid
@@ -238,7 +238,7 @@ export default function Resume() {
               sm={4}
               container
               style={{
-                // border: `1px solid ${theme.palette.accent.main}`,
+                // border: `1px solid ${theme.palette.primary.main}`,
                 flexGrow: 1,
                 width: "100%",
                 maxWidth: "100%",
@@ -266,7 +266,7 @@ export default function Resume() {
                 container
                 style={{
                   position: "relative",
-                  border: "1px solid grey",
+                  border: `1px solid ${theme.palette.secondary.main}`,
                   flexGrow: 1,
                   borderBottom: "none",
                   borderLeft: "none",
@@ -294,7 +294,7 @@ export default function Resume() {
                 item
                 style={{
                   position: "relative",
-                  border: "1px solid grey",
+                  border: `1px solid ${theme.palette.secondary.main}`,
                   borderRight: "none",
                   flexGrow: 1,
                   minWidth: "80px",
@@ -307,7 +307,7 @@ export default function Resume() {
                     position: "absolute",
                     bottom: "calc(-3em / 2)",
                     right: "-35px",
-                    backgroundColor: `${theme.palette.common.dark}`,
+                    backgroundColor: `${theme.palette.primary.main}`,
                     // border: "1px solid red",
                   }}
                 >
@@ -360,7 +360,7 @@ export default function Resume() {
             container
             style={{
               position: "relative",
-              border: "1px solid grey",
+              border: `1px solid ${theme.palette.secondary.main}`,
               borderBottom: "none",
               borderRight: "none",
               maxWidth: theme.spacing(12),
@@ -481,7 +481,7 @@ export default function Resume() {
           item
           style={{
             flexGrow: 1,
-            border: `1px solid ${theme.palette.primary.main}`,
+            border: `1px solid ${theme.palette.secondary.main}`,
             borderBottom: "none",
             borderRight: "none",
             borderTop: "none",
@@ -519,7 +519,7 @@ export default function Resume() {
             item
             container
             style={{
-              border: `1px solid ${theme.palette.primary.main}`,
+              border: `1px solid ${theme.palette.secondary.main}`,
               borderBottom: "none",
               borderLeft: "none",
               height: "100%",
@@ -556,11 +556,11 @@ export default function Resume() {
             xs
             style={{
               position: "relative",
-              border: `1px solid ${theme.palette.primary.main}`,
+              border: `1px solid ${theme.palette.secondary.main}`,
               height: theme.spacing(5),
               borderRight: "none",
               borderBottom: "none",
-              backgroundColor: theme.palette.common.dark,
+              backgroundColor: theme.palette.primary.main,
               marginTop: theme.spacing(12),
             }}
           >
@@ -613,7 +613,7 @@ export default function Resume() {
                   <Typography
                     variant="h6"
                     style={{
-                      color: theme.palette.common.dark,
+                      color: theme.palette.primary.main,
                     }}
                   >
                     09/2020
@@ -679,7 +679,7 @@ export default function Resume() {
                   <Typography
                     variant="h6"
                     style={{
-                      color: theme.palette.common.dark,
+                      color: theme.palette.primary.main,
                     }}
                   >
                     09/2020
@@ -801,7 +801,7 @@ export default function Resume() {
                     <Typography
                       variant="h6"
                       style={{
-                        color: theme.palette.common.dark,
+                        color: theme.palette.primary.main,
                       }}
                     >
                       09/2020
@@ -860,7 +860,7 @@ export default function Resume() {
                     <Typography
                       variant="h6"
                       style={{
-                        color: theme.palette.common.dark,
+                        color: theme.palette.primary.main,
                       }}
                     >
                       09/2014
@@ -915,7 +915,7 @@ export default function Resume() {
                     <Typography
                       variant="h6"
                       style={{
-                        color: theme.palette.common.dark,
+                        color: theme.palette.primary.main,
                       }}
                     >
                       09/2012
@@ -961,9 +961,6 @@ export default function Resume() {
           <Grid
             container
             style={{
-              // position: "absolute",
-              // top: 0,
-              // border: "1px solid red",
               height: theme.spacing(50),
             }}
           >
@@ -987,10 +984,10 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.primary.main}`,
+                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderRight: "none",
                     borderBottom: "none",
-                    backgroundColor: theme.palette.common.dark,
+                    backgroundColor: theme.palette.primary.main,
                   }}
                 >
                   <LangaugeIcon
@@ -1036,10 +1033,10 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.primary.main}`,
+                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderBottom: "none",
                     borderLeft: "none",
-                    backgroundColor: theme.palette.common.dark,
+                    backgroundColor: theme.palette.primary.main,
                   }}
                 >
                   <LangaugeIcon
@@ -1295,10 +1292,10 @@ export default function Resume() {
               xs={6}
               style={{
                 position: "relative",
-                border: `1px solid ${theme.palette.primary.main}`,
+                border: `1px solid ${theme.palette.secondary.main}`,
                 borderTop: "none",
                 borderRight: "none",
-                backgroundColor: theme.palette.common.dark,
+                backgroundColor: theme.palette.primary.main,
                 height: matchesLG ? theme.spacing(12) : theme.spacing(9),
                 marginTop: matchesLG
                   ? matchesMD
@@ -1374,10 +1371,10 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.primary.main}`,
+                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderRight: "none",
                     borderBottom: "none",
-                    backgroundColor: theme.palette.common.dark,
+                    backgroundColor: theme.palette.primary.main,
                   }}
                 >
                   <LangaugeIcon
@@ -1534,7 +1531,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={90}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="HTML"
                   />
@@ -1543,7 +1539,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={85}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="CSS"
                   />
@@ -1552,7 +1547,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={80}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="JAVASCRIPT"
                   />
@@ -1561,7 +1555,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={85}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="REACT"
                   />
@@ -1570,7 +1563,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={80}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="Material-UI"
                   />
@@ -1579,7 +1571,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={65}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="REDUX"
                   />
@@ -1588,7 +1579,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={80}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="NodeJS"
                   />
@@ -1597,7 +1587,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={80}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="MongoDB"
                   />
@@ -1606,7 +1595,6 @@ export default function Resume() {
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={70}
-                    color="secondary"
                     size={matchesLG ? 100 : 120}
                     label="REDIS"
                   />
@@ -1632,7 +1620,7 @@ export default function Resume() {
                 xs
                 style={{
                   position: "relative",
-                  border: `1px solid ${theme.palette.primary.main}`,
+                  border: `1px solid ${theme.palette.secondary.main}`,
                   borderTop: "none",
                   borderLeft: "none",
                 }}
@@ -1672,10 +1660,10 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.primary.main}`,
+                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderBottom: "none",
                     borderLeft: "none",
-                    backgroundColor: theme.palette.common.dark,
+                    backgroundColor: theme.palette.primary.main,
                     height: matchesLG ? theme.spacing(12) : theme.spacing(9),
                     marginTop: matchesLG ? theme.spacing(15) : theme.spacing(9),
                   }}

@@ -25,11 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
   flexContainer: {
     flexDirection: "row",
-    paddingLeft: 3,
-    paddingRight: 3,
     "&>.MuiTab-root": {
+      backgroundColor: theme.palette.common.black,
       flexGrow: 1,
-      backgroundColor: theme.palette.tabColor,
       border: `1px solid ${theme.palette.accent.main}`,
       borderRight: "none",
     },
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&>.Mui-selected": {
-      backgroundColor: theme.palette.common.dark,
+      backgroundColor: theme.palette.primary.main,
       position: "relative",
 
       "&>.MuiTab-wrapper": {
@@ -46,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
       },
     },
-    "&>.Mui-disabled": {
-      backgroundColor: theme.palette.tabColor,
-    },
+  },
+  indicator: {
+    backgroundColor: theme.palette.accent.main,
   },
 }));
 
@@ -78,9 +76,11 @@ export default function MobilieNav() {
             onChange={handleChange}
             variant="fullWidth"
             indicatorColor="secondary"
-            textColor="secondary"
             aria-label="icon label tabs example"
-            classes={{ flexContainer: classes.flexContainer }}
+            classes={{
+              flexContainer: classes.flexContainer,
+              indicator: classes.indicator,
+            }}
           >
             <Tab
               icon={
@@ -96,6 +96,7 @@ export default function MobilieNav() {
               className={classes.tab}
               style={{
                 borderTop: value === 0 ? "none" : undefined,
+                borderBottom: value === 0 ? "none" : undefined,
               }}
             />
             <Tab
@@ -112,6 +113,7 @@ export default function MobilieNav() {
               className={classes.tab}
               style={{
                 borderTop: value === 1 ? "none" : undefined,
+                borderBottom: value === 1 ? "none" : undefined,
               }}
             />
             <Tab
@@ -128,6 +130,7 @@ export default function MobilieNav() {
               className={classes.tab}
               style={{
                 borderTop: value === 2 ? "none" : undefined,
+                borderBottom: value === 2 ? "none" : undefined,
               }}
             />
             <Tab
@@ -144,6 +147,7 @@ export default function MobilieNav() {
               className={classes.tab}
               style={{
                 borderTop: value === 3 ? "none" : undefined,
+                borderBottom: value === 3 ? "none" : undefined,
                 borderRight: `1px solid ${theme.palette.accent.main}`,
               }}
             />

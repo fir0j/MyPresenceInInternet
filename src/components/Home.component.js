@@ -11,10 +11,7 @@ import HireMe from "../pages/hireme";
 
 export default function HomeNav() {
   const theme = useTheme();
-  const matchesSS = useMediaQuery(theme.breakpoints.down("ss"));
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
   return (
@@ -32,7 +29,7 @@ export default function HomeNav() {
         style={{
           // border: "3px solid teal",
           minWidth: "320px",
-          backgroundColor: theme.palette.common.dark,
+          backgroundColor: theme.palette.primary.main,
           overflowY: "scroll",
           paddingTop: theme.spacing(5),
           paddingLeft: matchesXL
