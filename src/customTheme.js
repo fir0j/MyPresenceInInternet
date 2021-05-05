@@ -34,9 +34,9 @@ const cyanTheme = {
     // type: "cyan",
     common: {
       black: black,
+      white: white,
       offWhite: offWhite,
       grey: portfolioGrey,
-      white: white,
       panelColor: black,
 
       // contrastText: "",
@@ -149,9 +149,9 @@ const goldTheme = {
     // type: "gold",
     common: {
       black: black,
-      offWhite: offWhite,
-      grey: portfolioGrey,
       white: white,
+      grey: portfolioGrey,
+      offWhite: offWhite,
       panelColor: black,
 
       // contrastText: "",
