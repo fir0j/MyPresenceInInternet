@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
     position: "absolute",
     inset: 0,
+    backgroundColor: "red",
   },
   absoluteContainer: {
     position: "absolute",
@@ -64,7 +65,7 @@ export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
   const [isActive, setIsActive] = useState(false);
-  const [value, setValue] = useState("cyan");
+  const [value, setValue] = useState("gold");
 
   const handleChange = (event) => {
     setTheme(event.target.value);
@@ -86,6 +87,7 @@ export default function SettingPanel({ setTheme }) {
       <Grid item container className={classes.setting}>
         <Grid item container className={classes.settingWrapper}>
           <Grid
+            onClick={handleOutsideClick}
             item
             container
             justify="center"
@@ -97,7 +99,6 @@ export default function SettingPanel({ setTheme }) {
               borderTopLeftRadius: "20px",
               borderBottomLeftRadius: "50px",
             }}
-            onClick={handleOutsideClick}
           >
             <Settings style={{ width: "70px" }} />
           </Grid>

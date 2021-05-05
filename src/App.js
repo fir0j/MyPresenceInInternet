@@ -12,7 +12,7 @@ import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
 function App() {
-  const [myTheme, setMyTheme] = useState(cyanTheme);
+  const [myTheme, setMyTheme] = useState(goldTheme);
   const GlobalCss = withStyles({
     // @global is handled by jss-plugin-global.
     "@global": {
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <GlobalCss />
+      {/* <GlobalCss /> */}
       <ThemeProvider theme={createMuiTheme(myTheme)}>
         <BrowserRouter>
           <Switch>
