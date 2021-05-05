@@ -174,6 +174,7 @@ export default function Resume() {
               variant="h3"
               style={{
                 letterSpacing: "0.2rem",
+                color: theme.palette.accent.main,
               }}
             >
               FIROJ SIDDIKI
@@ -182,6 +183,7 @@ export default function Resume() {
               variant="h6"
               style={{
                 letterSpacing: "0.3rem",
+                color: theme.palette.common.offWhite,
               }}
             >
               WEB ENGINEER
@@ -323,6 +325,7 @@ export default function Resume() {
                       letterSpacing: "0.1rem",
                       margin: 0,
                       paddingLeft: "0.1em",
+                      color: theme.palette.accent.main,
                     }}
                   >
                     Hello!
@@ -406,7 +409,12 @@ export default function Resume() {
             >
               <Grid item container justify="center" alignItems="center">
                 <Grid item>
-                  <Typography variant="h4">Contact</Typography>
+                  <Typography
+                    variant="h4"
+                    style={{ color: theme.palette.accent.main }}
+                  >
+                    Contact
+                  </Typography>
                 </Grid>
               </Grid>
 
@@ -416,7 +424,11 @@ export default function Resume() {
                     <CallIcon color="secondary" />
                   </Grid>
                   <Grid item>
-                    <Typography variant="body1" align="center">
+                    <Typography
+                      variant="body1"
+                      align="center"
+                      style={{ color: theme.palette.secondary.main }}
+                    >
                       9847021971
                     </Typography>
                   </Grid>
@@ -426,7 +438,11 @@ export default function Resume() {
                     <EmailIcon color="secondary" />
                   </Grid>
                   <Grid item>
-                    <Typography variant="body1" align="center">
+                    <Typography
+                      variant="body1"
+                      align="center"
+                      style={{ color: theme.palette.secondary.main }}
+                    >
                       firoj.is.available@gmail.com
                     </Typography>
                   </Grid>
@@ -436,7 +452,11 @@ export default function Resume() {
                     <RoomIcon color="secondary" />
                   </Grid>
                   <Grid item>
-                    <Typography variant="body1" align="center">
+                    <Typography
+                      variant="body1"
+                      align="center"
+                      style={{ color: theme.palette.secondary.main }}
+                    >
                       Nawalparasi, Nepal
                     </Typography>
                   </Grid>
@@ -494,7 +514,11 @@ export default function Resume() {
               : theme.spacing(9),
           }}
         >
-          <Typography variant="body1" align="right">
+          <Typography
+            variant="body1"
+            align="right"
+            style={{ color: theme.palette.secondary.main }}
+          >
             Looking forward to secure a challenging position in a reputable
             organization which can utilize my learnings, knowledge, and skills
             while contributing for the company's growth and in turn ensuring
@@ -584,7 +608,12 @@ export default function Resume() {
           style={{ height: theme.spacing(11) }}
         >
           <Grid item>
-            <Typography variant="h4">Work Experience</Typography>
+            <Typography
+              variant="h4"
+              style={{ color: theme.palette.accent.main }}
+            >
+              Work Experience
+            </Typography>
           </Grid>
         </Grid>
         <Grid container>
@@ -630,20 +659,32 @@ export default function Resume() {
               alignItems="flex-start"
             >
               <Grid item>
-                <Typography variant="h6">
+                <Typography
+                  variant="h6"
+                  style={{ color: theme.palette.common.offWhite }}
+                >
                   As Frontend Intern @Flipr, Bangalore, India
                 </Typography>
               </Grid>
               <Grid item style={{ marginTop: theme.spacing(1) }}>
-                <Typography variant="body1">
+                <Typography
+                  variant="body1"
+                  style={{ color: theme.palette.secondary.main }}
+                >
                   It is a startup company. They selected me as intern through
                   thier Practical Web Development Test.
                 </Typography>
-                <Typography variant="body1">
+                <Typography
+                  variant="body1"
+                  style={{ color: theme.palette.secondary.main }}
+                >
                   I built 3 Projects before the selection process for me got
                   over.
                 </Typography>
-                <Typography variant="body1">
+                <Typography
+                  variant="body1"
+                  style={{ color: theme.palette.secondary.main }}
+                >
                   They qualified me as intern for their company whithin 40 days
                   though the selection process was of 90 days.
                 </Typography>
@@ -696,16 +737,25 @@ export default function Resume() {
               alignItems="flex-start"
             >
               <Grid item>
-                <Typography variant="h6">
+                <Typography
+                  variant="h6"
+                  style={{ color: theme.palette.common.offWhite }}
+                >
                   As Frontend Developer @Flipr, Bangalore, India
                 </Typography>
               </Grid>
               <Grid item style={{ marginTop: theme.spacing(1) }}>
-                <Typography variant="body1">
+                <Typography
+                  variant="body1"
+                  style={{ color: theme.palette.secondary.main }}
+                >
                   I just built two Real World Projects as their intern before
                   they offered me job position
                 </Typography>
-                <Typography variant="body1">
+                <Typography
+                  variant="body1"
+                  style={{ color: theme.palette.secondary.main }}
+                >
                   Unfortunately we worked together for 1 Month only, after that
                   things didn't work out.
                 </Typography>
@@ -748,7 +798,12 @@ export default function Resume() {
             style={{ height: theme.spacing(11) }}
           >
             <Grid item>
-              <Typography variant="h4">Education</Typography>
+              <Typography
+                variant="h4"
+                style={{ color: theme.palette.accent.main }}
+              >
+                Education
+              </Typography>
             </Grid>
           </Grid>
           {/* engineering education */}
@@ -768,16 +823,28 @@ export default function Resume() {
                 className={classes.educationContent}
               >
                 <Grid item>
-                  <Typography variant="h6" align="right">
+                  <Typography
+                    variant="h6"
+                    align="right"
+                    style={{ color: theme.palette.common.offWhite }}
+                  >
                     CMR Institue Of Technology, Bangalore, India
                   </Typography>
                 </Grid>
                 <Grid item style={{ maxWidth: "40ch" }}>
-                  <Typography variant="body1" align="right">
+                  <Typography
+                    variant="body1"
+                    align="right"
+                    style={{ color: theme.palette.secondary.main }}
+                  >
                     It persued my academic career in COMPUTER SCIENCE & ENGINEER
                     at this place.
                   </Typography>
-                  <Typography variant="body1" align="right">
+                  <Typography
+                    variant="body1"
+                    align="right"
+                    style={{ color: theme.palette.secondary.main }}
+                  >
                     I graduated from this course with 6.4 CGPA out 10 in 2020.
                   </Typography>
                 </Grid>
@@ -828,15 +895,27 @@ export default function Resume() {
                 className={classes.educationContent}
               >
                 <Grid item>
-                  <Typography variant="h6" align="right">
+                  <Typography
+                    variant="h6"
+                    align="right"
+                    style={{ color: theme.palette.common.offWhite }}
+                  >
                     Little Angles' College, Kathmandu, Nepal
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body1" align="right">
+                  <Typography
+                    variant="body1"
+                    align="right"
+                    style={{ color: theme.palette.secondary.main }}
+                  >
                     Here I majored in Physics and Math.
                   </Typography>
-                  <Typography variant="body1" align="right">
+                  <Typography
+                    variant="body1"
+                    align="right"
+                    style={{ color: theme.palette.secondary.main }}
+                  >
                     I Passed my high school with 59.9%
                   </Typography>
                 </Grid>
@@ -886,12 +965,20 @@ export default function Resume() {
                 className={classes.educationContent}
               >
                 <Grid item>
-                  <Typography variant="h6" align="right">
+                  <Typography
+                    variant="h6"
+                    align="right"
+                    style={{ color: theme.palette.common.offWhite }}
+                  >
                     Sayapatri English H.S School, Nawalparasi, Nepal
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body1" align="right">
+                  <Typography
+                    variant="body1"
+                    align="right"
+                    style={{ color: theme.palette.secondary.main }}
+                  >
                     I passed SLC with 79.87% from this school.
                   </Typography>
                 </Grid>
@@ -1065,12 +1152,22 @@ export default function Resume() {
               >
                 <Grid item container direction="column">
                   <Grid item style={{ alignSelf: "center" }}>
-                    <Typography variant="h4">Language</Typography>
+                    <Typography
+                      variant="h4"
+                      style={{ color: theme.palette.accent.main }}
+                    >
+                      Language
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="subtitle1">English</Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: theme.palette.common.offWhite }}
+                    >
+                      English
+                    </Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="85%"
@@ -1080,7 +1177,12 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="subtitle1">Nepali</Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: theme.palette.common.offWhite }}
+                    >
+                      Nepali
+                    </Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="90%"
@@ -1090,7 +1192,12 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="subtitle1">Bhojpuri</Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: theme.palette.common.offWhite }}
+                    >
+                      Bhojpuri
+                    </Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="95%"
@@ -1100,7 +1207,12 @@ export default function Resume() {
                 </Grid>
                 <Grid item container direction="column">
                   <Grid item>
-                    <Typography variant="subtitle1">Hindi</Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: theme.palette.common.offWhite }}
+                    >
+                      Hindi
+                    </Typography>
                   </Grid>
                   <LinearProgressGraph
                     progressPercentage="90%"
@@ -1153,7 +1265,12 @@ export default function Resume() {
                   style={{ height: theme.spacing(11) }}
                 >
                   <Grid item>
-                    <Typography variant="h4">Hobby</Typography>
+                    <Typography
+                      variant="h4"
+                      style={{ color: theme.palette.accent.main }}
+                    >
+                      Hobby
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Grid
@@ -1178,7 +1295,12 @@ export default function Resume() {
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="subtitle1">Cooking</Typography>
+                        <Typography
+                          variant="subtitle1"
+                          style={{ color: theme.palette.common.offWhite }}
+                        >
+                          Cooking
+                        </Typography>
                       </Grid>
                     </Grid>
                     <Grid item>
@@ -1206,7 +1328,12 @@ export default function Resume() {
                     </Grid>
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="subtitle1">Exercise</Typography>
+                        <Typography
+                          variant="subtitle1"
+                          style={{ color: theme.palette.common.offWhite }}
+                        >
+                          Exercise
+                        </Typography>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -1221,7 +1348,10 @@ export default function Resume() {
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="subtitle1">
+                        <Typography
+                          variant="subtitle1"
+                          style={{ color: theme.palette.common.offWhite }}
+                        >
                           Reading Books
                         </Typography>
                       </Grid>
@@ -1251,7 +1381,10 @@ export default function Resume() {
                     </Grid>
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="subtitle1">
+                        <Typography
+                          variant="subtitle1"
+                          style={{ color: theme.palette.common.offWhite }}
+                        >
                           Stock Trading
                         </Typography>
                       </Grid>
@@ -1269,7 +1402,12 @@ export default function Resume() {
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
-                        <Typography variant="subtitle1">Singing</Typography>
+                        <Typography
+                          variant="subtitle1"
+                          style={{ color: theme.palette.common.offWhite }}
+                        >
+                          Singing
+                        </Typography>
                       </Grid>
                     </Grid>
                     <Grid item>
@@ -1414,12 +1552,22 @@ export default function Resume() {
                 >
                   <Grid item container direction="column">
                     <Grid item style={{ alignSelf: "center" }}>
-                      <Typography variant="h4">Language</Typography>
+                      <Typography
+                        variant="h4"
+                        style={{ color: theme.palette.accent.main }}
+                      >
+                        Language
+                      </Typography>
                     </Grid>
                   </Grid>
                   <Grid item container direction="column">
                     <Grid item>
-                      <Typography variant="h6">English</Typography>
+                      <Typography
+                        variant="h6"
+                        style={{ color: theme.palette.common.offWhite }}
+                      >
+                        English
+                      </Typography>
                     </Grid>
                     <LinearProgressGraph
                       progressPercentage="85%"
@@ -1429,7 +1577,12 @@ export default function Resume() {
                   </Grid>
                   <Grid item container direction="column">
                     <Grid item>
-                      <Typography variant="h6">Nepali</Typography>
+                      <Typography
+                        variant="h6"
+                        style={{ color: theme.palette.common.offWhite }}
+                      >
+                        Nepali
+                      </Typography>
                     </Grid>
                     <LinearProgressGraph
                       progressPercentage="90%"
@@ -1439,7 +1592,12 @@ export default function Resume() {
                   </Grid>
                   <Grid item container direction="column">
                     <Grid item>
-                      <Typography variant="h6">Bhojpuri</Typography>
+                      <Typography
+                        variant="h6"
+                        style={{ color: theme.palette.common.offWhite }}
+                      >
+                        Bhojpuri
+                      </Typography>
                     </Grid>
                     <LinearProgressGraph
                       progressPercentage="95%"
@@ -1449,7 +1607,12 @@ export default function Resume() {
                   </Grid>
                   <Grid item container direction="column">
                     <Grid item>
-                      <Typography variant="h6">Hindi</Typography>
+                      <Typography
+                        variant="h6"
+                        style={{ color: theme.palette.common.offWhite }}
+                      >
+                        Hindi
+                      </Typography>
                     </Grid>
                     <LinearProgressGraph
                       progressPercentage="90%"
@@ -1518,7 +1681,12 @@ export default function Resume() {
                 }}
               >
                 <Grid item>
-                  <Typography variant="h4">Technical Proficiency</Typography>
+                  <Typography
+                    variant="h4"
+                    style={{ color: theme.palette.accent.main }}
+                  >
+                    Technical Proficiency
+                  </Typography>
                 </Grid>
               </Grid>
               <Grid
@@ -1708,7 +1876,12 @@ export default function Resume() {
                     style={{ height: theme.spacing(11) }}
                   >
                     <Grid item>
-                      <Typography variant="h4">Hobby</Typography>
+                      <Typography
+                        variant="h4"
+                        style={{ color: theme.palette.accent.main }}
+                      >
+                        Hobby
+                      </Typography>
                     </Grid>
                   </Grid>
                   <Grid
@@ -1733,7 +1906,12 @@ export default function Resume() {
                     >
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
-                          <Typography variant="h6">Cooking</Typography>
+                          <Typography
+                            variant="h6"
+                            style={{ color: theme.palette.common.offWhite }}
+                          >
+                            Cooking
+                          </Typography>
                         </Grid>
                       </Grid>
                       <Grid item>
@@ -1761,7 +1939,12 @@ export default function Resume() {
                       </Grid>
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
-                          <Typography variant="h6">Exercise</Typography>
+                          <Typography
+                            variant="h6"
+                            style={{ color: theme.palette.common.offWhite }}
+                          >
+                            Exercise
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
@@ -1776,7 +1959,12 @@ export default function Resume() {
                     >
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
-                          <Typography variant="h6">Reading Books</Typography>
+                          <Typography
+                            variant="h6"
+                            style={{ color: theme.palette.common.offWhite }}
+                          >
+                            Reading Books
+                          </Typography>
                         </Grid>
                       </Grid>
                       <Grid item>
@@ -1804,7 +1992,12 @@ export default function Resume() {
                       </Grid>
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
-                          <Typography variant="h6">Stock Trading</Typography>
+                          <Typography
+                            variant="h6"
+                            style={{ color: theme.palette.common.offWhite }}
+                          >
+                            Stock Trading
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
@@ -1820,7 +2013,12 @@ export default function Resume() {
                     >
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
-                          <Typography variant="h6">Singing</Typography>
+                          <Typography
+                            variant="h6"
+                            style={{ color: theme.palette.common.offWhite }}
+                          >
+                            Singing
+                          </Typography>
                         </Grid>
                       </Grid>
                       <Grid item>

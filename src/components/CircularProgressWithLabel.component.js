@@ -3,9 +3,12 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  circleDeterminate: {
+    stroke: theme.palette.accent.main,
+  },
+}));
 
 export default function CircularProgressWithLabel(props) {
   const classes = useStyles();
@@ -14,7 +17,11 @@ export default function CircularProgressWithLabel(props) {
   function CircularProgressWithLabel(props) {
     return (
       <Box position="relative" display="inline-flex">
-        <CircularProgress variant="determinate" {...props} />
+        <CircularProgress
+          variant="determinate"
+          classes={{ circleDeterminate: classes.circleDeterminate }}
+          {...props}
+        />
         <Box
           top={0}
           left={0}
@@ -25,7 +32,11 @@ export default function CircularProgressWithLabel(props) {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography variant="caption" component="div">
+          <Typography
+            variant="caption"
+            style={{ color: theme.palette.common.offWhite }}
+            component="div"
+          >
             {props.label}
           </Typography>
         </Box>

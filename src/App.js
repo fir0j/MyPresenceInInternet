@@ -17,20 +17,19 @@ function App() {
     // @global is handled by jss-plugin-global.
     "@global": {
       // You should target [class*="MuiButton-root"] instead if you nest themes.
-      "::-webkit-scrollbar": {
-        width: "8px",
-      },
-
-      "::-webkit-scrollbar-thumb": {
-        borderRadius: "10px",
-        backgroundColor: myTheme.palette.secondary.main,
-        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.5)`,
-      },
-      "::-webkit-scrollbar-track": {
-        borderRadius: "10px",
-        backgroundColor: myTheme.palette.primary.main,
-        boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.4)",
-      },
+      // "::-webkit-scrollbar": {
+      //   width: "8px",
+      // },
+      // "::-webkit-scrollbar-thumb": {
+      //   borderRadius: "10px",
+      //   backgroundColor: myTheme.palette.secondary.main,
+      //   boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.5)`,
+      // },
+      // "::-webkit-scrollbar-track": {
+      //   borderRadius: "10px",
+      //   backgroundColor: myTheme.palette.primary.main,
+      //   boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.4)",
+      // },
       // ".MuiCircularProgress-circleDeterminate": {
       //   stroke: myTheme.palette.accent.main,
       // },
@@ -54,7 +53,7 @@ function App() {
 
   return (
     <React.Fragment>
-      {/* <GlobalCss /> */}
+      <GlobalCss />
       <ThemeProvider theme={createMuiTheme(myTheme)}>
         <BrowserRouter>
           <Switch>

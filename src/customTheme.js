@@ -1,12 +1,11 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import grey from "@material-ui/core/colors/grey";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
+import grey from "@material-ui/core/colors/grey";
+const breakpoints = createBreakpoints({}); // in order to be able to use breakpoint in this file
 
-const breakpoints = createBreakpoints({});
+const offWhite = grey[400];
 const black = "#000";
 const white = "#FFF";
 const dark = "#2C2C2C";
-const offWhite = grey[400];
 const portfolioGrey = "#8b8b8b";
 const green = "#4ae4b8";
 const gold = "#B29155";
@@ -36,8 +35,8 @@ const cyanTheme = {
       black: black,
       white: white,
       offWhite: offWhite,
-      grey: portfolioGrey,
       panelColor: black,
+      tab: black,
 
       // contrastText: "",
     },
@@ -58,11 +57,9 @@ const cyanTheme = {
   typography: {
     fontFamily: "Lora",
     body1: {
-      color: portfolioGrey,
       fontSize: "1.11rem",
     },
     h3: {
-      color: green,
       [breakpoints.down("md")]: {
         fontSize: "2.1rem",
       },
@@ -71,25 +68,21 @@ const cyanTheme = {
       },
     },
     h4: {
-      color: green,
       [breakpoints.down("xs")]: {
         fontSize: "1.8rem",
       },
     },
 
     h6: {
-      color: offWhite,
       [breakpoints.down("sm")]: {
         fontSize: "1.1rem",
       },
     },
     subtitle1: {
-      color: offWhite,
       fontSize: "1rem",
     },
 
     caption: {
-      color: offWhite,
       fontSize: "1rem",
       [breakpoints.down("md")]: {
         fontSize: "0.8rem",
@@ -107,26 +100,26 @@ const cyanTheme = {
   },
 
   // customize the appearance of all instances of a component type by modifying global class names provided in the API section
-  overrides: {
-    // Name of the global class of the component
-    MuiCircularProgress: {
-      // Name of  global child class of the same component
-      circleDeterminate: {
-        stroke: green,
-      },
-    },
+  // overrides: {
+  //   // Name of the global class of the component
+  //   MuiCircularProgress: {
+  //     // Name of  global child class of the same component
+  //     circleDeterminate: {
+  //       stroke: green,
+  //     },
+  //   },
 
-    // Name of the global class of the component
-    // MuiTab: {
-    // Name of  global child class of the same component
-    //   root: {
-    // Name of the psudeo class of the child component
-    //     "&$disabled": {
-    //       backgroundColor: "blue",
-    //     },
-    //   },
-    // },
-  },
+  // Name of the global class of the component
+  // MuiTab: {
+  // Name of  global child class of the same component
+  //   root: {
+  // Name of the psudeo class of the child component
+  //     "&$disabled": {
+  //       backgroundColor: "blue",
+  //     },
+  //   },
+  // },
+  // },
 };
 
 const goldTheme = {
@@ -150,15 +143,15 @@ const goldTheme = {
     common: {
       black: black,
       white: white,
-      grey: portfolioGrey,
       offWhite: offWhite,
       panelColor: black,
+      tab: black,
 
       // contrastText: "",
     },
     primary: {
       // light: dark,
-      main: dark,
+      main: black,
       // dark: dark,
       // contrastText: "black",
     },
@@ -172,11 +165,9 @@ const goldTheme = {
   typography: {
     fontFamily: "Lora",
     body1: {
-      color: portfolioGrey,
       fontSize: "1.11rem",
     },
     h3: {
-      color: gold,
       [breakpoints.down("md")]: {
         fontSize: "2.1rem",
       },
@@ -185,24 +176,20 @@ const goldTheme = {
       },
     },
     h4: {
-      color: gold,
       [breakpoints.down("xs")]: {
         fontSize: "1.8rem",
       },
     },
     h6: {
-      color: offWhite,
       [breakpoints.down("sm")]: {
         fontSize: "1.1rem",
       },
     },
     subtitle1: {
-      color: offWhite,
       fontSize: "1rem",
     },
 
     caption: {
-      color: offWhite,
       fontSize: "1rem",
       [breakpoints.down("md")]: {
         fontSize: "0.8rem",
@@ -211,6 +198,7 @@ const goldTheme = {
   },
 
   // cutomize the default value(s) of a component's props
+  // must be processed through createMuiTheme()
   props: {
     // Name of the component
     MuiButtonBase: {
@@ -220,26 +208,27 @@ const goldTheme = {
   },
 
   // customize the appearance of all instances of a component type by modifying global class names provided in the API section
-  overrides: {
-    // Name of the global class of the component
-    MuiCircularProgress: {
-      // Name of  global child class of the same component
-      circleDeterminate: {
-        stroke: gold,
-      },
-    },
+  // must be processed through createMuiTheme()
+  // overrides: {
+  //   // Name of the global class of the component
+  //   MuiCircularProgress: {
+  //     // Name of  global child class of the same component
+  //     circleDeterminate: {
+  //       stroke: gold,
+  //     },
+  //   },
 
-    // Name of the global class of the component
-    // MuiTab: {
-    // Name of  global child class of the same component
-    //   root: {
-    // Name of the psudeo class of the child component
-    //     "&$disabled": {
-    //       backgroundColor: "blue",
-    //     },
-    //   },
-    // },
-  },
+  // Name of the global class of the component
+  // MuiTab: {
+  // Name of  global child class of the same component
+  //   root: {
+  // Name of the psudeo class of the child component
+  //     "&$disabled": {
+  //       backgroundColor: "blue",
+  //     },
+  //   },
+  // },
+  // },
 };
 
 // const goldTheme = createMuiTheme(goldPallete);
