@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useTheme, makeStyles, withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { lightTheme, darkTheme } from "./customTheme";
+import { cyanTheme, goldTheme } from "./customTheme";
 
 import Navigation from "./components/Navigation.component";
 import Home from "./components/Home.component";
@@ -12,7 +12,7 @@ import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
 function App() {
-  const [myTheme, setMyTheme] = useState(darkTheme);
+  const [myTheme, setMyTheme] = useState(cyanTheme);
   const GlobalCss = withStyles({
     // @global is handled by jss-plugin-global.
     "@global": {
@@ -39,23 +39,23 @@ function App() {
 
   const setTheme = (themeName) => {
     switch (themeName) {
-      case "light":
-        setMyTheme(lightTheme);
+      case "cyan":
+        setMyTheme(cyanTheme);
         break;
 
-      case "dark":
-        setMyTheme(darkTheme);
+      case "gold":
+        setMyTheme(goldTheme);
         break;
 
       default:
-        setMyTheme(darkTheme);
+        setMyTheme(cyanTheme);
     }
   };
 
   return (
     <React.Fragment>
       <GlobalCss />
-      <ThemeProvider theme={myTheme}>
+      <ThemeProvider theme={createMuiTheme(myTheme)}>
         <BrowserRouter>
           <Switch>
             <Grid

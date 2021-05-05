@@ -4,7 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
 import Settings from "@material-ui/icons/Settings";
 import Typography from "@material-ui/core/Typography";
-import Checkbox from "@material-ui/core/Checkbox";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 
 const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
@@ -61,12 +63,12 @@ const useStyles = makeStyles((theme) => ({
 export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
-  const [checked, setChecked] = useState(true);
-
   const [isActive, setIsActive] = useState(false);
-  const handleChange = (hue, event) => {
-    setChecked(event.target.checked);
-    setTheme(hue);
+  const [value, setValue] = useState("cyan");
+
+  const handleChange = (event) => {
+    setTheme(event.target.value);
+    setValue(event.target.value);
   };
 
   const handleToolClick = () => {
@@ -95,6 +97,7 @@ export default function SettingPanel({ setTheme }) {
               borderTopLeftRadius: "20px",
               borderBottomLeftRadius: "50px",
             }}
+            onClick={handleOutsideClick}
           >
             <Settings style={{ width: "70px" }} />
           </Grid>
@@ -110,6 +113,7 @@ export default function SettingPanel({ setTheme }) {
                 width: "100%",
                 height: "50px",
               }}
+              onClick={handleOutsideClick}
             >
               <Typography variant="h6">Settings</Typography>
             </Grid>
@@ -117,7 +121,7 @@ export default function SettingPanel({ setTheme }) {
               item
               container
               direction="column"
-              justify="center"
+              justify="flex-start"
               alignItems="center"
               style={{
                 backgroundColor: theme.palette.accent.main,
@@ -129,16 +133,24 @@ export default function SettingPanel({ setTheme }) {
                 <Typography variant="h6">Accent Color</Typography>
               </Grid>
               <Grid item>
-                {/* <Checkbox
-                  checked={checked}
-                  onChange={() => handleChange("dark")}
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                /> */}
-                <Checkbox
-                  checked={checked}
-                  onChange={(event) => handleChange("light", event)}
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
+                <RadioGroup
+                  row
+                  aria-label="palette"
+                  name="palette"
+                  value={value}
+                  onChange={handleChange}
+                >
+                  <FormControlLabel
+                    control={<Radio />}
+                    value="cyan"
+                    label="Cyan"
+                  />
+                  <FormControlLabel
+                    control={<Radio />}
+                    value="gold"
+                    label="Gold"
+                  />
+                </RadioGroup>
               </Grid>
             </Grid>
           </Grid>

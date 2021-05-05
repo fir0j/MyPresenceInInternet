@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contactItem: {
     // border: "1px solid blue",
+    color: theme.palette.secondary.main,
     alignItems: "center",
     "&>*": {
       paddingRight: theme.spacing(1),
@@ -412,7 +413,7 @@ export default function Resume() {
               <Grid item container style={{ maxHeight: "200px" }}>
                 <Grid item container className={classes.contactItem}>
                   <Grid item>
-                    <CallIcon color="primary" />
+                    <CallIcon color="secondary" />
                   </Grid>
                   <Grid item>
                     <Typography variant="body1" align="center">
@@ -422,7 +423,7 @@ export default function Resume() {
                 </Grid>
                 <Grid item container className={classes.contactItem}>
                   <Grid item>
-                    <EmailIcon color="primary" />
+                    <EmailIcon color="secondary" />
                   </Grid>
                   <Grid item>
                     <Typography variant="body1" align="center">
@@ -432,7 +433,7 @@ export default function Resume() {
                 </Grid>
                 <Grid item container className={classes.contactItem}>
                   <Grid item>
-                    <RoomIcon color="primary" />
+                    <RoomIcon color="secondary" />
                   </Grid>
                   <Grid item>
                     <Typography variant="body1" align="center">
