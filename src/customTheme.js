@@ -158,9 +158,9 @@ const goldTheme = {
     },
     primary: {
       // light: dark,
-      main: black,
+      main: dark,
       // dark: dark,
-      contrastText: "black",
+      // contrastText: "black",
     },
     secondary: {
       main: portfolioGrey,

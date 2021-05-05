@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
   flexContainer: {
     flexDirection: "row",
+    backgroundColor: theme.palette.primary.main,
     "&>.MuiTab-root": {
-      backgroundColor: theme.palette.common.black,
+      // backgroundColor: theme.palette.common.black,
       flexGrow: 1,
       border: `1px solid ${theme.palette.accent.main}`,
       borderRight: "none",
