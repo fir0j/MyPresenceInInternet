@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useTheme, makeStyles, withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -11,20 +11,33 @@ import SettingPanel from "./components/SettingPanel.component";
 import MobileNav from "./components/MobileNav.component";
 import Hidden from "@material-ui/core/Hidden";
 
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  "@global": {
+    // ".MuiCircularProgress-circleDeterminate": {
+    //   stroke: myTheme.palette.accent.main,
+    // },
+    // ".Mui-selected": {
+    //   backgroundColor: "transparent",
+    //   border: "none",
+    // },
+  },
+})(() => null);
+
+function useLocalStorageState(key, defaultState = "") {
+  const [state, setState] = useState(
+    () => JSON.parse(window.localStorage.getItem("myTheme")) || defaultState
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
+}
+
 function App() {
-  const [myTheme, setMyTheme] = useState(goldTheme);
-  const GlobalCss = withStyles({
-    // @global is handled by jss-plugin-global.
-    "@global": {
-      // ".MuiCircularProgress-circleDeterminate": {
-      //   stroke: myTheme.palette.accent.main,
-      // },
-      // ".Mui-selected": {
-      //   backgroundColor: "transparent",
-      //   border: "none",
-      // },
-    },
-  })(() => null);
+  const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
 
   const setTheme = (themeName) => {
     switch (themeName) {

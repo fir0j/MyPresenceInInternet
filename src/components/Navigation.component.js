@@ -87,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
   tabDisabled: {},
 
   tabWrapper: {
-    // backgroundColor: "red",
     width: "100%",
     height: "100%",
     borderTopRightRadius: "120px",
