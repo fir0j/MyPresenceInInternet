@@ -16,22 +16,12 @@ function App() {
   const GlobalCss = withStyles({
     // @global is handled by jss-plugin-global.
     "@global": {
-      // You should target [class*="MuiButton-root"] instead if you nest themes.
-      // "::-webkit-scrollbar": {
-      //   width: "8px",
-      // },
-      // "::-webkit-scrollbar-thumb": {
-      //   borderRadius: "10px",
-      //   backgroundColor: myTheme.palette.secondary.main,
-      //   boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.5)`,
-      // },
-      // "::-webkit-scrollbar-track": {
-      //   borderRadius: "10px",
-      //   backgroundColor: myTheme.palette.primary.main,
-      //   boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.4)",
-      // },
       // ".MuiCircularProgress-circleDeterminate": {
       //   stroke: myTheme.palette.accent.main,
+      // },
+      // ".Mui-selected": {
+      //   backgroundColor: "transparent",
+      //   border: "none",
       // },
     },
   })(() => null);
@@ -99,7 +89,6 @@ function App() {
                     height: "100%",
                     width: "100%",
                     flexWrap: "nowrap",
-                    // border: "1px solid red",
                   }}
                 >
                   <Home />

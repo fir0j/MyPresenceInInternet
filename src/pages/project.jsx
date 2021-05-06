@@ -5,7 +5,8 @@ export default function Project() {
   return (
     <Fragment>
       <Grid item container style={{ height: "100vh" }}>
-        Project Page
+        Project Page 1. Find out why color is automatically changing inside the
+        tabs
       </Grid>
     </Fragment>
   );

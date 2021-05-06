@@ -32,25 +32,25 @@ const cyanTheme = {
   palette: {
     // type: "cyan",
     common: {
-      black: black,
-      white: white,
       offWhite: offWhite,
       panelColor: black,
       tab: black,
-
       // contrastText: "",
     },
     primary: {
       // light: dark,
       main: dark,
+      // main: white,
       // dark: dark,
-      contrastText: "black",
+      // contrastText: "black",
     },
     secondary: {
       main: portfolioGrey,
+      // main: white,
     },
     accent: {
       main: green,
+      // main: white,
     },
   },
 

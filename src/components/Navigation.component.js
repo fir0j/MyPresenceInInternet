@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  // CSS RULE NAME
-  flexContainerVertical: {
+  // CSS $Rule Name
+  tabsFlexContainerVertical: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -58,50 +58,58 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.accent.main,
-    // overwriting class .flexContainerVertical.MuiTab-root globally without using {withStyle} HOC
-    "&>.MuiTab-root": {
-      flexGrow: 1,
-      backgroundColor: theme.palette.common.black,
-      border: `1px solid ${theme.palette.accent.main}`,
-    },
-    "&>.MuiTab-labelIcon": {
-      paddingTop: "0px",
-    },
-
-    "&>.Mui-selected": {
-      backgroundColor: theme.palette.primary.main,
-      position: "relative",
-      marginTop: "2em",
-      marginBottom: "2em",
-      // borderTopRightRadius: "5px",
-      // borderBottomRightRadius: "100px",
-
-      // [theme.breakpoints.down("md")]: {
-      //   borderTopRightRadius: "5px",
-      //   borderBottomRightRadius: "40px",
-      // },
-      border: "none",
-
-      "&>.MuiTab-wrapper": {
-        width: "100%",
-        height: "100%",
-        borderTopRightRadius: "120px",
-        borderBottomRightRadius: "120px",
-      },
-    },
-    "&>.Mui-disabled": {
-      backgroundColor: theme.palette.tabColor,
-    },
   },
-  indicator: {
+
+  tabsIndicator: {
     backgroundColor: "transparent",
     width: "1px",
+  },
+
+  tabRoot: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.common.black,
+    border: `1px solid ${theme.palette.accent.main}`,
+    "&$tabSelected": {
+      backgroundColor: "transparent",
+      border: "none",
+    },
+    "&$tabDisabled": {
+      // backgroundColor: "red",
+    },
+
+    "&:hover": {
+      // since tab's :hover, :focus Pseudo-class is not controlled by Mui API, we can apply as normal css or SASS
+      // backgroundColor: "red",
+    },
+  },
+
+  tabSelected: {},
+  tabDisabled: {},
+
+  tabWrapper: {
+    // backgroundColor: "red",
+    width: "100%",
+    height: "100%",
+    borderTopRightRadius: "120px",
+    borderBottomRightRadius: "120px",
+  },
+
+  tabLabelIcon: {
+    paddingTop: "0px",
   },
 }));
 
 export default function Navigation() {
   const theme = useTheme();
   const classes = useStyles();
+  const tabRules = {
+    root: classes.tabRoot,
+    selected: classes.tabSelected,
+    disabled: classes.tabDisabled,
+    wrapper: classes.tabWrapper,
+    labelIcon: classes.tabLabelIcon,
+  };
+
   const [value, setValue] = useState(1);
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -138,8 +146,8 @@ export default function Navigation() {
       onChange={handleChange}
       aria-label="Vertical tabs"
       classes={{
-        flexContainerVertical: classes.flexContainerVertical,
-        indicator: classes.indicator,
+        flexContainerVertical: classes.tabsFlexContainerVertical,
+        indicator: classes.tabsIndicator,
       }}
       className={classes.tabsContainer}
     >
@@ -156,6 +164,7 @@ export default function Navigation() {
           </div>
         }
         className={classes.tab}
+        classes={tabRules}
         style={{
           borderBottomRightRadius:
             value - getIndex(0) === 1
@@ -181,6 +190,7 @@ export default function Navigation() {
         to="/"
         component={Link}
         className={classes.tab}
+        classes={tabRules}
         style={{
           borderBottomRightRadius:
             value - getIndex(1) === 1
@@ -204,6 +214,7 @@ export default function Navigation() {
         to="/project"
         component={Link}
         className={classes.tab}
+        classes={tabRules}
         style={{
           borderTopRightRadius:
             value - getIndex(2) === -1
@@ -233,6 +244,7 @@ export default function Navigation() {
         to="/feedback"
         component={Link}
         className={classes.tab}
+        classes={tabRules}
         style={{
           borderTopRightRadius:
             value + getIndex(3) === 5
@@ -262,6 +274,7 @@ export default function Navigation() {
         }
         component={Link}
         className={classes.tab}
+        classes={tabRules}
         style={{
           borderTopRightRadius:
             value + getIndex(4) === 7
@@ -275,6 +288,7 @@ export default function Navigation() {
         label=""
         disabled
         className={classes.tab}
+        classes={tabRules}
         style={{
           borderTopRightRadius:
             value + getIndex(5) === 9
