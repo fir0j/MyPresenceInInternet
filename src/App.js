@@ -37,7 +37,8 @@ function useLocalStorageState(key, defaultState = "") {
 }
 
 function App() {
-  const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
+  const [myTheme, setMyTheme] = useState(cyanTheme);
+  // const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
 
   const setTheme = (themeName) => {
     switch (themeName) {

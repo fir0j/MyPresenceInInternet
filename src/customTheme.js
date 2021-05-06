@@ -147,9 +147,8 @@ const goldTheme = {
       // contrastText: "",
     },
     primary: {
-      // light: dark,
       main: black,
-      // dark: dark,
+      // main: grey[500],
       // contrastText: "black",
     },
     secondary: {

@@ -8,14 +8,16 @@ import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import Slide from "@material-ui/core/Slide";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
     position: "fixed",
     inset: 0,
   },
-  absoluteContainer: {
-    position: "absolute",
+  fixedContainer: {
+    position: "fixed",
     right: 0,
     top: theme.spacing(26),
     [theme.breakpoints.down("lg")]: {
@@ -44,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     borderTopLeftRadius: "20px",
     borderBottomLeftRadius: "50px",
+    backgroundColor: theme.palette.accent.main,
   },
 
   setting: {
@@ -103,7 +106,7 @@ export default function SettingPanel({ setTheme }) {
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState("gold");
 
-  const handleChange = (event) => {
+  const handleColorChange = (event) => {
     setTheme(event.target.value);
     setValue(event.target.value);
     setIsActive(false);
@@ -137,129 +140,99 @@ export default function SettingPanel({ setTheme }) {
     );
   }
 
-  function SettingBoard() {
-    return (
-      <Grid item container className={classes.setting}>
-        <Grid item container className={classes.settingWrapper}>
+  const SettingBoard = (
+    <Grid item container className={classes.setting}>
+      <Grid item container className={classes.settingWrapper}>
+        <Grid
+          onClick={handleOutsideClick}
+          item
+          container
+          justify="center"
+          alignItems="center"
+          style={{
+            backgroundColor: theme.palette.accent.main,
+            maxHeight: "50px",
+            maxWidth: "50px",
+            borderTopLeftRadius: "20px",
+            borderBottomLeftRadius: "50px",
+          }}
+        >
+          <Settings style={{ width: "70px" }} />
+        </Grid>
+        <Grid item container style={{ flexBasis: "100%" }}>
           <Grid
-            onClick={handleOutsideClick}
             item
             container
             justify="center"
             alignItems="center"
             style={{
+              // border: "1px dotted blue",
               backgroundColor: theme.palette.accent.main,
-              maxHeight: "50px",
-              maxWidth: "50px",
-              borderTopLeftRadius: "20px",
-              borderBottomLeftRadius: "50px",
+              width: "100%",
+              height: "50px",
+            }}
+            onClick={handleOutsideClick}
+          >
+            <Typography variant="h6">Settings</Typography>
+          </Grid>
+          <Grid
+            item
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="center"
+            style={{
+              backgroundColor: theme.palette.accent.main,
+              height: "100%",
+              flexGrow: 1,
             }}
           >
-            <Settings style={{ width: "70px" }} />
-          </Grid>
-          <Grid item container style={{ flexBasis: "100%" }}>
-            <Grid
-              item
-              container
-              justify="center"
-              alignItems="center"
-              style={{
-                // border: "1px dotted blue",
-                backgroundColor: theme.palette.accent.main,
-                width: "100%",
-                height: "50px",
-              }}
-              onClick={handleOutsideClick}
-            >
-              <Typography variant="h6">Settings</Typography>
+            <Grid item>
+              <Typography variant="h6">Accent Color</Typography>
             </Grid>
-            <Grid
-              item
-              container
-              direction="column"
-              justify="flex-start"
-              alignItems="center"
-              style={{
-                backgroundColor: theme.palette.accent.main,
-                height: "100%",
-                flexGrow: 1,
-              }}
-            >
-              <Grid item>
-                <Typography variant="h6">Accent Color</Typography>
-              </Grid>
-              <Grid item>
-                <RadioGroup
-                  row
-                  aria-label="palette"
-                  name="palette"
-                  value={value}
-                  onChange={handleChange}
-                >
-                  <FormControlLabel
-                    control={
-                      <StyledRadio
-                        icon={
-                          <span
-                            className={classes.icon}
-                            style={{ backgroundColor: "#B29155" }}
-                          />
-                        }
-                      />
-                    }
-                    value="gold"
-                    label=""
-                  />
-                  <FormControlLabel
-                    control={
-                      <StyledRadio
-                        icon={
-                          <span
-                            className={classes.icon}
-                            style={{ backgroundColor: "#4ae4b8" }}
-                          />
-                        }
-                      />
-                    }
-                    value="cyan"
-                    label=""
-                  />
-                  {/* <FormControlLabel
-                    control={
-                      <StyledRadio
-                        icon={
-                          <span
-                            className={classes.icon}
-                            style={{ backgroundColor: "#4ae4b8" }}
-                          />
-                        }
-                      />
-                    }
-                    value="cyan"
-                    label=""
-                  />
-                  <FormControlLabel
-                    control={
-                      <StyledRadio
-                        icon={
-                          <span
-                            className={classes.icon}
-                            style={{ backgroundColor: "#4ae4b8" }}
-                          />
-                        }
-                      />
-                    }
-                    value="cyan"
-                    label=""
-                  /> */}
-                </RadioGroup>
-              </Grid>
+            <Grid item>
+              <RadioGroup
+                row
+                aria-label="palette"
+                name="palette"
+                value={value}
+                onChange={handleColorChange}
+              >
+                <FormControlLabel
+                  control={
+                    <StyledRadio
+                      icon={
+                        <span
+                          className={classes.icon}
+                          style={{ backgroundColor: "#B29155" }}
+                        />
+                      }
+                    />
+                  }
+                  value="gold"
+                  label=""
+                />
+                <FormControlLabel
+                  control={
+                    <StyledRadio
+                      icon={
+                        <span
+                          className={classes.icon}
+                          style={{ backgroundColor: "#4ae4b8" }}
+                        />
+                      }
+                    />
+                  }
+                  value="cyan"
+                  label=""
+                />
+              </RadioGroup>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-    );
-  }
+    </Grid>
+  );
 
   return (
     <Fragment>
@@ -270,28 +243,34 @@ export default function SettingPanel({ setTheme }) {
           className={classes.invisibleHandler}
         />
       )}
-      <Grid item className={classes.absoluteContainer}>
-        <Grid
-          item
-          container
-          justify="center"
-          alignItems="center"
-          onClick={() => handleToolClick("setting")}
-          className={classes.settingContainer}
-          style={{
-            backgroundColor: theme.palette.accent.main,
-          }}
+      <Grid item className={classes.fixedContainer}>
+        <Slide
+          direction="left"
+          in={!isActive}
+          timeout={700}
+          mountOnEnter
+          unmountOnExit
         >
-          {/* hiding setting icon when setting tool is active */}
-          {!isActive ? (
-            <div style={{ color: theme.palette.primary.main }}>
-              <Settings />
-            </div>
-          ) : (
-            ""
-          )}
-          {isActive ? <SettingBoard setTheme={setTheme} /> : ""}
-        </Grid>
+          <Grid
+            item
+            container
+            justify="center"
+            alignItems="center"
+            onClick={() => handleToolClick("setting")}
+            className={classes.settingContainer}
+          >
+            <Settings style={{ color: theme.palette.primary.main }} />
+          </Grid>
+        </Slide>
+        <Slide
+          direction="left"
+          in={isActive}
+          timeout={300}
+          mountOnEnter
+          unmountOnExit
+        >
+          {SettingBoard}
+        </Slide>
       </Grid>
     </Fragment>
   );
