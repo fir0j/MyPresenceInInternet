@@ -35,6 +35,7 @@ const cyanTheme = {
       offWhite: offWhite,
       panelColor: black,
       tab: black,
+      bg: black,
       // contrastText: "",
     },
     primary: {
@@ -136,19 +137,18 @@ const goldTheme = {
   // Secondary 30%
   // Accent 10%
   palette: {
-    // type: "gold",
     common: {
       black: black,
       white: white,
       offWhite: offWhite,
       panelColor: black,
       tab: black,
+      bg: grey[900],
 
       // contrastText: "",
     },
     primary: {
       main: black,
-      // main: grey[500],
       // contrastText: "black",
     },
     secondary: {

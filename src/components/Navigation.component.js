@@ -10,6 +10,7 @@ import { ReactComponent as Resume } from "../assets/resume.svg";
 import { ReactComponent as Hireme } from "../assets/hireme.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
 import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
   navigationWrapper: {
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.common.bg,
     color: theme.palette.accent.main,
   },
 

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
@@ -23,13 +24,13 @@ import LinearProgressGraph from "../components/LinearProgressGraph.component";
 import CircularProgressWithLabel from "../components/CircularProgressWithLabel.component";
 import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
 import Hidden from "@material-ui/core/Hidden";
+import { getThemeProps } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     position: "relative",
     flexGrow: 1,
     flexWrap: "nowrap",
-    marginBottom: theme.spacing(5),
     [theme.breakpoints.down("md")]: {
       marginBottom: theme.spacing(0),
     },
@@ -123,10 +124,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
-  hobby: {
-    // border: `1px solid ${theme.palette.primary.main}`,
-    // marginTop: theme.spacing(16),
-  },
 }));
 export default function Resume() {
   const classes = useStyles();
@@ -145,7 +142,7 @@ export default function Resume() {
       justify="space-between"
       alignItems="center"
       className={classes.container}
-      // style={{ border: "1px solid red" }}
+      style={{ marginBottom: theme.spacing(5) }}
     >
       <Grid
         item
@@ -216,10 +213,9 @@ export default function Resume() {
           direction="column"
           justify="center"
           style={{
-            height: "100%",
+            height: "350px",
             maxHeight: "350px",
             flexWrap: "nowrap",
-            // border: `1px solid ${theme.palette.primary.main}`,
           }}
         >
           <Grid
@@ -241,7 +237,6 @@ export default function Resume() {
               sm={4}
               container
               style={{
-                // border: `1px solid ${theme.palette.primary.main}`,
                 flexGrow: 1,
                 width: "100%",
                 maxWidth: "100%",
@@ -345,11 +340,7 @@ export default function Resume() {
       container
       justify="flex-end"
       className={classes.container}
-      style={
-        {
-          // border: "1px solid orange",
-        }
-      }
+      style={{ marginBottom: theme.spacing(5) }}
     >
       <Hidden mdDown>
         <Grid
@@ -489,11 +480,18 @@ export default function Resume() {
           style={{
             position: "absolute",
             top: -theme.spacing(matchesMD ? 3 : 0),
-            left: -theme.spacing(matchesMD ? 7 : 8),
+            left: matchesXL
+              ? matchesMD
+                ? matchesXS
+                  ? -theme.spacing(5)
+                  : -theme.spacing(6)
+                : -theme.spacing(7)
+              : undefined,
+            height: theme.spacing(9),
           }}
         >
           <Education
-            style={{ width: matchesMD ? theme.spacing(9) : theme.spacing(12) }}
+            style={{ width: matchesMD ? theme.spacing(8) : theme.spacing(10) }}
             className={classes.svgIcon}
           />
         </Grid>
@@ -507,9 +505,10 @@ export default function Resume() {
             borderRight: "none",
             borderTop: "none",
             paddingBottom: theme.spacing(matchesMD ? 5 : 2),
+            marginLeft: matchesXS ? theme.spacing(1) : undefined,
             paddingLeft: matchesMD
               ? matchesXS
-                ? theme.spacing(6.5)
+                ? theme.spacing(8)
                 : theme.spacing(12)
               : theme.spacing(9),
           }}
@@ -524,11 +523,6 @@ export default function Resume() {
             while contributing for the company's growth and in turn ensuring
             personal growth too
           </Typography>
-          {/* <Typography variant="body1" align="right">
-            lipsum as it is sometimes known, is dummy text used in laying out
-            print, graphic or web designs. The passage is attributed to an
-            unknown typesetter in the 15th century.
-          </Typography> */}
         </Grid>
 
         {/* design rectangle */}
@@ -548,6 +542,7 @@ export default function Resume() {
               borderBottom: "none",
               borderLeft: "none",
               height: "100%",
+              marginLeft: matchesXS ? theme.spacing(1) : undefined,
             }}
           />
           <Grid item container style={{ height: "100%" }} />
@@ -562,13 +557,10 @@ export default function Resume() {
       container
       direction={matchesMD ? "column-reverse" : "row"}
       className={classes.container}
+      style={{ marginBottom: theme.spacing(5) }}
     >
       {/* work section */}
-      <Grid
-        item
-        container
-        // style={{ border: "1px solid red" }}
-      >
+      <Grid item container>
         <Grid item container justify="center">
           <Grid item container xl lg md sm xs />
           <Grid
@@ -1019,7 +1011,13 @@ export default function Resume() {
   );
 
   const hobbyNlanguage = (
-    <Grid item container justify="space-around" className={classes.container}>
+    <Grid
+      item
+      container
+      justify="space-around"
+      className={classes.container}
+      style={{ marginBottom: theme.spacing(5) }}
+    >
       <Grid
         item
         container
@@ -1029,9 +1027,6 @@ export default function Resume() {
         style={{
           width: "100%",
           flexWrap: "nowrap",
-          // border: "1px solid yellow",
-          marginTop: matchesSM ? theme.spacing(3) : undefined,
-          marginBottom: matchesSM ? theme.spacing(12) : undefined,
         }}
       >
         {/* language */}
@@ -1040,10 +1035,10 @@ export default function Resume() {
           container
           style={{
             position: "relative",
-            padding: matchesXS ? undefined : theme.spacing(5),
+            // padding: matchesXS ? undefined : theme.spacing(5),
             paddingLeft: 0,
             marginTop: matchesXS ? theme.spacing(10) : undefined,
-            marginBottom: matchesXS ? theme.spacing(15) : undefined,
+            marginBottom: matchesXS ? theme.spacing(5) : undefined,
           }}
         >
           <Grid
@@ -1226,13 +1221,7 @@ export default function Resume() {
         </Grid>
 
         {/* hobby */}
-        <Grid
-          item
-          container
-          alignItems="center"
-          justify="center"
-          // style={{ border: "1px solid yellow" }}
-        >
+        <Grid item container alignItems="center" justify="center">
           <Grid
             item
             container
@@ -1370,7 +1359,6 @@ export default function Resume() {
                     justify="center"
                     style={{
                       flexWrap: "nowrap",
-                      // border: "1px solid green",
                     }}
                   >
                     <Grid item>
@@ -1397,7 +1385,6 @@ export default function Resume() {
                     justify="center"
                     style={{
                       flexWrap: "nowrap",
-                      // border: "1px solid green",
                     }}
                   >
                     <Grid item style={{ alignSelf: "center" }}>
@@ -1459,7 +1446,16 @@ export default function Resume() {
   );
 
   const skillsOnDesktop = (
-    <Grid item container justify="space-around" className={classes.container}>
+    <Grid
+      item
+      container
+      justify="space-around"
+      className={classes.container}
+      style={{
+        // border: "1px solid red",
+        paddingBottom: theme.spacing(matchesMD ? 1 : 30),
+      }}
+    >
       <Grid
         item
         container
@@ -1467,7 +1463,7 @@ export default function Resume() {
         style={{
           width: "100%",
           flexWrap: "nowrap",
-          // border: "1px solid yellow",
+          position: "relative",
         }}
       >
         {/* language */}
@@ -1648,8 +1644,6 @@ export default function Resume() {
                 : theme.spacing(400)
               : undefined,
             marginBottom: matchesMD ? theme.spacing(10) : undefined,
-            // marginLeft: matchesXS ? theme.spacing(3) : undefined,
-            // marginRight: matchesXS ? theme.spacing(3) : undefined,
           }}
         >
           <Grid
@@ -1658,7 +1652,6 @@ export default function Resume() {
             style={{
               position: matchesMD ? undefined : "absolute",
               bottom: matchesMD ? undefined : -theme.spacing(15),
-              // border: "1px solid blue",
             }}
           >
             <Grid
@@ -1668,7 +1661,6 @@ export default function Resume() {
               style={{
                 position: "relative",
                 height: matchesMD ? undefined : theme.spacing(55),
-                // border: `1px solid yellow`,
               }}
             >
               <Grid
@@ -2042,10 +2034,23 @@ export default function Resume() {
   return (
     <Fragment>
       <Grid item container>
-        {hello}
-        {contact}
-        {education}
-        {skillsOnDesktop}
+        <Paper
+          elevation={5}
+          style={{
+            width: "100%",
+            height: "auto",
+            backgroundColor: theme.palette.primary.main,
+            paddingTop: theme.spacing(3),
+            paddingLeft: theme.spacing(1),
+            paddingRight: theme.spacing(1),
+            marginBottom: theme.spacing(matchesXS ? 20 : 10),
+          }}
+        >
+          {hello}
+          {contact}
+          {education}
+          {skillsOnDesktop}
+        </Paper>
       </Grid>
     </Fragment>
   );
