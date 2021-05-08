@@ -105,7 +105,7 @@ export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
   const [isActive, setIsActive] = useState(false);
-  const [value, setValue] = useState("gold");
+  const [value, setValue] = useState("cyan");
 
   // const AnimatedTypography = animated(Typography);
   const AnimatedGrid = animated(Grid);
@@ -222,12 +222,12 @@ export default function SettingPanel({ setTheme }) {
                         icon={
                           <span
                             className={classes.icon}
-                            style={{ backgroundColor: "#B29155" }}
+                            style={{ backgroundColor: "#4ae4b8" }}
                           />
                         }
                       />
                     }
-                    value="gold"
+                    value="cyan"
                     label=""
                   />
                   <FormControlLabel
@@ -236,12 +236,12 @@ export default function SettingPanel({ setTheme }) {
                         icon={
                           <span
                             className={classes.icon}
-                            style={{ backgroundColor: "#4ae4b8" }}
+                            style={{ backgroundColor: "#B29155" }}
                           />
                         }
                       />
                     }
-                    value="cyan"
+                    value="gold"
                     label=""
                   />
                 </RadioGroup>
@@ -260,7 +260,6 @@ export default function SettingPanel({ setTheme }) {
           item
           onClick={handleOutsideClick}
           className={classes.invisibleHandler}
-          // style={{ backgroundColor: "lightblue" }}
         />
       )}
 

@@ -340,16 +340,10 @@ export default function Resume() {
       container
       justify="flex-end"
       className={classes.container}
-      style={{ marginBottom: theme.spacing(5) }}
+      style={{ marginBottom: matchesMD ? undefined : theme.spacing(5) }}
     >
       <Hidden mdDown>
-        <Grid
-          item
-          container
-          justify="center"
-          className={classes.contact}
-          // style={{ border: "1px solid orange" }}
-        >
+        <Grid item container justify="center" className={classes.contact}>
           <Grid
             item
             container
