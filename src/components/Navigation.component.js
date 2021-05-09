@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     backgroundColor: theme.palette.common.bg,
+    // background: `linear-gradient(90deg,${theme.palette.common.color1},${theme.palette.common.color2})`,
     color: theme.palette.accent.main,
   },
 

@@ -24,7 +24,6 @@ import LinearProgressGraph from "../components/LinearProgressGraph.component";
 import CircularProgressWithLabel from "../components/CircularProgressWithLabel.component";
 import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
 import Hidden from "@material-ui/core/Hidden";
-import { getThemeProps } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   container: {

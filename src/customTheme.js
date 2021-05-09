@@ -36,6 +36,8 @@ const cyanTheme = {
       panelColor: black,
       tab: black,
       bg: black,
+      color2: green,
+      color1: gold,
       // contrastText: "",
     },
     primary: {
@@ -144,6 +146,8 @@ const goldTheme = {
       panelColor: black,
       tab: black,
       bg: grey[900],
+      color1: gold,
+      color2: green,
 
       // contrastText: "",
     },

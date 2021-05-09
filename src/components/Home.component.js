@@ -33,6 +33,7 @@ export default function HomeNav() {
           // border: "3px solid teal",
           minWidth: "320px",
           backgroundColor: theme.palette.common.bg,
+          // background: `linear-gradient(to left,${theme.palette.common.color1},${theme.palette.common.color2})`,
           overflowY: "auto",
           height: "auto",
           paddingTop: theme.spacing(2),
