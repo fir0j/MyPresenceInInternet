@@ -1,12 +1,5 @@
 import React, { Fragment, useState } from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import firoj from "./founder3.png";
+import firoj from "../assets/founder3.png";
 
 import {
   makeStyles,
@@ -14,6 +7,16 @@ import {
   useMediaQuery,
   Paper,
   Grid,
+  Typography,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  ButtonGroup,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 
 const projectInfo = [
@@ -43,11 +46,21 @@ const projectInfo = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
+  buttonRoot: {
+    "&:hover": {
+      color: theme.palette.common.offWhite,
+    },
+  },
+
+  groupedContainedPrimary: {
+    backgroundColor: theme.palette.accent.main,
+    color: theme.palette.primary.main,
+  },
+  cardRoot: {
+    maxWidth: 200,
   },
   media: {
-    height: theme.spacing(30),
+    height: theme.spacing(20),
   },
 }));
 
@@ -60,10 +73,21 @@ export default function Project() {
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
   const [projects, setProjects] = useState(projectInfo);
+  const [selectedFilter, setSelectedFilter] = useState("all");
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const ProjectCard = ({ name, image, title }) => {
     return (
-      <Card className={classes.root}>
+      <Card className={classes.cardRoot}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -76,8 +100,7 @@ export default function Project() {
               {name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              Lizards are a widespread group of squamate reptiles.
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -96,7 +119,121 @@ export default function Project() {
   const ProjectGallery = () => {
     return (
       <Grid item container justify="space-around">
-        {projects.map((item, index) => (
+        <Grid item container justify="center">
+          <ButtonGroup
+            variant="contained"
+            color="primary"
+            aria-label="contained primary button group"
+            size="large"
+            classes={{
+              groupedContainedPrimary: classes.groupedContainedPrimary,
+            }}
+          >
+            <Button
+              classes={{ root: classes.buttonRoot }}
+              onClick={() => setSelectedFilter("all")}
+              style={{
+                backgroundColor:
+                  selectedFilter === "all"
+                    ? theme.palette.common.black
+                    : undefined,
+                color:
+                  selectedFilter === "all"
+                    ? theme.palette.common.offWhite
+                    : undefined,
+              }}
+            >
+              ALL
+            </Button>
+            <Button
+              classes={{ root: classes.buttonRoot }}
+              onClick={() => setSelectedFilter("frontend")}
+              style={{
+                backgroundColor:
+                  selectedFilter === "frontend"
+                    ? theme.palette.common.black
+                    : undefined,
+                color:
+                  selectedFilter === "frontend"
+                    ? theme.palette.common.offWhite
+                    : undefined,
+              }}
+            >
+              Frontend
+            </Button>
+            <Button
+              classes={{ root: classes.buttonRoot }}
+              onClick={() => setSelectedFilter("backend")}
+              style={{
+                backgroundColor:
+                  selectedFilter === "backend"
+                    ? theme.palette.common.black
+                    : undefined,
+                color:
+                  selectedFilter === "backend"
+                    ? theme.palette.common.offWhite
+                    : undefined,
+              }}
+            >
+              Backend
+            </Button>
+            <Button
+              classes={{ root: classes.buttonRoot }}
+              onClick={() => setSelectedFilter("fullstack")}
+              style={{
+                backgroundColor:
+                  selectedFilter === "fullstack"
+                    ? theme.palette.common.black
+                    : undefined,
+                color:
+                  selectedFilter === "fullstack"
+                    ? theme.palette.common.offWhite
+                    : undefined,
+              }}
+            >
+              FullStack
+            </Button>
+          </ButtonGroup>
+          {/* <Grid
+            item
+            container
+            justify="center"
+            style={{
+              marginTop: theme.spacing(0.5),
+              marginBottom: theme.spacing(0.5),
+            }}
+          >
+            <ButtonGroup
+              variant="contained"
+              color="primary"
+              aria-label="contained primary button group"
+              size="large"
+              classes={{
+                groupedContainedPrimary: classes.groupedContainedPrimary,
+              }}
+            >
+              <Button
+                onClick={handleClick}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                Open Menu
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+              </Menu>
+            </ButtonGroup>
+          </Grid> */}
+        </Grid>
+        {/* {projects.map((item, index) => (
           <Grid item>
             <ProjectCard
               key={item.id}
@@ -105,11 +242,12 @@ export default function Project() {
               title={item.title}
             />
           </Grid>
-        ))}
+        ))} */}
       </Grid>
     );
   };
 
+  // Talk is Cheap. Show me the code.
   return (
     <Fragment>
       <Grid item container>
@@ -123,7 +261,7 @@ export default function Project() {
             paddingLeft: theme.spacing(1),
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
-            border: "1px solid blue",
+            // border: "1px solid blue",
           }}
         >
           <ProjectGallery />
