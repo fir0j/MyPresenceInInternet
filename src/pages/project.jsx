@@ -9,15 +9,22 @@ import {
   Grid,
   Typography,
   Card,
+  CardHeader,
   CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
   Button,
+  IconButton,
   ButtonGroup,
   Menu,
   MenuItem,
+  List,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
+import { ArrowDropDown, ArrowDropUp, GitHub } from "@material-ui/icons";
+// import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const projectInfo = [
   {
@@ -43,24 +50,32 @@ const projectInfo = [
     image: firoj,
     title: "ace development",
   },
+  {
+    id: 4,
+    name: "Shopping Cart",
+    image: firoj,
+    title: "Shopping Cart",
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
   buttonRoot: {
     "&:hover": {
+      // backgroundColor: "rgba(74, 228, 184,0.8)",
       color: theme.palette.common.offWhite,
     },
   },
 
   groupedContainedPrimary: {
-    backgroundColor: theme.palette.accent.main,
-    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.offWhite,
   },
   cardRoot: {
-    maxWidth: 200,
+    maxWidth: theme.spacing(40),
+    backgroundColor: theme.palette.secondary.main,
   },
   media: {
-    height: theme.spacing(20),
+    height: theme.spacing(18),
   },
 }));
 
@@ -74,52 +89,25 @@ export default function Project() {
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
   const [projects, setProjects] = useState(projectInfo);
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("date");
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [isNameArrowUp, setIsNameArrowUp] = useState(true);
+  const [isDateArrowUp, setIsDateArrowUp] = useState(true);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleSortByOrder = (sortLabel, event) => {
+    if (sortBy !== sortLabel) {
+      setSortBy(sortLabel);
+    } else if (sortBy === "date") {
+      setIsDateArrowUp(!isDateArrowUp);
+    } else if (sortBy === "name") {
+      setIsNameArrowUp(!isNameArrowUp);
+    }
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const ProjectCard = ({ name, image, title }) => {
+  const SortAndFilterControls = () => {
     return (
-      <Card className={classes.cardRoot}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            className={classes.media}
-            image={image}
-            title={title}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-    );
-  };
-
-  const ProjectGallery = () => {
-    return (
-      <Grid item container justify="space-around">
-        <Grid item container justify="center">
+      <Grid item container justify="center">
+        <Grid item style={{ marginTop: theme.spacing(1) }}>
           <ButtonGroup
             variant="contained"
             color="primary"
@@ -135,11 +123,11 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "all"
-                    ? theme.palette.common.black
+                    ? theme.palette.accent.main
                     : undefined,
                 color:
                   selectedFilter === "all"
-                    ? theme.palette.common.offWhite
+                    ? theme.palette.primary.main
                     : undefined,
               }}
             >
@@ -151,11 +139,11 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "frontend"
-                    ? theme.palette.common.black
+                    ? theme.palette.accent.main
                     : undefined,
                 color:
                   selectedFilter === "frontend"
-                    ? theme.palette.common.offWhite
+                    ? theme.palette.primary.main
                     : undefined,
               }}
             >
@@ -167,11 +155,11 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "backend"
-                    ? theme.palette.common.black
+                    ? theme.palette.accent.main
                     : undefined,
                 color:
                   selectedFilter === "backend"
-                    ? theme.palette.common.offWhite
+                    ? theme.palette.primary.main
                     : undefined,
               }}
             >
@@ -183,48 +171,113 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "fullstack"
-                    ? theme.palette.common.black
+                    ? theme.palette.accent.main
                     : undefined,
                 color:
                   selectedFilter === "fullstack"
-                    ? theme.palette.common.offWhite
+                    ? theme.palette.primary.main
                     : undefined,
               }}
             >
               FullStack
             </Button>
           </ButtonGroup>
-          <Grid
-            item
-            container
-            justify="center"
+        </Grid>
+        <Grid item style={{ marginTop: theme.spacing(1) }}>
+          <ButtonGroup
+            variant="contained"
+            color="primary"
+            aria-label="contained primary button group"
+            size="large"
+            classes={{
+              groupedContainedPrimary: classes.groupedContainedPrimary,
+            }}
             style={{
-              marginTop: theme.spacing(0.5),
-              marginBottom: theme.spacing(0.5),
+              marginLeft: theme.spacing(1),
             }}
           >
             <Button
-              onClick={handleClick}
-              aria-controls="simple-menu"
-              aria-haspopup="true"
+              classes={{ root: classes.buttonRoot }}
+              variant="outlined"
+              disabled
+              style={{
+                backgroundColor: theme.palette.common.myGrey,
+                color: theme.palette.accent.main,
+              }}
             >
-              Open Menu
+              Sort by
             </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+            <Button
+              classes={{ root: classes.buttonRoot }}
+              onClick={(event) => handleSortByOrder("name", event)}
+              style={{
+                backgroundColor:
+                  sortBy === "name" ? theme.palette.accent.main : undefined,
+                color:
+                  sortBy === "name" ? theme.palette.primary.main : undefined,
+              }}
+              endIcon={isNameArrowUp ? <ArrowDropUp /> : <ArrowDropDown />}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </Menu>
-          </Grid>
+              Name
+            </Button>
+            <Button
+              classes={{ root: classes.buttonRoot }}
+              onClick={(event) => handleSortByOrder("date", event)}
+              style={{
+                backgroundColor:
+                  sortBy === "date" ? theme.palette.accent.main : undefined,
+                color:
+                  sortBy === "date" ? theme.palette.primary.main : undefined,
+              }}
+              endIcon={isDateArrowUp ? <ArrowDropUp /> : <ArrowDropDown />}
+            >
+              Date
+            </Button>
+          </ButtonGroup>
         </Grid>
-        {/* {projects.map((item, index) => (
-          <Grid item>
+      </Grid>
+    );
+  };
+
+  const ProjectCard = ({ name, image, title }) => {
+    return (
+      <Card className={classes.cardRoot}>
+        <CardHeader title={name} subheader="September 14, 2016" />
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            image={image}
+            title={title}
+          />
+          <CardContent>
+            <Typography variant="body1" color="textSecondary" component="p">
+              Lizards are a widespread group of squamate reptiles.
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <IconButton aria-label="github-button-link">
+            <GitHub />
+          </IconButton>
+          <IconButton disableRipple aria-label="Live Demo">
+            Live Demo
+          </IconButton>
+        </CardActions>
+      </Card>
+    );
+  };
+
+  const DisplayProjects = () => {
+    return (
+      <Grid
+        item
+        container
+        justify="center"
+        style={{ marginTop: theme.spacing(4) }}
+      >
+        {projects.map((item, index) => (
+          <Grid item style={{ margin: theme.spacing(1) }}>
             <ProjectCard
               key={item.id}
               name={item.name}
@@ -232,12 +285,12 @@ export default function Project() {
               title={item.title}
             />
           </Grid>
-        ))} */}
+        ))}
       </Grid>
     );
   };
-  // Talk is Cheap. Show me the code.
 
+  // Talk is Cheap. Show me the code.
   return (
     <Fragment>
       <Grid item container>
@@ -254,9 +307,86 @@ export default function Project() {
             // border: "1px solid blue",
           }}
         >
-          <ProjectGallery />
+          <SortAndFilterControls />
+          <DisplayProjects />
         </Paper>
       </Grid>
     </Fragment>
   );
 }
+
+// const MenuItemForSorting = () => {
+//   const [anchorEl, setAnchorEl] = useState(null);
+//   const [selectedIndex, setSelectedIndex] = useState(0);
+
+//   const handleClickListItem = (event) => {
+//     setAnchorEl(event.currentTarget);
+//   };
+
+//   const handleMenuItemClick = (event, index) => {
+//     setSelectedIndex(index);
+//     setAnchorEl(null);
+//   };
+
+//   const handleClose = () => {
+//     setAnchorEl(null);
+//   };
+
+//   const options = ["Date", "Name"];
+
+//   return (
+//     <Grid
+//       item
+//       container
+//       justify="space-around"
+//       style={{
+//         marginTop: theme.spacing(0.5),
+//         marginBottom: theme.spacing(0.5),
+//       }}
+//     >
+//       <List
+//         component="nav"
+//         aria-label="Device settings"
+//         style={{
+//           border: `1px solid ${theme.palette.accent.main}`,
+//           borderRadius: theme.spacing(1),
+//           backgroundColor: theme.palette.common.black,
+//           color: theme.palette.common.offWhite,
+//         }}
+//       >
+//         <ListItem
+//           button
+//           aria-haspopup="true"
+//           aria-controls="project-gallery-menu"
+//           aria-label="sort by"
+//           onClick={handleClickListItem}
+//         >
+//           <ListItemText
+//             primary="Sort By"
+//             secondary={options[selectedIndex]}
+//             secondaryTypographyProps={{
+//               style: { color: theme.palette.common.offWhite },
+//             }}
+//           />
+//         </ListItem>
+//       </List>
+//       <Menu
+//         id="project-gallery-menu"
+//         anchorEl={anchorEl}
+//         keepMounted
+//         open={Boolean(anchorEl)}
+//         onClose={handleClose}
+//       >
+//         {options.map((option, index) => (
+//           <MenuItem
+//             key={option}
+//             selected={index === selectedIndex}
+//             onClick={(event) => handleMenuItemClick(event, index)}
+//           >
+//             {option}
+//           </MenuItem>
+//         ))}
+//       </Menu>
+//     </Grid>
+//   );
+// };

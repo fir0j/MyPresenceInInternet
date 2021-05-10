@@ -38,6 +38,7 @@ const cyanTheme = {
       bg: black,
       color2: green,
       color1: gold,
+      filterGrey: "rgb(30, 30, 30)",
       // contrastText: "",
     },
     primary: {
@@ -89,37 +90,6 @@ const cyanTheme = {
       },
     },
   },
-
-  // cutomize the default value(s) of a component's props
-  props: {
-    // Name of the component
-    MuiButtonBase: {
-      // Name of the prop
-      disableRipple: true,
-    },
-  },
-
-  // customize the appearance of all instances of a component type by modifying global class names provided in the API section
-  // overrides: {
-  //   // Name of the global class of the component
-  //   MuiCircularProgress: {
-  //     // Name of  global child class of the same component
-  //     circleDeterminate: {
-  //       stroke: green,
-  //     },
-  //   },
-
-  // Name of the global class of the component
-  // MuiTab: {
-  // Name of  global child class of the same component
-  //   root: {
-  // Name of the psudeo class of the child component
-  //     "&$disabled": {
-  //       backgroundColor: "blue",
-  //     },
-  //   },
-  // },
-  // },
 };
 
 const goldTheme = {
@@ -146,6 +116,7 @@ const goldTheme = {
       panelColor: black,
       tab: black,
       bg: grey[900],
+      filterGrey: "rgb(30, 30, 30)",
       color1: gold,
       color2: green,
 
@@ -196,39 +167,6 @@ const goldTheme = {
       },
     },
   },
-
-  // cutomize the default value(s) of a component's props
-  // must be processed through createMuiTheme()
-  props: {
-    // Name of the component
-    MuiButtonBase: {
-      // Name of the prop
-      disableRipple: true,
-    },
-  },
-
-  // customize the appearance of all instances of a component type by modifying global class names provided in the API section
-  // must be processed through createMuiTheme()
-  // overrides: {
-  //   // Name of the global class of the component
-  //   MuiCircularProgress: {
-  //     // Name of  global child class of the same component
-  //     circleDeterminate: {
-  //       stroke: gold,
-  //     },
-  //   },
-
-  // Name of the global class of the component
-  // MuiTab: {
-  // Name of  global child class of the same component
-  //   root: {
-  // Name of the psudeo class of the child component
-  //     "&$disabled": {
-  //       backgroundColor: "blue",
-  //     },
-  //   },
-  // },
-  // },
 };
 
 // const goldTheme = createMuiTheme(goldPallete);
