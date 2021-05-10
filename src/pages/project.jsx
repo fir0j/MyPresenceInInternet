@@ -194,7 +194,7 @@ export default function Project() {
               FullStack
             </Button>
           </ButtonGroup>
-          {/* <Grid
+          <Grid
             item
             container
             justify="center"
@@ -203,35 +203,25 @@ export default function Project() {
               marginBottom: theme.spacing(0.5),
             }}
           >
-            <ButtonGroup
-              variant="contained"
-              color="primary"
-              aria-label="contained primary button group"
-              size="large"
-              classes={{
-                groupedContainedPrimary: classes.groupedContainedPrimary,
-              }}
+            <Button
+              onClick={handleClick}
+              aria-controls="simple-menu"
+              aria-haspopup="true"
             >
-              <Button
-                onClick={handleClick}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-              >
-                Open Menu
-              </Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-              </Menu>
-            </ButtonGroup>
-          </Grid> */}
+              Open Menu
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+          </Grid>
         </Grid>
         {/* {projects.map((item, index) => (
           <Grid item>
