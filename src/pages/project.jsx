@@ -223,7 +223,6 @@ export default function Project() {
             </Menu>
           </Grid>
         </Grid>
-        {/* wow */}
         {/* {projects.map((item, index) => (
           <Grid item>
             <ProjectCard
