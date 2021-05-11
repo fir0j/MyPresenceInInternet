@@ -34,7 +34,7 @@ const projectInfo = [
     title: "firoj",
     date: Date.now(),
     technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    type: ["frontend", "backend", "fullStack"],
+    type: "frontend",
     live: "url",
     sourceCode: "url",
   },
@@ -43,18 +43,35 @@ const projectInfo = [
     name: "Google-Calender",
     image: firoj,
     title: "google calender",
+    type: "frontend",
   },
   {
     id: 3,
-    name: "Ace-Development",
+    name: "dummy Project",
     image: firoj,
-    title: "ace development",
+    title: "Shopping Cart",
+    type: "backend",
   },
   {
     id: 4,
+    name: "Ace-Development",
+    image: firoj,
+    title: "ace development",
+    type: "fullstack",
+  },
+  {
+    id: 5,
     name: "Shopping Cart",
     image: firoj,
     title: "Shopping Cart",
+    type: "backend",
+  },
+  {
+    id: 6,
+    name: "my Dummy Project",
+    image: firoj,
+    title: "Shopping Cart",
+    type: "frontend",
   },
 ];
 
@@ -94,13 +111,55 @@ export default function Project() {
   const [isNameArrowUp, setIsNameArrowUp] = useState(true);
   const [isDateArrowUp, setIsDateArrowUp] = useState(true);
 
-  const handleSortByOrder = (sortLabel, event) => {
+  const filterProjects = (filterLabel, rawData) => {
+    const processedData = rawData.filter((item) => item.type === filterLabel);
+    setProjects(processedData);
+  };
+
+  const handleFilterClick = (filterLabel, rawData) => {
+    setSelectedFilter(filterLabel);
+    if (filterLabel !== "all") {
+      filterProjects(filterLabel, rawData);
+    } else {
+      setProjects(rawData);
+    }
+  };
+
+  const handleArrayOfObjectSortByString = (filteredData, order = "asc") => {
+    if (order === "asc") {
+      let sortedObjectArray = filteredData.sort((a, b) => {
+        const firstElement = a.name.toLowerCase();
+        const secondElement = b.name.toLowerCase();
+        if (firstElement < secondElement) return -1;
+        if (firstElement > secondElement) return 1;
+        return 0; // firstElement === seconoElement
+      });
+      setProjects(sortedObjectArray);
+    } else {
+      let sortedObjectArray = filteredData.sort((b, a) => {
+        const firstElement = a.name.toLowerCase();
+        const secondElement = b.name.toLowerCase();
+        if (firstElement < secondElement) return -1;
+        if (firstElement > secondElement) return 1;
+        return 0; // firstElement === seconoElement
+      });
+      setProjects(sortedObjectArray);
+    }
+  };
+
+  const handleArrowDirection = (sortLabel, filteredData) => {
     if (sortBy !== sortLabel) {
       setSortBy(sortLabel);
     } else if (sortBy === "date") {
       setIsDateArrowUp(!isDateArrowUp);
     } else if (sortBy === "name") {
-      setIsNameArrowUp(!isNameArrowUp);
+      if (isNameArrowUp) {
+        handleArrayOfObjectSortByString(filteredData);
+        setIsNameArrowUp(!isNameArrowUp);
+      } else {
+        handleArrayOfObjectSortByString(filteredData, "des");
+        setIsNameArrowUp(!isNameArrowUp);
+      }
     }
   };
 
@@ -119,7 +178,7 @@ export default function Project() {
           >
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => setSelectedFilter("all")}
+              onClick={() => handleFilterClick("all", projectInfo)}
               style={{
                 backgroundColor:
                   selectedFilter === "all"
@@ -135,7 +194,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => setSelectedFilter("frontend")}
+              onClick={() => handleFilterClick("frontend", projectInfo)}
               style={{
                 backgroundColor:
                   selectedFilter === "frontend"
@@ -151,7 +210,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => setSelectedFilter("backend")}
+              onClick={() => handleFilterClick("backend", projectInfo)}
               style={{
                 backgroundColor:
                   selectedFilter === "backend"
@@ -167,7 +226,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => setSelectedFilter("fullstack")}
+              onClick={() => handleFilterClick("fullstack", projectInfo)}
               style={{
                 backgroundColor:
                   selectedFilter === "fullstack"
@@ -209,7 +268,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={(event) => handleSortByOrder("name", event)}
+              onClick={() => handleArrowDirection("name", projects)}
               style={{
                 backgroundColor:
                   sortBy === "name" ? theme.palette.accent.main : undefined,
@@ -222,7 +281,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={(event) => handleSortByOrder("date", event)}
+              onClick={(event) => handleArrowDirection("date")}
               style={{
                 backgroundColor:
                   sortBy === "date" ? theme.palette.accent.main : undefined,
@@ -314,79 +373,3 @@ export default function Project() {
     </Fragment>
   );
 }
-
-// const MenuItemForSorting = () => {
-//   const [anchorEl, setAnchorEl] = useState(null);
-//   const [selectedIndex, setSelectedIndex] = useState(0);
-
-//   const handleClickListItem = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-
-//   const handleMenuItemClick = (event, index) => {
-//     setSelectedIndex(index);
-//     setAnchorEl(null);
-//   };
-
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
-
-//   const options = ["Date", "Name"];
-
-//   return (
-//     <Grid
-//       item
-//       container
-//       justify="space-around"
-//       style={{
-//         marginTop: theme.spacing(0.5),
-//         marginBottom: theme.spacing(0.5),
-//       }}
-//     >
-//       <List
-//         component="nav"
-//         aria-label="Device settings"
-//         style={{
-//           border: `1px solid ${theme.palette.accent.main}`,
-//           borderRadius: theme.spacing(1),
-//           backgroundColor: theme.palette.common.black,
-//           color: theme.palette.common.offWhite,
-//         }}
-//       >
-//         <ListItem
-//           button
-//           aria-haspopup="true"
-//           aria-controls="project-gallery-menu"
-//           aria-label="sort by"
-//           onClick={handleClickListItem}
-//         >
-//           <ListItemText
-//             primary="Sort By"
-//             secondary={options[selectedIndex]}
-//             secondaryTypographyProps={{
-//               style: { color: theme.palette.common.offWhite },
-//             }}
-//           />
-//         </ListItem>
-//       </List>
-//       <Menu
-//         id="project-gallery-menu"
-//         anchorEl={anchorEl}
-//         keepMounted
-//         open={Boolean(anchorEl)}
-//         onClose={handleClose}
-//       >
-//         {options.map((option, index) => (
-//           <MenuItem
-//             key={option}
-//             selected={index === selectedIndex}
-//             onClick={(event) => handleMenuItemClick(event, index)}
-//           >
-//             {option}
-//           </MenuItem>
-//         ))}
-//       </Menu>
-//     </Grid>
-//   );
-// };
