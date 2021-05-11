@@ -1,5 +1,14 @@
 import React, { Fragment, useState } from "react";
-import firoj from "../assets/founder3.png";
+import * as utils from "../utils";
+import { ReactComponent as Demo } from "../assets/demo.svg";
+import { ReactComponent as HtmlIcon } from "../assets/html5.svg";
+import { ReactComponent as CssIcon } from "../assets/css.svg";
+import { ReactComponent as JsIcon } from "../assets/javascript.svg";
+import { ReactComponent as ReactIcon } from "../assets/react.svg";
+import { ReactComponent as MuiIcon } from "../assets/mui.svg";
+import { ReactComponent as ReactSpringIcon } from "../assets/spring.svg";
+import { ReactComponent as ReduxIcon } from "../assets/redux.svg";
+import { ReactComponent as NodeIcon } from "../assets/node.svg";
 
 import {
   makeStyles,
@@ -13,81 +22,13 @@ import {
   CardActionArea,
   CardActions,
   CardContent,
-  CardMedia,
   Button,
   IconButton,
   ButtonGroup,
-  Menu,
-  MenuItem,
-  List,
-  ListItem,
-  ListItemText,
+  Chip,
 } from "@material-ui/core";
-import { ArrowDropDown, ArrowDropUp, GitHub } from "@material-ui/icons";
-// import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const projectInfo = [
-  {
-    id: 1,
-    name: "Portfolio",
-    date: "2021-05-11",
-    type: "frontend",
-    image: firoj,
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 2,
-    name: "Google Calender",
-    date: "2020-02-01",
-    image: firoj,
-    type: "frontend",
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 3,
-    name: "dummy Project",
-    date: "2018-10-02",
-    type: "backend",
-    image: firoj,
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 4,
-    name: "Ace-Development",
-    image: firoj,
-    date: "2021-05-10",
-    type: "fullstack",
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 5,
-    name: "Shopping Cart",
-    date: "2017-07-07",
-    image: firoj,
-    type: "backend",
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 6,
-    name: "my Dummy Project",
-    date: "2018-10-01",
-    image: firoj,
-    type: "frontend",
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-];
+import { ArrowDropDown, ArrowDropUp, GitHub } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   buttonRoot: {
@@ -102,11 +43,20 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.offWhite,
   },
   cardRoot: {
-    maxWidth: theme.spacing(40),
-    backgroundColor: theme.palette.secondary.main,
+    maxWidth: theme.spacing(35),
+    backgroundColor: theme.palette.common.filterGrey,
+    color: theme.palette.common.offWhite,
+    border: `1px solid rgba(255, 255, 255,0.2)`,
   },
   media: {
-    height: theme.spacing(18),
+    height: theme.spacing(15),
+  },
+  cardSvgIcon: {
+    fill: theme.palette.secondary.main,
+    width: theme.spacing(2.5),
+    height: "auto",
+    // backgroundColor: theme.palette.primary.main,
+    // fill: "rgba(74, 228, 184,0.6)",
   },
 }));
 
@@ -118,7 +68,7 @@ export default function Project() {
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
-  const [projects, setProjects] = useState(projectInfo);
+  const [projects, setProjects] = useState(utils.cardData);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [sortBy, setSortBy] = useState(null);
   const [isNameArrowUp, setIsNameArrowUp] = useState(true);
@@ -129,7 +79,7 @@ export default function Project() {
     setProjects(processedData);
   };
 
-  const handleFilterClick = (filterLabel, rawData) => {
+  const handleFilter = (filterLabel, rawData) => {
     setSelectedFilter(filterLabel);
     if (filterLabel !== "all") {
       filterProjects(filterLabel, rawData);
@@ -138,85 +88,27 @@ export default function Project() {
     }
   };
 
-  const handleArrayOfObjectSortByStringValue = (
-    filteredData,
-    order = "asc"
-  ) => {
-    if (order === "asc") {
-      let sortedObjectArray = filteredData.sort((a, b) => {
-        const firstElement = a.name.toLowerCase();
-        const secondElement = b.name.toLowerCase();
-        if (firstElement < secondElement) return -1;
-        if (firstElement > secondElement) return 1;
-        return 0; // firstElement === seconoElement
-      });
-      setProjects(sortedObjectArray);
-    } else {
-      let sortedObjectArray = filteredData.sort((b, a) => {
-        const firstElement = a.name.toLowerCase();
-        const secondElement = b.name.toLowerCase();
-        if (firstElement < secondElement) return -1;
-        if (firstElement > secondElement) return 1;
-        return 0; // firstElement === seconoElement
-      });
-      setProjects(sortedObjectArray);
-    }
-  };
-
-  const handleArrayOfObjectSortByDateValue = (
-    filteredData,
-    order = "newFirst"
-  ) => {
-    if (order === "newFirst") {
-      let sortedObjectArray = filteredData.sort((a, b) => {
-        let timeStamp1 = new Date(a.date).valueOf();
-        let timeStamp2 = new Date(b.date).valueOf();
-        return timeStamp1 - timeStamp2; // similar to interger sort
-        // sorting byMonth
-        // let date1 = new Date(a.date);
-        // let date2 = new Date(b.date);
-        // if (date1.getUTCMonth() > date2.getUTCMonth()) return -1;
-        // if (date1.getUTCMonth() < date2.getUTCMonth()) return 1;
-        // return date1.getUTCDate() - date2.getUTCDate();
-      });
-      setProjects(sortedObjectArray);
-    } else {
-      let sortedObjectArray = filteredData.sort((b, a) => {
-        let timeStamp1 = new Date(a.date).valueOf();
-        let timeStamp2 = new Date(b.date).valueOf();
-        return timeStamp1 - timeStamp2;
-        // sorting byMonth
-        // let date1 = new Date(a.date);
-        // let date2 = new Date(b.date);
-        // if (date1.getUTCMonth() > date2.getUTCMonth()) return -1;
-        // if (date1.getUTCMonth() < date2.getUTCMonth()) return 1;
-        // return date1.getUTCDate() - date2.getUTCDate();
-      });
-      setProjects(sortedObjectArray);
-    }
-  };
-
-  const handleArrowDirection = (sortLabel, filteredData) => {
+  const handleSort = (sortLabel, filteredData) => {
     if (sortLabel !== sortBy) {
       setSortBy(sortLabel);
       if (sortLabel === "name")
-        handleArrayOfObjectSortByStringValue(filteredData, "des");
+        utils.sortArrayOfObjectByStringValue(filteredData, "des");
       if (sortLabel === "date")
-        handleArrayOfObjectSortByDateValue(filteredData, "oldFirst");
+        utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
     } else if (sortBy === "date") {
       if (isDateArrowUp) {
-        handleArrayOfObjectSortByDateValue(filteredData);
+        utils.sortArrayOfObjectByDateValue(filteredData);
         setIsDateArrowUp(!isDateArrowUp);
       } else {
-        handleArrayOfObjectSortByDateValue(filteredData, "oldFirst");
+        utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
         setIsDateArrowUp(!isDateArrowUp);
       }
     } else if (sortBy === "name") {
       if (isNameArrowUp) {
-        handleArrayOfObjectSortByStringValue(filteredData);
+        utils.sortArrayOfObjectByStringValue(filteredData);
         setIsNameArrowUp(!isNameArrowUp);
       } else {
-        handleArrayOfObjectSortByStringValue(filteredData, "des");
+        utils.sortArrayOfObjectByStringValue(filteredData, "des");
         setIsNameArrowUp(!isNameArrowUp);
       }
     }
@@ -237,7 +129,7 @@ export default function Project() {
           >
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => handleFilterClick("all", projectInfo)}
+              onClick={() => handleFilter("all", utils.cardData)}
               style={{
                 backgroundColor:
                   selectedFilter === "all"
@@ -253,7 +145,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => handleFilterClick("frontend", projectInfo)}
+              onClick={() => handleFilter("frontend", utils.cardData)}
               style={{
                 backgroundColor:
                   selectedFilter === "frontend"
@@ -269,7 +161,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => handleFilterClick("backend", projectInfo)}
+              onClick={() => handleFilter("backend", utils.cardData)}
               style={{
                 backgroundColor:
                   selectedFilter === "backend"
@@ -285,7 +177,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => handleFilterClick("fullstack", projectInfo)}
+              onClick={() => handleFilter("fullstack", utils.cardData)}
               style={{
                 backgroundColor:
                   selectedFilter === "fullstack"
@@ -327,7 +219,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => handleArrowDirection("name", projects)}
+              onClick={() => handleSort("name", projects)}
               style={{
                 backgroundColor:
                   sortBy === "name" ? theme.palette.accent.main : undefined,
@@ -340,7 +232,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={(event) => handleArrowDirection("date", projects)}
+              onClick={(event) => handleSort("date", projects)}
               style={{
                 backgroundColor:
                   sortBy === "date" ? theme.palette.accent.main : undefined,
@@ -357,29 +249,69 @@ export default function Project() {
     );
   };
 
-  const ProjectCard = ({ name, date, image }) => {
+  const getIcon = (iconName, props = {}) => {
+    if (iconName === "HTML")
+      return <HtmlIcon className={classes.cardSvgIcon} />;
+    if (iconName === "CSS") return <CssIcon className={classes.cardSvgIcon} />;
+    if (iconName === "Javascript")
+      return <JsIcon className={classes.cardSvgIcon} />;
+    if (iconName === "React")
+      return <ReactIcon className={classes.cardSvgIcon} />;
+    if (iconName === "Redux")
+      return <ReduxIcon className={classes.cardSvgIcon} />;
+    if (iconName === "Material-UI")
+      return <MuiIcon className={classes.cardSvgIcon} />;
+    if (iconName === "React-Spring")
+      return <ReactSpringIcon className={classes.cardSvgIcon} />;
+    if (iconName === "Node")
+      return <NodeIcon className={classes.cardSvgIcon} />;
+  };
+
+  const ProjectCard = ({ name, date, image, technologies }) => {
     return (
-      <Card className={classes.cardRoot}>
-        <CardHeader title={name} subheader={date} />
+      <Card elevation={3} className={classes.cardRoot}>
+        <CardHeader
+          title={name}
+          subheader={date}
+          subheaderTypographyProps={{
+            style: { color: theme.palette.secondary.main },
+          }}
+        />
         <CardActionArea>
-          <CardMedia
-            component="img"
-            className={classes.media}
-            image={image}
-            title={name}
-          />
           <CardContent>
-            <Typography variant="body1" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles.
+            <Typography
+              color="secondary"
+              variant="body1"
+              component="p"
+              style={{ marginBottom: theme.spacing(1) }}
+            >
+              Lizards are a widespread group of squamate reptiles. Lizards are a
+              widespread group of squamate reptiles.
             </Typography>
+            {technologies.map((item) => {
+              return (
+                <Chip
+                  key={item}
+                  label={item}
+                  variant="outlined"
+                  color="secondary"
+                  icon={getIcon(item)}
+                  style={{ margin: theme.spacing(0.25) }}
+                />
+              );
+            })}
           </CardContent>
         </CardActionArea>
         <CardActions>
           <IconButton aria-label="github-button-link">
-            <GitHub />
+            <GitHub color="secondary" />
           </IconButton>
-          <IconButton disableRipple aria-label="Live Demo">
-            Live Demo
+          <IconButton aria-label="github-button-link">
+            <Demo
+              color="secondary"
+              className={classes.cardSvgIcon}
+              style={{ width: theme.spacing(4) }}
+            />
           </IconButton>
         </CardActions>
       </Card>
@@ -392,7 +324,14 @@ export default function Project() {
         item
         container
         justify="center"
-        style={{ marginTop: theme.spacing(4) }}
+        style={{
+          marginTop: theme.spacing(1),
+          // border: `3px solid ${theme.palette.accent.main}`,
+          overflowY: "scroll",
+          maxHeight: theme.spacing(96),
+          minHeight: theme.spacing(96),
+          // backgroundColor: theme.palette.common.filterGrey,
+        }}
       >
         {projects.map((item, index) => (
           <Grid item style={{ margin: theme.spacing(1) }}>
@@ -401,6 +340,7 @@ export default function Project() {
               name={item.name}
               date={item.date}
               image={item.image}
+              technologies={item.technologies}
             />
           </Grid>
         ))}
@@ -408,6 +348,22 @@ export default function Project() {
     );
   };
 
+  const Pagination = () => {
+    return (
+      <Grid
+        item
+        container
+        justify="center"
+        style={{
+          marginTop: theme.spacing(1),
+          height: theme.spacing(10),
+          backgroundColor: theme.palette.common.filterGrey,
+        }}
+      >
+        Pagination
+      </Grid>
+    );
+  };
   // Talk is Cheap. Show me the code.
   return (
     <Fragment>
@@ -418,7 +374,7 @@ export default function Project() {
             width: "100%",
             height: "auto",
             backgroundColor: theme.palette.primary.main,
-            paddingTop: theme.spacing(3),
+            paddingTop: theme.spacing(1),
             paddingLeft: theme.spacing(1),
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
@@ -427,6 +383,7 @@ export default function Project() {
         >
           <SortAndFilterControls />
           <DisplayProjects />
+          <Pagination />
         </Paper>
       </Grid>
     </Fragment>
