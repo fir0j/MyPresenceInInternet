@@ -30,48 +30,62 @@ const projectInfo = [
   {
     id: 1,
     name: "Portfolio",
-    image: firoj,
-    title: "firoj",
-    date: Date.now(),
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
+    date: "2021-05-11",
     type: "frontend",
+    image: firoj,
+    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
     live: "url",
     sourceCode: "url",
   },
   {
     id: 2,
-    name: "Google-Calender",
+    name: "Google Calender",
+    date: "2020-02-01",
     image: firoj,
-    title: "google calender",
     type: "frontend",
+    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
+    live: "url",
+    sourceCode: "url",
   },
   {
     id: 3,
     name: "dummy Project",
-    image: firoj,
-    title: "Shopping Cart",
+    date: "2018-10-02",
     type: "backend",
+    image: firoj,
+    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
+    live: "url",
+    sourceCode: "url",
   },
   {
     id: 4,
     name: "Ace-Development",
     image: firoj,
-    title: "ace development",
+    date: "2021-05-10",
     type: "fullstack",
+    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
+    live: "url",
+    sourceCode: "url",
   },
   {
     id: 5,
     name: "Shopping Cart",
+    date: "2017-07-07",
     image: firoj,
-    title: "Shopping Cart",
     type: "backend",
+    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
+    live: "url",
+    sourceCode: "url",
   },
   {
     id: 6,
     name: "my Dummy Project",
+    date: "2018-10-01",
     image: firoj,
-    title: "Shopping Cart",
     type: "frontend",
+    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
+    live: "url",
+    sourceCode: "url",
   },
 ];
 
@@ -106,8 +120,7 @@ export default function Project() {
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
   const [projects, setProjects] = useState(projectInfo);
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [sortBy, setSortBy] = useState("date");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortBy, setSortBy] = useState(null);
   const [isNameArrowUp, setIsNameArrowUp] = useState(true);
   const [isDateArrowUp, setIsDateArrowUp] = useState(true);
 
@@ -125,7 +138,10 @@ export default function Project() {
     }
   };
 
-  const handleArrayOfObjectSortByString = (filteredData, order = "asc") => {
+  const handleArrayOfObjectSortByStringValue = (
+    filteredData,
+    order = "asc"
+  ) => {
     if (order === "asc") {
       let sortedObjectArray = filteredData.sort((a, b) => {
         const firstElement = a.name.toLowerCase();
@@ -147,17 +163,60 @@ export default function Project() {
     }
   };
 
+  const handleArrayOfObjectSortByDateValue = (
+    filteredData,
+    order = "newFirst"
+  ) => {
+    if (order === "newFirst") {
+      let sortedObjectArray = filteredData.sort((a, b) => {
+        let timeStamp1 = new Date(a.date).valueOf();
+        let timeStamp2 = new Date(b.date).valueOf();
+        return timeStamp1 - timeStamp2; // similar to interger sort
+        // sorting byMonth
+        // let date1 = new Date(a.date);
+        // let date2 = new Date(b.date);
+        // if (date1.getUTCMonth() > date2.getUTCMonth()) return -1;
+        // if (date1.getUTCMonth() < date2.getUTCMonth()) return 1;
+        // return date1.getUTCDate() - date2.getUTCDate();
+      });
+      setProjects(sortedObjectArray);
+    } else {
+      let sortedObjectArray = filteredData.sort((b, a) => {
+        let timeStamp1 = new Date(a.date).valueOf();
+        let timeStamp2 = new Date(b.date).valueOf();
+        return timeStamp1 - timeStamp2;
+        // sorting byMonth
+        // let date1 = new Date(a.date);
+        // let date2 = new Date(b.date);
+        // if (date1.getUTCMonth() > date2.getUTCMonth()) return -1;
+        // if (date1.getUTCMonth() < date2.getUTCMonth()) return 1;
+        // return date1.getUTCDate() - date2.getUTCDate();
+      });
+      setProjects(sortedObjectArray);
+    }
+  };
+
   const handleArrowDirection = (sortLabel, filteredData) => {
-    if (sortBy !== sortLabel) {
+    if (sortLabel !== sortBy) {
       setSortBy(sortLabel);
+      if (sortLabel === "name")
+        handleArrayOfObjectSortByStringValue(filteredData, "des");
+      if (sortLabel === "date")
+        handleArrayOfObjectSortByDateValue(filteredData, "oldFirst");
     } else if (sortBy === "date") {
-      setIsDateArrowUp(!isDateArrowUp);
+      if (isDateArrowUp) {
+        handleArrayOfObjectSortByDateValue(filteredData);
+        setIsDateArrowUp(!isDateArrowUp);
+      } else {
+        handleArrayOfObjectSortByDateValue(filteredData, "oldFirst");
+        setIsDateArrowUp(!isDateArrowUp);
+      }
     } else if (sortBy === "name") {
       if (isNameArrowUp) {
-        handleArrayOfObjectSortByString(filteredData);
+        handleArrayOfObjectSortByStringValue(filteredData);
         setIsNameArrowUp(!isNameArrowUp);
       } else {
-        handleArrayOfObjectSortByString(filteredData, "des");
+        handleArrayOfObjectSortByStringValue(filteredData, "des");
         setIsNameArrowUp(!isNameArrowUp);
       }
     }
@@ -281,7 +340,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={(event) => handleArrowDirection("date")}
+              onClick={(event) => handleArrowDirection("date", projects)}
               style={{
                 backgroundColor:
                   sortBy === "date" ? theme.palette.accent.main : undefined,
@@ -298,16 +357,16 @@ export default function Project() {
     );
   };
 
-  const ProjectCard = ({ name, image, title }) => {
+  const ProjectCard = ({ name, date, image }) => {
     return (
       <Card className={classes.cardRoot}>
-        <CardHeader title={name} subheader="September 14, 2016" />
+        <CardHeader title={name} subheader={date} />
         <CardActionArea>
           <CardMedia
             component="img"
             className={classes.media}
             image={image}
-            title={title}
+            title={name}
           />
           <CardContent>
             <Typography variant="body1" color="textSecondary" component="p">
@@ -340,8 +399,8 @@ export default function Project() {
             <ProjectCard
               key={item.id}
               name={item.name}
+              date={item.date}
               image={item.image}
-              title={item.title}
             />
           </Grid>
         ))}
