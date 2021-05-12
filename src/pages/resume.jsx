@@ -24,6 +24,7 @@ import LinearProgressGraph from "../components/LinearProgressGraph.component";
 import CircularProgressWithLabel from "../components/CircularProgressWithLabel.component";
 import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
 import Hidden from "@material-ui/core/Hidden";
+import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -2030,19 +2031,21 @@ export default function Resume() {
         <Paper
           elevation={5}
           style={{
+            position: "relative",
             width: "100%",
             height: "auto",
             backgroundColor: theme.palette.primary.main,
-            paddingTop: theme.spacing(3),
             paddingLeft: theme.spacing(1),
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
           }}
         >
+          <HeaderWave />
           {hello}
           {contact}
           {education}
           {skillsOnDesktop}
+          <FooterWave />
         </Paper>
       </Grid>
     </Fragment>

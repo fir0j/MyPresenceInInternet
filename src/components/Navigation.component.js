@@ -232,7 +232,7 @@ export default function Navigation() {
         }}
       />
       <Tab
-        label="Feedback"
+        label="Stats"
         icon={
           <div>
             <FeedbackIcon
@@ -242,7 +242,7 @@ export default function Navigation() {
             />
           </div>
         }
-        to="/feedback"
+        to="/stats"
         component={Link}
         className={classes.tab}
         classes={tabRules}

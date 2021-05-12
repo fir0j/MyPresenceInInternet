@@ -9,6 +9,7 @@ import { ReactComponent as MuiIcon } from "../assets/mui.svg";
 import { ReactComponent as ReactSpringIcon } from "../assets/spring.svg";
 import { ReactComponent as ReduxIcon } from "../assets/redux.svg";
 import { ReactComponent as NodeIcon } from "../assets/node.svg";
+import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 
 import {
   makeStyles,
@@ -59,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
     // fill: "rgba(74, 228, 184,0.6)",
   },
 }));
-
 export default function Project() {
   const classes = useStyles();
   const theme = useTheme();
@@ -116,8 +116,19 @@ export default function Project() {
 
   const SortAndFilterControls = () => {
     return (
-      <Grid item container justify="center">
-        <Grid item style={{ marginTop: theme.spacing(1) }}>
+      <Grid
+        item
+        container
+        justify="center"
+        // style={{ marginTop: -theme.spacing(5) }}
+      >
+        <Grid
+          item
+          style={{
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(7),
+          }}
+        >
           <ButtonGroup
             variant="contained"
             color="primary"
@@ -296,7 +307,7 @@ export default function Project() {
                   variant="outlined"
                   color="secondary"
                   icon={getIcon(item)}
-                  style={{ margin: theme.spacing(0.25) }}
+                  style={{ margin: theme.spacing(0.5) }}
                 />
               );
             })}
@@ -371,19 +382,20 @@ export default function Project() {
         <Paper
           elevation={5}
           style={{
+            position: "relative",
             width: "100%",
             height: "auto",
             backgroundColor: theme.palette.primary.main,
-            paddingTop: theme.spacing(1),
             paddingLeft: theme.spacing(1),
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
-            // border: "1px solid blue",
           }}
         >
+          <HeaderWave />
           <SortAndFilterControls />
           <DisplayProjects />
           <Pagination />
+          <FooterWave />
         </Paper>
       </Grid>
     </Fragment>

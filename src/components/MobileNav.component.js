@@ -10,6 +10,7 @@ import { ReactComponent as Resume } from "../assets/resume.svg";
 import { ReactComponent as Hireme } from "../assets/hireme.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
 import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
+
 const useStyles = makeStyles((theme) => ({
   iconDimension: {
     width: "48px",
@@ -127,8 +128,8 @@ export default function MobilieNav() {
                   className={classes.iconDimension}
                 />
               }
-              label="FEEDBACK"
-              to="/feedback"
+              label="STATS"
+              to="/stats"
               component={Link}
               className={classes.tab}
               style={{

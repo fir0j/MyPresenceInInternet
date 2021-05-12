@@ -42,7 +42,8 @@ const cyanTheme = {
       // contrastText: "",
     },
     primary: {
-      main: dark,
+      // main: dark,
+      main: "rgb(30, 30, 30)",
       // contrastText: "black",
     },
     secondary: {

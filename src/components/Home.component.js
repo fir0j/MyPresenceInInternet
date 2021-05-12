@@ -6,7 +6,7 @@ import { Route } from "react-router-dom";
 
 import Resume from "../pages/resume";
 import Project from "../pages/project";
-import Feedback from "../pages/feedback";
+import Stats from "../pages/stats";
 import HireMe from "../pages/hireme";
 
 export default function HomeNav() {
@@ -32,8 +32,8 @@ export default function HomeNav() {
           // scroll window
           // border: "3px solid teal",
           minWidth: "320px",
+
           backgroundColor: theme.palette.common.bg,
-          // background: `linear-gradient(to left,${theme.palette.common.color1},${theme.palette.common.color2})`,
           overflowY: "auto",
           height: "auto",
           paddingTop: theme.spacing(2),
@@ -59,7 +59,7 @@ export default function HomeNav() {
       >
         <Route exact path="/" render={(props) => <Resume />} />
         <Route exact path="/project" render={(props) => <Project />} />
-        <Route exact path="/feedback" render={(props) => <Feedback />} />
+        <Route exact path="/stats" render={(props) => <Stats />} />
         <Route exact path="/hireme" render={(props) => <HireMe />} />
       </Grid>
     </React.Fragment>

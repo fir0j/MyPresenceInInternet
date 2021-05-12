@@ -57,7 +57,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <GlobalCss />
+      {/* <GlobalCss /> */}
       <ThemeProvider theme={createMuiTheme(myTheme)}>
         <BrowserRouter>
           <Switch>
