@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider, useTheme } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
@@ -25,6 +25,7 @@ import CircularProgressWithLabel from "../components/CircularProgressWithLabel.c
 import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
 import Hidden from "@material-ui/core/Hidden";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
+import ContainerWithGradientBorder from "../components/ContainerWithGradientBorder.component";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -35,13 +36,14 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(0),
     },
   },
-  name: {
-    border: `3px solid ${theme.palette.accent.main}`,
-    borderTopRightRadius: "15em",
-    borderBottomRightRadius: "15em",
-    flexWrap: "nowrap",
-    maxHeight: theme.spacing(44),
-  },
+  // name: {
+  //   border: `3px solid ${theme.palette.accent.main}`,
+
+  //   borderTopRightRadius: "15em",
+  //   borderBottomRightRadius: "15em",
+  //   flexWrap: "nowrap",
+  //   maxHeight: theme.spacing(44),
+  // },
   dp: {
     width: "70%",
     height: "auto",
@@ -101,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
     // color: theme.palette.accent.main,
     backgroundColor: theme.palette.primary.main,
     fill: theme.palette.secondary.main,
+    // fill: "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
     // stroke: theme.palette.secondary.main,
     padding: theme.spacing(2),
   },
@@ -144,14 +147,36 @@ export default function Resume() {
       className={classes.container}
       style={{ marginBottom: theme.spacing(5) }}
     >
-      <Grid
+      {/* <Grid
         item
         container
         xl={8}
         lg={8}
         md={8}
         sm={matchesSM ? 12 : 8}
-        className={classes.name}
+        style={{
+          border: `3px solid ${theme.palette.accent.main}`,
+          borderTopRightRadius: "15em",
+          borderBottomRightRadius: "15em",
+          flexWrap: "nowrap",
+          maxHeight: theme.spacing(44),
+        }}
+      > */}
+      <ContainerWithGradientBorder
+        item
+        container
+        xl={8}
+        lg={8}
+        md={8}
+        sm={matchesSM ? 12 : 8}
+        style={{
+          borderTopRightRadius: "15em",
+          borderBottomRightRadius: "15em",
+          flexWrap: "nowrap",
+          maxHeight: theme.spacing(44),
+          backgroundColor: theme.palette.primary.main,
+        }}
+        borderWidth="3px"
       >
         <Grid
           item
@@ -200,7 +225,8 @@ export default function Resume() {
         >
           <Avatar alt="Firoj Siddiki Picture" src={dp} className={classes.dp} />
         </Grid>
-      </Grid>
+      </ContainerWithGradientBorder>
+      {/* </Grid> */}
       {/* hello section */}
       <Hidden smDown>
         <Grid
@@ -371,13 +397,26 @@ export default function Resume() {
             </Grid>
           </Grid>
 
-          <Grid
+          {/* <Grid
             item
             xl={8}
             container
             justify="center"
             style={{
               border: `3px solid ${theme.palette.accent.main}`,
+              maxWidth: theme.spacing(36),
+              maxHeight: theme.spacing(36),
+              padding: theme.spacing(1),
+            }}
+          > */}
+          <ContainerWithGradientBorder
+            item
+            xl={8}
+            container
+            justify="center"
+            borderWidth="3px"
+            style={{
+              backgroundColor: theme.palette.primary.main,
               maxWidth: theme.spacing(36),
               maxHeight: theme.spacing(36),
               padding: theme.spacing(1),
@@ -448,7 +487,8 @@ export default function Resume() {
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </ContainerWithGradientBorder>
+          {/* </Grid> */}
         </Grid>
       </Hidden>
       <Grid
@@ -761,27 +801,41 @@ export default function Resume() {
           // border: "1px solid blue",
         }}
       >
-        <Grid
+        <ContainerWithGradientBorder
           container
           style={{
-            position: matchesMD ? undefined : "absolute",
-            border: `3px solid ${theme.palette.accent.main}`,
+            backgroundColor: theme.palette.primary.main,
             padding: theme.spacing(1),
             bottom: -theme.spacing(25),
-            top: matchesXL ? -theme.spacing(9) : undefined,
-            height: matchesMD
-              ? matchesXS
-                ? theme.spacing(120)
-                : theme.spacing(90)
-              : undefined,
+            position: matchesMD ? "relative" : "absolute",
+            top: matchesMD ? 0 : -theme.spacing(9),
+            height: matchesXS ? theme.spacing(120) : theme.spacing(90),
           }}
+          borderWidth="3px"
         >
+          {/* <Grid
+            container
+            style={{
+              border: `3px solid ${theme.palette.accent.main}`,
+              padding: theme.spacing(1),
+              bottom: -theme.spacing(25),
+              position: matchesMD ? undefined : "absolute",
+              top: matchesXL ? -theme.spacing(9) : undefined,
+              height: matchesMD
+                ? matchesXS
+                  ? theme.spacing(120)
+                  : theme.spacing(90)
+                : undefined,
+            }}
+          > */}
           <Grid
             item
             container
             justify="center"
             alignItems="center"
-            style={{ height: theme.spacing(11) }}
+            style={{
+              height: theme.spacing(11),
+            }}
           >
             <Grid item>
               <Typography
@@ -999,7 +1053,8 @@ export default function Resume() {
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+          {/* </Grid> */}
+        </ContainerWithGradientBorder>
       </Grid>
     </Grid>
   );
@@ -1229,7 +1284,20 @@ export default function Resume() {
                 position: "relative",
               }}
             >
-              <Grid
+              <ContainerWithGradientBorder
+                item
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+                style={{
+                  backgroundColor: theme.palette.primary.main,
+                  flexWrap: "nowrap",
+                  // border: `3px solid ${theme.palette.accent.main}`,
+                }}
+                borderWidth="3px"
+              >
+                {/* <Grid
                 item
                 container
                 direction="column"
@@ -1239,7 +1307,7 @@ export default function Resume() {
                   flexWrap: "nowrap",
                   border: `3px solid ${theme.palette.accent.main}`,
                 }}
-              >
+              > */}
                 <Grid
                   item
                   container
@@ -1399,7 +1467,8 @@ export default function Resume() {
                     </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
+                {/* </Grid> */}
+              </ContainerWithGradientBorder>
             </Grid>
           </Grid>
           <Grid item container justify="center">
@@ -1518,7 +1587,21 @@ export default function Resume() {
                 </Grid>
               </Grid>
 
-              <Grid
+              <ContainerWithGradientBorder
+                item
+                container
+                justify="center"
+                style={{
+                  backgroundColor: theme.palette.primary.main,
+                  position: "relative",
+                  padding: theme.spacing(1),
+                  paddingBottom: theme.spacing(5),
+                  height: "calc(105% - 72px)",
+                  // border: `3px solid ${theme.palette.accent.main}`,
+                }}
+                borderWidth="3px"
+              >
+                {/* <Grid
                 item
                 container
                 justify="center"
@@ -1529,7 +1612,7 @@ export default function Resume() {
                   height: "calc(105% - 72px)",
                   border: `3px solid ${theme.palette.accent.main}`,
                 }}
-              >
+              > */}
                 <Grid
                   item
                   container
@@ -1611,7 +1694,8 @@ export default function Resume() {
                     />
                   </Grid>
                 </Grid>
-              </Grid>
+                {/* </Grid> */}
+              </ContainerWithGradientBorder>
             </Grid>
           </Grid>
         </Hidden>
@@ -1842,7 +1926,21 @@ export default function Resume() {
                   position: "relative",
                 }}
               >
-                <Grid
+                <ContainerWithGradientBorder
+                  item
+                  container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                  style={{
+                    backgroundColor: theme.palette.primary.main,
+                    flexWrap: "nowrap",
+                    // border: `3px solid ${theme.palette.accent.main}`,
+                    marginBottom: theme.spacing(5),
+                  }}
+                  borderWidth="3px"
+                >
+                  {/* <Grid
                   item
                   container
                   direction="column"
@@ -1853,7 +1951,7 @@ export default function Resume() {
                     border: `3px solid ${theme.palette.accent.main}`,
                     marginBottom: theme.spacing(5),
                   }}
-                >
+                > */}
                   <Grid
                     item
                     container
@@ -2015,7 +2113,8 @@ export default function Resume() {
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
+                  {/* </Grid> */}
+                </ContainerWithGradientBorder>
               </Grid>
             </Grid>
           </Grid>
@@ -2038,6 +2137,7 @@ export default function Resume() {
             paddingLeft: theme.spacing(1),
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
+            zIndex: 0,
           }}
         >
           <HeaderWave />

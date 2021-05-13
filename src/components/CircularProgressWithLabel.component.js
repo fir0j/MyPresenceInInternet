@@ -19,7 +19,9 @@ export default function CircularProgressWithLabel(props) {
       <Box position="relative" display="inline-flex">
         <CircularProgress
           variant="determinate"
-          classes={{ circleDeterminate: classes.circleDeterminate }}
+          classes={{
+            circleDeterminate: classes.circleDeterminate,
+          }}
           {...props}
         />
         <Box

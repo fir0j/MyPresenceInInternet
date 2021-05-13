@@ -43,15 +43,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.offWhite,
   },
+
   cardRoot: {
     maxWidth: theme.spacing(35),
     backgroundColor: theme.palette.common.filterGrey,
     color: theme.palette.common.offWhite,
     border: `1px solid rgba(255, 255, 255,0.2)`,
   },
+
   media: {
     height: theme.spacing(15),
   },
+
   cardSvgIcon: {
     fill: theme.palette.secondary.main,
     width: theme.spacing(2.5),
@@ -60,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     // fill: "rgba(74, 228, 184,0.6)",
   },
 }));
+
 export default function Project() {
   const classes = useStyles();
   const theme = useTheme();
@@ -359,22 +363,6 @@ export default function Project() {
     );
   };
 
-  const Pagination = () => {
-    return (
-      <Grid
-        item
-        container
-        justify="center"
-        style={{
-          marginTop: theme.spacing(1),
-          height: theme.spacing(10),
-          backgroundColor: theme.palette.common.filterGrey,
-        }}
-      >
-        Pagination
-      </Grid>
-    );
-  };
   // Talk is Cheap. Show me the code.
   return (
     <Fragment>
@@ -389,12 +377,12 @@ export default function Project() {
             paddingLeft: theme.spacing(1),
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
+            zIndex: 0,
           }}
         >
           <HeaderWave />
           <SortAndFilterControls />
           <DisplayProjects />
-          <Pagination />
           <FooterWave />
         </Paper>
       </Grid>
