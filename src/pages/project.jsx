@@ -20,7 +20,6 @@ import {
   Typography,
   Card,
   CardHeader,
-  CardActionArea,
   CardActions,
   CardContent,
   Button,
@@ -46,13 +45,27 @@ const useStyles = makeStyles((theme) => ({
 
   cardRoot: {
     maxWidth: theme.spacing(35),
-    backgroundColor: theme.palette.common.filterGrey,
     color: theme.palette.common.offWhite,
-    border: `1px solid rgba(255, 255, 255,0.2)`,
+    boxShadow: "20px 20px 50px rgba(0, 0, 0, 0.5)",
+    background: "rgba(255,255,255,0.1)",
+    borderRadius: theme.spacing(2),
+    borderTop: "1px solid rgba(255,255,255,0.5)",
+    borderLeft: "1px solid rgba(255,255,255,0.5)",
+    backdropFilter: "blur(5px)",
   },
 
   media: {
     height: theme.spacing(15),
+  },
+
+  cardContainer: {
+    // // generating class esp. for selecting last child
+    // "& .childCard-8": {
+    //   paddingBottom: theme.spacing(10),
+    // },
+    "& > :last-child": {
+      paddingBottom: theme.spacing(10),
+    },
   },
 
   cardSvgIcon: {
@@ -61,6 +74,12 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     // backgroundColor: theme.palette.primary.main,
     // fill: "rgba(74, 228, 184,0.6)",
+  },
+
+  star: {
+    clipPath:
+      "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+    backgroundColor: theme.palette.accent.main,
   },
 }));
 
@@ -292,31 +311,29 @@ export default function Project() {
             style: { color: theme.palette.secondary.main },
           }}
         />
-        <CardActionArea>
-          <CardContent>
-            <Typography
-              color="secondary"
-              variant="body1"
-              component="p"
-              style={{ marginBottom: theme.spacing(1) }}
-            >
-              Lizards are a widespread group of squamate reptiles. Lizards are a
-              widespread group of squamate reptiles.
-            </Typography>
-            {technologies.map((item) => {
-              return (
-                <Chip
-                  key={item}
-                  label={item}
-                  variant="outlined"
-                  color="secondary"
-                  icon={getIcon(item)}
-                  style={{ margin: theme.spacing(0.5) }}
-                />
-              );
-            })}
-          </CardContent>
-        </CardActionArea>
+        <CardContent>
+          <Typography
+            color="secondary"
+            variant="body1"
+            component="p"
+            style={{ marginBottom: theme.spacing(1) }}
+          >
+            Lizards are a widespread group of squamate reptiles. Lizards are a
+            widespread group of squamate reptiles.
+          </Typography>
+          {technologies.map((item) => {
+            return (
+              <Chip
+                key={item}
+                label={item}
+                variant="outlined"
+                color="secondary"
+                icon={getIcon(item)}
+                style={{ margin: theme.spacing(0.5) }}
+              />
+            );
+          })}
+        </CardContent>
         <CardActions>
           <IconButton aria-label="github-button-link">
             <GitHub color="secondary" />
@@ -333,6 +350,26 @@ export default function Project() {
     );
   };
 
+  const Stars = () => {
+    return (
+      <Grid
+        item
+        className={classes.star}
+        style={{
+          width: theme.spacing(170),
+          height: theme.spacing(170),
+          position: "absolute",
+          top: "30%",
+          left: "-55%",
+          zIndex: -1,
+          opacity: 0.25,
+          overflow: "hidden",
+          backgroundColor: theme.palette.accent.main,
+        }}
+      />
+    );
+  };
+
   const DisplayProjects = () => {
     return (
       <Grid
@@ -340,29 +377,103 @@ export default function Project() {
         container
         justify="center"
         style={{
-          marginTop: theme.spacing(1),
+          position: "relative",
           // border: `3px solid ${theme.palette.accent.main}`,
-          overflowY: "scroll",
-          maxHeight: theme.spacing(96),
-          minHeight: theme.spacing(96),
-          // backgroundColor: theme.palette.common.filterGrey,
+          overflow: "hidden",
+          height: theme.spacing(96),
         }}
       >
-        {projects.map((item, index) => (
-          <Grid item style={{ margin: theme.spacing(1) }}>
-            <ProjectCard
+        <Grid
+          item
+          container
+          justify="center"
+          style={{
+            height: theme.spacing(96),
+            overflowY: "scroll",
+            paddingTop: theme.spacing(2),
+            backgroundColor: "rgba(0,0,0,0)",
+          }}
+          className={classes.cardContainer}
+        >
+          {projects.map((item, index) => (
+            <Grid
+              className={`childCard-${index}`}
+              item
               key={item.id}
-              name={item.name}
-              date={item.date}
-              image={item.image}
-              technologies={item.technologies}
-            />
-          </Grid>
-        ))}
+              style={{ margin: theme.spacing(1) }}
+            >
+              <ProjectCard
+                key={item.id}
+                name={item.name}
+                date={item.date}
+                image={item.image}
+                technologies={item.technologies}
+              />
+            </Grid>
+          ))}
+        </Grid>
+        <Stars />
       </Grid>
     );
   };
 
+  const Pagination = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(2);
+
+    // adding no.of pages into the pages []
+    const pages = [];
+    for (let i = 1; i <= Math.ceil(projects.length / itemsPerPage); i++) {
+      pages.push(i);
+    }
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = projects.slice(indexOfFirstItem, indexOfLastItem);
+    console.log(currentItems);
+
+    const RenderPageNumbers = () => {
+      return pages.map((number) => (
+        <Grid
+          item
+          component="li"
+          key={number}
+          id={number}
+          style={{
+            border: `1px solid rgba(0,255,0,0.1)`,
+            padding: theme.spacing(1),
+            cursor: "pointer",
+          }}
+          onClick={(event) => setCurrentPage(Number(event.target.id))}
+        >
+          {number}
+        </Grid>
+      ));
+    };
+
+    return (
+      <Grid
+        item
+        container
+        justify="center"
+        style={{
+          marginTop: theme.spacing(2),
+          zIndex: 1,
+        }}
+      >
+        <Grid
+          item
+          container
+          justify="center"
+          component="ul"
+          className={classes.pageNumers}
+          style={{ listStyle: "none" }}
+        >
+          <RenderPageNumbers />
+        </Grid>
+      </Grid>
+    );
+  };
   // Talk is Cheap. Show me the code.
   return (
     <Fragment>
@@ -378,11 +489,13 @@ export default function Project() {
             paddingRight: theme.spacing(1),
             marginBottom: theme.spacing(matchesXS ? 20 : 10),
             zIndex: 0,
+            overflow: "hidden",
           }}
         >
           <HeaderWave />
           <SortAndFilterControls />
           <DisplayProjects />
+          <Pagination />
           <FooterWave />
         </Paper>
       </Grid>
