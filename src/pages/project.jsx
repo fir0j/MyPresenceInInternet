@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import * as utils from "../utils";
 import { ReactComponent as Demo } from "../assets/demo.svg";
 import { ReactComponent as HtmlIcon } from "../assets/html5.svg";
@@ -81,6 +81,15 @@ const useStyles = makeStyles((theme) => ({
       "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
     backgroundColor: theme.palette.accent.main,
   },
+
+  // buttonRoot: {
+  //   "&$disabled": {
+  //     backgroundColor: "transparent",
+  //     border: "1px solid rgba(255,255,255,0.25)",
+  //     color: theme.palette.accent.main,
+  //   },
+  // },
+  // disabled: {},
 }));
 
 export default function Project() {
@@ -91,7 +100,37 @@ export default function Project() {
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
-  const [projects, setProjects] = useState(utils.cardData);
+
+  // component states
+  const [cards, setCards] = useState(utils.cardData);
+
+  // pagination states
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+
+  const lastCardAtCurrentPageNumber = currentPageNumber * itemsPerPage;
+  const firstCardAtCurrentPageNumber =
+    lastCardAtCurrentPageNumber - itemsPerPage;
+
+  const [paginatedItems, setPaginatedItems] = useState(
+    cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+  );
+  const [paginatedCards, setPaginatedCards] = useState(paginatedItems);
+
+  //  all these 3 states are for showing limited page numbers instead of all of the pages
+  const [pageNumberLimit, setPageNumberLimit] = useState(3); // how many page numbers you want to display
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
+  useEffect(() => {
+    const paginatedItems = cards.slice(
+      firstCardAtCurrentPageNumber,
+      lastCardAtCurrentPageNumber
+    );
+    setPaginatedCards(paginatedItems);
+  }, [cards]);
+
+  // sorting and filtering states
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [sortBy, setSortBy] = useState(null);
   const [isNameArrowUp, setIsNameArrowUp] = useState(true);
@@ -99,7 +138,7 @@ export default function Project() {
 
   const filterProjects = (filterLabel, rawData) => {
     const processedData = rawData.filter((item) => item.type === filterLabel);
-    setProjects(processedData);
+    setCards(processedData);
   };
 
   const handleFilter = (filterLabel, rawData) => {
@@ -107,7 +146,7 @@ export default function Project() {
     if (filterLabel !== "all") {
       filterProjects(filterLabel, rawData);
     } else {
-      setProjects(rawData);
+      setCards(rawData);
     }
   };
 
@@ -116,23 +155,41 @@ export default function Project() {
       setSortBy(sortLabel);
       if (sortLabel === "name")
         utils.sortArrayOfObjectByStringValue(filteredData, "des");
+      setPaginatedCards(
+        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+      );
       if (sortLabel === "date")
         utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
+      setPaginatedCards(
+        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+      );
     } else if (sortBy === "date") {
       if (isDateArrowUp) {
         utils.sortArrayOfObjectByDateValue(filteredData);
         setIsDateArrowUp(!isDateArrowUp);
+        setPaginatedCards(
+          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+        );
       } else {
         utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
         setIsDateArrowUp(!isDateArrowUp);
+        setPaginatedCards(
+          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+        );
       }
     } else if (sortBy === "name") {
       if (isNameArrowUp) {
         utils.sortArrayOfObjectByStringValue(filteredData);
         setIsNameArrowUp(!isNameArrowUp);
+        setPaginatedCards(
+          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+        );
       } else {
         utils.sortArrayOfObjectByStringValue(filteredData, "des");
         setIsNameArrowUp(!isNameArrowUp);
+        setPaginatedCards(
+          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+        );
       }
     }
   };
@@ -253,7 +310,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={() => handleSort("name", projects)}
+              onClick={() => handleSort("name", cards)}
               style={{
                 backgroundColor:
                   sortBy === "name" ? theme.palette.accent.main : undefined,
@@ -266,7 +323,7 @@ export default function Project() {
             </Button>
             <Button
               classes={{ root: classes.buttonRoot }}
-              onClick={(event) => handleSort("date", projects)}
+              onClick={(event) => handleSort("date", cards)}
               style={{
                 backgroundColor:
                   sortBy === "date" ? theme.palette.accent.main : undefined,
@@ -370,7 +427,7 @@ export default function Project() {
     );
   };
 
-  const DisplayProjects = () => {
+  const DisplayCards = () => {
     return (
       <Grid
         item
@@ -378,7 +435,6 @@ export default function Project() {
         justify="center"
         style={{
           position: "relative",
-          // border: `3px solid ${theme.palette.accent.main}`,
           overflow: "hidden",
           height: theme.spacing(96),
         }}
@@ -395,7 +451,7 @@ export default function Project() {
           }}
           className={classes.cardContainer}
         >
-          {projects.map((item, index) => (
+          {paginatedCards.map((item, index) => (
             <Grid
               className={`childCard-${index}`}
               item
@@ -418,62 +474,170 @@ export default function Project() {
   };
 
   const Pagination = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(2);
-
     // adding no.of pages into the pages []
     const pages = [];
-    for (let i = 1; i <= Math.ceil(projects.length / itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(cards.length / itemsPerPage); i++) {
       pages.push(i);
     }
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = projects.slice(indexOfFirstItem, indexOfLastItem);
-    console.log(currentItems);
-
-    const RenderPageNumbers = () => {
-      return pages.map((number) => (
-        <Grid
-          item
-          component="li"
-          key={number}
-          id={number}
-          style={{
-            border: `1px solid rgba(0,255,0,0.1)`,
-            padding: theme.spacing(1),
-            cursor: "pointer",
-          }}
-          onClick={(event) => setCurrentPage(Number(event.target.id))}
-        >
-          {number}
-        </Grid>
-      ));
+    const handleNextButtonClick = () => {
+      setCurrentPageNumber(currentPageNumber + 1);
+      setPaginatedCards(
+        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+      );
+      if (currentPageNumber + 1 > maxPageNumberLimit) {
+        //then increase the maxPageNumberLimit and minPageNumberLimit by equal value
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+      }
     };
 
-    return (
-      <Grid
-        item
-        container
-        justify="center"
+    const handlePrevButtonClick = () => {
+      setCurrentPageNumber(currentPageNumber - 1);
+      setPaginatedCards(
+        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+      );
+      if ((currentPageNumber - 1) % pageNumberLimit === 0) {
+        setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+        setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+      }
+    };
+
+    const PageIncreamentButton = () => {
+      if (pages.length > maxPageNumberLimit) {
+        return (
+          <Button
+            onClick={handleNextButtonClick}
+            color="secondary"
+            variant="outlined"
+            style={{
+              borderRadius: 0,
+            }}
+          >
+            ...
+          </Button>
+        );
+      }
+      return null;
+    };
+
+    const PageDecreamentButton = () => {
+      if (minPageNumberLimit >= 1) {
+        return (
+          <Button
+            onClick={handlePrevButtonClick}
+            variant="outlined"
+            color="secondary"
+            style={{ borderRadius: 0, borderRight: "none" }}
+          >
+            ...
+          </Button>
+        );
+      }
+      return null;
+    };
+
+    const prevButton = (
+      <Button
+        variant="contained"
         style={{
-          marginTop: theme.spacing(2),
-          zIndex: 1,
+          backgroundColor:
+            currentPageNumber === pages[0]
+              ? theme.palette.secondary.main
+              : theme.palette.accent.main,
+          color: theme.palette.primary.main,
         }}
+        onClick={handlePrevButtonClick}
+        disabled={currentPageNumber === pages[0] ? true : false}
       >
+        Prev
+      </Button>
+    );
+
+    const nextButton = (
+      <Button
+        variant="contained"
+        style={{
+          backgroundColor:
+            currentPageNumber === pages[pages.length - 1]
+              ? theme.palette.secondary.main
+              : theme.palette.accent.main,
+          color: theme.palette.primary.main,
+        }}
+        onClick={handleNextButtonClick}
+        disabled={currentPageNumber === pages[pages.length - 1] ? true : false}
+      >
+        Next
+      </Button>
+    );
+
+    const pageNumbers = pages.map((pageNumber) => {
+      if (
+        pageNumber < maxPageNumberLimit + 1 &&
+        pageNumber > minPageNumberLimit
+      ) {
+        return (
+          <Button
+            key={pageNumber}
+            id={pageNumber}
+            onClick={() => {
+              setCurrentPageNumber(pageNumber);
+              setPaginatedCards(
+                cards.slice(
+                  firstCardAtCurrentPageNumber,
+                  lastCardAtCurrentPageNumber
+                )
+              );
+            }}
+            style={{
+              backgroundColor:
+                pageNumber === currentPageNumber
+                  ? theme.palette.accent.main
+                  : "",
+              color:
+                pageNumber === currentPageNumber
+                  ? theme.palette.primary.main
+                  : theme.palette.accent.main,
+            }}
+          >
+            {pageNumber}
+          </Button>
+        );
+      } else {
+        return null;
+      }
+    });
+
+    // const handleLoadMoreItemsPerPage = () => {
+    //   setItemsPerPage((itemsPerPage) => itemsPerPage + 3);
+    // };
+
+    return (
+      <Fragment>
         <Grid
           item
           container
           justify="center"
-          component="ul"
-          className={classes.pageNumers}
-          style={{ listStyle: "none" }}
+          style={{ paddingTop: theme.spacing(1) }}
         >
-          <RenderPageNumbers />
+          <Grid item>
+            <ButtonGroup
+              size="large"
+              color="secondary"
+              aria-label="large outlined primary button group"
+            >
+              {prevButton}
+              <PageDecreamentButton />
+              {pageNumbers}
+              <PageIncreamentButton />
+              {nextButton}
+            </ButtonGroup>
+          </Grid>
         </Grid>
-      </Grid>
+      </Fragment>
     );
   };
+
   // Talk is Cheap. Show me the code.
   return (
     <Fragment>
@@ -494,7 +658,7 @@ export default function Project() {
         >
           <HeaderWave />
           <SortAndFilterControls />
-          <DisplayProjects />
+          <DisplayCards />
           <Pagination />
           <FooterWave />
         </Paper>
