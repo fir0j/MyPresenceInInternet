@@ -108,13 +108,7 @@ export default function Project() {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(3);
 
-  const lastCardAtCurrentPageNumber = currentPageNumber * itemsPerPage;
-  const firstCardAtCurrentPageNumber =
-    lastCardAtCurrentPageNumber - itemsPerPage;
-
-  const [paginatedItems, setPaginatedItems] = useState(
-    cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-  );
+  const [paginatedItems, setPaginatedItems] = useState([]);
   const [paginatedCards, setPaginatedCards] = useState(paginatedItems);
 
   //  all these 3 states are for showing limited page numbers instead of all of the pages
@@ -122,13 +116,26 @@ export default function Project() {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
+  // smart and proper use of useEffect
   useEffect(() => {
-    const paginatedItems = cards.slice(
-      firstCardAtCurrentPageNumber,
-      lastCardAtCurrentPageNumber
+    const lastCardAtCurrentPageNumber = currentPageNumber * itemsPerPage;
+    const firstCardAtCurrentPageNumber =
+      lastCardAtCurrentPageNumber - itemsPerPage;
+    setPaginatedItems(
+      cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
     );
     setPaginatedCards(paginatedItems);
-  }, [cards]);
+
+    // here dependencies like [cards] create problem.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPageNumber]);
+
+  // only run this code when [cards, paginatedItems] state is changed.
+  useEffect(() => {
+    setPaginatedCards(paginatedItems);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cards, paginatedItems]);
 
   // sorting and filtering states
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -153,43 +160,29 @@ export default function Project() {
   const handleSort = (sortLabel, filteredData) => {
     if (sortLabel !== sortBy) {
       setSortBy(sortLabel);
-      if (sortLabel === "name")
-        utils.sortArrayOfObjectByStringValue(filteredData, "des");
-      setPaginatedCards(
-        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-      );
-      if (sortLabel === "date")
-        utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
-      setPaginatedCards(
-        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-      );
+      if (sortLabel === "name") setPaginatedCards(paginatedItems);
+      utils.sortArrayOfObjectByStringValue(filteredData, "des");
+      if (sortLabel === "date") setPaginatedCards(paginatedItems);
+      utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
     } else if (sortBy === "date") {
       if (isDateArrowUp) {
+        setIsDateArrowUp(!isDateArrowUp);
+        setPaginatedCards(paginatedItems);
         utils.sortArrayOfObjectByDateValue(filteredData);
-        setIsDateArrowUp(!isDateArrowUp);
-        setPaginatedCards(
-          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-        );
       } else {
-        utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
         setIsDateArrowUp(!isDateArrowUp);
-        setPaginatedCards(
-          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-        );
+        setPaginatedCards(paginatedItems);
+        utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
       }
     } else if (sortBy === "name") {
       if (isNameArrowUp) {
+        setIsNameArrowUp(!isNameArrowUp);
+        setPaginatedCards(paginatedItems);
         utils.sortArrayOfObjectByStringValue(filteredData);
-        setIsNameArrowUp(!isNameArrowUp);
-        setPaginatedCards(
-          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-        );
       } else {
-        utils.sortArrayOfObjectByStringValue(filteredData, "des");
         setIsNameArrowUp(!isNameArrowUp);
-        setPaginatedCards(
-          cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-        );
+        setPaginatedCards(paginatedItems);
+        utils.sortArrayOfObjectByStringValue(filteredData, "des");
       }
     }
   };
@@ -474,6 +467,7 @@ export default function Project() {
   };
 
   const Pagination = () => {
+    // currentPageNumbers and displayed cards are not in sync.
     // adding no.of pages into the pages []
     const pages = [];
     for (let i = 1; i <= Math.ceil(cards.length / itemsPerPage); i++) {
@@ -482,25 +476,21 @@ export default function Project() {
 
     const handleNextButtonClick = () => {
       setCurrentPageNumber(currentPageNumber + 1);
-      setPaginatedCards(
-        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-      );
       if (currentPageNumber + 1 > maxPageNumberLimit) {
         //then increase the maxPageNumberLimit and minPageNumberLimit by equal value
         setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
         setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
       }
+      setPaginatedCards(paginatedItems);
     };
 
     const handlePrevButtonClick = () => {
       setCurrentPageNumber(currentPageNumber - 1);
-      setPaginatedCards(
-        cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
-      );
       if ((currentPageNumber - 1) % pageNumberLimit === 0) {
         setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
         setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
       }
+      setPaginatedCards(paginatedItems);
     };
 
     const PageIncreamentButton = () => {
@@ -582,12 +572,6 @@ export default function Project() {
             id={pageNumber}
             onClick={() => {
               setCurrentPageNumber(pageNumber);
-              setPaginatedCards(
-                cards.slice(
-                  firstCardAtCurrentPageNumber,
-                  lastCardAtCurrentPageNumber
-                )
-              );
             }}
             style={{
               backgroundColor:
