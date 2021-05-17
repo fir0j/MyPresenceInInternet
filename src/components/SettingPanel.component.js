@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import clsx from "clsx";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Slide from "@material-ui/core/Slide";
 import { useSpring, animated, useTransition } from "react-spring";
-import { Button } from "@material-ui/core";
+import { Button, ListItemIcon } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   invisibleHandler: {
@@ -43,19 +43,19 @@ const useStyles = makeStyles((theme) => ({
 
   settingContainer: {
     position: "relative",
-    height: "100%",
+    // height: "100%",
     cursor: "pointer",
     borderTopLeftRadius: "20px",
     borderBottomLeftRadius: "50px",
-    backgroundColor: theme.palette.accent.main,
+    // backgroundColor: theme.palette.accent.main,
   },
 
   setting: {
     position: "absolute",
     top: 0,
-    right: 0,
+    right: -190,
     width: "250px",
-    height: "250px",
+    height: "200px",
     cursor: "pointer",
     // overflowY: "scroll",
   },
@@ -107,10 +107,24 @@ export default function SettingPanel({ setTheme }) {
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState("cyan");
   const transition = useTransition(isActive, {
-    from: { x: 500, y: -100, opacity: 0 },
-    enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 500, y: 0, opacity: 0 },
-    delay: 1000,
+    from: {
+      position: "absolute",
+      top: 0,
+      right: 0,
+      width: "250px",
+      height: "200px",
+      cursor: "pointer",
+    },
+    enter: {
+      position: "absolute",
+      top: 0,
+      right: 190,
+      width: "250px",
+      height: "200px",
+    },
+    leave: {
+      right: 0,
+    },
   });
 
   // const AnimatedTypography = animated(Typography);
@@ -159,20 +173,20 @@ export default function SettingPanel({ setTheme }) {
       >
         <Grid item container className={classes.settingWrapper}>
           <Grid
-            onClick={() => setIsActive(false)}
+            onClick={() => setIsActive(!isActive)}
             item
             container
             justify="center"
             alignItems="center"
             style={{
               backgroundColor: theme.palette.accent.main,
-              maxHeight: "50px",
-              maxWidth: "50px",
+              height: "50px",
+              width: "60px",
               borderTopLeftRadius: "20px",
               borderBottomLeftRadius: "50px",
             }}
           >
-            <Settings style={{ width: "70px" }} />
+            <Settings style={{ width: "60px", paddingRight: "10px" }} />
           </Grid>
           <Grid item container style={{ flexBasis: "100%" }}>
             <Grid
@@ -257,43 +271,21 @@ export default function SettingPanel({ setTheme }) {
           item
           onClick={() => setIsActive(false)}
           className={classes.invisibleHandler}
-          // style={{ backgroundColor: "lightsteelblue" }}
         />
       )}
 
       <Grid item className={classes.fixedContainer}>
-        {/* <Slide
-          direction="left"
-          in={!isActive}
-          timeout={700}
-          mountOnEnter
-          unmountOnExit
-        > */}
-        <Grid
-          item
-          container
-          justify="center"
-          alignItems="center"
-          onClick={() => setIsActive(true)}
-          className={classes.settingContainer}
-        >
-          <Settings style={{ color: theme.palette.primary.main }} />
-        </Grid>
-        {/* </Slide> */}
-
-        {/* {isActive && <SettingBoard />} */}
-        {transition((style, item) => {
-          console.log("item is", item);
-          if (item) {
-            return (
-              <animated.span style={style}>
+        {/* The transition function accepts a callback that receives four arguments which are
+        the animated values, the item, the Transition object, and the sibling position. */}
+        {!isActive && <SettingBoard />}
+        {transition(
+          (styles, isActive) =>
+            isActive && (
+              <animated.span style={styles}>
                 <SettingBoard />
               </animated.span>
-            );
-          } else {
-            return "";
-          }
-        })}
+            )
+        )}
       </Grid>
     </Fragment>
   );
