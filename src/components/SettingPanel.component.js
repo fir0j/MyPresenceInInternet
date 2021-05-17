@@ -9,7 +9,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Slide from "@material-ui/core/Slide";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated, useTransition } from "react-spring";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -106,6 +106,12 @@ export default function SettingPanel({ setTheme }) {
   const classes = useStyles();
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState("cyan");
+  const transition = useTransition(isActive, {
+    from: { x: 500, y: -100, opacity: 0 },
+    enter: { x: 0, y: 0, opacity: 1 },
+    leave: { x: 500, y: 0, opacity: 0 },
+    delay: 1000,
+  });
 
   // const AnimatedTypography = animated(Typography);
   const AnimatedGrid = animated(Grid);
@@ -113,16 +119,6 @@ export default function SettingPanel({ setTheme }) {
   const handleColorChange = (event) => {
     setTheme(event.target.value);
     setValue(event.target.value);
-    setIsActive(false);
-  };
-
-  const handleToolClick = () => {
-    if (!isActive) {
-      setIsActive(true);
-    }
-  };
-
-  const handleOutsideClick = () => {
     setIsActive(false);
   };
 
@@ -145,24 +141,25 @@ export default function SettingPanel({ setTheme }) {
   }
 
   const SettingBoard = () => {
-    const slideLeft = useSpring({
-      from: {
-        transform: "TranslateX(186px)",
-      },
-      to: {
-        transform: "TranslateX(0)",
-      },
-    });
+    // const slideLeft = useSpring({
+    //   from: {
+    //     transform: "TranslateX(186px)",
+    //   },
+    //   to: {
+    //     transform: "TranslateX(0)",
+    //   },
+    // });
+
     return (
       <AnimatedGrid
         item
         container
-        style={slideLeft}
+        // style={slideLeft}
         className={classes.setting}
       >
         <Grid item container className={classes.settingWrapper}>
           <Grid
-            onClick={handleOutsideClick}
+            onClick={() => setIsActive(false)}
             item
             container
             justify="center"
@@ -189,7 +186,7 @@ export default function SettingPanel({ setTheme }) {
                 width: "100%",
                 height: "50px",
               }}
-              onClick={handleOutsideClick}
+              onClick={() => setIsActive(false)}
             >
               <Typography variant="h6">Settings</Typography>
             </Grid>
@@ -258,8 +255,9 @@ export default function SettingPanel({ setTheme }) {
       {isActive && (
         <Grid
           item
-          onClick={handleOutsideClick}
+          onClick={() => setIsActive(false)}
           className={classes.invisibleHandler}
+          // style={{ backgroundColor: "lightsteelblue" }}
         />
       )}
 
@@ -276,14 +274,26 @@ export default function SettingPanel({ setTheme }) {
           container
           justify="center"
           alignItems="center"
-          onClick={() => handleToolClick("setting")}
+          onClick={() => setIsActive(true)}
           className={classes.settingContainer}
         >
           <Settings style={{ color: theme.palette.primary.main }} />
         </Grid>
         {/* </Slide> */}
 
-        {isActive && <SettingBoard />}
+        {/* {isActive && <SettingBoard />} */}
+        {transition((style, item) => {
+          console.log("item is", item);
+          if (item) {
+            return (
+              <animated.span style={style}>
+                <SettingBoard />
+              </animated.span>
+            );
+          } else {
+            return "";
+          }
+        })}
       </Grid>
     </Fragment>
   );

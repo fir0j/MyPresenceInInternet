@@ -32,6 +32,9 @@ import { ArrowDropDown, ArrowDropUp, GitHub } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   buttonRoot: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+    },
     "&:hover": {
       // backgroundColor: "rgba(74, 228, 184,0.8)",
       color: theme.palette.common.offWhite,
@@ -106,10 +109,10 @@ export default function Project() {
 
   // pagination states
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
 
   const [paginatedItems, setPaginatedItems] = useState([]);
-  const [paginatedCards, setPaginatedCards] = useState(paginatedItems);
+  const [paginatedCards, setPaginatedCards] = useState([]);
 
   //  all these 3 states are for showing limited page numbers instead of all of the pages
   const [pageNumberLimit, setPageNumberLimit] = useState(3); // how many page numbers you want to display
@@ -121,21 +124,26 @@ export default function Project() {
     const lastCardAtCurrentPageNumber = currentPageNumber * itemsPerPage;
     const firstCardAtCurrentPageNumber =
       lastCardAtCurrentPageNumber - itemsPerPage;
-    setPaginatedItems(
-      cards.slice(firstCardAtCurrentPageNumber, lastCardAtCurrentPageNumber)
+    const newPaginatedItems = cards.slice(
+      firstCardAtCurrentPageNumber,
+      lastCardAtCurrentPageNumber
     );
-    setPaginatedCards(paginatedItems);
+    setPaginatedItems(newPaginatedItems);
 
-    // here dependencies like [cards] create problem.
+    // currentPageNumber is primitive dependency and cards is referential dependency
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPageNumber]);
+  }, [currentPageNumber, cards]);
 
-  // only run this code when [cards, paginatedItems] state is changed.
+  // Use multiple effects to separate concerns
+  // effects don’t block the UI because they run asynchronously.
+  // the order of your effect definitions matter
+  //  Another strategy to skip unnecessary effects is to prevent unnecessary re-renders in the first place with, e.g., React.memo
+  // dependency array must be either state or props or pieces inside of states or props
   useEffect(() => {
-    setPaginatedCards(paginatedItems);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cards, paginatedItems]);
+    if (paginatedItems.length > 0) {
+      setPaginatedCards(paginatedItems);
+    }
+  }, [paginatedItems]);
 
   // sorting and filtering states
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -160,46 +168,55 @@ export default function Project() {
   const handleSort = (sortLabel, filteredData) => {
     if (sortLabel !== sortBy) {
       setSortBy(sortLabel);
-      if (sortLabel === "name") setPaginatedCards(paginatedItems);
-      utils.sortArrayOfObjectByStringValue(filteredData, "des");
-      if (sortLabel === "date") setPaginatedCards(paginatedItems);
-      utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
+      if (sortLabel === "name") {
+        let result = utils.sortArrayOfObjectByStringValue(filteredData, "des");
+
+        // probably though contents of the array has changed, the refrence of the array is same.
+        // Manually changing the reference of the array so that useEffect will execute
+        setCards([...result]);
+      }
+      if (sortLabel === "date") {
+        let result = utils.sortArrayOfObjectByDateValue(
+          filteredData,
+          "newFirst"
+        );
+        setCards([...result]);
+      }
     } else if (sortBy === "date") {
       if (isDateArrowUp) {
         setIsDateArrowUp(!isDateArrowUp);
-        setPaginatedCards(paginatedItems);
-        utils.sortArrayOfObjectByDateValue(filteredData);
+        let result = utils.sortArrayOfObjectByDateValue(filteredData);
+        setCards([...result]);
       } else {
         setIsDateArrowUp(!isDateArrowUp);
-        setPaginatedCards(paginatedItems);
-        utils.sortArrayOfObjectByDateValue(filteredData, "newFirst");
+        let result = utils.sortArrayOfObjectByDateValue(
+          filteredData,
+          "newFirst"
+        );
+        setCards([...result]);
       }
     } else if (sortBy === "name") {
       if (isNameArrowUp) {
         setIsNameArrowUp(!isNameArrowUp);
-        setPaginatedCards(paginatedItems);
-        utils.sortArrayOfObjectByStringValue(filteredData);
+        let result = utils.sortArrayOfObjectByStringValue(filteredData);
+        setCards([...result]);
       } else {
         setIsNameArrowUp(!isNameArrowUp);
-        setPaginatedCards(paginatedItems);
-        utils.sortArrayOfObjectByStringValue(filteredData, "des");
+
+        let result = utils.sortArrayOfObjectByStringValue(filteredData, "des");
+        setCards([...result]);
       }
     }
   };
 
   const SortAndFilterControls = () => {
     return (
-      <Grid
-        item
-        container
-        justify="center"
-        // style={{ marginTop: -theme.spacing(5) }}
-      >
+      <Grid item container justify={matchesMD ? "space-around" : "center"}>
         <Grid
           item
           style={{
             marginTop: theme.spacing(1),
-            marginBottom: theme.spacing(7),
+            marginBottom: theme.spacing(matchesMD ? 0 : 3),
           }}
         >
           <ButtonGroup
@@ -210,6 +227,7 @@ export default function Project() {
             classes={{
               groupedContainedPrimary: classes.groupedContainedPrimary,
             }}
+            style={{ maxWidth: matchesXS ? theme.spacing(40) : null }}
           >
             <Button
               classes={{ root: classes.buttonRoot }}
@@ -277,7 +295,14 @@ export default function Project() {
             </Button>
           </ButtonGroup>
         </Grid>
-        <Grid item style={{ marginTop: theme.spacing(1) }}>
+        {/* SORT BY */}
+        <Grid
+          item
+          style={{
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1),
+          }}
+        >
           <ButtonGroup
             variant="contained"
             color="primary"
@@ -288,6 +313,7 @@ export default function Project() {
             }}
             style={{
               marginLeft: theme.spacing(1),
+              maxWidth: matchesXS ? theme.spacing(39) : null,
             }}
           >
             <Button
@@ -406,14 +432,15 @@ export default function Project() {
         item
         className={classes.star}
         style={{
-          width: theme.spacing(170),
-          height: theme.spacing(170),
+          width: theme.spacing(70),
+          height: theme.spacing(70),
           position: "absolute",
-          top: "30%",
-          left: "-55%",
+          top: theme.spacing(20),
+          // left: -theme.spacing(70),
           zIndex: -1,
-          opacity: 0.25,
+          opacity: 0.1,
           overflow: "hidden",
+          transform: "skew(50deg,1deg)",
           backgroundColor: theme.palette.accent.main,
         }}
       />
@@ -429,38 +456,26 @@ export default function Project() {
         style={{
           position: "relative",
           overflow: "hidden",
-          height: theme.spacing(96),
+          minHeight: theme.spacing(65),
         }}
+        className={classes.cardContainer}
       >
-        <Grid
-          item
-          container
-          justify="center"
-          style={{
-            height: theme.spacing(96),
-            overflowY: "scroll",
-            paddingTop: theme.spacing(2),
-            backgroundColor: "rgba(0,0,0,0)",
-          }}
-          className={classes.cardContainer}
-        >
-          {paginatedCards.map((item, index) => (
-            <Grid
-              className={`childCard-${index}`}
-              item
+        {paginatedCards.map((item, index) => (
+          <Grid
+            className={`childCard-${index}`}
+            item
+            key={item.id}
+            style={{ margin: theme.spacing(1) }}
+          >
+            <ProjectCard
               key={item.id}
-              style={{ margin: theme.spacing(1) }}
-            >
-              <ProjectCard
-                key={item.id}
-                name={item.name}
-                date={item.date}
-                image={item.image}
-                technologies={item.technologies}
-              />
-            </Grid>
-          ))}
-        </Grid>
+              name={item.name}
+              date={item.date}
+              image={item.image}
+              technologies={item.technologies}
+            />
+          </Grid>
+        ))}
         <Stars />
       </Grid>
     );
@@ -598,15 +613,9 @@ export default function Project() {
 
     return (
       <Fragment>
-        <Grid
-          item
-          container
-          justify="center"
-          style={{ paddingTop: theme.spacing(1) }}
-        >
+        <Grid item container justify="center">
           <Grid item>
             <ButtonGroup
-              size="large"
               color="secondary"
               aria-label="large outlined primary button group"
             >

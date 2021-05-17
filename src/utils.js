@@ -5,7 +5,7 @@ import firoj from "./assets/founder3.png";
 const cardData = [
   {
     id: 1,
-    name: "1.Portfolio",
+    name: "Ace-Development",
     date: "2021-05-11",
     type: "frontend",
     image: firoj,
@@ -15,7 +15,7 @@ const cardData = [
   },
   {
     id: 2,
-    name: "2.Google Calender",
+    name: "Portfolio Now",
     date: "2020-02-01",
     image: firoj,
     type: "frontend",
@@ -32,7 +32,7 @@ const cardData = [
   },
   {
     id: 3,
-    name: "3.dummy Project",
+    name: "Google Calender Clone",
     date: "2018-10-02",
     type: "backend",
     image: firoj,
@@ -49,7 +49,7 @@ const cardData = [
   },
   {
     id: 4,
-    name: "4.Ace-Development",
+    name: "Social-Network API",
     image: firoj,
     date: "2021-05-10",
     type: "fullstack",
@@ -59,7 +59,7 @@ const cardData = [
   },
   {
     id: 5,
-    name: "5.Shopping Cart",
+    name: "Portfolio Server",
     date: "2017-07-07",
     image: firoj,
     type: "backend",
@@ -69,7 +69,7 @@ const cardData = [
   },
   {
     id: 6,
-    name: "6.my Dummy Project",
+    name: "UCGPA Calculator",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -79,7 +79,7 @@ const cardData = [
   },
   {
     id: 7,
-    name: "7.my Dummy Project",
+    name: "Select-n-Add Cart",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -89,7 +89,7 @@ const cardData = [
   },
   {
     id: 8,
-    name: "8.my Dummy Project",
+    name: "Andrie shopping Store",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -97,9 +97,10 @@ const cardData = [
     live: "url",
     sourceCode: "url",
   },
+
   {
     id: 9,
-    name: "9.my Dummy Project",
+    name: "Google Calender Clone",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -107,9 +108,10 @@ const cardData = [
     live: "url",
     sourceCode: "url",
   },
+
   {
     id: 10,
-    name: "10.my Dummy Project",
+    name: "Google.com Clone",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -119,7 +121,7 @@ const cardData = [
   },
   {
     id: 11,
-    name: "11.my Dummy Project",
+    name: "Google Search Clone",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -129,7 +131,7 @@ const cardData = [
   },
   {
     id: 12,
-    name: "12.my Dummy Project",
+    name: "Facebook Login Clone",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -137,9 +139,10 @@ const cardData = [
     live: "url",
     sourceCode: "url",
   },
+
   {
     id: 13,
-    name: "13.my Dummy Project",
+    name: "Gradient-Generator",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -147,9 +150,10 @@ const cardData = [
     live: "url",
     sourceCode: "url",
   },
+
   {
     id: 14,
-    name: "14.my Dummy Project",
+    name: "SmartBrain FaceDetection",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -157,9 +161,10 @@ const cardData = [
     live: "url",
     sourceCode: "url",
   },
+
   {
     id: 15,
-    name: "15.my Dummy Project",
+    name: "Meeting Scheduler",
     date: "2018-10-01",
     image: firoj,
     type: "frontend",
@@ -169,28 +174,8 @@ const cardData = [
   },
   {
     id: 16,
-    name: "16.my Dummy Project",
+    name: "Event Tracker",
     date: "2011-10-01",
-    image: firoj,
-    type: "frontend",
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 17,
-    name: "17.my Dummy Project",
-    date: "2028-10-01",
-    image: firoj,
-    type: "frontend",
-    technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
-    live: "url",
-    sourceCode: "url",
-  },
-  {
-    id: 18,
-    name: "18.my Dummy Project",
-    date: "2015-10-01",
     image: firoj,
     type: "frontend",
     technologies: ["HTML", "CSS", "React", "Material-UI", "React-Spring"],
