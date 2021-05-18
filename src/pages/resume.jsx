@@ -26,6 +26,7 @@ import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
 import Hidden from "@material-ui/core/Hidden";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 import ContainerWithGradientBorder from "../components/ContainerWithGradientBorder.component";
+import PageContainer from "../components/PageContainer.component";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -591,7 +592,9 @@ export default function Resume() {
       container
       direction={matchesMD ? "column-reverse" : "row"}
       className={classes.container}
-      style={{ marginBottom: theme.spacing(5) }}
+      style={{
+        marginBottom: theme.spacing(5),
+      }}
     >
       {/* work section */}
       <Grid item container>
@@ -794,11 +797,9 @@ export default function Resume() {
       <Grid
         item
         container
-        className={classes.education}
         style={{
           position: "relative",
           marginLeft: matchesMD ? 0 : theme.spacing(3),
-          // border: "1px solid blue",
         }}
       >
         <ContainerWithGradientBorder
@@ -813,21 +814,6 @@ export default function Resume() {
           }}
           borderWidth="3px"
         >
-          {/* <Grid
-            container
-            style={{
-              border: `3px solid ${theme.palette.accent.main}`,
-              padding: theme.spacing(1),
-              bottom: -theme.spacing(25),
-              position: matchesMD ? undefined : "absolute",
-              top: matchesXL ? -theme.spacing(9) : undefined,
-              height: matchesMD
-                ? matchesXS
-                  ? theme.spacing(120)
-                  : theme.spacing(90)
-                : undefined,
-            }}
-          > */}
           <Grid
             item
             container
@@ -846,7 +832,7 @@ export default function Resume() {
               </Typography>
             </Grid>
           </Grid>
-          {/* engineering education */}
+
           <Grid container style={{ height: "90%" }}>
             <Grid
               item
@@ -919,7 +905,6 @@ export default function Resume() {
               </Grid>
             </Grid>
 
-            {/* high school */}
             <Grid
               item
               container
@@ -989,7 +974,7 @@ export default function Resume() {
                 </Grid>
               </Grid>
             </Grid>
-            {/* Schooling */}
+
             <Grid
               item
               container
@@ -1053,7 +1038,6 @@ export default function Resume() {
               </Grid>
             </Grid>
           </Grid>
-          {/* </Grid> */}
         </ContainerWithGradientBorder>
       </Grid>
     </Grid>
@@ -1515,7 +1499,6 @@ export default function Resume() {
       justify="space-around"
       className={classes.container}
       style={{
-        // border: "1px solid red",
         paddingBottom: theme.spacing(matchesMD ? 1 : 30),
       }}
     >
@@ -1546,7 +1529,6 @@ export default function Resume() {
               style={{
                 position: "absolute",
                 top: 0,
-                // border: "1px solid red",
                 height: theme.spacing(50),
               }}
             >
@@ -1708,7 +1690,6 @@ export default function Resume() {
           justify={matchesXS ? "center" : "flex-end"}
           style={{
             position: "relative",
-            // border: `1px solid red`,
             paddingLeft: matchesXL
               ? matchesMD
                 ? undefined
@@ -2125,30 +2106,43 @@ export default function Resume() {
   );
 
   return (
-    <Fragment>
-      <Grid item container>
-        <Paper
-          elevation={5}
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "auto",
-            backgroundColor: theme.palette.primary.main,
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1),
-            marginBottom: theme.spacing(matchesXS ? 20 : 10),
-            zIndex: 0,
-          }}
-        >
-          <HeaderWave />
-          {hello}
-          {contact}
-          {education}
-          {skillsOnDesktop}
-          <FooterWave />
-        </Paper>
-      </Grid>
-    </Fragment>
+    // <Fragment>
+    //   <Grid
+    //     item
+    //     container
+    //     style={{
+    //       maxWidth: "calc(100vw - 322px)",
+    //       marginLeft: "310px",
+    //       border: "1px solid red",
+    //     }}
+    //     justify="center"
+    //   >
+    //     <Grid item style={{ width: theme.spacing(170) }}>
+    <PageContainer>
+      <Paper
+        elevation={5}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "auto",
+          backgroundColor: theme.palette.primary.main,
+          paddingLeft: theme.spacing(1),
+          paddingRight: theme.spacing(1),
+          marginBottom: theme.spacing(matchesXS ? 20 : 10),
+          zIndex: 0,
+        }}
+      >
+        <HeaderWave />
+        {hello}
+        {contact}
+        {education}
+        {skillsOnDesktop}
+        <FooterWave />
+      </Paper>
+    </PageContainer>
+    //     </Grid>
+    //   </Grid>
+    // </Fragment>
   );
 }
 

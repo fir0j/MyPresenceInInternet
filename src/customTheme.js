@@ -36,8 +36,7 @@ const cyanTheme = {
       panelColor: black,
       tab: black,
       bg: black,
-      color2: green,
-      color1: gold,
+      backgroundColor: "#212121",
       filterGrey: "rgb(30, 30, 30)",
       // contrastText: "",
     },
@@ -91,6 +90,12 @@ const cyanTheme = {
       },
     },
   },
+
+  props: {
+    MuiTab: {
+      disableRipple: true,
+    },
+  },
 };
 
 const goldTheme = {
@@ -116,6 +121,7 @@ const goldTheme = {
       offWhite: offWhite,
       panelColor: black,
       tab: black,
+      backgroundColor: "#212121",
       bg: grey[900],
       filterGrey: "rgb(30, 30, 30)",
       color1: gold,

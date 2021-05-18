@@ -18,50 +18,10 @@ export default function HomeNav() {
 
   return (
     <React.Fragment>
-      <Grid
-        item
-        container
-        justify="center"
-        alignItems="flex-start"
-        xl={10}
-        lg={10}
-        md={10}
-        sm={10}
-        xs={12}
-        style={{
-          // scroll window
-          // border: "3px solid teal",
-          minWidth: "320px",
-
-          backgroundColor: theme.palette.common.bg,
-          overflowY: "auto",
-          height: "auto",
-          paddingTop: theme.spacing(2),
-          paddingLeft: matchesXL
-            ? matchesLG
-              ? matchesSM
-                ? matchesXS
-                  ? theme.spacing(1)
-                  : theme.spacing(2)
-                : theme.spacing(7)
-              : theme.spacing(20)
-            : undefined,
-          paddingRight: matchesXL
-            ? matchesLG
-              ? matchesSM
-                ? matchesXS
-                  ? theme.spacing(1)
-                  : theme.spacing(2)
-                : theme.spacing(7)
-              : theme.spacing(20)
-            : undefined,
-        }}
-      >
-        <Route exact path="/" render={(props) => <Resume />} />
-        <Route exact path="/project" render={(props) => <Project />} />
-        <Route exact path="/stats" render={(props) => <Stats />} />
-        <Route exact path="/hireme" render={(props) => <HireMe />} />
-      </Grid>
+      <Route exact path="/" render={(props) => <Resume />} />
+      <Route exact path="/project" render={(props) => <Project />} />
+      <Route exact path="/stats" render={(props) => <Stats />} />
+      <Route exact path="/hireme" render={(props) => <HireMe />} />
     </React.Fragment>
   );
 }

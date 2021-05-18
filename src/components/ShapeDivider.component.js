@@ -78,6 +78,7 @@ function FooterWave() {
         marginRight: -theme.spacing(1),
         borderTopRightRadius: theme.spacing(1),
         borderTopLeftRadius: theme.spacing(1),
+        maxWidth: "100vw",
       }}
     >
       <svg

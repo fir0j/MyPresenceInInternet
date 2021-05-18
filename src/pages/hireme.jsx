@@ -1,12 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
+import PageContainer from "../components/PageContainer.component";
 
 export default function HireMe() {
-  return (
-    <Fragment>
-      <Grid item container style={{ height: "100vh" }}>
-        Hireme Page
-      </Grid>
-    </Fragment>
-  );
+  return <PageContainer>work in progress</PageContainer>;
 }

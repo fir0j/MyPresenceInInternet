@@ -10,6 +10,7 @@ import { ReactComponent as ReactSpringIcon } from "../assets/spring.svg";
 import { ReactComponent as ReduxIcon } from "../assets/redux.svg";
 import { ReactComponent as NodeIcon } from "../assets/node.svg";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
+import PageContainer from "../components/PageContainer.component";
 
 import {
   makeStyles,
@@ -633,29 +634,27 @@ export default function Project() {
 
   // Talk is Cheap. Show me the code.
   return (
-    <Fragment>
-      <Grid item container>
-        <Paper
-          elevation={5}
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "auto",
-            backgroundColor: theme.palette.primary.main,
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1),
-            marginBottom: theme.spacing(matchesXS ? 20 : 10),
-            zIndex: 0,
-            overflow: "hidden",
-          }}
-        >
-          <HeaderWave />
-          <SortAndFilterControls />
-          <DisplayCards />
-          <Pagination />
-          <FooterWave />
-        </Paper>
-      </Grid>
-    </Fragment>
+    <PageContainer>
+      <Paper
+        elevation={5}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "auto",
+          backgroundColor: theme.palette.primary.main,
+          paddingLeft: theme.spacing(1),
+          paddingRight: theme.spacing(1),
+          marginBottom: theme.spacing(matchesXS ? 20 : 10),
+          zIndex: 0,
+          overflow: "hidden",
+        }}
+      >
+        <HeaderWave />
+        <SortAndFilterControls />
+        <DisplayCards />
+        <Pagination />
+        <FooterWave />
+      </Paper>
+    </PageContainer>
   );
 }

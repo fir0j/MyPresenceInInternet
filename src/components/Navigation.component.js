@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
+import { Grid, Hidden, Paper } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Tabs from "@material-ui/core/Tabs";
@@ -10,24 +10,21 @@ import { ReactComponent as Resume } from "../assets/resume.svg";
 import { ReactComponent as Hireme } from "../assets/hireme.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
 import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
-import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
-  navigationWrapper: {
-    width: "100%",
-    maxWidth: "100%",
-    height: "100vh",
-    maxHeight: "100vh",
-  },
   tabsContainer: {
     width: "100%",
     height: "100%",
+    [theme.breakpoints.down("xs")]: {
+      height: theme.spacing(11),
+    },
     maxWidth: "100%",
     maxHeight: "100%",
+    // border: "1px solid red",
   },
   tab: {
     width: "100%",
-    minWidth: "100px",
+    // minWidth: "100px",
     // minHeight: "100px",
     maxWidth: "100%",
     maxHeight: "100%",
@@ -35,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     fontWeight: "bold",
   },
+
   iconDimension: {
     width: "96px",
     height: "96px",
@@ -45,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       width: "48px",
       height: "48px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "40px",
+      height: "40px",
     },
   },
 
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    backgroundColor: theme.palette.common.bg,
+    // backgroundColor: theme.palette.common.bg,
     // background: `linear-gradient(90deg,${theme.palette.common.color1},${theme.palette.common.color2})`,
     color: theme.palette.accent.main,
   },
@@ -98,11 +100,43 @@ const useStyles = makeStyles((theme) => ({
   tabLabelIcon: {
     paddingTop: "0px",
   },
+  // when orientation is horizontal
+  flexContainer: {
+    width: "100%",
+    maxWidth: "100%",
+    backgroundColor: theme.palette.primary.main,
+    "&>.MuiTab-root": {
+      width: "auto",
+      backgroundColor: theme.palette.common.tab,
+      color: theme.palette.accent.main,
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "0.8rem",
+      },
+      flexGrow: 1,
+      border: `1px solid ${theme.palette.accent.main}`,
+      borderRight: "none",
+      fontWeight: "bold",
+    },
+    "&>.MuiTab-labelIcon": {
+      paddingTop: "2px",
+    },
+
+    "&>.Mui-selected": {
+      backgroundColor: theme.palette.primary.main,
+      position: "relative",
+
+      // "&>.MuiTab-wrapper": {
+      //   width: "100%",
+      //   height: "100%",
+      // },
+    },
+  },
 }));
 
 export default function Navigation() {
   const theme = useTheme();
   const classes = useStyles();
+
   const tabRules = {
     root: classes.tabRoot,
     selected: classes.tabSelected,
@@ -113,6 +147,7 @@ export default function Navigation() {
 
   const [value, setValue] = useState(1);
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
     switch (window.location.pathname) {
@@ -122,7 +157,7 @@ export default function Navigation() {
       case "/project":
         setValue(2);
         break;
-      case "/feedback":
+      case "/stats":
         setValue(3);
         break;
       case "/hireme":
@@ -142,40 +177,42 @@ export default function Navigation() {
 
   const verticalTabs = (
     <Tabs
-      orientation="vertical"
+      orientation={matchesXS ? "horizontal" : "vertical"}
       value={value}
       onChange={handleChange}
-      aria-label="Vertical tabs"
+      aria-label={matchesXS ? "horizontal tabs" : "Vertical tabs"}
       classes={{
-        flexContainerVertical: classes.tabsFlexContainerVertical,
+        flexContainer: matchesXS && classes.flexContainer,
+        flexContainerVertical: !matchesXS && classes.tabsFlexContainerVertical,
         indicator: classes.tabsIndicator,
       }}
       className={classes.tabsContainer}
     >
-      <Tab
-        label=""
-        disabled
-        icon={
-          <div>
-            <Logo
-              fill={theme.palette.accent.main}
-              stroke={theme.palette.accent.main}
-              className={classes.iconDimension}
-            />
-          </div>
-        }
-        className={classes.tab}
-        classes={tabRules}
-        style={{
-          borderBottomRightRadius:
-            value - getIndex(0) === 1
-              ? matchesMD
-                ? "40px"
-                : "80px"
-              : undefined,
-        }}
-      />
-
+      <Hidden xsDown>
+        <Tab
+          label=""
+          disabled
+          icon={
+            <div>
+              <Logo
+                fill={theme.palette.accent.main}
+                stroke={theme.palette.accent.main}
+                className={classes.iconDimension}
+              />
+            </div>
+          }
+          className={classes.tab}
+          classes={tabRules}
+          style={{
+            borderBottomRightRadius:
+              value - getIndex(0) === 1
+                ? matchesMD
+                  ? "40px"
+                  : "80px"
+                : undefined,
+          }}
+        />
+      </Hidden>
       <Tab
         label="Resume"
         icon={
@@ -196,7 +233,9 @@ export default function Navigation() {
           borderBottomRightRadius:
             value - getIndex(1) === 1
               ? matchesMD
-                ? "40px"
+                ? matchesXS
+                  ? undefined
+                  : "40px"
                 : "80px"
               : undefined,
         }}
@@ -220,13 +259,17 @@ export default function Navigation() {
           borderTopRightRadius:
             value - getIndex(2) === -1
               ? matchesMD
-                ? "40px"
+                ? matchesXS
+                  ? undefined
+                  : "40px"
                 : "80px"
               : undefined,
           borderBottomRightRadius:
             value - getIndex(2) === 1
               ? matchesMD
-                ? "40px"
+                ? matchesXS
+                  ? undefined
+                  : "40px"
                 : "80px"
               : undefined,
         }}
@@ -250,13 +293,17 @@ export default function Navigation() {
           borderTopRightRadius:
             value + getIndex(3) === 5
               ? matchesMD
-                ? "40px"
+                ? matchesXS
+                  ? undefined
+                  : "40px"
                 : "80px"
               : undefined,
           borderBottomRightRadius:
             value + getIndex(3) === 7
               ? matchesMD
-                ? "40px"
+                ? matchesXS
+                  ? undefined
+                  : "40px"
                 : "80px"
               : undefined,
         }}
@@ -280,35 +327,65 @@ export default function Navigation() {
           borderTopRightRadius:
             value + getIndex(4) === 7
               ? matchesMD
-                ? "40px"
+                ? matchesXS
+                  ? undefined
+                  : "40px"
                 : "80px"
               : undefined,
         }}
       />
-      <Tab
-        label=""
-        disabled
-        className={classes.tab}
-        classes={tabRules}
-        style={{
-          borderTopRightRadius:
-            value + getIndex(5) === 9
-              ? matchesMD
-                ? "40px"
-                : "80px"
-              : undefined,
-          maxHeight: matchesMD ? "60px" : "100px",
-        }}
-      />
+      <Hidden xsDown>
+        <Tab
+          label=""
+          disabled
+          className={classes.tab}
+          classes={tabRules}
+          style={{
+            borderTopRightRadius:
+              value + getIndex(5) === 9
+                ? matchesMD
+                  ? matchesXS
+                    ? undefined
+                    : "40px"
+                  : "80px"
+                : undefined,
+            maxHeight: matchesMD ? "60px" : "100px",
+          }}
+        />
+      </Hidden>
     </Tabs>
   );
 
   return (
     <Fragment>
-      <Grid item container xl={2} lg={2} md={2} xs={2}>
-        <Grid item container className={classes.navigationWrapper}>
+      <Grid
+        item
+        container
+        xs={2}
+        sm={2}
+        md={2}
+        lg={2}
+        xl={2}
+        style={{
+          position: matchesXS ? "fixed" : "relative",
+          bottom: matchesXS ? 0 : undefined,
+          maxWidth: matchesXS ? "100%" : "310px",
+          height: matchesXS ? theme.spacing(10.7) : undefined,
+          zIndex: matchesXS ? 1 : undefined,
+          // border: "1px solid red",
+        }}
+      >
+        <Paper
+          elevation={0}
+          style={{
+            width: "100%",
+            height: matchesXS ? "inherit" : "100vh",
+            maxHeight: matchesXS ? theme.spacing(10.8) : "100vh",
+            backgroundColor: "transparent",
+          }}
+        >
           {verticalTabs}
-        </Grid>
+        </Paper>
       </Grid>
     </Fragment>
   );
