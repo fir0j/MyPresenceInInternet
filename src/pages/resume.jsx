@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, ThemeProvider, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
@@ -27,8 +27,24 @@ import Hidden from "@material-ui/core/Hidden";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 import ContainerWithGradientBorder from "../components/ContainerWithGradientBorder.component";
 import PageContainer from "../components/PageContainer.component";
+import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: "relative",
+    width: "100%",
+    height: "auto",
+    backgroundColor: theme.palette.primary.main,
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    marginBottom: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(20),
+    },
+    // marginBottom: theme.spacing(matchesXS ? 20 : 10),
+    zIndex: 0,
+  },
+
   container: {
     position: "relative",
     flexGrow: 1,
@@ -2106,32 +2122,8 @@ export default function Resume() {
   );
 
   return (
-    // <Fragment>
-    //   <Grid
-    //     item
-    //     container
-    //     style={{
-    //       maxWidth: "calc(100vw - 322px)",
-    //       marginLeft: "310px",
-    //       border: "1px solid red",
-    //     }}
-    //     justify="center"
-    //   >
-    //     <Grid item style={{ width: theme.spacing(170) }}>
     <PageContainer>
-      <Paper
-        elevation={5}
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "auto",
-          backgroundColor: theme.palette.primary.main,
-          paddingLeft: theme.spacing(1),
-          paddingRight: theme.spacing(1),
-          marginBottom: theme.spacing(matchesXS ? 20 : 10),
-          zIndex: 0,
-        }}
-      >
+      <Paper elevation={5} className={classes.paper}>
         <HeaderWave />
         {hello}
         {contact}
@@ -2140,9 +2132,6 @@ export default function Resume() {
         <FooterWave />
       </Paper>
     </PageContainer>
-    //     </Grid>
-    //   </Grid>
-    // </Fragment>
   );
 }
 

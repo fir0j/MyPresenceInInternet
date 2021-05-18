@@ -38,19 +38,6 @@ function App() {
   const [myTheme, setMyTheme] = useState(cyanTheme);
   // const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
   const location = useLocation();
-  const transitions = useTransition(location, {
-    from: {
-      opacity: 0,
-    },
-    enter: {
-      opacity: 1,
-    },
-    leave: {
-      opacity: 0,
-    },
-  });
-
-  const AnimatedSwitch = animated(Switch);
 
   const setTheme = (themeName) => {
     switch (themeName) {
@@ -82,9 +69,6 @@ function App() {
     <React.Fragment>
       {/* <GlobalCss /> */}
       <ThemeProvider theme={createMuiTheme(myTheme)}>
-        {/* {transitions((props, item) => ( */}
-        {/* <AnimatedSwitch location={item}> */}
-        {/* <SettingPanel setTheme={setTheme} /> */}
         <Grid
           container
           style={{
@@ -105,9 +89,8 @@ function App() {
             <Route exact path="/stats" render={(props) => <Stats />} />
             <Route exact path="/hireme" render={(props) => <HireMe />} />
           </Switch>
-          {/* </AnimatedSwitch> */}
-          {/* ))} */}
         </Grid>
+        <SettingPanel setTheme={setTheme} />
       </ThemeProvider>
     </React.Fragment>
   );
