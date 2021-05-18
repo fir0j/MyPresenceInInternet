@@ -5,6 +5,7 @@ import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   PageContainer: {
+    position: "relative",
     overflowY: "scroll",
     padding: theme.spacing(2),
     [theme.breakpoints.down("xs")]: {
@@ -23,8 +24,7 @@ const PageContainer = (props) => {
   const AnimatedGrid = animated(Grid);
   const slideLeft = useSpring({
     from: {
-      // added extra css: position:"fixed" in order to prevent scrollbar overflow
-      // position: "fixed",
+      position: "relative",
       transform: "translateY(15%)",
       opacity: 0,
     },
@@ -41,7 +41,6 @@ const PageContainer = (props) => {
       container
       justify="center"
       className={classes.PageContainer}
-      xs={matchesXS ? 12 : 10}
       sm={10}
       md={10}
       lg={10}
