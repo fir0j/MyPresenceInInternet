@@ -30,6 +30,7 @@ import {
 } from "@material-ui/core";
 
 import { ArrowDropDown, ArrowDropUp, GitHub } from "@material-ui/icons";
+import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   buttonRoot: {
@@ -56,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "1px solid rgba(255,255,255,0.5)",
     borderLeft: "1px solid rgba(255,255,255,0.5)",
     backdropFilter: "blur(5px)",
+  },
+  cardSpacing: {
+    margin: theme.spacing(1),
   },
 
   media: {
@@ -119,6 +123,13 @@ export default function Project() {
   const [pageNumberLimit, setPageNumberLimit] = useState(3); // how many page numbers you want to display
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
+  const AnimatedGrid = animated(Grid);
+  const style = useSpring({
+    from: { transform: "translatedX(-10%)" },
+    enter: { transform: "translatedX(0)" },
+    leave: { transform: "translatedY(-10%)" },
+  });
 
   // smart and proper use of useEffect
   useEffect(() => {
@@ -462,6 +473,22 @@ export default function Project() {
         className={classes.cardContainer}
       >
         {paginatedCards.map((item, index) => (
+          <AnimatedGrid
+            // className={`childCard-${index}`}
+            style={style}
+            item
+            key={item.id}
+            className={classes.cardSpacing}
+          >
+            <ProjectCard
+              name={item.name}
+              date={item.date}
+              image={item.image}
+              technologies={item.technologies}
+            />
+          </AnimatedGrid>
+        ))}
+        {/* {paginatedCards.map((item, index) => (
           <Grid
             className={`childCard-${index}`}
             item
@@ -476,7 +503,7 @@ export default function Project() {
               technologies={item.technologies}
             />
           </Grid>
-        ))}
+        ))} */}
         <Stars />
       </Grid>
     );

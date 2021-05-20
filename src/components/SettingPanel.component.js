@@ -9,18 +9,17 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Slide from "@material-ui/core/Slide";
-import { useSpring, animated, useTransition } from "react-spring";
-import { Button, ListItemIcon } from "@material-ui/core";
+import { useSpring, animated, useTransition, config } from "react-spring";
+import { Button, ListItemIcon, ClickAwayListener } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  invisibleHandler: {
-    position: "fixed",
-    inset: 0,
-  },
   fixedContainer: {
     position: "fixed",
-    right: 0,
     top: theme.spacing(26),
+    right: 0,
+    width: 250,
+    height: 250,
+
     [theme.breakpoints.down("lg")]: {
       top: theme.spacing(20),
     },
@@ -33,31 +32,15 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       top: 1,
     },
-    width: theme.spacing(8),
-    height: theme.spacing(6),
-    [theme.breakpoints.down("sm")]: {
-      width: theme.spacing(6),
-      height: theme.spacing(5),
-    },
-  },
-
-  settingContainer: {
-    position: "relative",
-    // height: "100%",
-    cursor: "pointer",
-    borderTopLeftRadius: "20px",
-    borderBottomLeftRadius: "50px",
-    // backgroundColor: theme.palette.accent.main,
   },
 
   setting: {
     position: "absolute",
     top: 0,
-    right: -190,
+    right: -191,
     width: "250px",
     height: "200px",
     cursor: "pointer",
-    // overflowY: "scroll",
   },
   settingWrapper: {
     color: theme.palette.primary.main,
@@ -104,36 +87,28 @@ const useStyles = makeStyles((theme) => ({
 export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
-  const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState("cyan");
-  const transition = useTransition(isActive, {
-    from: {
-      position: "absolute",
-      top: 0,
-      right: 0,
-      width: "250px",
-      height: "200px",
-      cursor: "pointer",
-    },
-    enter: {
-      position: "absolute",
-      top: 0,
-      right: 190,
-      width: "250px",
-      height: "200px",
-    },
-    leave: {
-      right: 0,
-    },
+  const [showSetting, setShowSetting] = useState(false);
+  const [right, setRight] = useState(0);
+
+  // Slider component is being rendered by react-spring all the time using useSpring hook
+  const slideRight = useSpring({
+    position: "fixed",
+    top: 0,
+    right: right,
   });
 
+  const handleSlider = () => {
+    setShowSetting((toggle) => !toggle);
+    setRight((showSetting) => (!showSetting ? 191 : 0));
+  };
   // const AnimatedTypography = animated(Typography);
-  const AnimatedGrid = animated(Grid);
 
   const handleColorChange = (event) => {
     setTheme(event.target.value);
     setValue(event.target.value);
-    setIsActive(false);
+    setShowSetting(!showSetting);
+    setRight(0);
   };
 
   // Inspired by blueprintjs
@@ -154,26 +129,11 @@ export default function SettingPanel({ setTheme }) {
     );
   }
 
-  const SettingBoard = () => {
-    // const slideLeft = useSpring({
-    //   from: {
-    //     transform: "TranslateX(186px)",
-    //   },
-    //   to: {
-    //     transform: "TranslateX(0)",
-    //   },
-    // });
-
+  const Slider = () => {
     return (
-      <AnimatedGrid
-        item
-        container
-        // style={slideLeft}
-        className={classes.setting}
-      >
+      <Grid item container className={classes.setting} onClick={handleSlider}>
         <Grid item container className={classes.settingWrapper}>
           <Grid
-            onClick={() => setIsActive(!isActive)}
             item
             container
             justify="center"
@@ -200,7 +160,6 @@ export default function SettingPanel({ setTheme }) {
                 width: "100%",
                 height: "50px",
               }}
-              onClick={() => setIsActive(false)}
             >
               <Typography variant="h6">Settings</Typography>
             </Grid>
@@ -260,32 +219,23 @@ export default function SettingPanel({ setTheme }) {
             </Grid>
           </Grid>
         </Grid>
-      </AnimatedGrid>
+      </Grid>
     );
   };
 
   return (
     <Fragment>
-      {isActive && (
-        <Grid
-          item
-          onClick={() => setIsActive(false)}
-          className={classes.invisibleHandler}
-        />
-      )}
-
-      <Grid item className={classes.fixedContainer}>
-        {/* The transition function accepts a callback that receives four arguments which are
-        the animated values, the item, the Transition object, and the sibling position. */}
-        {!isActive && <SettingBoard />}
-        {transition(
-          (styles, isActive) =>
-            isActive && (
-              <animated.span style={styles}>
-                <SettingBoard />
-              </animated.span>
-            )
-        )}
+      <Grid container className={classes.fixedContainer}>
+        <ClickAwayListener
+          onClickAway={() => {
+            setShowSetting((toggle) => !toggle);
+            setRight(0);
+          }}
+        >
+          <animated.span style={slideRight}>
+            <Slider />
+          </animated.span>
+        </ClickAwayListener>
       </Grid>
     </Fragment>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, useMediaQuery } from "@material-ui/core";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
-import { animated, useSpring } from "react-spring";
+import { animated, useSpring, config } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   PageContainer: {
@@ -22,7 +22,7 @@ const PageContainer = (props) => {
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const AnimatedGrid = animated(Grid);
-  const slideLeft = useSpring({
+  const slideUp = useSpring({
     from: {
       position: "relative",
       transform: "translateY(15%)",
@@ -32,7 +32,9 @@ const PageContainer = (props) => {
       transform: "translateX(0)",
       opacity: 1,
     },
-    delay: 250,
+    config: config.gentle,
+    delay: 300,
+    // immediate: false,
   });
 
   return (
@@ -50,7 +52,7 @@ const PageContainer = (props) => {
         item
         container
         justify="center"
-        style={slideLeft}
+        style={slideUp}
         className={classes.pageWrapper}
       >
         {props.children}
