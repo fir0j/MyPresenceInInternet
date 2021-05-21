@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     top: theme.spacing(26),
     right: 0,
-    width: 250,
-    height: 250,
 
     [theme.breakpoints.down("lg")]: {
       top: theme.spacing(20),
@@ -39,12 +37,15 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     right: -191,
     width: "250px",
-    height: "200px",
+    height: "50px",
     cursor: "pointer",
   },
+
   settingWrapper: {
     color: theme.palette.primary.main,
     flexWrap: "nowrap",
+
+    height: "inherit",
   },
 
   root: {
@@ -94,7 +95,7 @@ export default function SettingPanel({ setTheme }) {
   // Slider component is being rendered by react-spring all the time using useSpring hook
   const slideRight = useSpring({
     position: "fixed",
-    top: 0,
+    // top: 0,
     right: right,
   });
 
@@ -148,7 +149,7 @@ export default function SettingPanel({ setTheme }) {
           >
             <Settings style={{ width: "60px", paddingRight: "10px" }} />
           </Grid>
-          <Grid item container style={{ flexBasis: "100%" }}>
+          <Grid item container>
             <Grid
               item
               container
@@ -171,8 +172,9 @@ export default function SettingPanel({ setTheme }) {
               alignItems="center"
               style={{
                 backgroundColor: theme.palette.accent.main,
-                height: "100%",
+                height: "150px",
                 flexGrow: 1,
+                // border: "1px solid red",
               }}
             >
               <Grid item>

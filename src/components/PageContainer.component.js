@@ -34,7 +34,6 @@ const PageContainer = (props) => {
     },
     config: config.gentle,
     delay: 300,
-    // immediate: false,
   });
 
   return (
