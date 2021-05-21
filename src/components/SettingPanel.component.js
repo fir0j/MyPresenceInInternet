@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
   settingWrapper: {
     color: theme.palette.primary.main,
     flexWrap: "nowrap",
-
     height: "inherit",
   },
 
@@ -95,7 +94,6 @@ export default function SettingPanel({ setTheme }) {
   // Slider component is being rendered by react-spring all the time using useSpring hook
   const slideRight = useSpring({
     position: "fixed",
-    // top: 0,
     right: right,
   });
 

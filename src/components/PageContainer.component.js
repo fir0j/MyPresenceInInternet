@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 const PageContainer = (props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const AnimatedGrid = animated(Grid);
   const slideUp = useSpring({
     from: {
@@ -33,7 +32,7 @@ const PageContainer = (props) => {
       opacity: 1,
     },
     config: config.gentle,
-    delay: 300,
+    delay: 100,
   });
 
   return (

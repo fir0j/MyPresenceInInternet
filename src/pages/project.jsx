@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useCallback } from "react";
 import * as utils from "../utils";
 import { ReactComponent as Demo } from "../assets/demo.svg";
 import { ReactComponent as HtmlIcon } from "../assets/html5.svg";
@@ -30,7 +30,7 @@ import {
 } from "@material-ui/core";
 
 import { ArrowDropDown, ArrowDropUp, GitHub } from "@material-ui/icons";
-import { animated, useSpring } from "react-spring";
+import { animated, useTransition } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   buttonRoot: {
@@ -113,22 +113,35 @@ export default function Project() {
   const [cards, setCards] = useState(utils.cardData);
 
   // pagination states
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
 
-  const [paginatedItems, setPaginatedItems] = useState([]);
   const [paginatedCards, setPaginatedCards] = useState([]);
 
   //  all these 3 states are for showing limited page numbers instead of all of the pages
   const [pageNumberLimit, setPageNumberLimit] = useState(3); // how many page numbers you want to display
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+  const [fromX, setFromX] = useState("500%");
+  const [leaveX, setLeaveX] = useState("-500%");
 
   const AnimatedGrid = animated(Grid);
-  const style = useSpring({
-    from: { transform: "translatedX(-10%)" },
-    enter: { transform: "translatedX(0)" },
-    leave: { transform: "translatedY(-10%)" },
+
+  const delays = [800, 600, 400, 200];
+  const transitions = useTransition(paginatedCards, {
+    from: { opacity: 0, x: fromX },
+
+    enter: {
+      opacity: 1,
+      x: "0%",
+    },
+
+    leave: {
+      position: "absolute",
+      opacity: 0,
+      x: leaveX,
+    },
+    trail: 150,
   });
 
   // smart and proper use of useEffect
@@ -136,26 +149,16 @@ export default function Project() {
     const lastCardAtCurrentPageNumber = currentPageNumber * itemsPerPage;
     const firstCardAtCurrentPageNumber =
       lastCardAtCurrentPageNumber - itemsPerPage;
-    const newPaginatedItems = cards.slice(
+    const newPaginatedCards = cards.slice(
       firstCardAtCurrentPageNumber,
       lastCardAtCurrentPageNumber
     );
-    setPaginatedItems(newPaginatedItems);
+
+    setPaginatedCards(newPaginatedCards);
 
     // currentPageNumber is primitive dependency and cards is referential dependency
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPageNumber, cards]);
-
-  // Use multiple effects to separate concerns
-  // effects don’t block the UI because they run asynchronously.
-  // the order of your effect definitions matter
-  //  Another strategy to skip unnecessary effects is to prevent unnecessary re-renders in the first place with, e.g., React.memo
-  // dependency array must be either state or props or pieces inside of states or props
-  useEffect(() => {
-    if (paginatedItems.length > 0) {
-      setPaginatedCards(paginatedItems);
-    }
-  }, [paginatedItems]);
 
   // sorting and filtering states
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -172,8 +175,17 @@ export default function Project() {
     setSelectedFilter(filterLabel);
     if (filterLabel !== "all") {
       filterProjects(filterLabel, rawData);
+      // whenever filter button is clicked, we need to start at starting page number
+      setCurrentPageNumber(1);
+      setPageNumberLimit(3);
+      setMaxPageNumberLimit(3);
+      setMinPageNumberLimit(0);
     } else {
       setCards(rawData);
+      setCurrentPageNumber(1);
+      setPageNumberLimit(3);
+      setMaxPageNumberLimit(3);
+      setMinPageNumberLimit(0);
     }
   };
 
@@ -371,95 +383,135 @@ export default function Project() {
     );
   };
 
-  const getIcon = (iconName, props = {}) => {
-    if (iconName === "HTML")
-      return <HtmlIcon className={classes.cardSvgIcon} />;
-    if (iconName === "CSS") return <CssIcon className={classes.cardSvgIcon} />;
-    if (iconName === "Javascript")
-      return <JsIcon className={classes.cardSvgIcon} />;
-    if (iconName === "React")
-      return <ReactIcon className={classes.cardSvgIcon} />;
-    if (iconName === "Redux")
-      return <ReduxIcon className={classes.cardSvgIcon} />;
-    if (iconName === "Material-UI")
-      return <MuiIcon className={classes.cardSvgIcon} />;
-    if (iconName === "React-Spring")
-      return <ReactSpringIcon className={classes.cardSvgIcon} />;
-    if (iconName === "Node")
-      return <NodeIcon className={classes.cardSvgIcon} />;
-  };
+  const DisplayCards = () => {
+    const getIcon = (iconName, props = {}) => {
+      if (iconName === "HTML")
+        return <HtmlIcon className={classes.cardSvgIcon} />;
+      if (iconName === "CSS")
+        return <CssIcon className={classes.cardSvgIcon} />;
+      if (iconName === "Javascript")
+        return <JsIcon className={classes.cardSvgIcon} />;
+      if (iconName === "React")
+        return <ReactIcon className={classes.cardSvgIcon} />;
+      if (iconName === "Redux")
+        return <ReduxIcon className={classes.cardSvgIcon} />;
+      if (iconName === "Material-UI")
+        return <MuiIcon className={classes.cardSvgIcon} />;
+      if (iconName === "React-Spring")
+        return <ReactSpringIcon className={classes.cardSvgIcon} />;
+      if (iconName === "Node")
+        return <NodeIcon className={classes.cardSvgIcon} />;
+    };
 
-  const ProjectCard = ({ name, date, image, technologies }) => {
-    return (
-      <Card elevation={3} className={classes.cardRoot}>
-        <CardHeader
-          title={name}
-          subheader={date}
-          subheaderTypographyProps={{
-            style: { color: theme.palette.secondary.main },
+    const ProjectCard = ({ id, name, date, technologies }) => {
+      return (
+        <Card elevation={3} className={classes.cardRoot}>
+          <CardHeader
+            title={`${id}.${name}`}
+            subheader={date}
+            subheaderTypographyProps={{
+              style: { color: theme.palette.secondary.main },
+            }}
+          />
+          <CardContent>
+            <Typography
+              color="secondary"
+              variant="body1"
+              component="p"
+              style={{ marginBottom: theme.spacing(1) }}
+            >
+              Lizards are a widespread group of squamate reptiles. Lizards are a
+              widespread group of squamate reptiles.
+            </Typography>
+            {technologies.map((item) => {
+              return (
+                <Chip
+                  key={item}
+                  label={item}
+                  variant="outlined"
+                  color="secondary"
+                  icon={getIcon(item)}
+                  style={{ margin: theme.spacing(0.5) }}
+                />
+              );
+            })}
+          </CardContent>
+          <CardActions>
+            <IconButton aria-label="github-button-link">
+              <GitHub color="secondary" />
+            </IconButton>
+            <IconButton aria-label="github-button-link">
+              <Demo
+                color="secondary"
+                className={classes.cardSvgIcon}
+                style={{ width: theme.spacing(4) }}
+              />
+            </IconButton>
+          </CardActions>
+        </Card>
+      );
+    };
+
+    const Stars = () => {
+      return (
+        <Grid
+          item
+          className={classes.star}
+          style={{
+            width: theme.spacing(70),
+            height: theme.spacing(70),
+            position: "absolute",
+            top: theme.spacing(20),
+            // left: -theme.spacing(70),
+            zIndex: -1,
+            opacity: 0.1,
+            overflow: "hidden",
+            transform: "skew(50deg,1deg)",
+            backgroundColor: theme.palette.accent.main,
           }}
         />
-        <CardContent>
-          <Typography
-            color="secondary"
-            variant="body1"
-            component="p"
-            style={{ marginBottom: theme.spacing(1) }}
+      );
+    };
+
+    // cacheing the result of loop in a variable in order to get performance benefit from re-renderings.
+    const cardList = paginatedCards.map((item, index) => {
+      return (
+        <Grid
+          item
+          className={`childCard-${index}`}
+          key={item.id}
+          style={{ margin: theme.spacing(1) }}
+        >
+          <ProjectCard
+            id={item.id}
+            name={item.name}
+            date={item.date}
+            technologies={item.technologies}
+          />
+        </Grid>
+      );
+    });
+
+    const animatedCardList = transitions(
+      (style, item) =>
+        item && (
+          <AnimatedGrid
+            style={style}
+            item
+            key={item.id}
+            className={classes.cardSpacing}
           >
-            Lizards are a widespread group of squamate reptiles. Lizards are a
-            widespread group of squamate reptiles.
-          </Typography>
-          {technologies.map((item) => {
-            return (
-              <Chip
-                key={item}
-                label={item}
-                variant="outlined"
-                color="secondary"
-                icon={getIcon(item)}
-                style={{ margin: theme.spacing(0.5) }}
-              />
-            );
-          })}
-        </CardContent>
-        <CardActions>
-          <IconButton aria-label="github-button-link">
-            <GitHub color="secondary" />
-          </IconButton>
-          <IconButton aria-label="github-button-link">
-            <Demo
-              color="secondary"
-              className={classes.cardSvgIcon}
-              style={{ width: theme.spacing(4) }}
+            <ProjectCard
+              id={item.id}
+              name={item.name}
+              date={item.date}
+              image={item.image}
+              technologies={item.technologies}
             />
-          </IconButton>
-        </CardActions>
-      </Card>
+          </AnimatedGrid>
+        )
     );
-  };
 
-  const Stars = () => {
-    return (
-      <Grid
-        item
-        className={classes.star}
-        style={{
-          width: theme.spacing(70),
-          height: theme.spacing(70),
-          position: "absolute",
-          top: theme.spacing(20),
-          // left: -theme.spacing(70),
-          zIndex: -1,
-          opacity: 0.1,
-          overflow: "hidden",
-          transform: "skew(50deg,1deg)",
-          backgroundColor: theme.palette.accent.main,
-        }}
-      />
-    );
-  };
-
-  const DisplayCards = () => {
     return (
       <Grid
         item
@@ -469,48 +521,19 @@ export default function Project() {
           position: "relative",
           overflow: "hidden",
           minHeight: theme.spacing(65),
+          // flexWrap: "nowrap",
         }}
         className={classes.cardContainer}
       >
-        {paginatedCards.map((item, index) => (
-          <AnimatedGrid
-            // className={`childCard-${index}`}
-            style={style}
-            item
-            key={item.id}
-            className={classes.cardSpacing}
-          >
-            <ProjectCard
-              name={item.name}
-              date={item.date}
-              image={item.image}
-              technologies={item.technologies}
-            />
-          </AnimatedGrid>
-        ))}
-        {/* {paginatedCards.map((item, index) => (
-          <Grid
-            className={`childCard-${index}`}
-            item
-            key={item.id}
-            style={{ margin: theme.spacing(1) }}
-          >
-            <ProjectCard
-              key={item.id}
-              name={item.name}
-              date={item.date}
-              image={item.image}
-              technologies={item.technologies}
-            />
-          </Grid>
-        ))} */}
+        {animatedCardList}
+
+        {/* {cardList} */}
         <Stars />
       </Grid>
     );
   };
 
   const Pagination = () => {
-    // currentPageNumbers and displayed cards are not in sync.
     // adding no.of pages into the pages []
     const pages = [];
     for (let i = 1; i <= Math.ceil(cards.length / itemsPerPage); i++) {
@@ -524,7 +547,14 @@ export default function Project() {
         setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
         setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
       }
-      setPaginatedCards(paginatedItems);
+
+      if (fromX !== "500%") {
+        setFromX("500%");
+      }
+
+      if (leaveX !== "-500%") {
+        setLeaveX("-500%");
+      }
     };
 
     const handlePrevButtonClick = () => {
@@ -533,7 +563,14 @@ export default function Project() {
         setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
         setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
       }
-      setPaginatedCards(paginatedItems);
+
+      if (fromX !== "-500%") {
+        setFromX("-500%");
+      }
+
+      if (leaveX !== "500%") {
+        setLeaveX("500%");
+      }
     };
 
     const PageIncreamentButton = () => {
@@ -685,3 +722,9 @@ export default function Project() {
     </PageContainer>
   );
 }
+
+// Use multiple effects to separate concerns
+// effects don’t block the UI because they run asynchronously.
+// the order of your effect definitions matter
+//  Another strategy to skip unnecessary effects is to prevent unnecessary re-renders in the first place with, e.g., React.memo
+// dependency array must be either state or props or pieces inside of states or props
