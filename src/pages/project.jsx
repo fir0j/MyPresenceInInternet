@@ -127,7 +127,6 @@ export default function Project() {
 
   const AnimatedGrid = animated(Grid);
 
-  const delays = [800, 600, 400, 200];
   const transitions = useTransition(paginatedCards, {
     from: { opacity: 0, x: fromX },
 
@@ -140,8 +139,9 @@ export default function Project() {
       position: "absolute",
       opacity: 0,
       x: leaveX,
+      y: "200%", // hiding leave animation
     },
-    trail: 150,
+    trail: 50,
   });
 
   // smart and proper use of useEffect
@@ -176,16 +176,16 @@ export default function Project() {
     if (filterLabel !== "all") {
       filterProjects(filterLabel, rawData);
       // whenever filter button is clicked, we need to start at starting page number
-      setCurrentPageNumber(1);
-      setPageNumberLimit(3);
-      setMaxPageNumberLimit(3);
-      setMinPageNumberLimit(0);
+      currentPageNumber !== 1 && setCurrentPageNumber(1);
+      pageNumberLimit !== 3 && setPageNumberLimit(3);
+      maxPageNumberLimit !== 3 && setMaxPageNumberLimit(3);
+      minPageNumberLimit !== 0 && setMinPageNumberLimit(0);
     } else {
       setCards(rawData);
-      setCurrentPageNumber(1);
-      setPageNumberLimit(3);
-      setMaxPageNumberLimit(3);
-      setMinPageNumberLimit(0);
+      currentPageNumber !== 1 && setCurrentPageNumber(1);
+      pageNumberLimit !== 3 && setPageNumberLimit(3);
+      maxPageNumberLimit !== 3 && setMaxPageNumberLimit(3);
+      minPageNumberLimit !== 0 && setMinPageNumberLimit(0);
     }
   };
 
@@ -473,24 +473,24 @@ export default function Project() {
       );
     };
 
-    // cacheing the result of loop in a variable in order to get performance benefit from re-renderings.
-    const cardList = paginatedCards.map((item, index) => {
-      return (
-        <Grid
-          item
-          className={`childCard-${index}`}
-          key={item.id}
-          style={{ margin: theme.spacing(1) }}
-        >
-          <ProjectCard
-            id={item.id}
-            name={item.name}
-            date={item.date}
-            technologies={item.technologies}
-          />
-        </Grid>
-      );
-    });
+    // // cacheing the result of loop in a variable in order to get performance benefit from re-renderings.
+    // const cardList = paginatedCards.map((item, index) => {
+    //   return (
+    //     <Grid
+    //       item
+    //       className={`childCard-${index}`}
+    //       key={item.id}
+    //       style={{ margin: theme.spacing(1) }}
+    //     >
+    //       <ProjectCard
+    //         id={item.id}
+    //         name={item.name}
+    //         date={item.date}
+    //         technologies={item.technologies}
+    //       />
+    //     </Grid>
+    //   );
+    // });
 
     const animatedCardList = transitions(
       (style, item) =>
