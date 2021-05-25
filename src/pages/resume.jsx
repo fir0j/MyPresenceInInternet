@@ -470,7 +470,7 @@ export default function Resume() {
                       align="center"
                       style={{ color: theme.palette.secondary.main }}
                     >
-                      9847021971
+                      +977 9847064013
                     </Typography>
                   </Grid>
                 </Grid>

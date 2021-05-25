@@ -706,11 +706,12 @@ export default function Project() {
           width: "100%",
           height: "auto",
           backgroundColor: theme.palette.primary.main,
+
           paddingLeft: theme.spacing(1),
           paddingRight: theme.spacing(1),
           marginBottom: theme.spacing(matchesXS ? 20 : 10),
-          zIndex: 0,
           overflow: "hidden",
+          zIndex: 0,
         }}
       >
         <HeaderWave />

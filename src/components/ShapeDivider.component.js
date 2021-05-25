@@ -71,14 +71,14 @@ function FooterWave() {
       item
       style={{
         position: "relative",
-        overflow: "hidden",
         lineHeight: 0,
-        transform: "rotate(180deg)",
+        transform: "rotateZ(180deg)",
         marginLeft: -theme.spacing(1),
         marginRight: -theme.spacing(1),
         borderTopRightRadius: theme.spacing(1),
         borderTopLeftRadius: theme.spacing(1),
         maxWidth: "100vw",
+        overflow: "hidden",
       }}
     >
       <svg
@@ -90,13 +90,15 @@ function FooterWave() {
           position: "relative",
           width: "calc(300% + 1.3px)",
           height: matchesXL ? (matchesMD ? (matchesXS ? 50 : 80) : 100) : 100,
-          transform: "rotateY(180deg)",
           background:
             "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
           // background:
           //   "linear-gradient(135deg, rgba(170,184,110,1) 0%, rgba(180,137,49,1) 100%)",
           opacity: 0.7,
           fill: theme.palette.primary.main,
+          transform: "rotateY(180deg)",
+          borderTopRightRadius: theme.spacing(1),
+          borderTopLeftRadius: theme.spacing(1),
         }}
       >
         <path

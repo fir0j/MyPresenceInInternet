@@ -9,6 +9,7 @@ const dark = "#2C2C2C";
 const portfolioGrey = "#8b8b8b";
 const green = "#4ae4b8";
 const gold = "#B29155";
+const bgGreenish = "rgb(76 84 82)";
 
 // It is EXACTLY the place to visit if MUI-DEFAUL-THEME needs to be CUSTOMIZED/OVERWRITTEN with our custom variant GLOBALLY.
 // It is the global theme(Style) which can be accessed all over the application.
@@ -36,8 +37,13 @@ const cyanTheme = {
       panelColor: black,
       tab: black,
       bg: black,
-      backgroundColor: "#212121",
+      backgroundColor: dark,
       filterGrey: "rgb(30, 30, 30)",
+      paperLayer: "rgba(38,38,38,1)",
+      coreWeb: "rgba(74,228,184,0.85)",
+      library: "rgba(74,228,184,0.7)",
+      runtime: "rgba(74,228,184,0.5)",
+      database: "rgba(74,228,184,0.3)",
       // contrastText: "",
     },
     primary: {
@@ -123,10 +129,12 @@ const goldTheme = {
       tab: black,
       backgroundColor: "#212121",
       bg: grey[900],
+      paperLayer: "rgba(20,20,20,1)",
       filterGrey: "rgb(30, 30, 30)",
-      color1: gold,
-      color2: green,
-
+      coreWeb: "rgba(178,145,85,0.85)",
+      library: "rgba(178,145,85,0.7)",
+      runtime: "rgba(178,145,85,0.5)",
+      database: "rgba(178,145,85,0.3)",
       // contrastText: "",
     },
     primary: {
