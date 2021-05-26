@@ -11,12 +11,12 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { ReactComponent as Work } from "../assets/work.svg";
 import { ReactComponent as LangaugeIcon } from "../assets/language.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
 import { ReactComponent as Education } from "../assets/education.svg";
 import { ReactComponent as StackOverflow } from "../assets/stackOverflow.svg";
+import { ReactComponent as ExternalLink } from "../assets/external-link.svg";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     backgroundColor: theme.palette.primary.main,
 
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     marginBottom: theme.spacing(1),
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(20),
@@ -61,7 +61,7 @@ export default function ShapeDivider() {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
-  function Circle({ color }) {
+  function Circle({ color, marginRight }) {
     return (
       <p
         style={{
@@ -70,6 +70,7 @@ export default function ShapeDivider() {
           height: theme.spacing(1),
           borderRadius: "50%",
           backgroundColor: color,
+          marginRight: marginRight ? marginRight : undefined,
         }}
       />
     );
@@ -248,7 +249,7 @@ export default function ShapeDivider() {
                   item
                   style={{
                     fontSize: matchesSM ? "1rem" : "1.4rem",
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.secondary.main,
                     height: theme.spacing(5),
                   }}
                 >
@@ -295,14 +296,14 @@ export default function ShapeDivider() {
             Icon={
               <ProjectIcon
                 style={{
-                  fill: theme.palette.common.offWhite,
+                  fill: theme.palette.secondary.main,
                   marginLeft: theme.spacing(2),
                   width: theme.spacing(4),
                 }}
               />
             }
             count="18"
-            accentColor={theme.palette.secondary.main}
+            accentColor={theme.palette.common.offWhite}
             marginRight={theme.spacing(2)}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
@@ -312,14 +313,14 @@ export default function ShapeDivider() {
             Icon={
               <Work
                 style={{
-                  fill: theme.palette.common.offWhite,
+                  fill: theme.palette.secondary.main,
                   marginLeft: matchesSM ? theme.spacing(1) : theme.spacing(2),
                   width: matchesSM ? theme.spacing(3) : theme.spacing(4),
                 }}
               />
             }
             count="1"
-            accentColor={theme.palette.secondary.main}
+            accentColor={theme.palette.common.offWhite}
             marginRight={matchesMD ? "" : theme.spacing(2)}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
@@ -329,7 +330,7 @@ export default function ShapeDivider() {
             Icon={
               <Education
                 style={{
-                  fill: theme.palette.common.offWhite,
+                  fill: theme.palette.secondary.main,
                   marginLeft: theme.spacing(2),
                   width: theme.spacing(5),
                   marginTop: -theme.spacing(1.8),
@@ -337,7 +338,7 @@ export default function ShapeDivider() {
               />
             }
             count="1"
-            accentColor={theme.palette.secondary.main}
+            accentColor={theme.palette.common.offWhite}
             marginRight={theme.spacing(2)}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
@@ -347,14 +348,14 @@ export default function ShapeDivider() {
             Icon={
               <LangaugeIcon
                 style={{
-                  fill: theme.palette.common.offWhite,
+                  fill: theme.palette.secondary.main,
                   marginLeft: theme.spacing(1.5),
                   width: theme.spacing(4),
                 }}
               />
             }
             count="4"
-            accentColor={theme.palette.secondary.main}
+            accentColor={theme.palette.common.offWhite}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
           />
@@ -381,7 +382,7 @@ export default function ShapeDivider() {
         >
           <Grid container justify="center">
             <Grid item>
-              <StackOverflow />
+              <StackOverflow style={{ fill: theme.palette.accent.main }} />
             </Grid>
             <Grid item container justify="space-around">
               <Grid item style={{ color: "#4e6f8a" }}>
@@ -390,7 +391,7 @@ export default function ShapeDivider() {
                   style={{
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.secondary.main,
                   }}
                 >
                   Reputation
@@ -413,7 +414,7 @@ export default function ShapeDivider() {
                   style={{
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.secondary.main,
                   }}
                 >
                   Silver
@@ -441,7 +442,7 @@ export default function ShapeDivider() {
                   style={{
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.secondary.main,
                   }}
                 >
                   Bronze
@@ -462,15 +463,231 @@ export default function ShapeDivider() {
           </Grid>
         </Paper>
       </Grid>
-      // </Grid>
     );
   }
 
-  function OnlineCourse() {
+  function CourseAndWishlist() {
     return (
-      <Paper elevation={3} className={classes.smallPaper}>
-        Online WebDev Courses
-      </Paper>
+      <Grid
+        item
+        style={{ marginTop: theme.spacing(2) }}
+        container
+        justify="space-between"
+      >
+        <Grid item xl lg md sm style={{ marginRight: theme.spacing(1) }}>
+          <Paper
+            elevation={3}
+            className={classes.smallPaper}
+            style={{
+              height: "auto",
+              paddingBottom: theme.spacing(4.5),
+              paddingTop: theme.spacing(1),
+            }}
+          >
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  style={{
+                    fontSize: "1.2rem",
+                    color: theme.palette.common.offWhite,
+                  }}
+                >
+                  Web Development Courses Online
+                </Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1.5rem",
+                    color: theme.palette.common.offWhite,
+                    marginBottom: theme.spacing(2),
+                    marginTop: theme.spacing(2),
+                  }}
+                >
+                  4
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.secondary.main}
+                    marginRight={theme.spacing(1)}
+                  />
+                  The Complete Web Developer in 2021: Zero to Mastery
+                  <a
+                    href="https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.common.offWhite,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.secondary.main}
+                    marginRight={theme.spacing(1)}
+                  />
+                  Implement High Fidelity Designs with Material-UI and ReactJS
+                  <a
+                    href="https://www.udemy.com/course/implement-high-fidelity-designs-with-material-ui-and-reactjs/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.common.offWhite,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.secondary.main}
+                    marginRight={theme.spacing(1)}
+                  />
+                  The Complete Junior to Senior Web Developer Roadmap (2021)
+                  <a
+                    href="https://www.udemy.com/course/the-complete-junior-to-senior-web-developer-roadmap/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.common.offWhite,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.secondary.main}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MERN Stack React Node Ecommerce from Scratch to Deployment
+                  <a
+                    href="https://www.udemy.com/course/react-node-ecommerce/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.common.offWhite,
+                      }}
+                    />
+                  </a>
+                </Typography>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+
+        <Grid item xl lg md sm style={{ marginLeft: theme.spacing(1) }}>
+          <Paper
+            elevation={3}
+            className={classes.smallPaper}
+            style={{
+              height: "auto",
+              paddingBottom: theme.spacing(4.5),
+              paddingTop: theme.spacing(1),
+            }}
+          >
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  style={{
+                    fontSize: "1.2rem",
+                    color: theme.palette.common.offWhite,
+                  }}
+                >
+                  Next Techonology in my Whishlist
+                </Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1.5rem",
+                    color: theme.palette.common.offWhite,
+                    marginBottom: theme.spacing(2),
+                    marginTop: theme.spacing(2),
+                  }}
+                >
+                  2
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.secondary.main}
+                    marginRight={theme.spacing(1)}
+                  />
+                  Typescript
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.secondary.main}
+                    marginRight={theme.spacing(1)}
+                  />
+                  React Native
+                </Typography>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      </Grid>
     );
   }
   // Next Skillsets in my wishlish: 2 Typescript and reactNative
@@ -478,12 +695,18 @@ export default function ShapeDivider() {
   return (
     <PageContainer>
       <Paper elevation={5} className={classes.paper}>
-        <HeaderWave />
+        <HeaderWave
+          marginLeft={-theme.spacing(2)}
+          marginRight={-theme.spacing(2)}
+        />
         <WebTechnologies />
         <ProjectExperienceDegree />
         <StackOverFlowStatus />
-        <OnlineCourse />
-        <FooterWave />
+        <CourseAndWishlist />
+        <FooterWave
+          marginLeft={-theme.spacing(2)}
+          marginRight={-theme.spacing(2)}
+        />
       </Paper>
     </PageContainer>
   );

@@ -149,7 +149,7 @@ function AnimatedPie({ animate, arcs, path, getKey, getColor, onClickDatum }) {
                   x={centroidX}
                   y={centroidY}
                   dy=".33em"
-                  fontSize={9}
+                  fontSize={11}
                   textAnchor="middle"
                   pointerEvents="none"
                 >

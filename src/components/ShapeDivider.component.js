@@ -10,7 +10,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({}));
 
-function HeaderWave() {
+function HeaderWave({ marginLeft, marginRight }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -25,8 +25,8 @@ function HeaderWave() {
         overflow: "hidden",
         lineHeight: 5,
         transform: "rotate(0deg)",
-        marginLeft: -theme.spacing(1),
-        marginRight: -theme.spacing(1),
+        marginLeft: marginLeft,
+        marginRight: marginRight,
         borderTopRightRadius: theme.spacing(1),
         borderTopLeftRadius: theme.spacing(1),
       }}
@@ -59,7 +59,7 @@ function HeaderWave() {
   );
 }
 
-function FooterWave() {
+function FooterWave({ marginLeft, marginRight }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -73,8 +73,8 @@ function FooterWave() {
         position: "relative",
         lineHeight: 0,
         transform: "rotateZ(180deg)",
-        marginLeft: -theme.spacing(1),
-        marginRight: -theme.spacing(1),
+        marginLeft: marginLeft,
+        marginRight: marginRight,
         borderTopRightRadius: theme.spacing(1),
         borderTopLeftRadius: theme.spacing(1),
         maxWidth: "100vw",

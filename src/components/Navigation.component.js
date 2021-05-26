@@ -9,7 +9,7 @@ import { ReactComponent as Logo } from "../assets/logo.svg";
 import { ReactComponent as Resume } from "../assets/resume.svg";
 import { ReactComponent as Hireme } from "../assets/hireme.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
-import { ReactComponent as FeedbackIcon } from "../assets/feedbackIcon.svg";
+import { ReactComponent as FeedbackIcon } from "../assets/laptop2.svg";
 
 const useStyles = makeStyles((theme) => ({
   tabsContainer: {

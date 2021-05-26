@@ -706,7 +706,6 @@ export default function Project() {
           width: "100%",
           height: "auto",
           backgroundColor: theme.palette.primary.main,
-
           paddingLeft: theme.spacing(1),
           paddingRight: theme.spacing(1),
           marginBottom: theme.spacing(matchesXS ? 20 : 10),
@@ -714,11 +713,17 @@ export default function Project() {
           zIndex: 0,
         }}
       >
-        <HeaderWave />
+        <HeaderWave
+          marginLeft={-theme.spacing(1)}
+          marginRight={-theme.spacing(1)}
+        />
         <SortAndFilterControls />
         <DisplayCards />
         <Pagination />
-        <FooterWave />
+        <FooterWave
+          marginLeft={-theme.spacing(1)}
+          marginRight={-theme.spacing(1)}
+        />
       </Paper>
     </PageContainer>
   );
