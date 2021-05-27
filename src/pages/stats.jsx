@@ -13,11 +13,10 @@ import {
 } from "@material-ui/core";
 import { ReactComponent as Work } from "../assets/work.svg";
 import { ReactComponent as LangaugeIcon } from "../assets/language.svg";
-import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
+import { ReactComponent as ProjectIcon } from "../assets/projectSvgIcon.svg";
 import { ReactComponent as Education } from "../assets/education.svg";
 import { ReactComponent as StackOverflow } from "../assets/stackOverflow.svg";
 import { ReactComponent as ExternalLink } from "../assets/external-link.svg";
-import { getThemeProps } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -332,7 +331,7 @@ export default function ShapeDivider() {
               <ProjectIcon
                 style={{
                   fill: theme.palette.secondary.main,
-                  marginLeft: theme.spacing(2),
+                  marginLeft: theme.spacing(1),
                   width: theme.spacing(4),
                 }}
               />

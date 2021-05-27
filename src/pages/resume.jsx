@@ -67,8 +67,11 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     margin: theme.spacing(2),
     minWidth: theme.spacing(21),
+    minHeight: theme.spacing(21),
+
     [theme.breakpoints.down("xs")]: {
       minWidth: theme.spacing(10),
+      minHeight: theme.spacing(10),
     },
   },
 
@@ -164,21 +167,6 @@ export default function Resume() {
       className={classes.container}
       style={{ marginBottom: theme.spacing(5) }}
     >
-      {/* <Grid
-        item
-        container
-        xl={8}
-        lg={8}
-        md={8}
-        sm={matchesSM ? 12 : 8}
-        style={{
-          border: `3px solid ${theme.palette.accent.main}`,
-          borderTopRightRadius: "15em",
-          borderBottomRightRadius: "15em",
-          flexWrap: "nowrap",
-          maxHeight: theme.spacing(44),
-        }}
-      > */}
       <ContainerWithGradientBorder
         item
         container
@@ -414,18 +402,6 @@ export default function Resume() {
             </Grid>
           </Grid>
 
-          {/* <Grid
-            item
-            xl={8}
-            container
-            justify="center"
-            style={{
-              border: `3px solid ${theme.palette.accent.main}`,
-              maxWidth: theme.spacing(36),
-              maxHeight: theme.spacing(36),
-              padding: theme.spacing(1),
-            }}
-          > */}
           <ContainerWithGradientBorder
             item
             xl={8}
@@ -505,7 +481,6 @@ export default function Resume() {
               </Grid>
             </Grid>
           </ContainerWithGradientBorder>
-          {/* </Grid> */}
         </Grid>
       </Hidden>
       <Grid

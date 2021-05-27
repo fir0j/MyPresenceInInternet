@@ -44,6 +44,7 @@ const cyanTheme = {
       library: "rgba(74,228,184,0.7)",
       runtime: "rgba(74,228,184,0.5)",
       database: "rgba(74,228,184,0.3)",
+      messageBox: "rgba(38,38,38,1)",
       // contrastText: "",
     },
     primary: {
@@ -102,6 +103,33 @@ const cyanTheme = {
       disableRipple: true,
     },
   },
+
+  // overrides: {
+  //   MuiInput: {
+  //     root: {
+  //       color: green,
+  //       fontWeight: 300,
+  //     },
+  //     underline: {
+  //       "&:before": {
+  //         borderBottom: `2px solid ${portfolioGrey}`,
+  //       },
+  //       "&:hover:not($disabled):not($focused):not($error):before": {
+  //         borderBottom: `2px solid ${portfolioGrey}`,
+  //       },
+  //       "&:after": {
+  //         borderBottom: `2px solid rgba(74,228,184,0.8)`,
+  //       },
+  //     },
+  //   },
+
+  //   MuiInputLabel: {
+  //     root: {
+  //       color: portfolioGrey,
+  //       fontSize: "1.1rem",
+  //     },
+  //   },
+  // },
 };
 
 const goldTheme = {
@@ -135,6 +163,7 @@ const goldTheme = {
       library: "rgba(178,145,85,0.7)",
       runtime: "rgba(178,145,85,0.5)",
       database: "rgba(178,145,85,0.3)",
+      messageBox: "rgba(18,18,18,1)",
       // contrastText: "",
     },
     primary: {
