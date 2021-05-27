@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PageContainer from "../components/PageContainer.component";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
@@ -113,11 +113,17 @@ export default function HireMe() {
   const [phoneHelper, setPhoneHelper] = useState("");
   const [message, setMessage] = useState("");
   const [alert, setAlert] = useState({
-    open: false,
-    message: "",
-    backgroundColor: "",
+    open: true,
+    message: "I love you",
+    backgroundColor: "blue",
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (name.length === 0) setNameHelper("");
+    if (email.length === 0) setEmailHelper("");
+    if (phone.length === 0) setPhoneHelper("");
+  }, [name, email, phone]);
 
   // shortening to single change handler for multiple inputs
   const handleChange = (event) => {
@@ -128,31 +134,37 @@ export default function HireMe() {
       case "name":
         setName(event.target.value);
         valid = /^[a-zA-Z ]+[a-zA-Z]+$/.test(event.target.value);
-        if (!valid) {
-          setNameHelper("Invalid Name");
-        } else {
+        if (valid) {
           setNameHelper("");
+        } else {
+          if (nameHelper.length > 0) return;
+          setNameHelper("Invalid Name");
         }
         break;
+
       case "email":
         setEmail(event.target.value);
         valid =
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             event.target.value
           );
-        if (!valid) {
-          setEmailHelper("Invalid Email");
-        } else {
+        if (valid) {
           setEmailHelper("");
+        } else {
+          if (emailHelper.length > 0) return;
+          setEmailHelper("Invalid Email");
         }
+
         break;
+
       case "phone":
         setPhone(event.target.value);
         valid = /^[0-9+]{10,14}$/.test(event.target.value);
-        if (!valid) {
-          setPhoneHelper("Invalid Phone");
-        } else {
+        if (valid) {
           setPhoneHelper("");
+        } else {
+          if (phoneHelper.length > 0) return;
+          setPhoneHelper("Invalid Email");
         }
         break;
 
@@ -190,10 +202,10 @@ export default function HireMe() {
         setLoading(false);
         setAlert({
           open: true,
-          message: "Something went wrong, please try again!",
+          message: `${err.message}! Check your internet connection.`,
           backgroundColor: "#FF3232",
         });
-        console.log(err);
+        console.log("Messege Sending Failed with", err.message);
       });
   };
 
@@ -231,10 +243,10 @@ export default function HireMe() {
       message={alert.message}
       ContentProps={{
         style: {
-          backgroundColor: theme.palette.accent.main,
+          backgroundColor: alert.backgroundColor,
         },
       }}
-      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       onClose={() => setAlert({ ...alert, open: false })}
       autoHideDuration={4000}
     />
@@ -251,20 +263,8 @@ export default function HireMe() {
         style: {
           paddingTop: matchesXS ? "1em" : "5em",
           paddingBottom: matchesXS ? "1em" : "5em",
-          paddingLeft: matchesXS
-            ? 0
-            : matchesSM
-            ? "5em"
-            : matchesMD
-            ? "15em"
-            : "25em",
-          paddingRight: matchesXS
-            ? 0
-            : matchesSM
-            ? "5em"
-            : matchesMD
-            ? "15em"
-            : "25em",
+          paddingLeft: matchesXS ? "" : theme.spacing(matchesMD ? 15 : 10),
+          paddingRight: matchesXS ? "" : theme.spacing(matchesMD ? 15 : 10),
         },
       }}
     >
@@ -284,7 +284,8 @@ export default function HireMe() {
               id="name"
               type="name"
               value={name}
-              onChange={handleChange}
+              disabled
+              // onChange={handleChange}
             />
           </Grid>
           <Grid item style={{ marginBottom: "0.5em" }}>
@@ -296,7 +297,8 @@ export default function HireMe() {
               id="email"
               type="email"
               value={email}
-              onChange={handleChange}
+              disabled
+              // onChange={handleChange}
             />
           </Grid>
           <Grid item style={{ marginBottom: "0.5em" }}>
@@ -308,7 +310,8 @@ export default function HireMe() {
               id="phone"
               type="phone"
               value={phone}
-              onChange={handleChange}
+              disabled
+              // onChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -322,7 +325,14 @@ export default function HireMe() {
             id="message"
             multiline
             rows={10}
+            disabled
             onChange={(event) => setMessage(event.target.value)}
+            style={{
+              border: `1px solid ${theme.palette.secondary.main}`,
+              borderRadius: 5,
+              paddingLeft: theme.spacing(1),
+              paddingRight: theme.spacing(1),
+            }}
           />
         </Grid>
         <Grid
@@ -352,26 +362,27 @@ export default function HireMe() {
                 emailHelper.length !== 0 ||
                 phone.length === 0 ||
                 phoneHelper.length !== 0 ||
-                message.length === 0
+                message.length === 0 ||
+                loading === true
               }
               onClick={onSendConfirm}
             >
+              Send Message
               {loading ? (
-                <CircularProgress size={30} />
+                <CircularProgress size={25} style={{ marginLeft: "1em" }} />
               ) : (
-                <React.Fragment>
-                  Send Message
-                  <Airplane
-                    style={{
-                      marginLeft: "1em",
-                      fill: theme.palette.primary.main,
-                    }}
-                  />
-                </React.Fragment>
+                <Airplane
+                  style={{
+                    marginLeft: "1em",
+                    fill: theme.palette.primary.main,
+                  }}
+                />
               )}
             </Button>
           </Grid>
         </Grid>
+        {/* <Grid item>hi</Grid> */}
+        {snackbar}
       </DialogContent>
     </Dialog>
   );
@@ -382,7 +393,7 @@ export default function HireMe() {
         <Grid item style={{ marginBottom: "0.5em" }}>
           <TextField
             fullWidth
-            error={nameHelper.length !== 0}
+            error={nameHelper.length}
             helperText={nameHelper}
             label="Name"
             id="name"
@@ -406,7 +417,7 @@ export default function HireMe() {
         <Grid item style={{ marginBottom: "0.5em" }}>
           <TextField
             fullWidth
-            error={emailHelper.length !== 0}
+            error={emailHelper.length}
             helperText={emailHelper}
             label="Email"
             id="email"
@@ -430,7 +441,8 @@ export default function HireMe() {
         <Grid item style={{ marginBottom: "0.5em" }}>
           <TextField
             fullWidth
-            error={phoneHelper.length !== 0}
+            // int 0 is evaluated true and > 0 is evaluated as false
+            error={phoneHelper.length}
             helperText={phoneHelper}
             label="Phone"
             id="phone"
@@ -542,8 +554,8 @@ export default function HireMe() {
             direction="column"
             justify="center"
             alignItems={matchesSM ? "center" : "flex-start"}
-            lg={4}
-            xl={3}
+            // lg={4}
+            // xl={3}
             style={{
               margingBottom: matchesMD ? "5em" : 0,
             }}
@@ -586,7 +598,7 @@ export default function HireMe() {
             </Grid>
           </Grid>
           {dialog}
-          {snackbar}
+          {/* {snackbar} */}
         </Grid>
         <FooterWave
           marginLeft={-theme.spacing(2)}
