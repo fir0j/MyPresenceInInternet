@@ -2,6 +2,12 @@ import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 import grey from "@material-ui/core/colors/grey";
 const breakpoints = createBreakpoints({}); // in order to be able to use breakpoint in this file
 
+// layout
+// cors
+// card incomplete data
+// animations
+// muiNote
+
 const offWhite = grey[400];
 const black = "#000";
 const white = "#FFF";
@@ -134,6 +140,11 @@ const cyanTheme = {
   // },
 };
 
+// ADVANCE GRADIENT generating TECHNIQUE
+// background:
+//   "linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)",
+// backgroundBlendMode: "multiply",
+
 const goldTheme = {
   // adding super small (ss) custom breakpoints
   breakpoints: {
@@ -168,6 +179,7 @@ const goldTheme = {
       messageBox: "rgba(18,18,18,1)",
       myGradient:
         "linear-gradient(135deg, rgba(170,184,110,1) 0%, rgba(180,137,49,1) 100%)",
+
       // contrastText: "",
     },
     primary: {

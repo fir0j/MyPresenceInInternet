@@ -12,6 +12,9 @@ function HeaderWave({ marginLeft, marginRight }) {
     <Grid
       item
       style={{
+        // position: "absolute",
+        // top: 0,
+        // width: "100%",
         position: "relative",
         overflow: "hidden",
         lineHeight: 5,
@@ -57,6 +60,9 @@ function FooterWave({ marginLeft, marginRight }) {
     <Grid
       item
       style={{
+        // position: "absolute",
+        // bottom: 0,
+        // width: "100%",
         position: "relative",
         lineHeight: 0,
         transform: "rotateZ(180deg)",

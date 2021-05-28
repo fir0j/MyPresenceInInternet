@@ -536,7 +536,6 @@ export default function Project() {
           position: "relative",
           overflow: "hidden",
           minHeight: theme.spacing(65),
-          // flexWrap: "nowrap",
         }}
         className={classes.cardContainer}
       >
@@ -693,7 +692,12 @@ export default function Project() {
 
     return (
       <Fragment>
-        <Grid item container justify="center">
+        <Grid
+          item
+          container
+          justify="center"
+          style={{ marginBottom: theme.spacing(4) }}
+        >
           <Grid item>
             <ButtonGroup
               color="secondary"
@@ -715,30 +719,22 @@ export default function Project() {
   return (
     <PageContainer>
       <Paper
-        elevation={5}
+        elevation={3}
         style={{
           position: "relative",
           width: "100%",
           height: "auto",
           backgroundColor: theme.palette.primary.main,
-          paddingLeft: theme.spacing(1),
-          paddingRight: theme.spacing(1),
-          marginBottom: theme.spacing(matchesXS ? 20 : 10),
           overflow: "hidden",
           zIndex: 0,
+          borderRadius: theme.spacing(1),
         }}
       >
-        <HeaderWave
-          marginLeft={-theme.spacing(1)}
-          marginRight={-theme.spacing(1)}
-        />
+        <HeaderWave />
         <SortAndFilterControls />
         <DisplayCards />
         <Pagination />
-        <FooterWave
-          marginLeft={-theme.spacing(1)}
-          marginRight={-theme.spacing(1)}
-        />
+        <FooterWave />
       </Paper>
     </PageContainer>
   );

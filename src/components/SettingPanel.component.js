@@ -22,13 +22,10 @@ const useStyles = makeStyles((theme) => ({
       top: theme.spacing(20),
     },
     [theme.breakpoints.down("md")]: {
-      top: theme.spacing(18),
-    },
-    [theme.breakpoints.down("md")]: {
       top: theme.spacing(31),
     },
-    [theme.breakpoints.down("xs")]: {
-      top: 1,
+    [theme.breakpoints.down("sm")]: {
+      top: 45,
     },
   },
 

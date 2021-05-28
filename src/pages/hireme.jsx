@@ -29,14 +29,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "auto",
     backgroundColor: theme.palette.primary.main,
-
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    marginBottom: theme.spacing(1),
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: theme.spacing(20),
-    },
-    // marginBottom: theme.spacing(matchesXS ? 20 : 10),
+    borderRadius: theme.spacing(1),
     zIndex: 0,
   },
 
@@ -541,13 +534,25 @@ export default function HireMe() {
 
   return (
     <PageContainer>
-      <Paper elevation={5} className={classes.paper}>
-        <HeaderWave
-          marginLeft={-theme.spacing(2)}
-          marginRight={-theme.spacing(2)}
-        />
+      <Paper
+        elevation={5}
+        className={classes.paper}
+        style={{
+          // placing here for high specificity
+          overflow: "hidden",
+        }}
+      >
+        <HeaderWave />
 
-        <Grid container justify="flex-start" direction="row">
+        <Grid
+          container
+          justify="flex-start"
+          direction="row"
+          style={{
+            paddingLeft: theme.spacing(2),
+            paddingRight: theme.spacing(2),
+          }}
+        >
           <Grid
             item
             container
@@ -600,10 +605,7 @@ export default function HireMe() {
           {dialog}
           {/* {snackbar} */}
         </Grid>
-        <FooterWave
-          marginLeft={-theme.spacing(2)}
-          marginRight={-theme.spacing(2)}
-        />
+        <FooterWave />
       </Paper>
     </PageContainer>
   );

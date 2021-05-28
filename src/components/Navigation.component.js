@@ -147,6 +147,7 @@ export default function Navigation() {
 
   const [value, setValue] = useState(1);
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
@@ -177,18 +178,18 @@ export default function Navigation() {
 
   const verticalTabs = (
     <Tabs
-      orientation={matchesXS ? "horizontal" : "vertical"}
+      orientation={matchesSM ? "horizontal" : "vertical"}
       value={value}
       onChange={handleChange}
-      aria-label={matchesXS ? "horizontal tabs" : "Vertical tabs"}
+      aria-label={matchesSM ? "horizontal tabs" : "Vertical tabs"}
       classes={{
-        flexContainer: matchesXS && classes.flexContainer,
-        flexContainerVertical: !matchesXS && classes.tabsFlexContainerVertical,
+        flexContainer: matchesSM && classes.flexContainer,
+        flexContainerVertical: !matchesSM && classes.tabsFlexContainerVertical,
         indicator: classes.tabsIndicator,
       }}
       className={classes.tabsContainer}
     >
-      <Hidden xsDown>
+      <Hidden smDown>
         <Tab
           label=""
           disabled
@@ -233,7 +234,7 @@ export default function Navigation() {
           borderBottomRightRadius:
             value - getIndex(1) === 1
               ? matchesMD
-                ? matchesXS
+                ? matchesSM
                   ? undefined
                   : "40px"
                 : "80px"
@@ -259,7 +260,7 @@ export default function Navigation() {
           borderTopRightRadius:
             value - getIndex(2) === -1
               ? matchesMD
-                ? matchesXS
+                ? matchesSM
                   ? undefined
                   : "40px"
                 : "80px"
@@ -267,7 +268,7 @@ export default function Navigation() {
           borderBottomRightRadius:
             value - getIndex(2) === 1
               ? matchesMD
-                ? matchesXS
+                ? matchesSM
                   ? undefined
                   : "40px"
                 : "80px"
@@ -293,7 +294,7 @@ export default function Navigation() {
           borderTopRightRadius:
             value + getIndex(3) === 5
               ? matchesMD
-                ? matchesXS
+                ? matchesSM
                   ? undefined
                   : "40px"
                 : "80px"
@@ -301,7 +302,7 @@ export default function Navigation() {
           borderBottomRightRadius:
             value + getIndex(3) === 7
               ? matchesMD
-                ? matchesXS
+                ? matchesSM
                   ? undefined
                   : "40px"
                 : "80px"
@@ -327,14 +328,14 @@ export default function Navigation() {
           borderTopRightRadius:
             value + getIndex(4) === 7
               ? matchesMD
-                ? matchesXS
+                ? matchesSM
                   ? undefined
                   : "40px"
                 : "80px"
               : undefined,
         }}
       />
-      <Hidden xsDown>
+      <Hidden smDown>
         <Tab
           label=""
           disabled
@@ -367,11 +368,15 @@ export default function Navigation() {
         lg={2}
         xl={2}
         style={{
-          position: matchesXS ? "fixed" : "relative",
-          bottom: matchesXS ? 0 : undefined,
-          maxWidth: matchesXS ? "100%" : "310px",
-          height: matchesXS ? theme.spacing(10.7) : undefined,
-          zIndex: matchesXS ? 1 : undefined,
+          position: matchesSM ? "fixed" : "relative",
+          bottom: matchesSM ? 0 : undefined,
+          maxWidth: matchesSM ? "100%" : "310px",
+          height: matchesSM
+            ? matchesXS
+              ? theme.spacing(10.7)
+              : theme.spacing(12.5)
+            : undefined,
+          zIndex: matchesSM ? 1 : undefined,
           // border: "1px solid red",
         }}
       >
@@ -379,8 +384,12 @@ export default function Navigation() {
           elevation={0}
           style={{
             width: "100%",
-            height: matchesXS ? "inherit" : "100vh",
-            maxHeight: matchesXS ? theme.spacing(10.8) : "100vh",
+            height: matchesSM ? "inherit" : "100vh",
+            maxHeight: matchesSM
+              ? matchesXS
+                ? theme.spacing(10.8)
+                : theme.spacing(12.6)
+              : "100vh",
             backgroundColor: "transparent",
           }}
         >

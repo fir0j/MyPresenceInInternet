@@ -14,12 +14,15 @@ const useStyles = makeStyles((theme) => ({
   },
   pageWrapper: {
     maxWidth: theme.spacing(170),
+    paddingBottom: theme.spacing(7),
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: theme.spacing(20),
+    },
   },
 }));
 
 const PageContainer = (props) => {
   const classes = useStyles();
-  const theme = useTheme();
   const AnimatedGrid = animated(Grid);
   const slideUp = useSpring({
     from: {
@@ -41,7 +44,7 @@ const PageContainer = (props) => {
       container
       justify="center"
       className={classes.PageContainer}
-      sm={10}
+      sm={12}
       md={10}
       lg={10}
       xl={10}

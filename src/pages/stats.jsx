@@ -24,13 +24,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "auto",
     backgroundColor: theme.palette.primary.main,
+    borderRadius: theme.spacing(1),
 
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     marginBottom: theme.spacing(1),
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: theme.spacing(20),
-    },
     zIndex: 0,
   },
 
@@ -502,6 +500,7 @@ export default function ShapeDivider() {
         item
         style={{
           marginTop: theme.spacing(2),
+          marginBottom: theme.spacing(4),
         }}
         container
         justify="space-between"
@@ -694,7 +693,7 @@ export default function ShapeDivider() {
             elevation={3}
             className={classes.smallPaper}
             style={{
-              height: "98%",
+              height: "100%",
               paddingBottom: theme.spacing(4.5),
               paddingTop: theme.spacing(1),
             }}
@@ -763,7 +762,11 @@ export default function ShapeDivider() {
 
   return (
     <PageContainer>
-      <Paper elevation={5} className={classes.paper}>
+      <Paper
+        elevation={5}
+        className={classes.paper}
+        style={{ overflow: "hidden" }}
+      >
         <HeaderWave
           marginLeft={-theme.spacing(2)}
           marginRight={-theme.spacing(2)}
