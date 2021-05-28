@@ -403,11 +403,19 @@ export default function Project() {
         return <NodeIcon className={classes.cardSvgIcon} />;
     };
 
-    const ProjectCard = ({ id, name, date, technologies }) => {
+    const ProjectCard = ({
+      id,
+      name,
+      date,
+      technologies,
+      data,
+      sourceCode,
+      live,
+    }) => {
       return (
         <Card elevation={3} className={classes.cardRoot}>
           <CardHeader
-            title={`${id}.${name}`}
+            title={name}
             subheader={date}
             subheaderTypographyProps={{
               style: { color: theme.palette.secondary.main },
@@ -420,8 +428,7 @@ export default function Project() {
               component="p"
               style={{ marginBottom: theme.spacing(1) }}
             >
-              Lizards are a widespread group of squamate reptiles. Lizards are a
-              widespread group of squamate reptiles.
+              {data}
             </Typography>
             {technologies.map((item) => {
               return (
@@ -430,23 +437,28 @@ export default function Project() {
                   label={item}
                   variant="outlined"
                   color="secondary"
-                  icon={getIcon(item)}
+                  // icon={getIcon(item)}
                   style={{ margin: theme.spacing(0.5) }}
                 />
               );
             })}
           </CardContent>
           <CardActions>
-            <IconButton aria-label="github-button-link">
-              <GitHub color="secondary" />
-            </IconButton>
-            <IconButton aria-label="github-button-link">
-              <Demo
-                color="secondary"
-                className={classes.cardSvgIcon}
-                style={{ width: theme.spacing(4) }}
-              />
-            </IconButton>
+            <a href={sourceCode} rel="noreferrer" target="_blank">
+              <IconButton aria-label="github-button-link">
+                <GitHub color="secondary" />
+              </IconButton>
+            </a>
+
+            <a href={live} rel="noreferrer" target="_blank">
+              <IconButton aria-label="github-button-link">
+                <Demo
+                  color="secondary"
+                  className={classes.cardSvgIcon}
+                  style={{ width: theme.spacing(4) }}
+                />
+              </IconButton>
+            </a>
           </CardActions>
         </Card>
       );
@@ -505,7 +517,10 @@ export default function Project() {
               id={item.id}
               name={item.name}
               date={item.date}
-              image={item.image}
+              // image={item.image}
+              data={item.data}
+              live={item.live}
+              sourceCode={item.sourceCode}
               technologies={item.technologies}
             />
           </AnimatedGrid>

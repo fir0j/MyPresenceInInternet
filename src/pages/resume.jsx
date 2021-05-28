@@ -1741,30 +1741,6 @@ export default function Resume() {
                 <Grid item>
                   <CircularProgressWithLabel
                     variant="determinate"
-                    value={90}
-                    size={matchesLG ? 100 : 120}
-                    label="HTML"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={85}
-                    size={matchesLG ? 100 : 120}
-                    label="CSS"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={80}
-                    size={matchesLG ? 100 : 120}
-                    label="JAVASCRIPT"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
                     value={85}
                     size={matchesLG ? 100 : 120}
                     label="REACT"
@@ -1789,9 +1765,33 @@ export default function Resume() {
                 <Grid item>
                   <CircularProgressWithLabel
                     variant="determinate"
+                    value={65}
+                    size={matchesLG ? 100 : 120}
+                    label="VISX"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={65}
+                    size={matchesLG ? 100 : 120}
+                    label="React-Spring"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
                     value={80}
                     size={matchesLG ? 100 : 120}
-                    label="NodeJS"
+                    label="Node.js"
+                  />
+                </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={80}
+                    size={matchesLG ? 100 : 120}
+                    label="Express.js"
                   />
                 </Grid>
                 <Grid item>

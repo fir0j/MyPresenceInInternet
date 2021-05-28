@@ -1,5 +1,7 @@
-import { makeStyles, useTheme, Grid, useMediaQuery } from "@material-ui/core";
+import { Grid, useMediaQuery } from "@material-ui/core";
+import { useTheme, makeStyles } from "@material-ui/core/styles";
 
+// An example of composition
 const ContainerWithGradientBorder = ({
   width,
   height,
@@ -23,9 +25,10 @@ const ContainerWithGradientBorder = ({
         content: '""',
         position: "absolute",
         inset: 0,
-        background: borderGadient
-          ? borderGadient
-          : "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
+        background: theme.palette.common.myGradient,
+        // background: borderGadient
+        //   ? borderGadient
+        //   : "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
         zIndex: -1,
         margin: `-${borderWidth}`, // make sure it is equal to the border width preserve the actual dimension of the element
         borderRadius: "inherit",
@@ -44,6 +47,7 @@ const ContainerWithGradientBorder = ({
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
+  console.log(theme.palette.common.borderGadient);
 
   return (
     <Grid

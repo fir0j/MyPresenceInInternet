@@ -31,16 +31,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(20),
     },
-    // marginBottom: theme.spacing(matchesXS ? 20 : 10),
     zIndex: 0,
   },
-  smallPaper: {
-    // backgroundColor: "rgba(38,38,38,1)",
-    backgroundColor: theme.palette.common.paperLayer,
 
-    marginBottom: theme.spacing(1),
+  smallPaper: {
+    backgroundColor: theme.palette.common.paperLayer,
     height: theme.spacing(30),
   },
+
   legends: {
     "& span": {
       color: theme.palette.common.offWhite,
@@ -50,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     "& div": {
       fontSize: "0.8rem",
       color: theme.palette.secondary.main,
-      // border: "1px solid blue",
     },
   },
 }));
@@ -310,11 +307,11 @@ export default function ShapeDivider() {
               <Grid
                 item
                 style={{
-                  backgroundColor: theme.palette.accent.main,
+                  backgroundColor: theme.palette.common.coreWeb,
                   width: theme.spacing(8),
                   borderTopRightRadius: theme.spacing(2),
                   borderBottomRightRadius: theme.spacing(2),
-                  opacity: 0.8,
+                  opacity: 0.95,
                 }}
               />
             </Grid>
@@ -503,7 +500,9 @@ export default function ShapeDivider() {
     return (
       <Grid
         item
-        style={{ marginTop: theme.spacing(2) }}
+        style={{
+          marginTop: theme.spacing(2),
+        }}
         container
         justify="space-between"
       >
@@ -523,6 +522,7 @@ export default function ShapeDivider() {
               height: "auto",
               paddingBottom: theme.spacing(4.5),
               paddingTop: theme.spacing(1),
+              marginBottom: matchesMD ? theme.spacing(2) : "",
             }}
           >
             <Grid

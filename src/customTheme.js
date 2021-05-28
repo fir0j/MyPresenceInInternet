@@ -45,6 +45,8 @@ const cyanTheme = {
       runtime: "rgba(74,228,184,0.5)",
       database: "rgba(74,228,184,0.3)",
       messageBox: "rgba(38,38,38,1)",
+      myGradient:
+        "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
       // contrastText: "",
     },
     primary: {
@@ -159,11 +161,13 @@ const goldTheme = {
       bg: grey[900],
       paperLayer: "rgba(20,20,20,1)",
       filterGrey: "rgb(30, 30, 30)",
-      coreWeb: "rgba(178,145,85,0.85)",
-      library: "rgba(178,145,85,0.7)",
-      runtime: "rgba(178,145,85,0.5)",
-      database: "rgba(178,145,85,0.3)",
+      coreWeb: "rgba(125, 98, 36, 0.95)",
+      library: "rgba(125, 98, 36, 0.7)",
+      runtime: "rgba(178,145,85,0.6)",
+      database: "rgba(178,145,85,0.45)",
       messageBox: "rgba(18,18,18,1)",
+      myGradient:
+        "linear-gradient(135deg, rgba(170,184,110,1) 0%, rgba(180,137,49,1) 100%)",
       // contrastText: "",
     },
     primary: {
