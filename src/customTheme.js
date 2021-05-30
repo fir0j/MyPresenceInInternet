@@ -2,11 +2,9 @@ import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 import grey from "@material-ui/core/colors/grey";
 const breakpoints = createBreakpoints({}); // in order to be able to use breakpoint in this file
 
-// layout
-// cors
 // card incomplete data
 // animations
-// muiNote
+// fixing console error
 
 const offWhite = grey[400];
 const black = "#000";

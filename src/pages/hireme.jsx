@@ -106,9 +106,9 @@ export default function HireMe() {
   const [phoneHelper, setPhoneHelper] = useState("");
   const [message, setMessage] = useState("");
   const [alert, setAlert] = useState({
-    open: true,
-    message: "I love you",
-    backgroundColor: "blue",
+    openSnackbar: false,
+    message: "",
+    backgroundColor: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -169,36 +169,48 @@ export default function HireMe() {
   const onSendConfirm = () => {
     setLoading(true);
     axios
-      .get("https://1dlj1msj26.execute-api.us-east-1.amazonaws.com/sendMail", {
-        params: {
-          name: name,
-          email: email,
-          phone: phone,
-          message: message,
-        },
-      })
+      .get(
+        "https://jsgluv2tt4.execute-api.ap-south-1.amazonaws.com/sendMailfromPortfolio",
+        {
+          params: {
+            name: name,
+            email: email,
+            phone: phone,
+            message: message,
+          },
+        }
+      )
       .then((res) => {
+        console.log(res);
         setLoading(false);
-        setOpen(false);
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
         setAlert({
-          open: true,
+          openSnackbar: true,
           message: "Message Sent Successfully",
           backgroundColor: "#4BB543",
         });
-        console.log(res);
+
+        // so that dialog remains open and success message could show
+        setTimeout(() => {
+          setOpen(false);
+          setAlert({
+            openSnackbar: false,
+            message: "",
+            backgroundColor: "",
+          });
+          setName("");
+          setEmail("");
+          setPhone("");
+          setMessage("");
+        }, 2500);
       })
       .catch((err) => {
         setLoading(false);
         setAlert({
-          open: true,
+          openSnackbar: true,
           message: `${err.message}! Check your internet connection.`,
           backgroundColor: "#FF3232",
         });
-        console.log("Messege Sending Failed with", err.message);
+        console.log("Messege Sending Failed. The detailed error is", err);
       });
   };
 
@@ -232,7 +244,7 @@ export default function HireMe() {
 
   const snackbar = (
     <Snackbar
-      open={alert.open}
+      open={alert.openSnackbar}
       message={alert.message}
       ContentProps={{
         style: {
