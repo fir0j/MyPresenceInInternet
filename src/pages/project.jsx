@@ -38,21 +38,31 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "0.8rem",
     },
     "&:hover": {
-      // backgroundColor: "rgba(74, 228, 184,0.8)",
-      color: theme.palette.common.offWhite,
+      backgroundColor: theme.palette.common.buttonGroupBGHover,
+      color: theme.palette.primary.main,
     },
   },
 
   groupedContainedPrimary: {
-    backgroundColor: theme.palette.common.black,
+    // backgroundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.common.buttonGroupBG,
+    // border: `1px solid ${theme.palette.secondary.main}`,
     color: theme.palette.common.offWhite,
+    // "&:not(:last-child)": {
+    //   border: `1px solid ${theme.palette.secondary.main}`,
+    //   borderRight: "none",
+    //   borderColor: "red",
+    // },
+  },
+  grouped: {
+    border: "1px solid red",
   },
 
   cardRoot: {
     maxWidth: theme.spacing(35),
     color: theme.palette.common.offWhite,
     boxShadow: "20px 20px 50px rgba(0, 0, 0, 0.5)",
-    background: "rgba(255,255,255,0.1)",
+    backgroundColor: theme.palette.common.cardBG,
     borderRadius: theme.spacing(2),
     borderTop: "1px solid rgba(255,255,255,0.5)",
     borderLeft: "1px solid rgba(255,255,255,0.5)",
@@ -251,7 +261,9 @@ export default function Project() {
             classes={{
               groupedContainedPrimary: classes.groupedContainedPrimary,
             }}
-            style={{ maxWidth: matchesXS ? theme.spacing(40) : null }}
+            style={{
+              maxWidth: matchesXS ? theme.spacing(40) : null,
+            }}
           >
             <Button
               classes={{ root: classes.buttonRoot }}
@@ -319,6 +331,7 @@ export default function Project() {
             </Button>
           </ButtonGroup>
         </Grid>
+
         {/* SORT BY */}
         <Grid
           item
@@ -345,8 +358,8 @@ export default function Project() {
               variant="outlined"
               disabled
               style={{
-                backgroundColor: theme.palette.common.myGrey,
                 color: theme.palette.accent.main,
+                border: `1px solid ${theme.palette.common.buttonGroupBG}`,
               }}
             >
               Sort by
@@ -596,6 +609,7 @@ export default function Project() {
             variant="outlined"
             style={{
               borderRadius: 0,
+              backgroundColor: theme.palette.common.buttonGroupBG,
             }}
           >
             ...
@@ -671,7 +685,7 @@ export default function Project() {
               backgroundColor:
                 pageNumber === currentPageNumber
                   ? theme.palette.accent.main
-                  : "",
+                  : theme.palette.common.buttonGroupBG,
               color:
                 pageNumber === currentPageNumber
                   ? theme.palette.primary.main

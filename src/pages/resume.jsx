@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
-import dp from "../assets/founder3.png";
+import dp from "../assets/founder3.jpg";
 import CallIcon from "@material-ui/icons/Call";
 import EmailIcon from "@material-ui/icons/Email";
 import RoomIcon from "@material-ui/icons/Room";

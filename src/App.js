@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   ThemeProvider,
   createMuiTheme,
-  useTheme,
-  makeStyles,
   withStyles,
 } from "@material-ui/core/styles";
-import { Grid, useMediaQuery, Container, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { Route } from "react-router-dom";
 
 import { Switch, useLocation } from "react-router-dom";
 import { cyanTheme, goldTheme } from "./customTheme";
-import { animated, useTransition } from "react-spring";
 
 import Navigation from "./components/Navigation.component";
 import SettingPanel from "./components/SettingPanel.component";
@@ -35,9 +32,8 @@ const GlobalCss = withStyles({
 })(() => null);
 
 function App() {
-  const [myTheme, setMyTheme] = useState(cyanTheme);
+  const [myTheme, setMyTheme] = useState(goldTheme);
   // const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
-  const location = useLocation();
 
   const setTheme = (themeName) => {
     switch (themeName) {

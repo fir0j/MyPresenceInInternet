@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
-  const [value, setValue] = useState("cyan");
+  const [value, setValue] = useState("gold");
   const [showSetting, setShowSetting] = useState(false);
   const [right, setRight] = useState(0);
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PageContainer from "../components/PageContainer.component";
 import Donut from "../components/Donut.component";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
@@ -9,7 +9,6 @@ import {
   Paper,
   Grid,
   Typography,
-  Button,
 } from "@material-ui/core";
 import { ReactComponent as Work } from "../assets/work.svg";
 import { ReactComponent as LangaugeIcon } from "../assets/language.svg";

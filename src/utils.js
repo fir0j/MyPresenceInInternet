@@ -1,6 +1,3 @@
-import { NoteTwoTone } from "@material-ui/icons";
-import firoj from "./assets/founder3.png";
-// import { GitHub } from "@material-ui/icons";
 // constants
 
 const cardData = [
@@ -9,7 +6,6 @@ const cardData = [
     name: "Ace-Development",
     date: "2021-05-11",
     type: "fullstack",
-    image: firoj,
     data: "It is production ready software solution company. It was my initial journey to learn MaterialUI Framework Practically.",
     technologies: [
       "React",
@@ -26,7 +22,6 @@ const cardData = [
     id: 2,
     name: "Current Portfolio",
     date: "2020-02-01",
-    image: firoj,
     data: "It is the portfolio which your are viewing right now. It is also my most recent work in frontend.",
     type: "fullstack",
     technologies: [
@@ -45,7 +40,6 @@ const cardData = [
     name: "Google Calender Clone",
     date: "2018-10-02",
     type: "frontend",
-    image: firoj,
     data: "I tried to clone the basic features of google calender. It can perform CRUD Operation on calendar events.",
     technologies: ["React", "Tailwind", "FullCalendar"],
     live: "https://fir0j.github.io/Google-Calender/",
@@ -55,7 +49,6 @@ const cardData = [
   {
     id: 4,
     name: "Social-Network API",
-    image: firoj,
     date: "2021-05-10",
     type: "backend",
     data: "It supports sophisticated authentication with CRUD operation on users and their post along with features such as comment, like, follow and many other features.",
@@ -76,7 +69,6 @@ const cardData = [
     id: 5,
     name: "Portfolio Server",
     date: "2017-07-07",
-    image: firoj,
     type: "backend",
     data: "I created it as the backend for this portfolio app. It supports authentication coupled with Redis database, CRUD operations along with Filter, Sorting and Pagination its dataset.",
     technologies: [
@@ -97,7 +89,6 @@ const cardData = [
     id: 6,
     name: "UCGPA Calculator",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: " This app has ability to find out correct CGPA for both regualar and for students having backlog history in VTU. Generally apps available in the market for this purpose only works for students having regular history.",
     technologies: ["HTML", "CSS", "Javascript"],
@@ -109,7 +100,6 @@ const cardData = [
     id: 7,
     name: "Shopping-Cart Assessment",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: "It was an assessment work given by totalCloud Corporation for shortlisting candidate as web developer.",
     technologies: ["React", "font-awesome"],
@@ -121,7 +111,6 @@ const cardData = [
     id: 8,
     name: "Andrie shopping Store",
     date: "2018-10-01",
-    image: firoj,
     data: "It is an online shopping store.",
     type: "fullstack",
     technologies: ["React", "Material-UI", "React-Spring", "Javascript"],
@@ -133,7 +122,6 @@ const cardData = [
     id: 9,
     name: "Trendy-Fashion-Ecommerce",
     date: "2018-10-01",
-    image: firoj,
     type: "fullstack",
     data: "It is an online shopping store.",
     technologies: ["React", "Node"],
@@ -145,7 +133,6 @@ const cardData = [
     id: 10,
     name: "Google.com Clone",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: "It was task given to me for the selection for Internship. I tried making clone of google.com landing page.",
     technologies: ["HTML", "CSS"],
@@ -156,7 +143,6 @@ const cardData = [
     id: 11,
     name: "Google Result Clone",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: "It was task given to me for the selection for Internship. I tried making clone of google search result landing page.",
     technologies: ["HTML", "CSS"],
@@ -168,7 +154,6 @@ const cardData = [
     id: 12,
     name: "Facebook Login Clone",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: "It was task given to me for the selection for Internship. I tried making clone of facebook.com landing page.",
     technologies: ["HTML", "CSS"],
@@ -180,7 +165,6 @@ const cardData = [
     id: 13,
     name: "Gradient-Generator",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: "It helps developer to generate gradient background for their app. It supports both automatic and manual mode of gradient generation.",
     technologies: ["HTML", "CSS", "JAVASCRIPT"],
@@ -192,7 +176,6 @@ const cardData = [
     id: 14,
     name: "SmartBrain FaceDetection",
     date: "2018-10-01",
-    image: firoj,
     type: "fullstack",
     data: "It was my very first react project. It supports crud on users profile. It uses clarifai API to detect face in images.",
     technologies: [
@@ -211,7 +194,6 @@ const cardData = [
     id: 15,
     name: "Meeting Scheduler",
     date: "2018-10-01",
-    image: firoj,
     type: "frontend",
     data: "It was an assessment given by totalCloud incorporation to me. It visualizes the day on which interns have day off.",
     technologies: ["HTML", "CSS", "JAVASCRIPT", "bootstrap", "chart.js"],
@@ -223,7 +205,6 @@ const cardData = [
     id: 16,
     name: "Old Portfolio",
     date: "2011-10-01",
-    image: firoj,
     data: "It is my very first portfolio app. It includes by academic background and work details.",
     type: "frontend",
     technologies: ["HTML", "CSS", "JAVASCRIPT", "jQuery"],
