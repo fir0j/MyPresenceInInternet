@@ -336,7 +336,7 @@ export default function ShapeDivider() {
             }
             count="1"
             accentColor={theme.palette.common.offWhite}
-            marginTop={theme.spacing(2)}
+            marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={theme.spacing(2)}
             marginLeft={matchesXS ? theme.spacing(2) : undefined}
@@ -355,7 +355,7 @@ export default function ShapeDivider() {
             }
             count="1"
             accentColor={theme.palette.common.offWhite}
-            marginTop={theme.spacing(2)}
+            marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={theme.spacing(2)}
             marginLeft={matchesXS ? theme.spacing(2) : undefined}
@@ -373,7 +373,7 @@ export default function ShapeDivider() {
             }
             count="4"
             accentColor={theme.palette.common.offWhite}
-            marginTop={theme.spacing(2)}
+            marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={matchesMD ? theme.spacing(2) : undefined}
             marginLeft={matchesXS ? theme.spacing(2) : undefined}

@@ -81,9 +81,9 @@ function App() {
           <Navigation />
           <Switch>
             <Route exact path="/" render={(props) => <Resume />} />
-            <Route exact path="/project" render={(props) => <Project />} />
-            <Route exact path="/stats" render={(props) => <Stats />} />
-            <Route exact path="/hireme" render={(props) => <HireMe />} />
+            <Route path="/project" render={(props) => <Project />} />
+            <Route path="/stats" render={(props) => <Stats />} />
+            <Route path="/hireme" render={(props) => <HireMe />} />
           </Switch>
         </Grid>
         <SettingPanel setTheme={setTheme} />
