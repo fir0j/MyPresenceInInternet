@@ -79,10 +79,23 @@ function App() {
         >
           <Navigation />
           <Switch>
-            <Route exact path="/" render={(props) => <Resume {...props} />} />
-            <Route path="/project" render={(props) => <Project {...props} />} />
-            <Route path="/stats" render={(props) => <Stats {...props} />} />
-            <Route path="/hireme" render={(props) => <HireMe {...props} />} />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/"}
+              render={(props) => <Resume {...props} />}
+            />
+            <Route
+              path={process.env.PUBLIC_URL + "/project"}
+              render={(props) => <Project {...props} />}
+            />
+            <Route
+              path={process.env.PUBLIC_URL + "/stats"}
+              render={(props) => <Stats {...props} />}
+            />
+            <Route
+              path={process.env.PUBLIC_URL + "/hireme"}
+              render={(props) => <HireMe {...props} />}
+            />
           </Switch>
         </Grid>
         <SettingPanel setTheme={setTheme} />
