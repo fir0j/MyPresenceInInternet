@@ -47,7 +47,6 @@ const ContainerWithGradientBorder = ({
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
-  console.log(theme.palette.common.borderGadient);
 
   return (
     <Grid

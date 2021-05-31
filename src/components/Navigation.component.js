@@ -137,14 +137,6 @@ export default function Navigation() {
   const theme = useTheme();
   const classes = useStyles();
 
-  const tabRules = {
-    root: classes.tabRoot,
-    selected: classes.tabSelected,
-    disabled: classes.tabDisabled,
-    wrapper: classes.tabWrapper,
-    labelIcon: classes.tabLabelIcon,
-  };
-
   const [value, setValue] = useState(1);
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -176,6 +168,14 @@ export default function Navigation() {
 
   const getIndex = (index) => index;
 
+  const tabRules = {
+    root: classes.tabRoot,
+    selected: classes.tabSelected,
+    disabled: classes.tabDisabled,
+    wrapper: classes.tabWrapper,
+    labelIcon: classes.tabLabelIcon,
+  };
+
   const verticalTabs = (
     <Tabs
       orientation={matchesSM ? "horizontal" : "vertical"}
@@ -189,7 +189,7 @@ export default function Navigation() {
       }}
       className={classes.tabsContainer}
     >
-      <Hidden smDown>
+      {!matchesSM && (
         <Tab
           label=""
           disabled
@@ -213,7 +213,8 @@ export default function Navigation() {
                 : undefined,
           }}
         />
-      </Hidden>
+      )}
+
       <Tab
         label="Resume"
         icon={
@@ -225,7 +226,6 @@ export default function Navigation() {
             />
           </div>
         }
-        undefined
         to="/"
         component={Link}
         className={classes.tab}
@@ -298,12 +298,12 @@ export default function Navigation() {
                   ? undefined
                   : "40px"
                 : "80px"
-              : undefined,
+              : "",
           borderBottomRightRadius:
             value + getIndex(3) === 7
               ? matchesMD
                 ? matchesSM
-                  ? undefined
+                  ? ""
                   : "40px"
                 : "80px"
               : undefined,
@@ -335,7 +335,8 @@ export default function Navigation() {
               : undefined,
         }}
       />
-      <Hidden smDown>
+
+      {!matchesSM && (
         <Tab
           label=""
           disabled
@@ -353,7 +354,7 @@ export default function Navigation() {
             maxHeight: matchesMD ? "60px" : "100px",
           }}
         />
-      </Hidden>
+      )}
     </Tabs>
   );
 
@@ -369,14 +370,14 @@ export default function Navigation() {
         xl={2}
         style={{
           position: matchesSM ? "fixed" : "relative",
-          bottom: matchesSM ? 0 : undefined,
+          bottom: matchesSM ? 0 : "",
           maxWidth: matchesSM ? "100%" : "310px",
           height: matchesSM
             ? matchesXS
               ? theme.spacing(10.7)
               : theme.spacing(12.5)
             : undefined,
-          zIndex: matchesSM ? 1 : undefined,
+          zIndex: matchesSM ? 1 : "",
           // border: "1px solid red",
         }}
       >

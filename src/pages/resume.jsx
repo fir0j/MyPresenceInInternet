@@ -27,7 +27,7 @@ import Hidden from "@material-ui/core/Hidden";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 import ContainerWithGradientBorder from "../components/ContainerWithGradientBorder.component";
 import PageContainer from "../components/PageContainer.component";
-import { animated, useSpring } from "react-spring";
+// import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexWrap: "nowrap",
     [theme.breakpoints.down("md")]: {
-      marginBottom: theme.spacing(0),
+      marginBottom: 0,
     },
   },
   // name: {
@@ -116,12 +116,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     height: "auto",
-    // color: theme.palette.accent.main,
     backgroundColor: theme.palette.primary.main,
     fill: theme.palette.secondary.main,
-    // fill: "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
-    // stroke: theme.palette.secondary.main,
     padding: theme.spacing(2),
+    // color: theme.palette.accent.main,
+    // stroke: theme.palette.secondary.main,
   },
 
   educationContent: {
@@ -161,7 +160,10 @@ export default function Resume() {
       justify="space-between"
       alignItems="center"
       className={classes.container}
-      style={{ marginBottom: theme.spacing(5) }}
+      style={{
+        marginBottom: theme.spacing(5),
+        height: matchesMD ? 250 : undefined,
+      }}
     >
       <ContainerWithGradientBorder
         item
@@ -184,7 +186,7 @@ export default function Resume() {
           container
           direction="column"
           justify="center"
-          alignItems="flex-between"
+          alignItems="center"
           style={{ paddingLeft: theme.spacing(1) }}
         >
           <Grid
@@ -227,7 +229,7 @@ export default function Resume() {
           <Avatar alt="Firoj Siddiki Picture" src={dp} className={classes.dp} />
         </Grid>
       </ContainerWithGradientBorder>
-      {/* </Grid> */}
+
       {/* hello section */}
       <Hidden smDown>
         <Grid
@@ -610,7 +612,7 @@ export default function Resume() {
               className={classes.svgIcon}
               style={{
                 position: "absolute",
-                top: -theme.spacing(7),
+                top: matchesMD ? -theme.spacing(5.5) : -theme.spacing(7),
                 right: 0,
               }}
             />

@@ -66,6 +66,13 @@ const cyanTheme = {
       main: portfolioGrey,
       // main: white,
     },
+    // text:{
+    //   primary:{},
+    //   secondary:{},
+    //   disabled:{},
+    //   hint:{}
+    // },
+    // divider:{},
     accent: {
       main: green,
       // main: white,
@@ -210,9 +217,31 @@ const goldTheme = {
     secondary: {
       main: portfolioGrey,
     },
+    // text:{
+    //   primary:{},
+    //   secondary:{},
+    //   disabled:{},
+    //   hint:{}
+    // },
+    // divider:{},
     accent: {
       main: gold,
     },
+    // error: {},
+    // success: {},
+    // action: {
+    //   active: "rgba(0, 0, 0, 0.54)",
+    //   hover: "rgba(0, 0, 0, 0.04)",
+    //   hoverOpacity: 0.04,
+    //   selected: "rgba(0, 0, 0, 0.08)",
+    //   selectedOpacity: 0.08,
+    //   disabled: "rgba(0, 0, 0, 0.26)",
+    //   disabledBackground: "rgba(0, 0, 0, 0.12)",
+    //   disabledOpacity: 0.38,
+    //   focus: "rgba(0, 0, 0, 0.12)",
+    //   focusOpacity: 0.12,
+    //   activatedOpacity: 0.12,
+    // },
   },
 
   typography: {

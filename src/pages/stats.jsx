@@ -113,7 +113,7 @@ export default function ShapeDivider() {
               alignItems="flex-start"
               justify="center"
               style={{ flexWrap: "nowrap", marginBottom: theme.spacing(2) }}
-              classesName={classes.top}
+              className={classes.top}
             >
               <Grid
                 item
@@ -124,7 +124,7 @@ export default function ShapeDivider() {
               >
                 <Grid item>
                   <Circle color={theme.palette.common.coreWeb} />
-                  <Typography variant="span">Core Web</Typography>
+                  <Typography component="span">Core Web</Typography>
                 </Grid>
                 <Grid item>
                   <Typography component="div">HTML</Typography>
@@ -142,7 +142,7 @@ export default function ShapeDivider() {
               >
                 <Grid item>
                   <Circle color={theme.palette.common.library} />
-                  <Typography variant="span">Library</Typography>
+                  <Typography component="span">Library</Typography>
                 </Grid>
                 <Grid item style={{ marginLeft: theme.spacing(6) }}>
                   <Typography component="div">REACT</Typography>
@@ -174,7 +174,7 @@ export default function ShapeDivider() {
               >
                 <Grid item>
                   <Circle color={theme.palette.common.runtime} />
-                  <Typography variant="span">Runtime</Typography>
+                  <Typography component="span">Runtime</Typography>
                 </Grid>
                 <Grid item style={{ marginLeft: -theme.spacing(4) }}>
                   <Typography component="div">NODE</Typography>
@@ -189,7 +189,7 @@ export default function ShapeDivider() {
               >
                 <Grid item>
                   <Circle color={theme.palette.common.database} />
-                  <Typography variant="span">Database</Typography>
+                  <Typography component="span">Database</Typography>
                 </Grid>
                 <Grid item>
                   <Typography component="div">MONGODB</Typography>
@@ -218,18 +218,22 @@ export default function ShapeDivider() {
     }) => {
       return (
         <Grid
+          container
+          justify="space-between"
           item
           style={{
-            height: matchesSM
-              ? matchesXS
-                ? theme.spacing(16)
-                : theme.spacing(12)
-              : theme.spacing(16),
-            width: matchesSM
-              ? matchesXS
-                ? theme.spacing(32)
-                : theme.spacing(24)
-              : theme.spacing(32),
+            // height: matchesSM
+            //   ? matchesXS
+            //     ? theme.spacing(16)
+            //     : theme.spacing(12)
+            //   : theme.spacing(16),
+            // width: matchesSM
+            //   ? matchesXS
+            //     ? theme.spacing(32)
+            //     : theme.spacing(24)
+            //   : theme.spacing(32),
+            width: theme.spacing(32),
+            height: theme.spacing(16),
             borderRadius: theme.spacing(1),
             marginLeft: marginLeft,
             marginRight: marginRight,
@@ -241,16 +245,8 @@ export default function ShapeDivider() {
             elevation={3}
             className={classes.smallPaper}
             style={{
-              height: matchesSM
-                ? matchesXS
-                  ? theme.spacing(16)
-                  : theme.spacing(12)
-                : theme.spacing(16),
-              width: matchesSM
-                ? matchesXS
-                  ? theme.spacing(32)
-                  : theme.spacing(24)
-                : theme.spacing(32),
+              width: "inherit",
+              height: "inherit",
               borderRadius: theme.spacing(1),
             }}
           >
@@ -332,9 +328,10 @@ export default function ShapeDivider() {
             }
             count="18"
             accentColor={theme.palette.common.offWhite}
-            marginRight={theme.spacing(2)}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
+            marginRight={theme.spacing(2)}
+            marginLeft={matchesXS ? theme.spacing(2) : undefined}
           />
           <NumberDisplay
             name="Experience"
@@ -349,9 +346,10 @@ export default function ShapeDivider() {
             }
             count="1"
             accentColor={theme.palette.common.offWhite}
-            marginRight={matchesMD ? theme.spacing(2) : ""}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
+            marginRight={theme.spacing(2)}
+            marginLeft={matchesXS ? theme.spacing(2) : undefined}
           />
           <NumberDisplay
             name="Degree"
@@ -367,10 +365,10 @@ export default function ShapeDivider() {
             }
             count="1"
             accentColor={theme.palette.common.offWhite}
-            marginRight={theme.spacing(2)}
-            marginLeft={matchesMD ? "" : theme.spacing(2)}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
+            marginRight={theme.spacing(2)}
+            marginLeft={matchesXS ? theme.spacing(2) : undefined}
           />
           <NumberDisplay
             name="Language"
@@ -387,7 +385,8 @@ export default function ShapeDivider() {
             accentColor={theme.palette.common.offWhite}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
-            marginLeft={matchesXS ? -theme.spacing(2) : ""}
+            marginRight={matchesMD ? theme.spacing(2) : undefined}
+            marginLeft={matchesXS ? theme.spacing(2) : undefined}
           />
         </Grid>
       </React.Fragment>
@@ -520,7 +519,7 @@ export default function ShapeDivider() {
               height: "auto",
               paddingBottom: theme.spacing(4.5),
               paddingTop: theme.spacing(1),
-              marginBottom: matchesMD ? theme.spacing(2) : "",
+              marginBottom: matchesMD ? theme.spacing(2) : undefined,
             }}
           >
             <Grid
@@ -535,7 +534,7 @@ export default function ShapeDivider() {
                   style={{
                     fontSize: "1.2rem",
                     color: theme.palette.common.offWhite,
-                    paddingLeft: matchesSM ? theme.spacing(1) : "",
+                    paddingLeft: matchesSM ? theme.spacing(1) : undefined,
                   }}
                 >
                   Web Development Courses Online

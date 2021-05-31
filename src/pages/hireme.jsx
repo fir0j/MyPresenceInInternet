@@ -386,7 +386,6 @@ export default function HireMe() {
             </Button>
           </Grid>
         </Grid>
-        {/* <Grid item>hi</Grid> */}
         {snackbar}
       </DialogContent>
     </Dialog>
@@ -398,7 +397,7 @@ export default function HireMe() {
         <Grid item style={{ marginBottom: "0.5em" }}>
           <TextField
             fullWidth
-            error={nameHelper.length}
+            error={!!nameHelper.length}
             helperText={nameHelper}
             label="Name"
             id="name"
@@ -422,7 +421,7 @@ export default function HireMe() {
         <Grid item style={{ marginBottom: "0.5em" }}>
           <TextField
             fullWidth
-            error={emailHelper.length}
+            error={!!emailHelper.length}
             helperText={emailHelper}
             label="Email"
             id="email"
@@ -447,7 +446,7 @@ export default function HireMe() {
           <TextField
             fullWidth
             // int 0 is evaluated true and > 0 is evaluated as false
-            error={phoneHelper.length}
+            error={!!phoneHelper.length}
             helperText={phoneHelper}
             label="Phone"
             id="phone"
@@ -571,8 +570,6 @@ export default function HireMe() {
             direction="column"
             justify="center"
             alignItems={matchesSM ? "center" : "flex-start"}
-            // lg={4}
-            // xl={3}
             style={{
               margingBottom: matchesMD ? "5em" : 0,
             }}
@@ -615,7 +612,6 @@ export default function HireMe() {
             </Grid>
           </Grid>
           {dialog}
-          {/* {snackbar} */}
         </Grid>
         <FooterWave />
       </Paper>
