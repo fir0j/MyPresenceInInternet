@@ -4,7 +4,8 @@ const breakpoints = createBreakpoints({}); // in order to be able to use breakpo
 
 // card incomplete data
 // animations and also wrt. scroll position
-// fixing console error
+// add missed mui pallate
+// react router refresh error
 
 const offWhite = grey[400];
 const black = "#000";

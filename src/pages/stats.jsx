@@ -222,16 +222,6 @@ export default function ShapeDivider() {
           justify="space-between"
           item
           style={{
-            // height: matchesSM
-            //   ? matchesXS
-            //     ? theme.spacing(16)
-            //     : theme.spacing(12)
-            //   : theme.spacing(16),
-            // width: matchesSM
-            //   ? matchesXS
-            //     ? theme.spacing(32)
-            //     : theme.spacing(24)
-            //   : theme.spacing(32),
             width: theme.spacing(32),
             height: theme.spacing(16),
             borderRadius: theme.spacing(1),
@@ -302,8 +292,8 @@ export default function ShapeDivider() {
                 style={{
                   backgroundColor: theme.palette.common.coreWeb,
                   width: theme.spacing(8),
-                  borderTopRightRadius: theme.spacing(2),
-                  borderBottomRightRadius: theme.spacing(2),
+                  borderTopRightRadius: theme.spacing(1),
+                  borderBottomRightRadius: theme.spacing(1),
                   opacity: 0.95,
                 }}
               />

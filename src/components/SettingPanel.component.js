@@ -169,7 +169,7 @@ export default function SettingPanel({ setTheme }) {
                 backgroundColor: theme.palette.accent.main,
                 height: "150px",
                 flexGrow: 1,
-                // border: "1px solid red",
+                borderBottomLeftRadius: "10px",
               }}
             >
               <Grid item>
