@@ -19,7 +19,6 @@ import Stats from "./pages/stats";
 import HireMe from "./pages/hireme";
 
 const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
   "@global": {
     // ".MuiCircularProgress-circleDeterminate": {
     //   stroke: myTheme.palette.accent.main,
@@ -80,10 +79,10 @@ function App() {
         >
           <Navigation />
           <Switch>
-            <Route exact path="/" render={(props) => <Resume />} />
-            <Route path="/project" render={(props) => <Project />} />
-            <Route path="/stats" render={(props) => <Stats />} />
-            <Route path="/hireme" render={(props) => <HireMe />} />
+            <Route exact path="/" render={(props) => <Resume {...props} />} />
+            <Route path="/project" render={(props) => <Project {...props} />} />
+            <Route path="/stats" render={(props) => <Stats {...props} />} />
+            <Route path="/hireme" render={(props) => <HireMe {...props} />} />
           </Switch>
         </Grid>
         <SettingPanel setTheme={setTheme} />

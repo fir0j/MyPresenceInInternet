@@ -143,16 +143,15 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(1),
   },
 }));
-export default function Resume() {
+export default function Resume(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const matchesSS = useMediaQuery(theme.breakpoints.down("ss"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
-
+  console.log("props is", props);
   const hello = (
     <Grid
       item
