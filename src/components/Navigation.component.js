@@ -226,7 +226,7 @@ export default function Navigation() {
             />
           </div>
         }
-        to="/"
+        to={process.env.PUBLIC_URL + "/"}
         component={Link}
         className={classes.tab}
         classes={tabRules}
@@ -252,7 +252,7 @@ export default function Navigation() {
             />
           </div>
         }
-        to="/project"
+        to={process.env.PUBLIC_URL + "/project"}
         component={Link}
         className={classes.tab}
         classes={tabRules}
@@ -286,7 +286,7 @@ export default function Navigation() {
             />
           </div>
         }
-        to="/stats"
+        to={process.env.PUBLIC_URL + "/stats"}
         component={Link}
         className={classes.tab}
         classes={tabRules}
@@ -311,7 +311,7 @@ export default function Navigation() {
       />
       <Tab
         label="HireMe"
-        to="/hireme"
+        to={process.env.PUBLIC_URL + "/hireme"}
         icon={
           <div>
             <Hireme
