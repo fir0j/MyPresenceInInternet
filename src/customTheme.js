@@ -2,10 +2,13 @@ import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 import grey from "@material-ui/core/colors/grey";
 const breakpoints = createBreakpoints({}); // in order to be able to use breakpoint in this file
 
-// react router refresh error
 // card incomplete data
 // add missed mui pallate
 // animations and also wrt. scroll position
+// linear-gradient(87deg, #fb6340 0, #fbb140 100%)
+//     transform: skewY(-8deg);
+//   transform-origin: 0;
+// background:#fff and color: rgb(82, 95, 127)
 
 const offWhite = grey[400];
 const black = "#000";

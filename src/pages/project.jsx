@@ -463,15 +463,17 @@ export default function Project() {
               </IconButton>
             </a>
 
-            <a href={live} rel="noreferrer" target="_blank">
-              <IconButton aria-label="github-button-link">
-                <Demo
-                  color="secondary"
-                  className={classes.cardSvgIcon}
-                  style={{ width: theme.spacing(4) }}
-                />
-              </IconButton>
-            </a>
+            {live !== "url" && (
+              <a href={live} rel="noreferrer" target="_blank">
+                <IconButton aria-label="github-button-link">
+                  <Demo
+                    color="secondary"
+                    className={classes.cardSvgIcon}
+                    style={{ width: theme.spacing(4) }}
+                  />
+                </IconButton>
+              </a>
+            )}
           </CardActions>
         </Card>
       );

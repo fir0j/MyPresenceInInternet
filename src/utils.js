@@ -61,7 +61,7 @@ const cardData = [
       "Express-Validator",
       "bcrypt",
     ],
-    live: "url",
+    live: "https://s0cial-network.herokuapp.com/",
     sourceCode: "https://github.com/fir0j/SocialNetworkAPI",
   },
 
@@ -98,12 +98,12 @@ const cardData = [
 
   {
     id: 7,
-    name: "Shopping-Cart Assessment",
+    name: "Select-n-Add Cart Assessment",
     date: "2018-10-01",
     type: "frontend",
     data: "It was an assessment work given by totalCloud Corporation for shortlisting candidate as web developer.",
     technologies: ["React", "font-awesome"],
-    live: "url",
+    live: "https://fir0j.github.io/shopping-cart_assessment/",
     sourceCode: "https://github.com/fir0j/shopping-cart_assessment",
   },
 
@@ -139,6 +139,7 @@ const cardData = [
     live: "https://fir0j.github.io/Google-Homepage/",
     sourceCode: "https://github.com/fir0j/Google-Homepage",
   },
+
   {
     id: 11,
     name: "Google Result Clone",
@@ -177,7 +178,7 @@ const cardData = [
     name: "SmartBrain FaceDetection",
     date: "2018-10-01",
     type: "fullstack",
-    data: "It was my very first react project. It supports crud on users profile. It uses clarifai API to detect face in images.",
+    data: "It was my VERY FIRST react project. It supports crud on users profile. It uses clarifai API to detect face in images.",
     technologies: [
       "React",
       "React-tilt",
@@ -203,13 +204,24 @@ const cardData = [
 
   {
     id: 16,
-    name: "Old Portfolio",
+    name: "My Old Portfolio",
     date: "2011-10-01",
     data: "It is my very first portfolio app. It includes by academic background and work details.",
     type: "frontend",
     technologies: ["HTML", "CSS", "JAVASCRIPT", "jQuery"],
     live: "https://fir0j.github.io/",
     sourceCode: "https://github.com/fir0j/fir0j.github.io",
+  },
+
+  {
+    id: 17,
+    name: "Event Tracker",
+    date: "2019-08-01",
+    data: "It is my very real world project. It displays events by scanning the folders from the client's computer in 3 different languages. The project link is not available as i have signed NDA for it.",
+    type: "frontend",
+    technologies: ["HTML", "CSS", "React", "multi-language"],
+    live: "url",
+    sourceCode: "secret-url",
   },
 ];
 
