@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Grid, Hidden, Paper } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Tabs from "@material-ui/core/Tabs";
@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
   tabsContainer: {
     width: "100%",
     height: "100%",
-    [theme.breakpoints.down("xs")]: {
-      height: theme.spacing(11),
-    },
+    // [theme.breakpoints.down("xs")]: {
+    //   height: theme.spacing(11),
+    // },
     maxWidth: "100%",
     maxHeight: "100%",
     // border: "1px solid red",
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
   tabsIndicator: {
     // backgroundColor: "transparent",
-    width: theme.spacing(0.5),
+    // width: theme.spacing(0.5),
     opacity: 0.75,
   },
 
@@ -74,9 +74,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.primary.dark,
     borderColor: theme.palette.secondary.main,
-    // border: `1px solid ${theme.palette.secondary.main}`,
     "&$tabSelected": {
       border: "none",
+      // borderTop: `1px solid ${theme.palette.secondary.main}`,
+      // borderBottom: `1px solid ${theme.palette.secondary.main}`,
+      // borderLeft: `1px solid ${theme.palette.secondary.main}`,
       // backgroundColor: theme.palette.primary.main,
       [theme.breakpoints.down("sm")]: {
         // backgroundColor: "transparent",
@@ -379,11 +381,11 @@ export default function Navigation() {
           position: matchesSM ? "fixed" : "relative",
           bottom: matchesSM ? 0 : "",
           maxWidth: matchesSM ? "100%" : "310px",
-          height: matchesSM
-            ? matchesXS
-              ? theme.spacing(10.7)
-              : theme.spacing(12.5)
-            : undefined,
+          // height: matchesSM
+          //   ? matchesXS
+          //     ? theme.spacing(10.7)
+          //     : theme.spacing(12.5)
+          //   : undefined,
           zIndex: matchesSM ? 1 : "",
           // border: "1px solid red",
         }}
@@ -393,11 +395,11 @@ export default function Navigation() {
           style={{
             width: "100%",
             height: matchesSM ? "inherit" : "100vh",
-            maxHeight: matchesSM
-              ? matchesXS
-                ? theme.spacing(10.8)
-                : theme.spacing(12.6)
-              : "100vh",
+            // maxHeight: matchesSM
+            //   ? matchesXS
+            //     ? theme.spacing(10.8)
+            //     : theme.spacing(12.6)
+            //   : "100vh",
             backgroundColor: "transparent",
           }}
         >
