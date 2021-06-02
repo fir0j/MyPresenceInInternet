@@ -108,7 +108,6 @@ const useStyles = makeStyles((theme) => ({
 
   // when are horizontal
   flexContainer: {
-    border: `1px solid ${theme.palette.secondary.main}`,
     width: "100%",
     maxWidth: "100%",
     backgroundColor: theme.palette.background.messageBox,
@@ -119,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down("xs")]: {
         fontSize: "0.8rem",
       },
-      border: `1px solid ${theme.palette.primary.light}`,
+      // border: `1px solid ${theme.palette.primary.light}`,
       borderRight: "none",
       fontWeight: "bold",
     },
