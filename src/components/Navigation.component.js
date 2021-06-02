@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     width: "100%",
-    // minWidth: "100px",
+    minWidth: "85px",
     // minHeight: "100px",
     maxWidth: "100%",
     maxHeight: "100%",
@@ -389,7 +389,7 @@ export default function Navigation() {
         }}
       >
         <Paper
-          elevation={0}
+          elevation={1}
           style={{
             width: "100%",
             height: matchesSM ? "inherit" : "100vh",

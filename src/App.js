@@ -31,7 +31,7 @@ const GlobalCss = withStyles({
 })(() => null);
 
 function App() {
-  const [myTheme, setMyTheme] = useState(cyanTheme);
+  const [myTheme, setMyTheme] = useState(goldTheme);
   // const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
 
   const setTheme = (themeName) => {
