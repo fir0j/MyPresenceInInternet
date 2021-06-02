@@ -175,8 +175,6 @@ export default function Navigation() {
     setValue(newValue);
   };
 
-  const getIndex = (index) => index;
-
   const tabRules = {
     root: classes.tabRoot,
     selected: classes.tabSelected,
@@ -213,14 +211,6 @@ export default function Navigation() {
           }
           className={classes.tab}
           classes={tabRules}
-          // style={{
-          //   borderBottomRightRadius:
-          //     value - getIndex(0) === 1
-          //       ? matchesMD
-          //         ? "40px"
-          //         : "80px"
-          //       : undefined,
-          // }}
         />
       )}
 
@@ -239,16 +229,6 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        // style={{
-        //   borderBottomRightRadius:
-        //     value - getIndex(1) === 1
-        //       ? matchesMD
-        //         ? matchesSM
-        //           ? undefined
-        //           : "40px"
-        //         : "80px"
-        //       : undefined,
-        // }}
       />
       <Tab
         label="Project"
@@ -265,24 +245,6 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        // style={{
-        //   borderTopRightRadius:
-        //     value - getIndex(2) === -1
-        //       ? matchesMD
-        //         ? matchesSM
-        //           ? undefined
-        //           : "40px"
-        //         : "80px"
-        //       : undefined,
-        //   borderBottomRightRadius:
-        //     value - getIndex(2) === 1
-        //       ? matchesMD
-        //         ? matchesSM
-        //           ? undefined
-        //           : "40px"
-        //         : "80px"
-        //       : undefined,
-        // }}
       />
       <Tab
         label="Stats"
@@ -299,24 +261,6 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        // style={{
-        //   borderTopRightRadius:
-        //     value + getIndex(3) === 5
-        //       ? matchesMD
-        //         ? matchesSM
-        //           ? undefined
-        //           : "40px"
-        //         : "80px"
-        //       : "",
-        //   borderBottomRightRadius:
-        //     value + getIndex(3) === 7
-        //       ? matchesMD
-        //         ? matchesSM
-        //           ? ""
-        //           : "40px"
-        //         : "80px"
-        //       : undefined,
-        // }}
       />
       <Tab
         label="HireMe"
@@ -333,36 +277,10 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        // style={{
-        //   borderTopRightRadius:
-        //     value + getIndex(4) === 7
-        //       ? matchesMD
-        //         ? matchesSM
-        //           ? undefined
-        //           : "40px"
-        //         : "80px"
-        //       : undefined,
-        // }}
       />
 
       {!matchesSM && (
-        <Tab
-          label=""
-          disabled
-          className={classes.tab}
-          classes={tabRules}
-          // style={{
-          //   borderTopRightRadius:
-          //     value + getIndex(5) === 9
-          //       ? matchesMD
-          //         ? matchesXS
-          //           ? undefined
-          //           : "40px"
-          //         : "80px"
-          //       : undefined,
-          //   maxHeight: matchesMD ? "60px" : "100px",
-          // }}
-        />
+        <Tab label="" disabled className={classes.tab} classes={tabRules} />
       )}
     </Tabs>
   );
@@ -381,13 +299,7 @@ export default function Navigation() {
           position: matchesSM ? "fixed" : "relative",
           bottom: matchesSM ? 0 : "",
           maxWidth: matchesSM ? "100%" : "310px",
-          // height: matchesSM
-          //   ? matchesXS
-          //     ? theme.spacing(10.7)
-          //     : theme.spacing(12.5)
-          //   : undefined,
           zIndex: matchesSM ? 1 : "",
-          // border: "1px solid red",
         }}
       >
         <Paper
@@ -395,11 +307,6 @@ export default function Navigation() {
           style={{
             width: "100%",
             height: matchesSM ? "inherit" : "100vh",
-            // maxHeight: matchesSM
-            //   ? matchesXS
-            //     ? theme.spacing(10.8)
-            //     : theme.spacing(12.6)
-            //   : "100vh",
             backgroundColor: "transparent",
           }}
         >

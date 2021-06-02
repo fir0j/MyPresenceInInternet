@@ -188,7 +188,7 @@ const goldTheme = {
     text: {
       primary: "rgba(165,121,46,1)",
       secondary: "rgba(255, 255, 255, 0.7)",
-      tertiary: "rgba(255, 255, 255, 0.5)",
+      tertiary: "rgba(255, 255, 255, 0.47)",
 
       disabled: "rgba(255, 255, 255, 0.5)",
       // hint: "rgba(255, 255, 255, 0.5)",
