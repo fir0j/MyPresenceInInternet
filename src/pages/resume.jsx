@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "auto",
-    backgroundColor: theme.palette.primary.main,
     borderRadius: theme.spacing(1),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
@@ -49,14 +48,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 0,
     },
   },
-  // name: {
-  //   border: `3px solid ${theme.palette.accent.main}`,
 
-  //   borderTopRightRadius: "15em",
-  //   borderBottomRightRadius: "15em",
-  //   flexWrap: "nowrap",
-  //   maxHeight: theme.spacing(44),
-  // },
   dp: {
     width: "70%",
     height: "auto",
@@ -70,16 +62,16 @@ const useStyles = makeStyles((theme) => ({
       minHeight: theme.spacing(10),
     },
   },
+  lineToIcons: {
+    border: `1px solid ${theme.palette.text.tertiary}`,
+  },
 
   contact: {
-    // border: `1px solid ${theme.palette.primary.main}`,
     flexWrap: "nowrap",
     paddingTop: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
   contactItem: {
-    // border: "1px solid blue",
-    color: theme.palette.secondary.main,
     alignItems: "center",
     "&>*": {
       paddingRight: theme.spacing(1),
@@ -88,9 +80,9 @@ const useStyles = makeStyles((theme) => ({
   pointerLeft: {
     width: theme.spacing(12),
     height: theme.spacing(5),
-    backgroundColor: theme.palette.accent.main,
     color: theme.palette.primary.main,
     clipPath: "polygon(0 40%, 37% 0, 100% 0, 100% 100%, 37% 100%, 0 60%)",
+    backgroundColor: theme.palette.secondary.main,
     paddingLeft: theme.spacing(1.5),
     marginLeft: theme.spacing(2),
     marginTop: theme.spacing(0.5),
@@ -98,13 +90,17 @@ const useStyles = makeStyles((theme) => ({
   pointerRight: {
     width: theme.spacing(12),
     height: theme.spacing(5),
-    backgroundColor: theme.palette.accent.main,
+    backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.main,
     clipPath: "polygon(0 0, 63% 0, 100% 40%, 100% 60%, 63% 100%, 0 100%)",
     paddingRight: theme.spacing(1.5),
     marginRight: theme.spacing(2),
   },
   svgIcon: {
+    height: "auto",
+    backgroundColor: theme.palette.primary.main,
+    fill: theme.palette.text.tertiary,
+    padding: theme.spacing(2),
     [theme.breakpoints.down("xl")]: {
       width: theme.spacing(9),
     },
@@ -114,12 +110,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       width: theme.spacing(6),
     },
-
-    height: "auto",
-    backgroundColor: theme.palette.primary.main,
-    fill: theme.palette.secondary.main,
-    padding: theme.spacing(2),
-    // color: theme.palette.accent.main,
+    // color: theme.palette.text.primary,
     // stroke: theme.palette.secondary.main,
   },
 
@@ -198,7 +189,7 @@ export default function Resume() {
               variant="h3"
               style={{
                 letterSpacing: "0.2rem",
-                color: theme.palette.accent.main,
+                color: theme.palette.text.primary,
               }}
             >
               FIROJ SIDDIKI
@@ -207,7 +198,7 @@ export default function Resume() {
               variant="h6"
               style={{
                 letterSpacing: "0.3rem",
-                color: theme.palette.common.offWhite,
+                color: theme.palette.text.secondary,
               }}
             >
               WEB ENGINEER
@@ -223,7 +214,6 @@ export default function Resume() {
           lg={6}
           md={6}
           sm={6}
-          // style={{ border: "1px solid white" }}
         >
           <Avatar alt="Firoj Siddiki Picture" src={dp} className={classes.dp} />
         </Grid>
@@ -254,7 +244,6 @@ export default function Resume() {
             style={{
               flexBasis: matchesLG ? (matchesMD ? "65%" : "75%") : "90%",
               flexWrap: "nowrap",
-              // border: `1px solid red`,
             }}
           >
             <Grid
@@ -292,12 +281,12 @@ export default function Resume() {
                 container
                 style={{
                   position: "relative",
-                  border: `1px solid ${theme.palette.secondary.main}`,
                   flexGrow: 1,
                   borderBottom: "none",
                   borderLeft: "none",
                   minWidth: "110px",
                 }}
+                className={classes.lineToIcons}
               >
                 <Gallery
                   style={{
@@ -320,12 +309,12 @@ export default function Resume() {
                 item
                 style={{
                   position: "relative",
-                  border: `1px solid ${theme.palette.secondary.main}`,
                   borderRight: "none",
                   flexGrow: 1,
                   minWidth: "80px",
                   marginLeft: matchesSM ? "30px" : "50px",
                 }}
+                className={classes.lineToIcons}
               >
                 <Grid
                   item
@@ -334,7 +323,6 @@ export default function Resume() {
                     bottom: "calc(-3em / 2)",
                     right: "-35px",
                     backgroundColor: `${theme.palette.primary.main}`,
-                    // border: "1px solid red",
                   }}
                 >
                   <Typography
@@ -348,7 +336,7 @@ export default function Resume() {
                       letterSpacing: "0.1rem",
                       margin: 0,
                       paddingLeft: "0.1em",
-                      color: theme.palette.accent.main,
+                      color: theme.palette.text.primary,
                     }}
                   >
                     Hello!
@@ -377,7 +365,6 @@ export default function Resume() {
             container
             style={{
               position: "relative",
-              border: `1px solid ${theme.palette.secondary.main}`,
               borderBottom: "none",
               borderRight: "none",
               maxWidth: theme.spacing(12),
@@ -386,6 +373,7 @@ export default function Resume() {
               marginTop: theme.spacing(4),
               marginLeft: theme.spacing(4),
             }}
+            className={classes.lineToIcons}
           >
             <Grid
               item
@@ -425,7 +413,7 @@ export default function Resume() {
                 <Grid item>
                   <Typography
                     variant="h4"
-                    style={{ color: theme.palette.accent.main }}
+                    style={{ color: theme.palette.text.primary }}
                   >
                     Contact
                   </Typography>
@@ -441,7 +429,7 @@ export default function Resume() {
                     <Typography
                       variant="body1"
                       align="center"
-                      style={{ color: theme.palette.secondary.main }}
+                      style={{ color: theme.palette.text.tertiary }}
                     >
                       +977 9847064013
                     </Typography>
@@ -455,7 +443,7 @@ export default function Resume() {
                     <Typography
                       variant="body1"
                       align="center"
-                      style={{ color: theme.palette.secondary.main }}
+                      style={{ color: theme.palette.text.tertiary }}
                     >
                       firoj.is.available@gmail.com
                     </Typography>
@@ -469,7 +457,7 @@ export default function Resume() {
                     <Typography
                       variant="body1"
                       align="center"
-                      style={{ color: theme.palette.secondary.main }}
+                      style={{ color: theme.palette.text.tertiary }}
                     >
                       Nawalparasi, Nepal
                     </Typography>
@@ -523,7 +511,6 @@ export default function Resume() {
           item
           style={{
             flexGrow: 1,
-            border: `1px solid ${theme.palette.secondary.main}`,
             borderBottom: "none",
             borderRight: "none",
             borderTop: "none",
@@ -535,11 +522,12 @@ export default function Resume() {
                 : theme.spacing(12)
               : theme.spacing(9),
           }}
+          className={classes.lineToIcons}
         >
           <Typography
             variant="body1"
             align="right"
-            style={{ color: theme.palette.secondary.main }}
+            style={{ color: theme.palette.text.tertiary }}
           >
             Looking forward to secure a challenging position in a reputable
             organization which can utilize my learnings, knowledge, and skills
@@ -561,12 +549,12 @@ export default function Resume() {
             item
             container
             style={{
-              border: `1px solid ${theme.palette.secondary.main}`,
               borderBottom: "none",
               borderLeft: "none",
               height: "100%",
               marginLeft: matchesXS ? theme.spacing(1) : undefined,
             }}
+            className={classes.lineToIcons}
           />
           <Grid item container style={{ height: "100%" }} />
         </Grid>
@@ -582,7 +570,6 @@ export default function Resume() {
       className={classes.container}
       style={{
         marginBottom: theme.spacing(5),
-        // border: "1px solid blue",
       }}
     >
       {/* work section */}
@@ -599,13 +586,13 @@ export default function Resume() {
             xs
             style={{
               position: "relative",
-              border: `1px solid ${theme.palette.secondary.main}`,
               height: theme.spacing(5),
               borderRight: "none",
               borderBottom: "none",
               backgroundColor: theme.palette.primary.main,
               marginTop: theme.spacing(12),
             }}
+            className={classes.lineToIcons}
           >
             <Work
               className={classes.svgIcon}
@@ -628,7 +615,7 @@ export default function Resume() {
           <Grid item>
             <Typography
               variant="h4"
-              style={{ color: theme.palette.accent.main }}
+              style={{ color: theme.palette.secondary.main }}
             >
               Work Experience
             </Typography>
@@ -658,14 +645,7 @@ export default function Resume() {
                 className={classes.pointerRight}
               >
                 <Grid item>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      color: theme.palette.primary.main,
-                    }}
-                  >
-                    09/2020
-                  </Typography>
+                  <Typography variant="h6">09/2020</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -679,7 +659,7 @@ export default function Resume() {
               <Grid item>
                 <Typography
                   variant="h6"
-                  style={{ color: theme.palette.common.offWhite }}
+                  style={{ color: theme.palette.text.secondary }}
                 >
                   As Frontend Intern @Flipr, Bangalore, India
                 </Typography>
@@ -687,21 +667,21 @@ export default function Resume() {
               <Grid item style={{ marginTop: theme.spacing(1) }}>
                 <Typography
                   variant="body1"
-                  style={{ color: theme.palette.secondary.main }}
+                  style={{ color: theme.palette.text.tertiary }}
                 >
                   It is a startup company. They selected me as intern through
                   thier Practical Web Development Test.
                 </Typography>
                 <Typography
                   variant="body1"
-                  style={{ color: theme.palette.secondary.main }}
+                  style={{ color: theme.palette.text.tertiary }}
                 >
                   I built 3 Projects before the selection process for me got
                   over.
                 </Typography>
                 <Typography
                   variant="body1"
-                  style={{ color: theme.palette.secondary.main }}
+                  style={{ color: theme.palette.text.tertiary }}
                 >
                   They qualified me as intern for their company whithin 40 days
                   though the selection process was of 90 days.
@@ -736,14 +716,7 @@ export default function Resume() {
                 className={classes.pointerRight}
               >
                 <Grid item>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      color: theme.palette.primary.main,
-                    }}
-                  >
-                    09/2020
-                  </Typography>
+                  <Typography variant="h6">09/2020</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -757,7 +730,7 @@ export default function Resume() {
               <Grid item>
                 <Typography
                   variant="h6"
-                  style={{ color: theme.palette.common.offWhite }}
+                  style={{ color: theme.palette.text.secondary }}
                 >
                   As Frontend Developer @Flipr, Bangalore, India
                 </Typography>
@@ -765,17 +738,10 @@ export default function Resume() {
               <Grid item style={{ marginTop: theme.spacing(1) }}>
                 <Typography
                   variant="body1"
-                  style={{ color: theme.palette.secondary.main }}
+                  style={{ color: theme.palette.text.tertiary }}
                 >
-                  I just built two Real World Projects as their intern before
-                  they offered me job position
-                </Typography>
-                <Typography
-                  variant="body1"
-                  style={{ color: theme.palette.secondary.main }}
-                >
-                  Unfortunately we worked together for 1 Month only, after that
-                  things didn't work out.
+                  I built two Real World Projects as their intern before they
+                  offered me job position.
                 </Typography>
               </Grid>
             </Grid>
@@ -815,7 +781,7 @@ export default function Resume() {
             <Grid item>
               <Typography
                 variant="h4"
-                style={{ color: theme.palette.accent.main }}
+                style={{ color: theme.palette.text.primary }}
               >
                 Education
               </Typography>
@@ -841,7 +807,7 @@ export default function Resume() {
                   <Typography
                     variant="h6"
                     align="right"
-                    style={{ color: theme.palette.common.offWhite }}
+                    style={{ color: theme.palette.text.secondary }}
                   >
                     CMR Institue Of Technology, Bangalore, India
                   </Typography>
@@ -850,7 +816,7 @@ export default function Resume() {
                   <Typography
                     variant="body1"
                     align="right"
-                    style={{ color: theme.palette.secondary.main }}
+                    style={{ color: theme.palette.text.tertiary }}
                   >
                     It persued my academic career in COMPUTER SCIENCE & ENGINEER
                     at this place.
@@ -858,7 +824,7 @@ export default function Resume() {
                   <Typography
                     variant="body1"
                     align="right"
-                    style={{ color: theme.palette.secondary.main }}
+                    style={{ color: theme.palette.text.tertiary }}
                   >
                     I graduated from this course with 6.4 CGPA out 10 in 2020.
                   </Typography>
@@ -881,14 +847,7 @@ export default function Resume() {
                   className={classes.pointerLeft}
                 >
                   <Grid item>
-                    <Typography
-                      variant="h6"
-                      style={{
-                        color: theme.palette.primary.main,
-                      }}
-                    >
-                      09/2020
-                    </Typography>
+                    <Typography variant="h6">09/2020</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -912,7 +871,7 @@ export default function Resume() {
                   <Typography
                     variant="h6"
                     align="right"
-                    style={{ color: theme.palette.common.offWhite }}
+                    style={{ color: theme.palette.text.secondary }}
                   >
                     Little Angles' College, Kathmandu, Nepal
                   </Typography>
@@ -921,14 +880,14 @@ export default function Resume() {
                   <Typography
                     variant="body1"
                     align="right"
-                    style={{ color: theme.palette.secondary.main }}
+                    style={{ color: theme.palette.text.tertiary }}
                   >
                     Here I majored in Physics and Math.
                   </Typography>
                   <Typography
                     variant="body1"
                     align="right"
-                    style={{ color: theme.palette.secondary.main }}
+                    style={{ color: theme.palette.text.tertiary }}
                   >
                     I Passed my high school with 59.9%
                   </Typography>
@@ -951,14 +910,7 @@ export default function Resume() {
                   className={classes.pointerLeft}
                 >
                   <Grid item>
-                    <Typography
-                      variant="h6"
-                      style={{
-                        color: theme.palette.primary.main,
-                      }}
-                    >
-                      09/2014
-                    </Typography>
+                    <Typography variant="h6">09/2014</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -982,7 +934,7 @@ export default function Resume() {
                   <Typography
                     variant="h6"
                     align="right"
-                    style={{ color: theme.palette.common.offWhite }}
+                    style={{ color: theme.palette.text.secondary }}
                   >
                     Sayapatri English H.S School, Nawalparasi, Nepal
                   </Typography>
@@ -991,7 +943,7 @@ export default function Resume() {
                   <Typography
                     variant="body1"
                     align="right"
-                    style={{ color: theme.palette.secondary.main }}
+                    style={{ color: theme.palette.text.tertiary }}
                   >
                     I passed SLC with 79.87% from this school.
                   </Typography>
@@ -1014,14 +966,7 @@ export default function Resume() {
                   className={classes.pointerLeft}
                 >
                   <Grid item>
-                    <Typography
-                      variant="h6"
-                      style={{
-                        color: theme.palette.primary.main,
-                      }}
-                    >
-                      09/2012
-                    </Typography>
+                    <Typography variant="h6">09/2012</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -1057,7 +1002,6 @@ export default function Resume() {
           container
           style={{
             position: "relative",
-            // padding: matchesXS ? undefined : theme.spacing(5),
             paddingLeft: 0,
             marginTop: matchesXS ? theme.spacing(10) : undefined,
             marginBottom: matchesXS ? theme.spacing(5) : undefined,
@@ -1089,11 +1033,11 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderRight: "none",
                     borderBottom: "none",
                     backgroundColor: theme.palette.primary.main,
                   }}
+                  className={classes.lineToIcons}
                 >
                   <LangaugeIcon
                     className={classes.svgIcon}
@@ -1138,11 +1082,11 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderBottom: "none",
                     borderLeft: "none",
                     backgroundColor: theme.palette.primary.main,
                   }}
+                  className={classes.lineToIcons}
                 >
                   <LangaugeIcon
                     className={classes.svgIcon}
@@ -1171,7 +1115,7 @@ export default function Resume() {
                   <Grid item style={{ alignSelf: "center" }}>
                     <Typography
                       variant="h4"
-                      style={{ color: theme.palette.accent.main }}
+                      style={{ color: theme.palette.text.primary }}
                     >
                       Language
                     </Typography>
@@ -1181,7 +1125,7 @@ export default function Resume() {
                   <Grid item>
                     <Typography
                       variant="subtitle1"
-                      style={{ color: theme.palette.common.offWhite }}
+                      style={{ color: theme.palette.text.secondary }}
                     >
                       English
                     </Typography>
@@ -1196,7 +1140,7 @@ export default function Resume() {
                   <Grid item>
                     <Typography
                       variant="subtitle1"
-                      style={{ color: theme.palette.common.offWhite }}
+                      style={{ color: theme.palette.text.secondary }}
                     >
                       Nepali
                     </Typography>
@@ -1211,7 +1155,7 @@ export default function Resume() {
                   <Grid item>
                     <Typography
                       variant="subtitle1"
-                      style={{ color: theme.palette.common.offWhite }}
+                      style={{ color: theme.palette.text.secondary }}
                     >
                       Bhojpuri
                     </Typography>
@@ -1226,7 +1170,7 @@ export default function Resume() {
                   <Grid item>
                     <Typography
                       variant="subtitle1"
-                      style={{ color: theme.palette.common.offWhite }}
+                      style={{ color: theme.palette.text.secondary }}
                     >
                       Hindi
                     </Typography>
@@ -1266,7 +1210,6 @@ export default function Resume() {
                 style={{
                   backgroundColor: theme.palette.primary.main,
                   flexWrap: "nowrap",
-                  // border: `3px solid ${theme.palette.accent.main}`,
                 }}
                 borderWidth="3px"
               >
@@ -1280,7 +1223,7 @@ export default function Resume() {
                   <Grid item>
                     <Typography
                       variant="h4"
-                      style={{ color: theme.palette.accent.main }}
+                      style={{ color: theme.palette.text.primary }}
                     >
                       Hobby
                     </Typography>
@@ -1303,14 +1246,13 @@ export default function Resume() {
                     justify="center"
                     style={{
                       flexWrap: "nowrap",
-                      // border: "1px solid green",
                     }}
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
                         <Typography
                           variant="subtitle1"
-                          style={{ color: theme.palette.common.offWhite }}
+                          style={{ color: theme.palette.text.secondary }}
                         >
                           Cooking
                         </Typography>
@@ -1330,7 +1272,6 @@ export default function Resume() {
                     justify="center"
                     style={{
                       flexWrap: "nowrap",
-                      // border: "1px solid green",
                     }}
                   >
                     <Grid item>
@@ -1343,7 +1284,7 @@ export default function Resume() {
                       <Grid item>
                         <Typography
                           variant="subtitle1"
-                          style={{ color: theme.palette.common.offWhite }}
+                          style={{ color: theme.palette.text.secondary }}
                         >
                           Exercise
                         </Typography>
@@ -1356,14 +1297,13 @@ export default function Resume() {
                     justify="center"
                     style={{
                       flexWrap: "nowrap",
-                      // border: "1px solid green",
                     }}
                   >
                     <Grid item style={{ alignSelf: "center" }}>
                       <Grid item>
                         <Typography
                           variant="subtitle1"
-                          style={{ color: theme.palette.common.offWhite }}
+                          style={{ color: theme.palette.text.secondary }}
                         >
                           Reading Books
                         </Typography>
@@ -1395,7 +1335,7 @@ export default function Resume() {
                       <Grid item>
                         <Typography
                           variant="subtitle1"
-                          style={{ color: theme.palette.common.offWhite }}
+                          style={{ color: theme.palette.text.secondary }}
                         >
                           Stock Trading
                         </Typography>
@@ -1415,7 +1355,7 @@ export default function Resume() {
                       <Grid item>
                         <Typography
                           variant="subtitle1"
-                          style={{ color: theme.palette.common.offWhite }}
+                          style={{ color: theme.palette.text.secondary }}
                         >
                           Singing
                         </Typography>
@@ -1442,7 +1382,6 @@ export default function Resume() {
               xs={6}
               style={{
                 position: "relative",
-                border: `1px solid ${theme.palette.secondary.main}`,
                 borderTop: "none",
                 borderRight: "none",
                 backgroundColor: theme.palette.primary.main,
@@ -1453,6 +1392,7 @@ export default function Resume() {
                     : theme.spacing(15)
                   : theme.spacing(9),
               }}
+              className={classes.lineToIcons}
             >
               <HobbyIcon
                 className={classes.svgIcon}
@@ -1528,11 +1468,11 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderRight: "none",
                     borderBottom: "none",
                     backgroundColor: theme.palette.primary.main,
                   }}
+                  className={classes.lineToIcons}
                 >
                   <LangaugeIcon
                     className={classes.svgIcon}
@@ -1556,7 +1496,6 @@ export default function Resume() {
                   padding: theme.spacing(1),
                   paddingBottom: theme.spacing(5),
                   height: "calc(105% - 72px)",
-                  // border: `3px solid ${theme.palette.accent.main}`,
                 }}
                 borderWidth="3px"
               >
@@ -1574,7 +1513,7 @@ export default function Resume() {
                     <Grid item style={{ alignSelf: "center" }}>
                       <Typography
                         variant="h4"
-                        style={{ color: theme.palette.accent.main }}
+                        style={{ color: theme.palette.text.primary }}
                       >
                         Language
                       </Typography>
@@ -1584,7 +1523,7 @@ export default function Resume() {
                     <Grid item>
                       <Typography
                         variant="h6"
-                        style={{ color: theme.palette.common.offWhite }}
+                        style={{ color: theme.palette.text.secondary }}
                       >
                         English
                       </Typography>
@@ -1599,7 +1538,7 @@ export default function Resume() {
                     <Grid item>
                       <Typography
                         variant="h6"
-                        style={{ color: theme.palette.common.offWhite }}
+                        style={{ color: theme.palette.text.secondary }}
                       >
                         Nepali
                       </Typography>
@@ -1614,7 +1553,7 @@ export default function Resume() {
                     <Grid item>
                       <Typography
                         variant="h6"
-                        style={{ color: theme.palette.common.offWhite }}
+                        style={{ color: theme.palette.text.secondary }}
                       >
                         Bhojpuri
                       </Typography>
@@ -1629,7 +1568,7 @@ export default function Resume() {
                     <Grid item>
                       <Typography
                         variant="h6"
-                        style={{ color: theme.palette.common.offWhite }}
+                        style={{ color: theme.palette.text.secondary }}
                       >
                         Hindi
                       </Typography>
@@ -1698,7 +1637,7 @@ export default function Resume() {
                 <Grid item>
                   <Typography
                     variant="h4"
-                    style={{ color: theme.palette.accent.main }}
+                    style={{ color: theme.palette.text.primary }}
                   >
                     Technical Proficiency
                   </Typography>
@@ -1804,10 +1743,10 @@ export default function Resume() {
                 xs
                 style={{
                   position: "relative",
-                  border: `1px solid ${theme.palette.secondary.main}`,
                   borderTop: "none",
                   borderLeft: "none",
                 }}
+                className={classes.lineToIcons}
               >
                 <ProgrammingIcon
                   className={classes.svgIcon}
@@ -1825,13 +1764,7 @@ export default function Resume() {
 
         {/* hobby */}
         <Hidden mdDown>
-          <Grid
-            item
-            container
-            alignItems="center"
-            justify="center"
-            // style={{ border: "1px solid yellow" }}
-          >
+          <Grid item container alignItems="center" justify="center">
             <Grid item container style={{ height: "30%" }}>
               <Grid item container justify="center">
                 <Grid
@@ -1844,13 +1777,13 @@ export default function Resume() {
                   xs
                   style={{
                     position: "relative",
-                    border: `1px solid ${theme.palette.secondary.main}`,
                     borderBottom: "none",
                     borderLeft: "none",
                     backgroundColor: theme.palette.primary.main,
                     height: matchesLG ? theme.spacing(12) : theme.spacing(9),
                     marginTop: matchesLG ? theme.spacing(15) : theme.spacing(9),
                   }}
+                  className={classes.lineToIcons}
                 >
                   <HobbyIcon
                     className={classes.svgIcon}
@@ -1880,23 +1813,10 @@ export default function Resume() {
                   style={{
                     backgroundColor: theme.palette.primary.main,
                     flexWrap: "nowrap",
-                    // border: `3px solid ${theme.palette.accent.main}`,
                     marginBottom: theme.spacing(5),
                   }}
                   borderWidth="3px"
                 >
-                  {/* <Grid
-                  item
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
-                  style={{
-                    flexWrap: "nowrap",
-                    border: `3px solid ${theme.palette.accent.main}`,
-                    marginBottom: theme.spacing(5),
-                  }}
-                > */}
                   <Grid
                     item
                     container
@@ -1907,7 +1827,7 @@ export default function Resume() {
                     <Grid item>
                       <Typography
                         variant="h4"
-                        style={{ color: theme.palette.accent.main }}
+                        style={{ color: theme.palette.text.primary }}
                       >
                         Hobby
                       </Typography>
@@ -1930,14 +1850,13 @@ export default function Resume() {
                       justify="center"
                       style={{
                         flexWrap: "nowrap",
-                        // border: "1px solid green",
                       }}
                     >
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
                           <Typography
                             variant="h6"
-                            style={{ color: theme.palette.common.offWhite }}
+                            style={{ color: theme.palette.text.secondary }}
                           >
                             Cooking
                           </Typography>
@@ -1946,7 +1865,10 @@ export default function Resume() {
                       <Grid item>
                         <Cooking
                           className={classes.svgIcon}
-                          style={{ height: theme.spacing(5) }}
+                          style={{
+                            height: theme.spacing(5),
+                            fill: theme.palette.secondary.main,
+                          }}
                         />
                       </Grid>
                     </Grid>
@@ -1957,20 +1879,22 @@ export default function Resume() {
                       justify="center"
                       style={{
                         flexWrap: "nowrap",
-                        // border: "1px solid green",
                       }}
                     >
                       <Grid item>
                         <Exercise
                           className={classes.svgIcon}
-                          style={{ height: theme.spacing(5) }}
+                          style={{
+                            height: theme.spacing(5),
+                            fill: theme.palette.secondary.main,
+                          }}
                         />
                       </Grid>
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
                           <Typography
                             variant="h6"
-                            style={{ color: theme.palette.common.offWhite }}
+                            style={{ color: theme.palette.text.secondary }}
                           >
                             Exercise
                           </Typography>
@@ -1983,14 +1907,13 @@ export default function Resume() {
                       justify="center"
                       style={{
                         flexWrap: "nowrap",
-                        // border: "1px solid green",
                       }}
                     >
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
                           <Typography
                             variant="h6"
-                            style={{ color: theme.palette.common.offWhite }}
+                            style={{ color: theme.palette.text.secondary }}
                           >
                             Reading Books
                           </Typography>
@@ -1999,7 +1922,10 @@ export default function Resume() {
                       <Grid item>
                         <MenuBookOutlinedIcon
                           className={classes.svgIcon}
-                          style={{ height: theme.spacing(5) }}
+                          style={{
+                            height: theme.spacing(5),
+                            fill: theme.palette.secondary.main,
+                          }}
                         />
                       </Grid>
                     </Grid>
@@ -2010,20 +1936,22 @@ export default function Resume() {
                       justify="center"
                       style={{
                         flexWrap: "nowrap",
-                        // border: "1px solid green",
                       }}
                     >
                       <Grid item>
                         <Stock
                           className={classes.svgIcon}
-                          style={{ height: theme.spacing(5) }}
+                          style={{
+                            height: theme.spacing(5),
+                            fill: theme.palette.secondary.main,
+                          }}
                         />
                       </Grid>
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
                           <Typography
                             variant="h6"
-                            style={{ color: theme.palette.common.offWhite }}
+                            style={{ color: theme.palette.text.secondary }}
                           >
                             Stock Trading
                           </Typography>
@@ -2037,14 +1965,13 @@ export default function Resume() {
                       justify="center"
                       style={{
                         flexWrap: "nowrap",
-                        // border: "1px solid green",
                       }}
                     >
                       <Grid item style={{ alignSelf: "center" }}>
                         <Grid item>
                           <Typography
                             variant="h6"
-                            style={{ color: theme.palette.common.offWhite }}
+                            style={{ color: theme.palette.text.secondary }}
                           >
                             Singing
                           </Typography>
@@ -2053,12 +1980,14 @@ export default function Resume() {
                       <Grid item>
                         <Music
                           className={classes.svgIcon}
-                          style={{ height: theme.spacing(5) }}
+                          style={{
+                            height: theme.spacing(5),
+                            fill: theme.palette.secondary.main,
+                          }}
                         />
                       </Grid>
                     </Grid>
                   </Grid>
-                  {/* </Grid> */}
                 </ContainerWithGradientBorder>
               </Grid>
             </Grid>

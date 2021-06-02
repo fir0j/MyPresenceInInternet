@@ -31,10 +31,10 @@ const MenuItemForSorting = () => {
         component="nav"
         aria-label="Device settings"
         style={{
-          border: `1px solid ${theme.palette.accent.main}`,
+          border: `1px solid ${theme.palette.primary.light}`,
           borderRadius: theme.spacing(1),
           backgroundColor: theme.palette.common.black,
-          color: theme.palette.common.offWhite,
+          color: theme.palette.text.primary,
         }}
       >
         <ListItem
@@ -48,7 +48,7 @@ const MenuItemForSorting = () => {
             primary="Sort By"
             secondary={options[selectedIndex]}
             secondaryTypographyProps={{
-              style: { color: theme.palette.common.offWhite },
+              style: { color: theme.palette.text.primary },
             }}
           />
         </ListItem>

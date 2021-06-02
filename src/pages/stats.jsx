@@ -22,9 +22,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "auto",
-    backgroundColor: theme.palette.primary.main,
     borderRadius: theme.spacing(1),
-
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     marginBottom: theme.spacing(1),
@@ -32,19 +30,19 @@ const useStyles = makeStyles((theme) => ({
   },
 
   smallPaper: {
-    backgroundColor: theme.palette.common.paperLayer,
+    backgroundColor: theme.palette.background.microPaper,
     height: theme.spacing(30),
   },
 
   legends: {
     "& span": {
-      color: theme.palette.common.offWhite,
+      color: theme.palette.text.secondary,
       fontSize: theme.spacing(2.5),
       marginLeft: theme.spacing(1),
     },
     "& div": {
       fontSize: "0.8rem",
-      color: theme.palette.secondary.main,
+      color: theme.palette.text.tertiary,
     },
   },
 }));
@@ -123,7 +121,7 @@ export default function ShapeDivider() {
                 justify="center"
               >
                 <Grid item>
-                  <Circle color={theme.palette.common.coreWeb} />
+                  <Circle color={theme.palette.background.library} />
                   <Typography component="span">Core Web</Typography>
                 </Grid>
                 <Grid item>
@@ -141,7 +139,7 @@ export default function ShapeDivider() {
                 justify="center"
               >
                 <Grid item>
-                  <Circle color={theme.palette.common.library} />
+                  <Circle color={theme.palette.background.coreWeb} />
                   <Typography component="span">Library</Typography>
                 </Grid>
                 <Grid item style={{ marginLeft: theme.spacing(6) }}>
@@ -173,7 +171,7 @@ export default function ShapeDivider() {
                 justify="center"
               >
                 <Grid item>
-                  <Circle color={theme.palette.common.runtime} />
+                  <Circle color={theme.palette.background.runtime} />
                   <Typography component="span">Runtime</Typography>
                 </Grid>
                 <Grid item style={{ marginLeft: -theme.spacing(4) }}>
@@ -188,7 +186,7 @@ export default function ShapeDivider() {
                 justify="center"
               >
                 <Grid item>
-                  <Circle color={theme.palette.common.database} />
+                  <Circle color={theme.palette.background.database} />
                   <Typography component="span">Database</Typography>
                 </Grid>
                 <Grid item>
@@ -205,7 +203,6 @@ export default function ShapeDivider() {
   }
 
   function ProjectExperienceDegree() {
-    // #69F0AE
     const NumberDisplay = ({
       name,
       Icon,
@@ -263,7 +260,7 @@ export default function ShapeDivider() {
                   item
                   style={{
                     fontSize: matchesSM ? "1rem" : "1.4rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                     height: theme.spacing(5),
                   }}
                 >
@@ -290,7 +287,7 @@ export default function ShapeDivider() {
               <Grid
                 item
                 style={{
-                  backgroundColor: theme.palette.common.coreWeb,
+                  backgroundColor: theme.palette.secondary.main,
                   width: theme.spacing(8),
                   borderTopRightRadius: theme.spacing(1),
                   borderBottomRightRadius: theme.spacing(1),
@@ -310,14 +307,14 @@ export default function ShapeDivider() {
             Icon={
               <ProjectIcon
                 style={{
-                  fill: theme.palette.secondary.main,
+                  fill: theme.palette.text.tertiary,
                   marginLeft: theme.spacing(1),
                   width: theme.spacing(4),
                 }}
               />
             }
             count="18"
-            accentColor={theme.palette.common.offWhite}
+            accentColor={theme.palette.common.white}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={theme.spacing(2)}
@@ -328,14 +325,14 @@ export default function ShapeDivider() {
             Icon={
               <Work
                 style={{
-                  fill: theme.palette.secondary.main,
+                  fill: theme.palette.text.tertiary,
                   marginLeft: matchesSM ? theme.spacing(1) : theme.spacing(2),
                   width: matchesSM ? theme.spacing(3) : theme.spacing(4),
                 }}
               />
             }
             count="1"
-            accentColor={theme.palette.common.offWhite}
+            accentColor={theme.palette.common.white}
             marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={theme.spacing(2)}
@@ -346,7 +343,7 @@ export default function ShapeDivider() {
             Icon={
               <Education
                 style={{
-                  fill: theme.palette.secondary.main,
+                  fill: theme.palette.text.tertiary,
                   marginLeft: theme.spacing(2),
                   width: theme.spacing(5),
                   marginTop: -theme.spacing(1.8),
@@ -354,7 +351,7 @@ export default function ShapeDivider() {
               />
             }
             count="1"
-            accentColor={theme.palette.common.offWhite}
+            accentColor={theme.palette.common.white}
             marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={theme.spacing(2)}
@@ -365,14 +362,14 @@ export default function ShapeDivider() {
             Icon={
               <LangaugeIcon
                 style={{
-                  fill: theme.palette.secondary.main,
+                  fill: theme.palette.text.tertiary,
                   marginLeft: theme.spacing(1.5),
                   width: theme.spacing(4),
                 }}
               />
             }
             count="4"
-            accentColor={theme.palette.common.offWhite}
+            accentColor={theme.palette.common.white}
             marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
             marginRight={matchesMD ? theme.spacing(2) : undefined}
@@ -385,7 +382,6 @@ export default function ShapeDivider() {
 
   function StackOverFlowStatus() {
     return (
-      // <Grid container justify={matchesSM ? "center" : "space-between"}>
       <Grid item>
         <Paper
           elevation={3}
@@ -398,7 +394,7 @@ export default function ShapeDivider() {
         >
           <Grid container justify="center">
             <Grid item>
-              <StackOverflow style={{ fill: theme.palette.accent.main }} />
+              <StackOverflow style={{ fill: theme.palette.secondary.main }} />
             </Grid>
             <Grid item container justify="space-around">
               <Grid item style={{ color: "#4e6f8a" }}>
@@ -407,7 +403,7 @@ export default function ShapeDivider() {
                   style={{
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.secondary,
                   }}
                 >
                   Reputation
@@ -430,7 +426,7 @@ export default function ShapeDivider() {
                   style={{
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.secondary,
                   }}
                 >
                   Silver
@@ -458,7 +454,7 @@ export default function ShapeDivider() {
                   style={{
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.secondary,
                   }}
                 >
                   Bronze
@@ -523,7 +519,7 @@ export default function ShapeDivider() {
                   variant="h6"
                   style={{
                     fontSize: "1.2rem",
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.text.tertiary,
                     paddingLeft: matchesSM ? theme.spacing(1) : undefined,
                   }}
                 >
@@ -536,7 +532,7 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1.5rem",
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.text.secondary,
                     marginBottom: theme.spacing(2),
                     marginTop: theme.spacing(2),
                   }}
@@ -549,14 +545,14 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                     marginBottom: theme.spacing(1.5),
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
                   }}
                 >
                   <Circle
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
                   The Complete Web Developer in 2021: Zero to Mastery
@@ -569,7 +565,7 @@ export default function ShapeDivider() {
                       style={{
                         width: theme.spacing(2),
                         marginLeft: theme.spacing(1),
-                        fill: theme.palette.secondary.main,
+                        fill: theme.palette.text.tertiary,
                       }}
                     />
                   </a>
@@ -578,14 +574,14 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                     marginBottom: theme.spacing(1.5),
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
                   }}
                 >
                   <Circle
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
                   Implement High Fidelity Designs with Material-UI and ReactJS
@@ -598,7 +594,7 @@ export default function ShapeDivider() {
                       style={{
                         width: theme.spacing(2),
                         marginLeft: theme.spacing(1),
-                        fill: theme.palette.secondary.main,
+                        fill: theme.palette.text.tertiary,
                       }}
                     />
                   </a>
@@ -607,14 +603,14 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                     marginBottom: theme.spacing(1.5),
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
                   }}
                 >
                   <Circle
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
                   The Complete Junior to Senior Web Developer Roadmap (2021)
@@ -627,7 +623,7 @@ export default function ShapeDivider() {
                       style={{
                         width: theme.spacing(2),
                         marginLeft: theme.spacing(1),
-                        fill: theme.palette.secondary.main,
+                        fill: theme.palette.text.tertiary,
                       }}
                     />
                   </a>
@@ -636,14 +632,14 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                     marginBottom: theme.spacing(1.5),
                     marginLeft: theme.spacing(1),
                     marginRight: theme.spacing(1),
                   }}
                 >
                   <Circle
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
                   MERN Stack React Node Ecommerce from Scratch to Deployment
@@ -656,7 +652,7 @@ export default function ShapeDivider() {
                       style={{
                         width: theme.spacing(2),
                         marginLeft: theme.spacing(1),
-                        fill: theme.palette.secondary.main,
+                        fill: theme.palette.text.tertiary,
                       }}
                     />
                   </a>
@@ -692,7 +688,7 @@ export default function ShapeDivider() {
                   variant="h6"
                   style={{
                     fontSize: "1.2rem",
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.text.tertiary,
                     paddingLeft: matchesSM ? theme.spacing(1) : "",
                   }}
                 >
@@ -705,7 +701,7 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1.5rem",
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.text.secondary,
                     marginBottom: theme.spacing(2),
                     marginTop: theme.spacing(2),
                   }}
@@ -718,11 +714,11 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                   }}
                 >
                   <Circle
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
                   Typescript
@@ -731,11 +727,11 @@ export default function ShapeDivider() {
                   component="div"
                   style={{
                     fontSize: "1rem",
-                    color: theme.palette.secondary.main,
+                    color: theme.palette.text.tertiary,
                   }}
                 >
                   <Circle
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
                   React Native

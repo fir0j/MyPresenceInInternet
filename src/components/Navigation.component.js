@@ -50,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // when tabs are vertical
+
   // CSS $Rule Name
   tabsFlexContainerVertical: {
     display: "flex",
@@ -59,32 +61,35 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "100%",
     width: "100%",
     height: "100%",
-    // backgroundColor: theme.palette.common.bg,
-    // background: `linear-gradient(90deg,${theme.palette.common.color1},${theme.palette.common.color2})`,
-    color: theme.palette.accent.main,
+    color: theme.palette.text.primary,
   },
 
   tabsIndicator: {
-    backgroundColor: "transparent",
-    width: "1px",
+    // backgroundColor: "transparent",
+    width: theme.spacing(0.5),
+    opacity: 0.75,
   },
 
   tabRoot: {
     flexGrow: 1,
-    backgroundColor: theme.palette.common.black,
-    border: `1px solid ${theme.palette.accent.main}`,
+    backgroundColor: theme.palette.primary.dark,
+    borderColor: theme.palette.secondary.main,
+    // border: `1px solid ${theme.palette.secondary.main}`,
     "&$tabSelected": {
-      backgroundColor: "transparent",
       border: "none",
+      // backgroundColor: theme.palette.primary.main,
+      [theme.breakpoints.down("sm")]: {
+        // backgroundColor: "transparent",
+      },
     },
-    "&$tabDisabled": {
-      // backgroundColor: "red",
-    },
+    // "&$tabDisabled": {
+    //   // backgroundColor: "red",
+    // },
 
-    "&:hover": {
-      // since tab's :hover, :focus Pseudo-class is not controlled by Mui API, we can apply as normal css or SASS
-      // backgroundColor: "red",
-    },
+    // "&:hover": {
+    //   // since tab's :hover, :focus Pseudo-class is not controlled by Mui API, we can apply as normal css or SASS
+    //   // backgroundColor: "red",
+    // },
   },
 
   tabSelected: {},
@@ -100,30 +105,32 @@ const useStyles = makeStyles((theme) => ({
   tabLabelIcon: {
     paddingTop: "0px",
   },
-  // when orientation is horizontal
+
+  // when are horizontal
   flexContainer: {
     width: "100%",
     maxWidth: "100%",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.messageBox,
     "&>.MuiTab-root": {
       width: "auto",
-      backgroundColor: theme.palette.common.tab,
-      color: theme.palette.accent.main,
+      flexGrow: 1,
+      color: theme.palette.text.primary,
       [theme.breakpoints.down("xs")]: {
         fontSize: "0.8rem",
       },
-      flexGrow: 1,
-      border: `1px solid ${theme.palette.accent.main}`,
+      border: `1px solid ${theme.palette.primary.light}`,
       borderRight: "none",
       fontWeight: "bold",
     },
     "&>.MuiTab-labelIcon": {
-      paddingTop: "2px",
+      paddingTop: theme.spacing(0.5),
     },
 
     "&>.Mui-selected": {
-      backgroundColor: theme.palette.primary.main,
       position: "relative",
+      // [theme.breakpoints.down("sm")]: {
+      //   color: theme.palette.primary.main,
+      // },
 
       // "&>.MuiTab-wrapper": {
       //   width: "100%",
@@ -145,22 +152,22 @@ export default function Navigation() {
   useEffect(() => {
     switch (window.location.pathname) {
       case "/":
-        setValue(1);
+        matchesSM ? setValue(0) : setValue(1);
         break;
       case "/project":
-        setValue(2);
+        matchesSM ? setValue(1) : setValue(2);
         break;
       case "/stats":
-        setValue(3);
+        matchesSM ? setValue(2) : setValue(3);
         break;
       case "/hireme":
-        setValue(4);
+        matchesSM ? setValue(3) : setValue(4);
         break;
       default:
-        setValue(1);
+        setValue(0);
         break;
     }
-  }, []);
+  }, [matchesSM]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -196,22 +203,22 @@ export default function Navigation() {
           icon={
             <div>
               <Logo
-                fill={theme.palette.accent.main}
-                stroke={theme.palette.accent.main}
+                fill={theme.palette.secondary.main}
+                stroke={theme.palette.secondary.main}
                 className={classes.iconDimension}
               />
             </div>
           }
           className={classes.tab}
           classes={tabRules}
-          style={{
-            borderBottomRightRadius:
-              value - getIndex(0) === 1
-                ? matchesMD
-                  ? "40px"
-                  : "80px"
-                : undefined,
-          }}
+          // style={{
+          //   borderBottomRightRadius:
+          //     value - getIndex(0) === 1
+          //       ? matchesMD
+          //         ? "40px"
+          //         : "80px"
+          //       : undefined,
+          // }}
         />
       )}
 
@@ -220,8 +227,8 @@ export default function Navigation() {
         icon={
           <div>
             <Resume
-              fill={theme.palette.accent.main}
-              stroke={theme.palette.accent.main}
+              fill={theme.palette.secondary.main}
+              stroke={theme.palette.secondary.main}
               className={classes.iconDimension}
             />
           </div>
@@ -230,24 +237,24 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        style={{
-          borderBottomRightRadius:
-            value - getIndex(1) === 1
-              ? matchesMD
-                ? matchesSM
-                  ? undefined
-                  : "40px"
-                : "80px"
-              : undefined,
-        }}
+        // style={{
+        //   borderBottomRightRadius:
+        //     value - getIndex(1) === 1
+        //       ? matchesMD
+        //         ? matchesSM
+        //           ? undefined
+        //           : "40px"
+        //         : "80px"
+        //       : undefined,
+        // }}
       />
       <Tab
         label="Project"
         icon={
           <div>
             <ProjectIcon
-              fill={theme.palette.accent.main}
-              stroke={theme.palette.accent.main}
+              fill={theme.palette.secondary.main}
+              stroke={theme.palette.secondary.main}
               className={classes.iconDimension}
             />
           </div>
@@ -256,32 +263,32 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        style={{
-          borderTopRightRadius:
-            value - getIndex(2) === -1
-              ? matchesMD
-                ? matchesSM
-                  ? undefined
-                  : "40px"
-                : "80px"
-              : undefined,
-          borderBottomRightRadius:
-            value - getIndex(2) === 1
-              ? matchesMD
-                ? matchesSM
-                  ? undefined
-                  : "40px"
-                : "80px"
-              : undefined,
-        }}
+        // style={{
+        //   borderTopRightRadius:
+        //     value - getIndex(2) === -1
+        //       ? matchesMD
+        //         ? matchesSM
+        //           ? undefined
+        //           : "40px"
+        //         : "80px"
+        //       : undefined,
+        //   borderBottomRightRadius:
+        //     value - getIndex(2) === 1
+        //       ? matchesMD
+        //         ? matchesSM
+        //           ? undefined
+        //           : "40px"
+        //         : "80px"
+        //       : undefined,
+        // }}
       />
       <Tab
         label="Stats"
         icon={
           <div>
             <FeedbackIcon
-              fill={theme.palette.accent.main}
-              stroke={theme.palette.accent.main}
+              fill={theme.palette.secondary.main}
+              stroke={theme.palette.secondary.main}
               className={classes.iconDimension}
             />
           </div>
@@ -290,24 +297,24 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        style={{
-          borderTopRightRadius:
-            value + getIndex(3) === 5
-              ? matchesMD
-                ? matchesSM
-                  ? undefined
-                  : "40px"
-                : "80px"
-              : "",
-          borderBottomRightRadius:
-            value + getIndex(3) === 7
-              ? matchesMD
-                ? matchesSM
-                  ? ""
-                  : "40px"
-                : "80px"
-              : undefined,
-        }}
+        // style={{
+        //   borderTopRightRadius:
+        //     value + getIndex(3) === 5
+        //       ? matchesMD
+        //         ? matchesSM
+        //           ? undefined
+        //           : "40px"
+        //         : "80px"
+        //       : "",
+        //   borderBottomRightRadius:
+        //     value + getIndex(3) === 7
+        //       ? matchesMD
+        //         ? matchesSM
+        //           ? ""
+        //           : "40px"
+        //         : "80px"
+        //       : undefined,
+        // }}
       />
       <Tab
         label="HireMe"
@@ -315,8 +322,8 @@ export default function Navigation() {
         icon={
           <div>
             <Hireme
-              fill={theme.palette.accent.main}
-              stroke={theme.palette.accent.main}
+              fill={theme.palette.secondary.main}
+              stroke={theme.palette.secondary.main}
               className={classes.iconDimension}
             />
           </div>
@@ -324,16 +331,16 @@ export default function Navigation() {
         component={Link}
         className={classes.tab}
         classes={tabRules}
-        style={{
-          borderTopRightRadius:
-            value + getIndex(4) === 7
-              ? matchesMD
-                ? matchesSM
-                  ? undefined
-                  : "40px"
-                : "80px"
-              : undefined,
-        }}
+        // style={{
+        //   borderTopRightRadius:
+        //     value + getIndex(4) === 7
+        //       ? matchesMD
+        //         ? matchesSM
+        //           ? undefined
+        //           : "40px"
+        //         : "80px"
+        //       : undefined,
+        // }}
       />
 
       {!matchesSM && (
@@ -342,17 +349,17 @@ export default function Navigation() {
           disabled
           className={classes.tab}
           classes={tabRules}
-          style={{
-            borderTopRightRadius:
-              value + getIndex(5) === 9
-                ? matchesMD
-                  ? matchesXS
-                    ? undefined
-                    : "40px"
-                  : "80px"
-                : undefined,
-            maxHeight: matchesMD ? "60px" : "100px",
-          }}
+          // style={{
+          //   borderTopRightRadius:
+          //     value + getIndex(5) === 9
+          //       ? matchesMD
+          //         ? matchesXS
+          //           ? undefined
+          //           : "40px"
+          //         : "80px"
+          //       : undefined,
+          //   maxHeight: matchesMD ? "60px" : "100px",
+          // }}
         />
       )}
     </Tabs>
@@ -400,4 +407,3 @@ export default function Navigation() {
     </Fragment>
   );
 }
-// .MuiTabs-flexContainerVertical

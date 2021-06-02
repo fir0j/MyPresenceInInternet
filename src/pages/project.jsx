@@ -38,21 +38,19 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "0.8rem",
     },
     "&:hover": {
-      backgroundColor: theme.palette.common.buttonGroupBGHover,
-      color: theme.palette.primary.main,
+      // backgroundColor: theme.palette.secondary.dark,
+      // color: theme.palette.primary.main,
     },
   },
 
   groupedContainedPrimary: {
-    // backgroundColor: theme.palette.common.black,
-    backgroundColor: theme.palette.common.buttonGroupBG,
-    // border: `1px solid ${theme.palette.secondary.main}`,
-    color: theme.palette.common.offWhite,
-    // "&:not(:last-child)": {
-    //   border: `1px solid ${theme.palette.secondary.main}`,
-    //   borderRight: "none",
-    //   borderColor: "red",
-    // },
+    backgroundColor: theme.palette.background.filterButtons,
+    color: theme.palette.text.secondary,
+    // border: `1px solid ${theme.palette.primary.light}`,
+    "&:not(:last-child)": {
+      borderRight: `1px solid ${theme.palette.primary.light}`,
+      borderColor: "red",
+    },
   },
   grouped: {
     border: "1px solid red",
@@ -60,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
 
   cardRoot: {
     maxWidth: theme.spacing(35),
-    color: theme.palette.common.offWhite,
+    color: theme.palette.text.secondary,
     boxShadow: "20px 20px 50px rgba(0, 0, 0, 0.5)",
-    backgroundColor: theme.palette.common.cardBG,
+    backgroundColor: theme.palette.background.card,
     borderRadius: theme.spacing(2),
     borderTop: "1px solid rgba(255,255,255,0.5)",
     borderLeft: "1px solid rgba(255,255,255,0.5)",
@@ -97,14 +95,14 @@ const useStyles = makeStyles((theme) => ({
   star: {
     clipPath:
       "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-    backgroundColor: theme.palette.accent.main,
+    backgroundColor: theme.palette.text.primary,
   },
 
   // buttonRoot: {
   //   "&$disabled": {
   //     backgroundColor: "transparent",
   //     border: "1px solid rgba(255,255,255,0.25)",
-  //     color: theme.palette.accent.main,
+  //     color: theme.palette.text.primary,
   //   },
   // },
   // disabled: {},
@@ -271,7 +269,7 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "all"
-                    ? theme.palette.accent.main
+                    ? theme.palette.secondary.main
                     : undefined,
                 color:
                   selectedFilter === "all"
@@ -287,7 +285,7 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "frontend"
-                    ? theme.palette.accent.main
+                    ? theme.palette.secondary.main
                     : undefined,
                 color:
                   selectedFilter === "frontend"
@@ -303,7 +301,7 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "backend"
-                    ? theme.palette.accent.main
+                    ? theme.palette.secondary.main
                     : undefined,
                 color:
                   selectedFilter === "backend"
@@ -319,7 +317,7 @@ export default function Project() {
               style={{
                 backgroundColor:
                   selectedFilter === "fullstack"
-                    ? theme.palette.accent.main
+                    ? theme.palette.secondary.main
                     : undefined,
                 color:
                   selectedFilter === "fullstack"
@@ -358,8 +356,8 @@ export default function Project() {
               variant="outlined"
               disabled
               style={{
-                color: theme.palette.accent.main,
-                border: `1px solid ${theme.palette.common.buttonGroupBG}`,
+                color: theme.palette.secondary.main,
+                border: `1px solid ${theme.palette.background.filterButtons}`,
               }}
             >
               Sort by
@@ -369,7 +367,7 @@ export default function Project() {
               onClick={() => handleSort("name", cards)}
               style={{
                 backgroundColor:
-                  sortBy === "name" ? theme.palette.accent.main : undefined,
+                  sortBy === "name" ? theme.palette.secondary.main : undefined,
                 color:
                   sortBy === "name" ? theme.palette.primary.main : undefined,
               }}
@@ -382,7 +380,7 @@ export default function Project() {
               onClick={(event) => handleSort("date", cards)}
               style={{
                 backgroundColor:
-                  sortBy === "date" ? theme.palette.accent.main : undefined,
+                  sortBy === "date" ? theme.palette.secondary.main : undefined,
                 color:
                   sortBy === "date" ? theme.palette.primary.main : undefined,
               }}
@@ -431,15 +429,17 @@ export default function Project() {
             title={name}
             subheader={date}
             subheaderTypographyProps={{
-              style: { color: theme.palette.secondary.main },
+              style: { color: theme.palette.text.secondary },
             }}
           />
           <CardContent>
             <Typography
-              color="secondary"
               variant="body1"
               component="p"
-              style={{ marginBottom: theme.spacing(1) }}
+              style={{
+                marginBottom: theme.spacing(1),
+                color: theme.palette.text.tertiary,
+              }}
             >
               {data}
             </Typography>
@@ -449,9 +449,12 @@ export default function Project() {
                   key={item}
                   label={item}
                   variant="outlined"
-                  color="secondary"
+                  // color="secondary"
                   // icon={getIcon(item)}
-                  style={{ margin: theme.spacing(0.5) }}
+                  style={{
+                    margin: theme.spacing(0.5),
+                    color: theme.palette.text.secondary,
+                  }}
                 />
               );
             })}
@@ -489,12 +492,11 @@ export default function Project() {
             height: theme.spacing(70),
             position: "absolute",
             top: theme.spacing(20),
-            // left: -theme.spacing(70),
             zIndex: -1,
             opacity: 0.1,
             overflow: "hidden",
             transform: "skew(50deg,1deg)",
-            backgroundColor: theme.palette.accent.main,
+            backgroundColor: theme.palette.secondary.main,
           }}
         />
       );
@@ -607,11 +609,10 @@ export default function Project() {
         return (
           <Button
             onClick={handleNextButtonClick}
-            color="secondary"
             variant="outlined"
             style={{
               borderRadius: 0,
-              backgroundColor: theme.palette.common.buttonGroupBG,
+              backgroundColor: theme.palette.background.filterButtons,
             }}
           >
             ...
@@ -627,8 +628,11 @@ export default function Project() {
           <Button
             onClick={handlePrevButtonClick}
             variant="outlined"
-            color="secondary"
-            style={{ borderRadius: 0, borderRight: "none" }}
+            style={{
+              borderRadius: 0,
+              borderRight: "none",
+              backgroundColor: theme.palette.background.filterButtons,
+            }}
           >
             ...
           </Button>
@@ -639,13 +643,16 @@ export default function Project() {
 
     const prevButton = (
       <Button
-        variant="contained"
+        variant="outlined"
         style={{
           backgroundColor:
             currentPageNumber === pages[0]
-              ? theme.palette.secondary.main
-              : theme.palette.accent.main,
-          color: theme.palette.primary.main,
+              ? theme.palette.action.disabled
+              : theme.palette.secondary.main,
+          color:
+            currentPageNumber === pages[0]
+              ? theme.palette.text.disabled
+              : theme.palette.primary.main,
         }}
         onClick={handlePrevButtonClick}
         disabled={currentPageNumber === pages[0] ? true : false}
@@ -656,13 +663,16 @@ export default function Project() {
 
     const nextButton = (
       <Button
-        variant="contained"
+        variant="outlined"
         style={{
           backgroundColor:
             currentPageNumber === pages[pages.length - 1]
-              ? theme.palette.secondary.main
-              : theme.palette.accent.main,
-          color: theme.palette.primary.main,
+              ? theme.palette.action.disabled
+              : theme.palette.secondary.main,
+          color:
+            currentPageNumber === pages[pages.length - 1]
+              ? theme.palette.text.disabled
+              : theme.palette.primary.main,
         }}
         onClick={handleNextButtonClick}
         disabled={currentPageNumber === pages[pages.length - 1] ? true : false}
@@ -686,12 +696,12 @@ export default function Project() {
             style={{
               backgroundColor:
                 pageNumber === currentPageNumber
-                  ? theme.palette.accent.main
-                  : theme.palette.common.buttonGroupBG,
+                  ? theme.palette.secondary.main
+                  : theme.palette.background.filterButtons,
               color:
                 pageNumber === currentPageNumber
                   ? theme.palette.primary.main
-                  : theme.palette.accent.main,
+                  : theme.palette.text.secondary,
             }}
           >
             {pageNumber}
@@ -716,7 +726,12 @@ export default function Project() {
         >
           <Grid item>
             <ButtonGroup
-              color="secondary"
+              style={
+                {
+                  // backgroundColor: theme.palette.background.filterButtons,
+                  // color: theme.palette.text.secondary,
+                }
+              }
               aria-label="large outlined primary button group"
             >
               {prevButton}
@@ -740,7 +755,6 @@ export default function Project() {
           position: "relative",
           width: "100%",
           height: "auto",
-          backgroundColor: theme.palette.primary.main,
           overflow: "hidden",
           zIndex: 0,
           borderRadius: theme.spacing(1),

@@ -25,7 +25,7 @@ const ContainerWithGradientBorder = ({
         content: '""',
         position: "absolute",
         inset: 0,
-        background: theme.palette.common.myGradient,
+        background: theme.palette.background.gradient,
         // background: borderGadient
         //   ? borderGadient
         //   : "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",

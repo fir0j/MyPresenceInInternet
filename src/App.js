@@ -7,7 +7,7 @@ import {
 import { Grid } from "@material-ui/core";
 import { Route } from "react-router-dom";
 
-import { Switch, useLocation } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { cyanTheme, goldTheme } from "./customTheme";
 
 import Navigation from "./components/Navigation.component";
@@ -21,7 +21,7 @@ import HireMe from "./pages/hireme";
 const GlobalCss = withStyles({
   "@global": {
     // ".MuiCircularProgress-circleDeterminate": {
-    //   stroke: myTheme.palette.accent.main,
+    //   stroke: myTheme.palette.secondary.main,
     // },
     // ".Mui-selected": {
     //   backgroundColor: "transparent",
@@ -31,7 +31,7 @@ const GlobalCss = withStyles({
 })(() => null);
 
 function App() {
-  const [myTheme, setMyTheme] = useState(goldTheme);
+  const [myTheme, setMyTheme] = useState(cyanTheme);
   // const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
 
   const setTheme = (themeName) => {
@@ -73,7 +73,7 @@ function App() {
             height: "100vh",
             maxWidth: "100vw",
             maxHeight: "100vh",
-            backgroundColor: myTheme.palette.common.backgroundColor,
+            backgroundColor: myTheme.palette.background.floor,
             flexWrap: "nowrap",
           }}
         >

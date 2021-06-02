@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   circleDeterminate: {
-    stroke: theme.palette.accent.main,
+    stroke: theme.palette.secondary.main,
   },
 }));
 
@@ -36,7 +36,7 @@ export default function CircularProgressWithLabel(props) {
         >
           <Typography
             variant="caption"
-            style={{ color: theme.palette.common.offWhite }}
+            style={{ color: theme.palette.text.tertiary }}
             component="div"
           >
             {props.label}

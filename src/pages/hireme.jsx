@@ -28,17 +28,16 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "auto",
-    backgroundColor: theme.palette.primary.main,
     borderRadius: theme.spacing(1),
     zIndex: 0,
   },
 
   messageBox: {
-    border: `1px solid ${theme.palette.secondary.main}`,
+    border: `1px solid ${theme.palette.primary.light}`,
     marginTop: "5em",
     paddingLeft: theme.spacing(1),
     borderRadius: 5,
-    backgroundColor: theme.palette.common.messageBox,
+    backgroundColor: theme.palette.background.messageBox,
   },
 
   sendButton: {
@@ -46,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
     height: 45,
     width: 245,
     fontSize: "1rem",
-    backgroundColor: theme.palette.accent.main,
+    backgroundColor: theme.palette.secondary.main,
     opacity: 0.9,
 
     "&:hover": {
-      backgroundColor: theme.palette.accent.main,
+      backgroundColor: theme.palette.secondary.main,
       opacity: 1,
     },
 
@@ -62,28 +61,42 @@ const useStyles = makeStyles((theme) => ({
 
   buttonRoot: {
     "&$disabled": {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.background.messageBox,
+      color: theme.palette.text.disabled,
     },
   },
 
   textfieldInputLabelRoot: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.text.secondary,
     "&.Mui-focused": {
-      color: theme.palette.secondary.main,
+      color: theme.palette.text.tertiary,
     },
   },
+
   textfieldInputRoot: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.text.secondary,
+    // modifying the input underline
     "&:before": {
-      borderColor: theme.palette.secondary.main,
-    },
-    "&:hover:not($disabled):not($focused):not($error):before": {
-      borderColor: theme.palette.secondary.main, //hovered #DCDCDC
+      borderColor: theme.palette.text.disabled,
     },
     "&:after": {
-      borderColor: theme.palette.accent.main,
+      borderColor: theme.palette.text.primary,
     },
+
+    "&:hover:not($disabled):not($focused):not($error):before": {
+      borderColor: theme.palette.text.disabled, //hovered #DCDCDC
+    },
+
+    // ThIS ALSO WOKRS
+    // "&.MuiInput-underline:before": {
+    //   borderBottom: `2px solid blue`,
+    // },
+    // "&.MuiInput-underline:after": {
+    //   borderBottom: `2px solid red`,
+    // },
+    // "&.MuiInput-underline:hover:before": {
+    //   borderBottom: `2px solid yellow`,
+    // },
   },
 
   focused: {},
@@ -186,7 +199,7 @@ export default function HireMe() {
         setAlert({
           openSnackbar: true,
           message: "Message Sent Successfully",
-          backgroundColor: "#4BB543",
+          backgroundColor: theme.palette.success.main,
         });
 
         // so that dialog remains open and success message could show
@@ -208,39 +221,45 @@ export default function HireMe() {
         setAlert({
           openSnackbar: true,
           message: `${err.message}! Check your internet connection.`,
-          backgroundColor: "#FF3232",
+          backgroundColor: theme.palette.error.main,
         });
         console.log("Messege Sending Failed. The detailed error is", err);
       });
   };
 
-  const sendButton = (
-    <Grid item style={{ marginTop: "2em", marginBottom: "2em" }}>
-      <Button
-        variant="contained"
-        className={classes.sendButton}
-        disabled={
-          name.length === 0 ||
-          nameHelper.length !== 0 ||
-          email.length === 0 ||
-          emailHelper.length !== 0 ||
-          phone.length === 0 ||
-          phoneHelper.length !== 0 ||
-          message.length === 0
-        }
-        onClick={() => setOpen(true)}
-        classes={{
-          root: classes.buttonRoot,
-          disabled: classes.disabled,
-        }}
-      >
-        Send Message
-        <Airplane
-          style={{ marginLeft: "1em", fill: theme.palette.primary.main }}
-        />
-      </Button>
-    </Grid>
-  );
+  const SendButton = () => {
+    let isDisabled = false;
+    isDisabled =
+      name.length === 0 ||
+      nameHelper.length !== 0 ||
+      email.length === 0 ||
+      emailHelper.length !== 0 ||
+      phone.length === 0 ||
+      phoneHelper.length !== 0 ||
+      message.length === 0;
+    return (
+      <Grid item style={{ marginTop: "2em", marginBottom: "2em" }}>
+        <Button
+          variant="contained"
+          className={classes.sendButton}
+          disabled={isDisabled}
+          onClick={() => setOpen(true)}
+          classes={{
+            root: classes.buttonRoot,
+            disabled: classes.disabled,
+          }}
+        >
+          Send Message
+          <Airplane
+            style={{
+              marginLeft: "1em",
+              fill: isDisabled ? theme.palette.text.disabled : "inherit",
+            }}
+          />
+        </Button>
+      </Grid>
+    );
+  };
 
   const snackbar = (
     <Snackbar
@@ -333,7 +352,7 @@ export default function HireMe() {
             disabled
             onChange={(event) => setMessage(event.target.value)}
             style={{
-              border: `1px solid ${theme.palette.secondary.main}`,
+              border: `1px solid ${theme.palette.primary.light}`,
               borderRadius: 5,
               paddingLeft: theme.spacing(1),
               paddingRight: theme.spacing(1),
@@ -371,10 +390,21 @@ export default function HireMe() {
                 loading === true
               }
               onClick={onSendConfirm}
+              style={{
+                backgroundColor: loading
+                  ? theme.palette.primary.light
+                  : undefined,
+              }}
             >
               Send Message
               {loading ? (
-                <CircularProgress size={25} style={{ marginLeft: "1em" }} />
+                <CircularProgress
+                  color="secondary"
+                  size={25}
+                  style={{
+                    marginLeft: "1em",
+                  }}
+                />
               ) : (
                 <Airplane
                   style={{
@@ -445,7 +475,6 @@ export default function HireMe() {
         <Grid item style={{ marginBottom: "0.5em" }}>
           <TextField
             fullWidth
-            // int 0 is evaluated true and > 0 is evaluated as false
             error={!!phoneHelper.length}
             helperText={phoneHelper}
             label="Phone"
@@ -472,6 +501,7 @@ export default function HireMe() {
       <Grid item>
         <TextField
           fullWidth
+          InputProps={{ disableUnderline: true }}
           placeholder="How can I help you ?"
           value={message}
           className={classes.messageBox}
@@ -479,22 +509,19 @@ export default function HireMe() {
           multiline
           rows={10}
           onChange={(event) => setMessage(event.target.value)}
-          inputProps={{ style: { color: theme.palette.secondary.main } }}
+          inputProps={{ style: { color: theme.palette.text.secondary } }}
         />
       </Grid>
     </React.Fragment>
   );
 
   const contactDetails = (
-    <Grid
-      item
-      style={{ marginTop: "2em", color: theme.palette.secondary.main }}
-    >
+    <Grid item style={{ marginTop: "2em", color: theme.palette.text.primary }}>
       <Grid item container>
         <Grid item>
           <PhoneIcon
             style={{
-              fill: theme.palette.accent.main,
+              fill: theme.palette.secondary.main,
               marginRight: "0.5em",
               opacity: 0.8,
               marginBottom: "0.25em",
@@ -504,7 +531,7 @@ export default function HireMe() {
         <Grid item>
           <Typography
             variant="body2"
-            style={{ color: theme.palette.common.blue, fontSize: "1rem" }}
+            style={{ color: theme.palette.text.secondary, fontSize: "1rem" }}
           >
             <a
               href="tel:+9779847064013"
@@ -520,7 +547,7 @@ export default function HireMe() {
         <Grid item>
           <EmailIcon
             style={{
-              fill: theme.palette.accent.main,
+              fill: theme.palette.secondary.main,
               marginRight: "0.5em",
               opacity: 0.8,
             }}
@@ -529,7 +556,7 @@ export default function HireMe() {
         <Grid item>
           <Typography
             variant="body2"
-            style={{ color: theme.palette.common.blue, fontSize: "1rem" }}
+            style={{ color: theme.palette.text.secondary, fontSize: "1rem" }}
           >
             <a
               href="mailto:firoj.is.available@gmail.com"
@@ -580,7 +607,7 @@ export default function HireMe() {
                   variant="h2"
                   style={{
                     lineHeight: 1,
-                    color: theme.palette.common.offWhite,
+                    color: theme.palette.text.secondary,
                   }}
                   align={matchesMD ? "center" : undefined}
                 >
@@ -588,7 +615,7 @@ export default function HireMe() {
                 </Typography>
                 <Typography
                   variant="body2"
-                  style={{ color: theme.palette.secondary.main }}
+                  style={{ color: theme.palette.text.tertiary }}
                   align={matchesMD ? "center" : undefined}
                 >
                   I'm waiting.
@@ -602,13 +629,13 @@ export default function HireMe() {
                     position: "absolute",
                     right: 0,
                     top: theme.spacing(15),
-                    fill: theme.palette.accent.main,
+                    fill: theme.palette.secondary.main,
                   }}
                 />
               </Hidden>
               {contactDetails}
               {form}
-              {sendButton}
+              <SendButton />
             </Grid>
           </Grid>
           {dialog}

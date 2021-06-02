@@ -43,10 +43,10 @@ function Donut({
   const getLetterFrequencyColor = scaleOrdinal({
     domain: data.map((l) => l.name),
     range: [
-      theme.palette.common.coreWeb,
-      theme.palette.common.library,
-      theme.palette.common.runtime,
-      theme.palette.common.database,
+      theme.palette.background.library,
+      theme.palette.background.coreWeb,
+      theme.palette.background.runtime,
+      theme.palette.background.database,
     ],
   });
 

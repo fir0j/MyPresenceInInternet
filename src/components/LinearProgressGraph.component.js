@@ -18,7 +18,7 @@ export default function LinearProgressGraph({
         item
         container
         style={{
-          backgroundColor: theme.palette.secondary.main,
+          backgroundColor: theme.palette.primary.light,
           borderRadius: theme.spacing(1),
           marginTop: theme.spacing(1),
         }}
@@ -29,7 +29,7 @@ export default function LinearProgressGraph({
             borderRadius: theme.spacing(1),
             width: progressPercentage,
             height: showPercentage === true ? "auto" : height,
-            backgroundColor: theme.palette.accent.main,
+            backgroundColor: theme.palette.secondary.main,
           }}
         >
           {showPercentage === true && (

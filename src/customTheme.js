@@ -1,5 +1,4 @@
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
-import grey from "@material-ui/core/colors/grey";
 const breakpoints = createBreakpoints({}); // in order to be able to use breakpoint in this file
 
 // card incomplete data
@@ -10,17 +9,10 @@ const breakpoints = createBreakpoints({}); // in order to be able to use breakpo
 //   transform-origin: 0;
 // background:#fff and color: rgb(82, 95, 127)
 
-const offWhite = grey[400];
-const black = "#000";
-const white = "#FFF";
-const dark = "#2C2C2C";
-const portfolioGrey = "#8b8b8b";
-const green = "#4ae4b8";
-const gold = "#B29155";
-const bgGreenish = "rgb(76 84 82)";
-
-// It is EXACTLY the place to visit if MUI-DEFAUL-THEME needs to be CUSTOMIZED/OVERWRITTEN with our custom variant GLOBALLY.
-// It is the global theme(Style) which can be accessed all over the application.
+const greenCyanGradient =
+  "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)";
+const greenGoldGradient =
+  "linear-gradient(135deg, rgba(170,184,110,1) 0%, rgba(180,137,49,1) 100%)";
 
 const cyanTheme = {
   // adding super small (ss) custom breakpoints
@@ -35,67 +27,69 @@ const cyanTheme = {
       xl: 1920,
     },
   },
-  // Primary 60%
-  // Secondary 30%
-  // Accent 10%
+
   palette: {
-    // type: "cyan",
-    common: {
-      offWhite: offWhite,
-      panelColor: black,
-      tab: black,
-      bg: black,
-      backgroundColor: dark,
-      filterGrey: "rgb(30, 30, 30)",
-      buttonGroupBG: black,
-      buttonGroupBGHover: "rgba(74,228,184,0.9)",
-      paperLayer: "rgba(38,38,38,1)",
+    // it affects other colors
+    type: "dark",
+
+    primary: {
+      main: "rgb(30, 30, 30)",
+      contrastText: "#fff",
+    },
+
+    secondary: {
+      // main: "rgba(74,228,184,0.85)",
+      main: "rgba(52,211,164,1)",
+      contrastText: "#000",
+    },
+
+    text: {
+      primary: "rgba(52,211,164,1)",
+      secondary: "rgba(255, 255, 255, 0.7)",
+      tertiary: "rgba(255, 255, 255, 0.5)",
+
+      disabled: "rgba(255, 255, 255, 0.5)",
+      // hint: "rgba(255, 255, 255, 0.5)",
+      // icon: "rgba(255, 255, 255, 0.5)",
+    },
+    divider: "rgba(255,0,0,1)",
+    // The background colors used to style the surfaces.
+    // Consistency between these values is important.
+    background: {
+      // default: grey[50],
+      paper: "rgb(30, 30, 30)",
+      floor: "#2C2C2C",
+      microPaper: "rgba(38,38,38,1)",
+      gradient: greenCyanGradient,
+      card: "rgba(30,30,30,0.1)",
+      messageBox: "rgba(38,38,38,1)",
       coreWeb: "rgba(74,228,184,0.85)",
       library: "rgba(74,228,184,0.7)",
       runtime: "rgba(74,228,184,0.5)",
       database: "rgba(74,228,184,0.3)",
-      messageBox: "rgba(38,38,38,1)",
-      myGradient:
-        "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
+      filterButtons: "#000",
+    },
 
-      cardBG: "rgba(30,30,30,0.1)",
-      // contrastText: "",
-    },
-    primary: {
-      // main: dark,
-      main: "rgb(30, 30, 30)",
-      // contrastText: "black",
-    },
-    secondary: {
-      main: portfolioGrey,
-      // main: white,
-    },
-    // text:{
-    //   primary:{},
-    //   secondary:{},
-    //   disabled:{},
-    //   hint:{}
-    // },
-    // divider:{},
-    accent: {
-      main: green,
-      // main: white,
-    },
-    // error: {},
-    // success: {},
+    // Defining my palette for action. This is not overiding. for overriding you need to use overrides prop of the palette.
     // action: {
+    //   disabled: "rgba(74,228,184,0.3)",
+    //   disabledBackground: "rgba(0, 0, 0, 0.12)",
     //   active: "rgba(0, 0, 0, 0.54)",
     //   hover: "rgba(0, 0, 0, 0.04)",
     //   hoverOpacity: 0.04,
     //   selected: "rgba(0, 0, 0, 0.08)",
     //   selectedOpacity: 0.08,
-    //   disabled: "rgba(0, 0, 0, 0.26)",
-    //   disabledBackground: "rgba(0, 0, 0, 0.12)",
     //   disabledOpacity: 0.38,
     //   focus: "rgba(0, 0, 0, 0.12)",
     //   focusOpacity: 0.12,
     //   activatedOpacity: 0.12,
     // },
+
+    // FOR THESE SITUATIONS, MUI DEFAULTS WORK GREAT FOR MOST APPLICATION
+    // success: {main:""},
+    // error: {main:""},
+    // warning:{main:""}
+    // info:{main:""}
   },
 
   typography: {
@@ -168,11 +162,6 @@ const cyanTheme = {
   // },
 };
 
-// ADVANCE GRADIENT generating TECHNIQUE
-// background:
-//   "linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)",
-// backgroundBlendMode: "multiply",
-
 const goldTheme = {
   // adding super small (ss) custom breakpoints
   breakpoints: {
@@ -186,66 +175,56 @@ const goldTheme = {
       xl: 1920,
     },
   },
-  // Primary 60%
-  // Secondary 30%
-  // Accent 10%
+
   palette: {
-    common: {
-      black: black,
-      white: white,
-      offWhite: offWhite,
-      panelColor: black,
-      tab: black,
-      backgroundColor: "#212121",
-      bg: grey[900],
-      paperLayer: "rgba(20,20,20,1)",
-      filterGrey: "rgb(30, 30, 30)",
-      buttonGroupBG: "rgb(30, 30, 30)",
-      buttonGroupBGHover: "rgba(178, 145, 85, 0.9)",
+    // it affects other colors
+    type: "dark",
+    primary: {
+      main: "#000",
+    },
+    secondary: {
+      main: "rgba(165,121,46,1)",
+    },
+    text: {
+      primary: "rgba(165,121,46,1)",
+      secondary: "rgba(255, 255, 255, 0.7)",
+      tertiary: "rgba(255, 255, 255, 0.5)",
+
+      disabled: "rgba(255, 255, 255, 0.5)",
+      // hint: "rgba(255, 255, 255, 0.5)",
+      // icon: "rgba(255, 255, 255, 0.5)",
+    },
+    // divider: "rgba(255,0,0,1)",
+    // The background colors used to style the surfaces.
+    // Consistency between these values is important.
+    background: {
+      // default: grey[50],
+      paper: "#000",
+      floor: "#2C2C2C",
+      microPaper: "rgba(20,20,20,1)",
+      gradient: greenGoldGradient,
+      card: "rgba(255,255,255,0.1)",
+      messageBox: "rgba(18,18,18,1)",
       coreWeb: "rgba(125, 98, 36, 0.95)",
       library: "rgba(125, 98, 36, 0.7)",
       runtime: "rgba(178,145,85,0.6)",
       database: "rgba(178,145,85,0.45)",
-      messageBox: "rgba(18,18,18,1)",
-      myGradient:
-        "linear-gradient(135deg, rgba(170,184,110,1) 0%, rgba(180,137,49,1) 100%)",
-      cardBG: "rgba(255,255,255,0.1)",
-
-      // contrastText: "",
+      filterButtons: "#1A1A1A",
     },
 
-    primary: {
-      main: black,
-      // contrastText: "black",
+    action: {
+      // active: "rgba(0, 0, 0, 0.54)",
+      // hover: "rgba(0, 0, 0, 0.04)",
+      // hoverOpacity: 0.04,
+      // selected: "rgba(0, 0, 0, 0.08)",
+      // selectedOpacity: 0.08,
+      // disabled: "rgba(0, 0, 0, 0.26)",
+      // disabledBackground: "rgba(0, 0, 0, 0.12)",
+      // disabledOpacity: 0.38,
+      // focus: "rgba(0, 0, 0, 0.12)",
+      // focusOpacity: 0.12,
+      // activatedOpacity: 0.12,
     },
-    secondary: {
-      main: portfolioGrey,
-    },
-    // text:{
-    //   primary:{},
-    //   secondary:{},
-    //   disabled:{},
-    //   hint:{}
-    // },
-    // divider:{},
-    accent: {
-      main: gold,
-    },
-    // error: {},
-    // success: {},
-    // action: {
-    //   active: "rgba(0, 0, 0, 0.54)",
-    //   hover: "rgba(0, 0, 0, 0.04)",
-    //   hoverOpacity: 0.04,
-    //   selected: "rgba(0, 0, 0, 0.08)",
-    //   selectedOpacity: 0.08,
-    //   disabled: "rgba(0, 0, 0, 0.26)",
-    //   disabledBackground: "rgba(0, 0, 0, 0.12)",
-    //   disabledOpacity: 0.38,
-    //   focus: "rgba(0, 0, 0, 0.12)",
-    //   focusOpacity: 0.12,
-    //   activatedOpacity: 0.12,
-    // },
   },
 
   typography: {
@@ -294,3 +273,8 @@ const goldTheme = {
 // const cyanTheme = createMuiTheme(cyanPallete);
 
 export { cyanTheme, goldTheme };
+
+// ADVANCE GRADIENT generating TECHNIQUE
+// background:
+//   "linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)",
+// backgroundBlendMode: "multiply",
