@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PageContainer from "../components/PageContainer.component";
 import Donut from "../components/Donut.component";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
@@ -16,6 +16,7 @@ import { ReactComponent as ProjectIcon } from "../assets/projectSvgIcon.svg";
 import { ReactComponent as Education } from "../assets/education.svg";
 import { ReactComponent as StackOverflow } from "../assets/stackOverflow.svg";
 import { ReactComponent as ExternalLink } from "../assets/external-link.svg";
+import { animated, useSpring, config } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,6 +54,14 @@ export default function ShapeDivider() {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const AnimatedTypography = animated(Typography);
+  // const [count, setCount] = useState(0);
+  // const { number } = useSpring({
+  //   from: { number: 0 },
+  //   number: Number(count),
+  //   delay: 200,
+  //   config: config.molasses,
+  // });
 
   function Circle({ color, marginRight }) {
     return (
@@ -213,6 +222,13 @@ export default function ShapeDivider() {
       marginTop,
       marginBottom,
     }) => {
+      const { number } = useSpring({
+        from: { number: 0 },
+        number: Number(count),
+        delay: 200,
+        config: config.molasses,
+      });
+
       return (
         <Grid
           container
@@ -279,7 +295,9 @@ export default function ShapeDivider() {
                     marginLeft: -theme.spacing(2),
                   }}
                 >
-                  {count}
+                  <animated.span>
+                    {number.to((n) => n.toFixed(0))}
+                  </animated.span>
                 </Grid>
               </Grid>
 
@@ -381,6 +399,20 @@ export default function ShapeDivider() {
   }
 
   function StackOverFlowStatus() {
+    const { reputation } = useSpring({
+      from: { reputation: 0 },
+      reputation: 131,
+      delay: 200,
+      config: config.molasses,
+    });
+
+    const { bronze } = useSpring({
+      from: { bronze: 0 },
+      bronze: 5,
+      delay: 200,
+      config: config.molasses,
+    });
+
     return (
       <Grid item>
         <Paper
@@ -409,7 +441,7 @@ export default function ShapeDivider() {
                   Reputation
                 </Typography>
                 <Circle color="#4e6f8a" />
-                <Typography
+                <AnimatedTypography
                   component="span"
                   style={{
                     marginLeft: theme.spacing(0.5),
@@ -417,8 +449,8 @@ export default function ShapeDivider() {
                     fontSize: "1.4rem",
                   }}
                 >
-                  131
-                </Typography>
+                  {reputation.to((n) => n.toFixed(0))}
+                </AnimatedTypography>
               </Grid>
               <Grid item style={{ color: "rgba(239, 240, 241,0.85)" }}>
                 <Typography
@@ -460,7 +492,7 @@ export default function ShapeDivider() {
                   Bronze
                 </Typography>
                 <Circle color="rgb(171, 130, 95)" />
-                <Typography
+                <AnimatedTypography
                   component="span"
                   style={{
                     marginLeft: theme.spacing(0.5),
@@ -468,8 +500,8 @@ export default function ShapeDivider() {
                     fontSize: "1.4rem",
                   }}
                 >
-                  5
-                </Typography>
+                  {bronze.to((n) => n.toFixed(0))}
+                </AnimatedTypography>
               </Grid>
             </Grid>
           </Grid>
@@ -479,6 +511,20 @@ export default function ShapeDivider() {
   }
 
   function CourseAndWishlist() {
+    const { courses } = useSpring({
+      from: { courses: 0 },
+      courses: 4,
+      delay: 200,
+      config: config.molasses,
+    });
+
+    const { skills } = useSpring({
+      from: { skills: 0 },
+      skills: 2,
+      delay: 200,
+      config: config.molasses,
+    });
+
     return (
       <Grid
         item
@@ -520,7 +566,7 @@ export default function ShapeDivider() {
               </Grid>
 
               <Grid item>
-                <Typography
+                <AnimatedTypography
                   component="div"
                   style={{
                     fontSize: "1.5rem",
@@ -529,8 +575,8 @@ export default function ShapeDivider() {
                     marginTop: theme.spacing(2),
                   }}
                 >
-                  4
-                </Typography>
+                  {courses.to((n) => n.toFixed(0))}
+                </AnimatedTypography>
               </Grid>
               <Grid item>
                 <Typography
@@ -689,7 +735,7 @@ export default function ShapeDivider() {
               </Grid>
 
               <Grid item>
-                <Typography
+                <AnimatedTypography
                   component="div"
                   style={{
                     fontSize: "1.5rem",
@@ -698,8 +744,8 @@ export default function ShapeDivider() {
                     marginTop: theme.spacing(2),
                   }}
                 >
-                  2
-                </Typography>
+                  {skills.to((n) => n.toFixed(0))}
+                </AnimatedTypography>
               </Grid>
               <Grid item>
                 <Typography

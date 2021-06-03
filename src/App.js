@@ -45,7 +45,7 @@ function App() {
         break;
 
       default:
-        setMyTheme(cyanTheme);
+        setMyTheme(goldTheme);
     }
   };
 
@@ -72,7 +72,7 @@ function App() {
             height: "auto",
             maxHeight: "100vh",
             flexWrap: "nowrap",
-            backgroundColor: myTheme.palette.background.floor,
+            background: myTheme.palette.background.floor,
           }}
         >
           <Navigation />

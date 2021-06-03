@@ -162,12 +162,12 @@ export default function Resume() {
         lg={8}
         md={8}
         sm={matchesSM ? 12 : 8}
+        background={theme.palette.primary.main}
         style={{
           borderTopRightRadius: "15em",
           borderBottomRightRadius: "15em",
           flexWrap: "nowrap",
           maxHeight: theme.spacing(44),
-          backgroundColor: theme.palette.primary.main,
         }}
         borderWidth="3px"
       >
@@ -393,8 +393,8 @@ export default function Resume() {
             container
             justify="center"
             borderWidth="3px"
+            background={theme.palette.primary.main}
             style={{
-              backgroundColor: theme.palette.primary.main,
               maxWidth: theme.spacing(36),
               maxHeight: theme.spacing(36),
               padding: theme.spacing(1),
@@ -759,8 +759,8 @@ export default function Resume() {
       >
         <ContainerWithGradientBorder
           container
+          background={theme.palette.primary.main}
           style={{
-            backgroundColor: theme.palette.primary.main,
             padding: theme.spacing(1),
             bottom: -theme.spacing(25),
             position: matchesMD ? "relative" : "absolute",
@@ -1207,8 +1207,8 @@ export default function Resume() {
                 direction="column"
                 justify="center"
                 alignItems="center"
+                background={theme.palette.primary.main}
                 style={{
-                  backgroundColor: theme.palette.primary.main,
                   flexWrap: "nowrap",
                 }}
                 borderWidth="3px"
@@ -1490,8 +1490,8 @@ export default function Resume() {
                 item
                 container
                 justify="center"
+                background={theme.palette.primary.main}
                 style={{
-                  backgroundColor: theme.palette.primary.main,
                   position: "relative",
                   padding: theme.spacing(1),
                   paddingBottom: theme.spacing(5),
@@ -1810,8 +1810,8 @@ export default function Resume() {
                   direction="column"
                   justify="center"
                   alignItems="center"
+                  background={theme.palette.primary.main}
                   style={{
-                    backgroundColor: theme.palette.primary.main,
                     flexWrap: "nowrap",
                     marginBottom: theme.spacing(5),
                   }}

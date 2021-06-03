@@ -200,7 +200,6 @@ export default function Navigation() {
 
       <Tab
         label="Resume"
-        disableRipple
         icon={
           <div>
             <Resume
@@ -217,7 +216,6 @@ export default function Navigation() {
       />
       <Tab
         label="Project"
-        disableRipple
         icon={
           <div>
             <ProjectIcon
@@ -234,7 +232,6 @@ export default function Navigation() {
       />
       <Tab
         label="Stats"
-        disableRipple
         icon={
           <div>
             <FeedbackIcon
@@ -251,7 +248,6 @@ export default function Navigation() {
       />
       <Tab
         label="HireMe"
-        disableRipple
         to="/hireme"
         icon={
           <div>

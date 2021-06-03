@@ -197,6 +197,7 @@ export default function SettingPanel({ setTheme }) {
                     value="cyan"
                     label=""
                   />
+
                   <FormControlLabel
                     control={
                       <StyledRadio

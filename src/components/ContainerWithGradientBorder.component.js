@@ -8,7 +8,7 @@ const ContainerWithGradientBorder = ({
   borderGadient,
   borderWidth,
   borderRadius,
-  backgroundColor,
+  background = "white",
   color,
   ...otherProps
 }) => {
@@ -16,7 +16,7 @@ const ContainerWithGradientBorder = ({
     borderRadiusGradient: {
       position: "relative",
       border: `${borderWidth} solid transparent`,
-      backgroundColor: backgroundColor ? backgroundColor : "white",
+      background: background,
       boxSizing: "border-box",
       backgroundClip: "padding-box",
       // borderRadius: borderRadius ? borderRadius : "5px",
@@ -26,9 +26,6 @@ const ContainerWithGradientBorder = ({
         position: "absolute",
         inset: 0,
         background: theme.palette.background.gradient,
-        // background: borderGadient
-        //   ? borderGadient
-        //   : "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)",
         zIndex: -1,
         margin: `-${borderWidth}`, // make sure it is equal to the border width preserve the actual dimension of the element
         borderRadius: "inherit",
