@@ -2000,24 +2000,10 @@ export default function Resume() {
 
   return (
     <PageContainer>
-      <Paper
-        elevation={5}
-        className={classes.paper}
-        style={{ overflow: "hidden" }}
-      >
-        <HeaderWave
-          marginLeft={-theme.spacing(1)}
-          marginRight={-theme.spacing(1)}
-        />
-        {hello}
-        {contact}
-        {education}
-        {skillsOnDesktop}
-        <FooterWave
-          marginLeft={-theme.spacing(1)}
-          marginRight={-theme.spacing(1)}
-        />
-      </Paper>
+      {hello}
+      {contact}
+      {education}
+      {skillsOnDesktop}
     </PageContainer>
   );
 }

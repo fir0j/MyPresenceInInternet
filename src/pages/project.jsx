@@ -49,11 +49,7 @@ const useStyles = makeStyles((theme) => ({
     // border: `1px solid ${theme.palette.primary.light}`,
     "&:not(:last-child)": {
       borderRight: `1px solid ${theme.palette.primary.light}`,
-      borderColor: "red",
     },
-  },
-  grouped: {
-    border: "1px solid red",
   },
 
   cardRoot: {
@@ -112,10 +108,7 @@ export default function Project() {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
-  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
-  const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
 
   // component states
   const [cards, setCards] = useState(utils.cardData);
@@ -722,18 +715,12 @@ export default function Project() {
           item
           container
           justify="center"
-          style={{ marginBottom: theme.spacing(4) }}
+          style={{
+            marginBottom: "10%",
+          }}
         >
           <Grid item>
-            <ButtonGroup
-              style={
-                {
-                  // backgroundColor: theme.palette.background.filterButtons,
-                  // color: theme.palette.text.secondary,
-                }
-              }
-              aria-label="large outlined primary button group"
-            >
+            <ButtonGroup aria-label="large outlined primary button group">
               {prevButton}
               <PageDecreamentButton />
               {pageNumbers}
@@ -749,23 +736,9 @@ export default function Project() {
   // Talk is Cheap. Show me the code.
   return (
     <PageContainer>
-      <Paper
-        elevation={3}
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "auto",
-          overflow: "hidden",
-          zIndex: 0,
-          borderRadius: theme.spacing(1),
-        }}
-      >
-        <HeaderWave />
-        <SortAndFilterControls />
-        <DisplayCards />
-        <Pagination />
-        <FooterWave />
-      </Paper>
+      <SortAndFilterControls />
+      <DisplayCards />
+      <Pagination />
     </PageContainer>
   );
 }

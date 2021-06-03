@@ -1,28 +1,29 @@
 import React from "react";
-import { Grid, useMediaQuery } from "@material-ui/core";
+import { Grid, useMediaQuery, Paper } from "@material-ui/core";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
 import { animated, useSpring, config } from "react-spring";
+import { HeaderWave, FooterWave } from "./ShapeDivider.component";
 
 const useStyles = makeStyles((theme) => ({
   PageContainer: {
     position: "relative",
     overflowY: "scroll",
-    padding: theme.spacing(2),
-    [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
     },
   },
   pageWrapper: {
     maxWidth: theme.spacing(170),
-    paddingBottom: theme.spacing(7),
-    [theme.breakpoints.down("sm")]: {
-      paddingBottom: theme.spacing(20),
-    },
   },
 }));
 
 const PageContainer = (props) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const AnimatedGrid = animated(Grid);
   const slideUp = useSpring({
     from: {
@@ -56,7 +57,22 @@ const PageContainer = (props) => {
         style={slideUp}
         className={classes.pageWrapper}
       >
-        {props.children}
+        <Paper
+          elevation={3}
+          style={{
+            position: "relative",
+            width: "100%",
+            overflow: "hidden",
+            zIndex: 0,
+            borderRadius: theme.spacing(1),
+            marginTop: theme.spacing(1),
+            marginBottom: matchesSM ? theme.spacing(20) : theme.spacing(5),
+          }}
+        >
+          <HeaderWave />
+          {props.children}
+          <FooterWave />
+        </Paper>
       </AnimatedGrid>
     </Grid>
   );

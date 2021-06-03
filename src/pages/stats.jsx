@@ -489,15 +489,7 @@ export default function ShapeDivider() {
         container
         justify="space-between"
       >
-        <Grid
-          item
-          xl
-          lg
-          md={12}
-          sm={12}
-          xs={12}
-          style={{ marginRight: theme.spacing(1) }}
-        >
+        <Grid item xl lg md={12} sm={12} xs={12}>
           <Paper
             elevation={3}
             className={classes.smallPaper}
@@ -746,24 +738,17 @@ export default function ShapeDivider() {
 
   return (
     <PageContainer>
-      <Paper
-        elevation={5}
-        className={classes.paper}
-        style={{ overflow: "hidden" }}
+      <div
+        style={{
+          paddingLeft: theme.spacing(1),
+          paddingRight: theme.spacing(1),
+        }}
       >
-        <HeaderWave
-          marginLeft={-theme.spacing(2)}
-          marginRight={-theme.spacing(2)}
-        />
         <WebTechnologies />
         <ProjectExperienceDegree />
         <StackOverFlowStatus />
         <CourseAndWishlist />
-        <FooterWave
-          marginLeft={-theme.spacing(2)}
-          marginRight={-theme.spacing(2)}
-        />
-      </Paper>
+      </div>
     </PageContainer>
   );
 }

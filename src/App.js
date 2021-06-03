@@ -67,14 +67,12 @@ function App() {
         <Grid
           container
           style={{
-            position: "absolute",
-            inset: 0,
             width: "100vw",
-            height: "100vh",
             maxWidth: "100vw",
+            height: "auto",
             maxHeight: "100vh",
-            backgroundColor: myTheme.palette.background.floor,
             flexWrap: "nowrap",
+            backgroundColor: myTheme.palette.background.floor,
           }}
         >
           <Navigation />

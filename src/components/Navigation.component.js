@@ -15,17 +15,12 @@ const useStyles = makeStyles((theme) => ({
   tabsContainer: {
     width: "100%",
     height: "100%",
-    // [theme.breakpoints.down("xs")]: {
-    //   height: theme.spacing(11),
-    // },
     maxWidth: "100%",
     maxHeight: "100%",
-    // border: "1px solid red",
   },
   tab: {
     width: "100%",
     minWidth: "85px",
-    // minHeight: "100px",
     maxWidth: "100%",
     maxHeight: "100%",
     letterSpacing: "0.1rem",
@@ -75,11 +70,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.dark,
     borderColor: theme.palette.secondary.main,
     "&$tabSelected": {
-      border: "none",
-      // borderTop: `1px solid ${theme.palette.secondary.main}`,
-      // borderBottom: `1px solid ${theme.palette.secondary.main}`,
-      // borderLeft: `1px solid ${theme.palette.secondary.main}`,
-      // backgroundColor: theme.palette.primary.main,
       [theme.breakpoints.down("sm")]: {
         // backgroundColor: "transparent",
       },
@@ -120,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down("xs")]: {
         fontSize: "0.8rem",
       },
-      // border: `1px solid ${theme.palette.primary.light}`,
       borderRight: "none",
       fontWeight: "bold",
     },
@@ -130,9 +119,6 @@ const useStyles = makeStyles((theme) => ({
 
     "&>.Mui-selected": {
       position: "relative",
-      // [theme.breakpoints.down("sm")]: {
-      //   color: theme.palette.primary.main,
-      // },
 
       // "&>.MuiTab-wrapper": {
       //   width: "100%",
@@ -147,9 +133,7 @@ export default function Navigation() {
   const classes = useStyles();
 
   const [value, setValue] = useState(1);
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
     switch (window.location.pathname) {
@@ -183,7 +167,7 @@ export default function Navigation() {
     labelIcon: classes.tabLabelIcon,
   };
 
-  const verticalTabs = (
+  const tabs = (
     <Tabs
       orientation={matchesSM ? "horizontal" : "vertical"}
       value={value}
@@ -216,6 +200,7 @@ export default function Navigation() {
 
       <Tab
         label="Resume"
+        disableRipple
         icon={
           <div>
             <Resume
@@ -232,6 +217,7 @@ export default function Navigation() {
       />
       <Tab
         label="Project"
+        disableRipple
         icon={
           <div>
             <ProjectIcon
@@ -248,6 +234,7 @@ export default function Navigation() {
       />
       <Tab
         label="Stats"
+        disableRipple
         icon={
           <div>
             <FeedbackIcon
@@ -264,6 +251,7 @@ export default function Navigation() {
       />
       <Tab
         label="HireMe"
+        disableRipple
         to="/hireme"
         icon={
           <div>
@@ -300,17 +288,18 @@ export default function Navigation() {
           bottom: matchesSM ? 0 : "",
           maxWidth: matchesSM ? "100%" : "310px",
           zIndex: matchesSM ? 1 : "",
+          // backgroundColor: "blue", // it changes tabs original color and provides beautiful transparency
         }}
       >
         <Paper
           elevation={1}
           style={{
+            backgroundColor: "transparent", // it changes tabs original color and provides beautiful transparency
             width: "100%",
             height: matchesSM ? "inherit" : "100vh",
-            backgroundColor: "transparent",
           }}
         >
-          {verticalTabs}
+          {tabs}
         </Paper>
       </Grid>
     </Fragment>

@@ -572,76 +572,64 @@ export default function HireMe() {
 
   return (
     <PageContainer>
-      <Paper
-        elevation={5}
-        className={classes.paper}
+      <Grid
+        container
+        justify="flex-start"
+        direction="row"
         style={{
-          // placing here for high specificity
-          overflow: "hidden",
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
         }}
       >
-        <HeaderWave />
-
         <Grid
+          item
           container
-          justify="flex-start"
-          direction="row"
+          direction="column"
+          justify="center"
+          alignItems={matchesSM ? "center" : "flex-start"}
           style={{
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
+            margingBottom: matchesMD ? "5em" : 0,
           }}
         >
-          <Grid
-            item
-            container
-            direction="column"
-            justify="center"
-            alignItems={matchesSM ? "center" : "flex-start"}
-            style={{
-              margingBottom: matchesMD ? "5em" : 0,
-            }}
-          >
-            <Grid item style={{ maxWidth: "20em" }}>
-              <Grid item style={{ marginTop: "2em" }}>
-                <Typography
-                  variant="h2"
-                  style={{
-                    lineHeight: 1,
-                    color: theme.palette.text.secondary,
-                  }}
-                  align={matchesMD ? "center" : undefined}
-                >
-                  Let's get into business
-                </Typography>
-                <Typography
-                  variant="body2"
-                  style={{ color: theme.palette.text.tertiary }}
-                  align={matchesMD ? "center" : undefined}
-                >
-                  I'm waiting.
-                </Typography>
-              </Grid>
-              <Hidden smDown>
-                <BusinessDeal
-                  style={{
-                    width: matchesMD ? "60%" : "70%",
-                    height: "auto",
-                    position: "absolute",
-                    right: 0,
-                    top: theme.spacing(15),
-                    fill: theme.palette.secondary.main,
-                  }}
-                />
-              </Hidden>
-              {contactDetails}
-              {form}
-              <SendButton />
+          <Grid item style={{ maxWidth: "20em" }}>
+            <Grid item style={{ marginTop: "2em" }}>
+              <Typography
+                variant="h2"
+                style={{
+                  lineHeight: 1,
+                  color: theme.palette.text.secondary,
+                }}
+                align={matchesMD ? "center" : undefined}
+              >
+                Let's get into business
+              </Typography>
+              <Typography
+                variant="body2"
+                style={{ color: theme.palette.text.tertiary }}
+                align={matchesMD ? "center" : undefined}
+              >
+                I'm waiting.
+              </Typography>
             </Grid>
+            <Hidden smDown>
+              <BusinessDeal
+                style={{
+                  width: matchesMD ? "60%" : "70%",
+                  height: "auto",
+                  position: "absolute",
+                  right: 0,
+                  top: theme.spacing(15),
+                  fill: theme.palette.secondary.main,
+                }}
+              />
+            </Hidden>
+            {contactDetails}
+            {form}
+            <SendButton />
           </Grid>
-          {dialog}
         </Grid>
-        <FooterWave />
-      </Paper>
+        {dialog}
+      </Grid>
     </PageContainer>
   );
 }
