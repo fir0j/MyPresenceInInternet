@@ -199,6 +199,7 @@ export default function Navigation() {
       )}
 
       <Tab
+        value={0}
         label="Resume"
         icon={
           <div>
@@ -215,6 +216,7 @@ export default function Navigation() {
         classes={tabRules}
       />
       <Tab
+        value={1}
         label="Project"
         icon={
           <div>
@@ -231,6 +233,7 @@ export default function Navigation() {
         classes={tabRules}
       />
       <Tab
+        value={2}
         label="Stats"
         icon={
           <div>
@@ -247,6 +250,7 @@ export default function Navigation() {
         classes={tabRules}
       />
       <Tab
+        value={3}
         label="HireMe"
         to="/hireme"
         icon={

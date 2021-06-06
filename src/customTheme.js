@@ -2,7 +2,7 @@ import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 const breakpoints = createBreakpoints({}); // in order to be able to use breakpoint in this file
 
 // card incomplete data
-// animations and also wrt. scroll position
+// scroll
 
 const greenCyanGradient =
   "linear-gradient(135deg, rgba(90,206,97,1) 0%, rgba(74,228,184,1) 100%)";
