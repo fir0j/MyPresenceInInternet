@@ -6,7 +6,6 @@ import {
 } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { Route } from "react-router-dom";
-
 import { Switch } from "react-router-dom";
 import { cyanTheme, goldTheme } from "./customTheme";
 

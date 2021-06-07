@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     top: theme.spacing(26),
     right: 0,
+    maxWidth: 250,
 
     [theme.breakpoints.down("lg")]: {
       top: theme.spacing(20),
@@ -85,26 +86,40 @@ export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
   const [value, setValue] = useState("gold");
-  const [showSetting, setShowSetting] = useState(false);
-  const [right, setRight] = useState(0);
+  const [openListener, setOpenListener] = useState(false);
+  const AnimatedGrid = animated(Grid);
 
-  // Slider component is being rendered by react-spring all the time using useSpring hook
-  const slideRight = useSpring({
-    position: "fixed",
-    right: right,
+  // using Up-front interpolation
+  const styles = useSpring({
+    right: openListener ? 191 : 0,
   });
 
-  const handleSlider = () => {
-    setShowSetting((toggle) => !toggle);
-    setRight((showSetting) => (!showSetting ? 191 : 0));
+  // using Interoplation
+  // SYNTAX IS animatedPropertyValue: condition ? after state : before state
+  const { right } = useSpring({
+    right: openListener ? 191 : 0,
+  });
+
+  const CustomClickAwayListner = () =>
+    openListener && (
+      <div
+        onClick={handleClickAway}
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundColor: "transparent",
+        }}
+      />
+    );
+
+  const handleClickAway = () => {
+    if (openListener !== false) setOpenListener(false);
+    console.log("clickedAway: set listener to false");
   };
-  // const AnimatedTypography = animated(Typography);
 
   const handleColorChange = (event) => {
     setTheme(event.target.value);
     setValue(event.target.value);
-    setShowSetting(!showSetting);
-    setRight(0);
   };
 
   // Inspired by blueprintjs
@@ -127,7 +142,7 @@ export default function SettingPanel({ setTheme }) {
 
   const Slider = () => {
     return (
-      <Grid item container className={classes.setting} onClick={handleSlider}>
+      <AnimatedGrid item container className={classes.setting}>
         <Grid item container className={classes.settingWrapper}>
           <Grid
             item
@@ -217,23 +232,28 @@ export default function SettingPanel({ setTheme }) {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </AnimatedGrid>
     );
   };
 
   return (
     <Fragment>
       <Grid container className={classes.fixedContainer}>
-        <ClickAwayListener
-          onClickAway={() => {
-            setShowSetting((toggle) => !toggle);
-            setRight(0);
-          }}
+        <CustomClickAwayListner />
+        {/* USING style PROP */}
+        <animated.span
+          style={{ position: "fixed", ...styles }}
+          onClick={() => setOpenListener((jpt) => !jpt)}
         >
-          <animated.span style={slideRight}>
-            <Slider />
-          </animated.span>
-        </ClickAwayListener>
+          <Slider />
+        </animated.span>
+        {/* USING VIEW INTERPOLATION */}
+        {/* <animated.span
+          style={{ position: "fixed", right: right.to((v) => v) }}
+          onClick={() => setOpenListener((jpt) => !jpt)}
+        >
+          <Slider />
+        </animated.span> */}
       </Grid>
     </Fragment>
   );
