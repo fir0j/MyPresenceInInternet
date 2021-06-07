@@ -8,9 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-import Slide from "@material-ui/core/Slide";
 import { useSpring, animated, useTransition, config } from "react-spring";
-import { Button, ListItemIcon, ClickAwayListener } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   fixedContainer: {
@@ -96,9 +94,9 @@ export default function SettingPanel({ setTheme }) {
 
   // using Interoplation
   // SYNTAX IS animatedPropertyValue: condition ? after state : before state
-  const { right } = useSpring({
-    right: openListener ? 191 : 0,
-  });
+  // const { right } = useSpring({
+  //   right: openListener ? 191 : 0,
+  // });
 
   const CustomClickAwayListner = () =>
     openListener && (
@@ -106,7 +104,11 @@ export default function SettingPanel({ setTheme }) {
         onClick={handleClickAway}
         style={{
           position: "fixed",
-          inset: 0,
+          // inset: 0, // is not compatible with ios mobile browser
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
           backgroundColor: "transparent",
         }}
       />
@@ -114,7 +116,6 @@ export default function SettingPanel({ setTheme }) {
 
   const handleClickAway = () => {
     if (openListener !== false) setOpenListener(false);
-    console.log("clickedAway: set listener to false");
   };
 
   const handleColorChange = (event) => {
@@ -240,6 +241,7 @@ export default function SettingPanel({ setTheme }) {
     <Fragment>
       <Grid container className={classes.fixedContainer}>
         <CustomClickAwayListner />
+
         {/* USING style PROP */}
         <animated.span
           style={{ position: "fixed", ...styles }}
