@@ -35,6 +35,7 @@ const PageContainer = ({ overflowRef, setOverflowRef }) => {
   const classes = useStyles();
   const theme = useTheme();
   const { pathname } = useLocation();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   // scrolling to top whenever pathname changes
   useLayoutEffect(() => {
@@ -111,7 +112,7 @@ const PageContainer = ({ overflowRef, setOverflowRef }) => {
             zIndex: 0,
             borderRadius: theme.spacing(1),
             marginTop: theme.spacing(1),
-            marginBottom: theme.spacing(5),
+            marginBottom: matchesSM ? theme.spacing(20) : theme.spacing(5),
           }}
         >
           <HeaderWave />

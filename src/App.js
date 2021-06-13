@@ -1,13 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useMediaQuery, useTheme, Grid } from "@material-ui/core";
-import {
-  ThemeProvider,
-  createMuiTheme,
-  withStyles,
-} from "@material-ui/core/styles";
-import { Switch, Route, useLocation } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Grid } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { cyanTheme, goldTheme } from "./customTheme";
-import { animated, useSpring, config } from "react-spring";
 
 import Navigation from "./components/Navigation.component";
 import SettingPanel from "./components/SettingPanel.component";
