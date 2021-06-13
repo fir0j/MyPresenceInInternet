@@ -1,8 +1,14 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  Fragment,
+} from "react";
 import { Grid, useMediaQuery, Paper } from "@material-ui/core";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
 import { animated, useSpring, config } from "react-spring";
-import { useLocation } from "react-router-dom";
+import { useLocation, Switch, Route } from "react-router-dom";
 import { HeaderWave, FooterWave } from "./ShapeDivider.component";
 import Resume from "../pages/resume";
 import Project from "../pages/project";
@@ -25,54 +31,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PageContainer = ({ setOverflowRef }) => {
+const PageContainer = ({ overflowRef, setOverflowRef }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const AnimatedGrid = animated(Grid);
   const { pathname } = useLocation();
 
-  const slideUp = useSpring({
-    from: {
-      position: "relative",
-      transform: "translateY(15%)",
-      opacity: 0,
-    },
-    to: {
-      transform: "translateX(0)",
-      opacity: 1,
-    },
-    config: config.gentle,
-    delay: 100,
-  });
-
-  // SOLUTION 2: using react synthetic onScroll EVENT LISTENER
-  // storing in ref because we don't want to trigger re-render if value changes.
-  // const curPos = useRef(null);
-  // const prevPos = useRef(null);
-  // let throttleTimeout = null;
-
-  // function handleScroll(ref, wait) {
-  //   // if you don't want to throttle, pass wait = false
-  //   // <div onScroll={(event) => handleScroll(elementRef,300,event)} />
-  //   // <div onScroll={(event) => handleScroll(elementRef,false,event)} />
-  //   const onScrollCallback = () => {
-  //     throttleTimeout = null;
-  //     const scrollPosition = ref.current.scrollTop;
-  //     prevPos.current = curPos.current;
-  //     curPos.current = scrollPosition;
-  //     const scrolledUp = curPos.current > prevPos.current;
-  //     setScrolledUp(scrolledUp);
-  //   };
-
-  //   if (wait) {
-  //     if (throttleTimeout === null) {
-  //       throttleTimeout = setTimeout(onScrollCallback, wait);
-  //     }
-  //   } else {
-  //     onScrollCallback();
-  //   }
-  // }
+  // scrolling to top whenever pathname changes
+  useLayoutEffect(() => {
+    // will be run after layout is calcuated and before browser finished painting
+    if (overflowRef.current) {
+      overflowRef.current.scroll(0, 0);
+    }
+  }, [pathname]);
 
   const slideUpResume = useSpring({
     from: {
@@ -82,6 +52,7 @@ const PageContainer = ({ setOverflowRef }) => {
     opacity: pathname === "/" ? 1 : 0,
     y: pathname === "/" ? 0 : 300,
     delay: 150,
+    config: config.gentle,
   });
 
   const slideUpProject = useSpring({
@@ -92,6 +63,7 @@ const PageContainer = ({ setOverflowRef }) => {
     opacity: pathname === "/project" ? 1 : 0,
     y: pathname === "/project" ? 0 : 300,
     delay: 150,
+    config: config.gentle,
   });
 
   const slideUpStats = useSpring({
@@ -102,6 +74,7 @@ const PageContainer = ({ setOverflowRef }) => {
     opacity: pathname === "/stats" ? 1 : 0,
     y: pathname === "/stats" ? 0 : 300,
     delay: 150,
+    config: config.gentle,
   });
 
   const slideUpHireme = useSpring({
@@ -112,6 +85,7 @@ const PageContainer = ({ setOverflowRef }) => {
     opacity: pathname === "/hireme" ? 1 : 0,
     y: pathname === "/hireme" ? 0 : 300,
     delay: 150,
+    config: config.gentle,
   });
 
   return (
@@ -141,63 +115,36 @@ const PageContainer = ({ setOverflowRef }) => {
           }}
         >
           <HeaderWave />
-
-          {pathname === "/" && (
-            <Resume
-              style={{
-                ...slideUpResume,
-              }}
-            />
-          )}
-
-          {pathname === "/project" && (
-            <Project
-              style={{
-                ...slideUpProject,
-              }}
-            />
-          )}
-
-          {pathname === "/stats" && (
-            <Stats
-              style={{
-                ...slideUpStats,
-              }}
-            />
-          )}
-
-          {pathname === "/hireme" && (
-            <HireMe
-              style={{
-                ...slideUpHireme,
-              }}
-            />
-          )}
-
-          {/* <Resume
-            style={{
-              ...slideUpResume,
-              display: pathname === "/" ? "block" : "none",
-            }}
-          />
-          <Project
-            style={{
-              ...slideUpProject,
-              display: pathname === "/project" ? "block" : "none",
-            }}
-          />
-          <Stats
-            style={{
-              ...slideUpStats,
-              display: pathname === "/stats" ? "block" : "none",
-            }}
-          />
-          <HireMe
-            style={{
-              ...slideUpHireme,
-              display: pathname === "/hireme" ? "block" : "none",
-            }}
-          /> */}
+          <Switch>
+            <Route exact path="/">
+              <Resume
+                style={{
+                  ...slideUpResume,
+                }}
+              />
+            </Route>
+            <Route path="/project">
+              <Project
+                style={{
+                  ...slideUpProject,
+                }}
+              />
+            </Route>
+            <Route path="/stats">
+              <Stats
+                style={{
+                  ...slideUpStats,
+                }}
+              />
+            </Route>
+            <Route path="/hireme">
+              <HireMe
+                style={{
+                  ...slideUpHireme,
+                }}
+              />
+            </Route>
+          </Switch>
           <FooterWave />
         </Paper>
       </Grid>
@@ -206,3 +153,31 @@ const PageContainer = ({ setOverflowRef }) => {
 };
 
 export default PageContainer;
+
+// SOLUTION 2: using react synthetic onScroll EVENT LISTENER
+// storing in ref because we don't want to trigger re-render if value changes.
+// const curPos = useRef(null);
+// const prevPos = useRef(null);
+// let throttleTimeout = null;
+
+// function handleScroll(ref, wait) {
+//   // if you don't want to throttle, pass wait = false
+//   // <div onScroll={(event) => handleScroll(elementRef,300,event)} />
+//   // <div onScroll={(event) => handleScroll(elementRef,false,event)} />
+//   const onScrollCallback = () => {
+//     throttleTimeout = null;
+//     const scrollPosition = ref.current.scrollTop;
+//     prevPos.current = curPos.current;
+//     curPos.current = scrollPosition;
+//     const scrolledUp = curPos.current > prevPos.current;
+//     setScrolledUp(scrolledUp);
+//   };
+
+//   if (wait) {
+//     if (throttleTimeout === null) {
+//       throttleTimeout = setTimeout(onScrollCallback, wait);
+//     }
+//   } else {
+//     onScrollCallback();
+//   }
+// }

@@ -5,8 +5,9 @@ import {
   createMuiTheme,
   withStyles,
 } from "@material-ui/core/styles";
-import { useLocation } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { cyanTheme, goldTheme } from "./customTheme";
+import { animated, useSpring, config } from "react-spring";
 
 import Navigation from "./components/Navigation.component";
 import SettingPanel from "./components/SettingPanel.component";
@@ -35,7 +36,6 @@ function App() {
   const setOverflowRef = (el) => {
     overflowRef.current = el;
   };
-  useEffect(() => console.log(overflowRef.current));
 
   // function useLocalStorageState(key, defaultState = "") {
   //   const [state, setState] = useState(
@@ -64,7 +64,10 @@ function App() {
           }}
         >
           <Navigation ref={overflowRef} />
-          <PageContainer setOverflowRef={setOverflowRef} />
+          <PageContainer
+            overflowRef={overflowRef}
+            setOverflowRef={setOverflowRef}
+          />
         </Grid>
         <SettingPanel setTheme={setTheme} />
       </ThemeProvider>
