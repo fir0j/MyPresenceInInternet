@@ -75,27 +75,43 @@ const PageContainer = ({ setOverflowRef }) => {
   // }
 
   const slideUpResume = useSpring({
-    from: { opacity: 0, y: 0 },
+    from: {
+      opacity: 0,
+      y: 0,
+    },
     opacity: pathname === "/" ? 1 : 0,
     y: pathname === "/" ? 0 : 300,
+    delay: 150,
   });
 
   const slideUpProject = useSpring({
-    from: { opacity: 0, y: 0 },
+    from: {
+      opacity: 0,
+      y: 0,
+    },
     opacity: pathname === "/project" ? 1 : 0,
     y: pathname === "/project" ? 0 : 300,
+    delay: 150,
   });
 
   const slideUpStats = useSpring({
-    from: { opacity: 0, y: 0 },
+    from: {
+      opacity: 0,
+      y: 0,
+    },
     opacity: pathname === "/stats" ? 1 : 0,
     y: pathname === "/stats" ? 0 : 300,
+    delay: 150,
   });
 
   const slideUpHireme = useSpring({
-    from: { opacity: 0, y: 0 },
+    from: {
+      opacity: 0,
+      y: 0,
+    },
     opacity: pathname === "/hireme" ? 1 : 0,
     y: pathname === "/hireme" ? 0 : 300,
+    delay: 150,
   });
 
   return (
