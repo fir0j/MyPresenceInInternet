@@ -109,7 +109,7 @@ const PageContainer = ({ overflowRef, setOverflowRef }) => {
         className={classes.pageWrapper}
         style={{
           paddingTop: theme.spacing(1),
-          paddingBottom: matchesSM ? theme.spacing(20) : theme.spacing(5),
+          paddingBottom: matchesSM ? theme.spacing(25) : theme.spacing(5),
         }}
       >
         <Paper
