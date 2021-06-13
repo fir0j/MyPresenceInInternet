@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   // disabled: {},
 }));
 
-export default function Project() {
+export default function Project({ style }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -735,11 +735,13 @@ export default function Project() {
 
   // Talk is Cheap. Show me the code.
   return (
-    <PageContainer>
+    // <PageContainer>
+    <animated.div style={style}>
       <SortAndFilterControls />
       <DisplayCards />
       <Pagination />
-    </PageContainer>
+    </animated.div>
+    // </PageContainer>
   );
 }
 

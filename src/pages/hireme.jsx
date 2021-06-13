@@ -22,6 +22,7 @@ import { ReactComponent as PhoneIcon } from "../assets/phone.svg";
 import { ReactComponent as EmailIcon } from "../assets/email.svg";
 import { ReactComponent as Airplane } from "../assets/send.svg";
 import { ReactComponent as BusinessDeal } from "../assets/businessDeal.svg";
+import { animated } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -103,12 +104,13 @@ const useStyles = makeStyles((theme) => ({
   disabled: {},
 }));
 
-export default function HireMe() {
+export default function HireMe({ style }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const AnimatedGrid = animated(Grid);
 
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -571,65 +573,65 @@ export default function HireMe() {
   );
 
   return (
-    <PageContainer>
+    <AnimatedGrid
+      container
+      justify="flex-start"
+      direction="row"
+      style={{
+        position: "relative",
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        ...style,
+      }}
+    >
       <Grid
+        item
         container
-        justify="flex-start"
-        direction="row"
+        direction="column"
+        justify="center"
+        alignItems={matchesSM ? "center" : "flex-start"}
         style={{
-          paddingLeft: theme.spacing(2),
-          paddingRight: theme.spacing(2),
+          margingBottom: matchesMD ? "5em" : 0,
         }}
       >
-        <Grid
-          item
-          container
-          direction="column"
-          justify="center"
-          alignItems={matchesSM ? "center" : "flex-start"}
-          style={{
-            margingBottom: matchesMD ? "5em" : 0,
-          }}
-        >
-          <Grid item style={{ maxWidth: "20em" }}>
-            <Grid item style={{ marginTop: "2em" }}>
-              <Typography
-                variant="h2"
-                style={{
-                  lineHeight: 1,
-                  color: theme.palette.text.secondary,
-                }}
-                align={matchesMD ? "center" : undefined}
-              >
-                Let's get into business
-              </Typography>
-              <Typography
-                variant="body2"
-                style={{ color: theme.palette.text.tertiary }}
-                align={matchesMD ? "center" : undefined}
-              >
-                I'm waiting.
-              </Typography>
-            </Grid>
-            <Hidden smDown>
-              <BusinessDeal
-                style={{
-                  width: matchesMD ? "60%" : "70%",
-                  height: "auto",
-                  position: "absolute",
-                  right: 0,
-                  top: theme.spacing(15),
-                  fill: theme.palette.secondary.main,
-                }}
-              />
-            </Hidden>
-            {contactDetails}
-            {form}
-            <SendButton />
+        <Grid item style={{ maxWidth: "20em" }}>
+          <Grid item style={{ marginTop: "2em" }}>
+            <Typography
+              variant="h2"
+              style={{
+                lineHeight: 1,
+                color: theme.palette.text.secondary,
+              }}
+              align={matchesMD ? "center" : undefined}
+            >
+              Let's get into business
+            </Typography>
+            <Typography
+              variant="body2"
+              style={{ color: theme.palette.text.tertiary }}
+              align={matchesMD ? "center" : undefined}
+            >
+              I'm waiting.
+            </Typography>
           </Grid>
+          <Hidden smDown>
+            <BusinessDeal
+              style={{
+                width: matchesMD ? "60%" : "70%",
+                height: "auto",
+                position: "absolute",
+                right: 0,
+                top: 0,
+                fill: theme.palette.secondary.main,
+              }}
+            />
+          </Hidden>
+          {contactDetails}
+          {form}
+          <SendButton />
         </Grid>
-        {dialog}
       </Grid>
-    </PageContainer>
+      {dialog}
+    </AnimatedGrid>
   );
 }

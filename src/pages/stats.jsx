@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShapeDivider() {
+export default function ShapeDivider({ style }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -783,18 +783,17 @@ export default function ShapeDivider() {
   }
 
   return (
-    <PageContainer>
-      <div
-        style={{
-          paddingLeft: theme.spacing(1),
-          paddingRight: theme.spacing(1),
-        }}
-      >
-        <WebTechnologies />
-        <ProjectExperienceDegree />
-        <StackOverFlowStatus />
-        <CourseAndWishlist />
-      </div>
-    </PageContainer>
+    <animated.div
+      style={{
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+        ...style,
+      }}
+    >
+      <WebTechnologies />
+      <ProjectExperienceDegree />
+      <StackOverFlowStatus />
+      <CourseAndWishlist />
+    </animated.div>
   );
 }

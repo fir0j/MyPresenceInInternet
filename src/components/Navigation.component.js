@@ -1,4 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, {
+  Fragment,
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  forwardRef,
+} from "react";
 import { Grid, Paper } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -10,6 +17,7 @@ import { ReactComponent as Resume } from "../assets/resume.svg";
 import { ReactComponent as Hireme } from "../assets/hireme.svg";
 import { ReactComponent as ProjectIcon } from "../assets/projectIcon.svg";
 import { ReactComponent as FeedbackIcon } from "../assets/laptop2.svg";
+import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   tabsContainer: {
@@ -18,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
   },
+
   tab: {
     width: "100%",
     minWidth: "85px",
@@ -128,12 +137,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navigation() {
+const Navigation = forwardRef((props, overflowRef) => {
   const theme = useTheme();
   const classes = useStyles();
-
   const [value, setValue] = useState(1);
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const [scrolledUp, setScrolledUp] = useState(false);
+  const fadeStyles = useSpring({
+    from: { opacity: 1 },
+    opacity: matchesSM && scrolledUp ? 0 : 1,
+    display: matchesSM && scrolledUp ? "none" : "block",
+    // visibility: matchesSM && scrolledUp ? "hidden" : "visible",
+  });
 
   useEffect(() => {
     switch (window.location.pathname) {
@@ -154,6 +169,84 @@ export default function Navigation() {
         break;
     }
   }, [matchesSM]);
+
+  // SOLUTION 1: without using react synthetic onScroll EVENT LISTENER
+  // Syntax: useScrollPosition(effect,deps, element, wait)
+  function useRelativeScrollPosition(effect, deps = null, ref, wait = null) {
+    // the function will pass previous-scroll-Positon and current-scroll-position with respect to
+    // an overflowed div instead of window or document.body like useScrollPostion package.
+    // storing in ref because we don't want to trigger re-render if value changes.
+    const curPos = useRef(null);
+    const prevPos = useRef(null);
+    const throttleTimeout = useRef(null);
+
+    const getScrollPositionCB = () => {
+      const scrollPosition = ref.current.scrollTop;
+      prevPos.current = curPos.current;
+      curPos.current = scrollPosition;
+
+      effect(prevPos.current, curPos.current);
+      throttleTimeout.current = null;
+    };
+
+    useEffect(() => {
+      function handleScroll() {
+        if (wait) {
+          if (throttleTimeout.current === null) {
+            throttleTimeout.current = setTimeout(getScrollPositionCB, wait);
+          }
+        } else {
+          getScrollPositionCB();
+        }
+      }
+
+      // Improving scrolling performance with passive listeners
+      // setting {passive:true} if support else false which is default.
+      let passiveIfSupported = false;
+      try {
+        window.addEventListener(
+          "test",
+          null,
+          Object.defineProperty({}, "passive", {
+            get: function () {
+              passiveIfSupported = { passive: true };
+            },
+          })
+        );
+      } catch (err) {
+        console.log(
+          "info: passive listener is not supported by this browser. Scroll performance could not be optimum."
+        );
+      }
+
+      if (ref.current) {
+        ref.current.addEventListener(
+          "scroll",
+          handleScroll,
+          passiveIfSupported
+        );
+      }
+
+      return () => {
+        // console.log("cleaning up", ref.current);
+        ref.current.removeEventListener("scroll", handleScroll);
+        clearTimeout(throttleTimeout.current);
+      };
+    }, deps);
+  }
+
+  useRelativeScrollPosition(
+    // adding event listener whenvever scrolledUp changes to get updated value of scrolledUp
+    (prevPos, curPos) => {
+      const scrollbarIsDown = curPos > prevPos;
+      if (scrollbarIsDown !== scrolledUp) {
+        // console.log("scrolling direction has reversed");
+        setScrolledUp(scrollbarIsDown);
+      }
+    },
+    [scrolledUp],
+    overflowRef
+  );
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -269,35 +362,41 @@ export default function Navigation() {
     </Tabs>
   );
 
+  const AnimatedGrid = animated(Grid);
   return (
     <Fragment>
-      <Grid
-        item
-        container
-        xs={2}
-        sm={2}
-        md={2}
-        lg={2}
-        xl={2}
-        style={{
-          position: matchesSM ? "fixed" : "relative",
-          bottom: matchesSM ? 0 : "",
-          maxWidth: matchesSM ? "100%" : "310px",
-          zIndex: matchesSM ? 1 : "",
-          // backgroundColor: "blue", // it changes tabs original color and provides beautiful transparency
-        }}
-      >
-        <Paper
-          elevation={1}
+      {matchesSM && scrolledUp ? null : (
+        <AnimatedGrid
+          item
+          container
+          xs={2}
+          sm={2}
+          md={2}
+          lg={2}
+          xl={2}
           style={{
-            backgroundColor: "transparent", // it changes tabs original color and provides beautiful transparency
-            width: "100%",
-            height: matchesSM ? "inherit" : "100vh",
+            position: matchesSM ? "fixed" : "relative",
+            bottom: matchesSM ? 0 : "",
+            maxWidth: matchesSM ? "100%" : "310px",
+            zIndex: matchesSM ? 1 : "",
+            ...fadeStyles,
+            // backgroundColor: "blue", // it changes tabs original color and provides beautiful transparency
           }}
         >
-          {tabs}
-        </Paper>
-      </Grid>
+          <Paper
+            elevation={1}
+            style={{
+              backgroundColor: "transparent", // it changes tabs original color and provides beautiful transparency
+              width: "100%",
+              height: matchesSM ? "inherit" : "100vh",
+            }}
+          >
+            {tabs}
+          </Paper>
+        </AnimatedGrid>
+      )}
     </Fragment>
   );
-}
+});
+
+export default Navigation;

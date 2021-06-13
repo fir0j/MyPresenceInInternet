@@ -27,7 +27,7 @@ import Hidden from "@material-ui/core/Hidden";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 import ContainerWithGradientBorder from "../components/ContainerWithGradientBorder.component";
 import PageContainer from "../components/PageContainer.component";
-// import { animated, useSpring } from "react-spring";
+import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(1),
   },
 }));
-export default function Resume() {
+export default function Resume({ style }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -1999,12 +1999,12 @@ export default function Resume() {
   );
 
   return (
-    <PageContainer>
+    <animated.div style={style}>
       {hello}
       {contact}
       {education}
       {skillsOnDesktop}
-    </PageContainer>
+    </animated.div>
   );
 }
 
