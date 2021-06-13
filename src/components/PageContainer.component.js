@@ -100,15 +100,18 @@ const PageContainer = ({ overflowRef, setOverflowRef }) => {
       lg={10}
       xl={10}
       ref={setOverflowRef}
-      style={
-        {
-          // border: "1px solid red",
-          // marginBottom: matchesSM ? theme.spacing(20) : theme.spacing(5),
-        }
-      }
       // onScroll={() => handleScroll(overflowRef, 300)}
     >
-      <Grid item container justify="center" className={classes.pageWrapper}>
+      <Grid
+        item
+        container
+        justify="center"
+        className={classes.pageWrapper}
+        style={{
+          paddingTop: theme.spacing(1),
+          paddingBottom: matchesSM ? theme.spacing(20) : theme.spacing(5),
+        }}
+      >
         <Paper
           elevation={3}
           style={{
@@ -117,8 +120,6 @@ const PageContainer = ({ overflowRef, setOverflowRef }) => {
             overflow: "hidden",
             zIndex: 0,
             borderRadius: theme.spacing(1),
-            marginTop: theme.spacing(1),
-            // marginBottom: matchesSM ? theme.spacing(20) : theme.spacing(5),
           }}
         >
           <HeaderWave />
