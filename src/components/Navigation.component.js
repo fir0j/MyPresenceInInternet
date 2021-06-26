@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   tabsIndicator: {
     // backgroundColor: "transparent",
     // width: theme.spacing(0.5),
-    opacity: 0.75,
+    opacity: 0.9,
   },
 
   tabRoot: {
@@ -381,12 +381,14 @@ const Navigation = forwardRef((props, overflowRef) => {
             zIndex: matchesSM ? 1 : "",
             ...fadeStyles,
             // backgroundColor: "blue", // it changes tabs original color and provides beautiful transparency
+            // backgroundColor: "grey",
           }}
         >
           <Paper
             elevation={1}
             style={{
-              backgroundColor: "transparent", // it changes tabs original color and provides beautiful transparency
+              // backgroundColor: "transparent", // it changes tabs original color and provides beautiful transparency
+              backgroundColor: theme.palette.background.microPaper,
               width: "100%",
               height: matchesSM ? "inherit" : "100vh",
             }}

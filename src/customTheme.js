@@ -195,8 +195,9 @@ const goldTheme = {
     background: {
       // default: grey[50],
       paper: "#000",
-      floor: "#2C2C2C",
-      microPaper: "rgba(20,20,20,1)",
+      // floor: "#2C2C2C",
+      floor: "rgba(20,20,20,0.1)",
+      microPaper: "rgba(20,20,20,0.7)",
       gradient: greenGoldGradient,
       card: "rgba(255,255,255,0.1)",
       messageBox: "rgba(18,18,18,1)",

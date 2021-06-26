@@ -527,7 +527,10 @@ export default function Resume({ style }) {
           <Typography
             variant="body1"
             align="right"
-            style={{ color: theme.palette.text.tertiary }}
+            style={{
+              color: theme.palette.text.tertiary,
+              paddingRight: theme.spacing(1),
+            }}
           >
             Looking forward to secure a challenging position in a reputable
             organization which can utilize my learnings, knowledge, and skills

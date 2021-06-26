@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SettingPanel({ setTheme }) {
   const theme = useTheme();
   const classes = useStyles();
-  const [value, setValue] = useState("gold");
+  const [value, setValue] = useState("cyan");
   const [openListener, setOpenListener] = useState(false);
   const AnimatedGrid = animated(Grid);
 

@@ -8,7 +8,7 @@ import SettingPanel from "./components/SettingPanel.component";
 import PageContainer from "./components/PageContainer.component";
 
 function App() {
-  const [myTheme, setMyTheme] = useState(goldTheme);
+  const [myTheme, setMyTheme] = useState(cyanTheme);
   const overflowRef = useRef();
   // const [myTheme, setMyTheme] = useLocalStorageState("myTheme", goldTheme);
 
