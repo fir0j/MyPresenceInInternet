@@ -331,7 +331,7 @@ export default function ShapeDivider({ style }) {
                 }}
               />
             }
-            count="18"
+            count="15"
             accentColor={theme.palette.common.white}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
@@ -401,7 +401,7 @@ export default function ShapeDivider({ style }) {
   function StackOverFlowStatus() {
     const { reputation } = useSpring({
       from: { reputation: 0 },
-      reputation: 131,
+      reputation: 171,
       delay: 200,
       config: config.molasses,
     });
