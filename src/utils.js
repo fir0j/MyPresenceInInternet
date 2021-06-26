@@ -108,24 +108,13 @@ const cardData = [
   },
 
   {
-    id: 8,
-    name: "Andrie shopping Store",
-    date: "2018-10-01",
-    data: "It is an online shopping store.",
-    type: "fullstack",
-    technologies: ["React", "Material-UI", "React-Spring", "Javascript"],
-    live: "url",
-    sourceCode: "url",
-  },
-
-  {
     id: 9,
-    name: "Trendy-Fashion-Ecommerce",
+    name: "easymart.online",
     date: "2018-10-01",
     type: "fullstack",
-    data: "It is an online shopping store.",
-    technologies: ["React", "Node"],
-    live: "url",
+    data: "It is an online shopping store dedicated to Fashion. It was a pet project containing authentication, customer panel and admin dashboard.",
+    technologies: ["MongoDB", "Express", "React", "Node"],
+    live: "https://www.easymart.online/",
     sourceCode: "https://github.com/fir0j/Trendy-Fashion-Ecommerce",
   },
 
@@ -171,24 +160,6 @@ const cardData = [
     technologies: ["HTML", "CSS", "JAVASCRIPT"],
     live: "https://fir0j.github.io/Background-Generator/",
     sourceCode: "https://github.com/fir0j/Background-Generator",
-  },
-
-  {
-    id: 14,
-    name: "SmartBrain FaceDetection",
-    date: "2018-10-01",
-    type: "fullstack",
-    data: "It was my VERY FIRST react project. It supports crud on users profile. It uses clarifai API to detect face in images.",
-    technologies: [
-      "React",
-      "React-tilt",
-      "clarifai",
-      "Tachyons",
-      "Node",
-      "PosgreSQL",
-    ],
-    live: "https://smartbr4in.herokuapp.com",
-    sourceCode: "https://github.com/fir0j/smartbrain-front-end",
   },
 
   {
