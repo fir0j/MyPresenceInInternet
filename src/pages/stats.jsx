@@ -759,7 +759,7 @@ export default function ShapeDivider({ style }) {
                     color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
-                  Typescript
+                  Next.js (on going...)
                 </Typography>
                 <Typography
                   component="div"
@@ -773,6 +773,19 @@ export default function ShapeDivider({ style }) {
                     marginRight={theme.spacing(1)}
                   />
                   React Native
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  Typescript
                 </Typography>
               </Grid>
             </Grid>
