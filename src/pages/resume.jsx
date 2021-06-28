@@ -532,10 +532,10 @@ export default function Resume({ style }) {
               paddingRight: theme.spacing(1),
             }}
           >
-            Looking forward to secure a challenging position in a reputable
-            organization which can utilize my learnings, knowledge, and skills
-            while contributing for the company's growth and in turn ensuring
-            personal growth too
+            Looking forward to secure a challenging FullStack Javascript
+            Developer position in a reputable organization which can utilize my
+            learnings, knowledge, and skills while contributing for the
+            company's growth and in turn ensuring personal growth too.
           </Typography>
         </Grid>
 
