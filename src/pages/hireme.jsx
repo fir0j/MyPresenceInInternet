@@ -196,7 +196,6 @@ export default function HireMe({ style }) {
         }
       )
       .then((res) => {
-        console.log(res);
         setLoading(false);
         setAlert({
           openSnackbar: true,
@@ -225,7 +224,10 @@ export default function HireMe({ style }) {
           message: `${err.message}! Check your internet connection.`,
           backgroundColor: theme.palette.error.main,
         });
-        console.log("Messege Sending Failed. The detailed error is", err);
+        console.log(
+          "Messege Sending Failed. The detailed error is",
+          err.message
+        );
       });
   };
 
