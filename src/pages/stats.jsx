@@ -401,7 +401,7 @@ export default function ShapeDivider({ style }) {
   function StackOverFlowStatus() {
     const { reputation } = useSpring({
       from: { reputation: 0 },
-      reputation: 171,
+      reputation: 311,
       delay: 200,
       config: config.molasses,
     });
@@ -409,6 +409,13 @@ export default function ShapeDivider({ style }) {
     const { bronze } = useSpring({
       from: { bronze: 0 },
       bronze: 5,
+      delay: 200,
+      config: config.molasses,
+    });
+
+    const { silver } = useSpring({
+      from: { silver: 0 },
+      silver: 2,
       delay: 200,
       config: config.molasses,
     });
@@ -464,7 +471,7 @@ export default function ShapeDivider({ style }) {
                   Silver
                 </Typography>
                 <Circle color="rgba(239, 240, 241,0.85)" />
-                <Typography
+                <AnimatedTypography
                   component="span"
                   style={{
                     marginLeft: theme.spacing(0.5),
@@ -472,8 +479,8 @@ export default function ShapeDivider({ style }) {
                     fontSize: "1.4rem",
                   }}
                 >
-                  1
-                </Typography>
+                  {silver.to((n) => n.toFixed(0))}
+                </AnimatedTypography>
               </Grid>
               <Grid
                 item

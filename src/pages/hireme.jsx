@@ -185,7 +185,7 @@ export default function HireMe({ style }) {
     setLoading(true);
     axios
       .get(
-        "https://jsgluv2tt4.execute-api.ap-south-1.amazonaws.com/sendMailfromPortfolio",
+        "https://vm5e4ei2m6.execute-api.ap-south-1.amazonaws.com/emailServiceForMyPorfolio",
         {
           params: {
             name: name,
