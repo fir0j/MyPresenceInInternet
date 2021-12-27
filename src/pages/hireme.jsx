@@ -566,7 +566,7 @@ export default function HireMe({ style }) {
               href="mailto:firoj.is.available@gmail.com"
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              firoj.is.available@gmail.com
+              er.firojsiddiki@gmail.com
             </a>
           </Typography>
         </Grid>

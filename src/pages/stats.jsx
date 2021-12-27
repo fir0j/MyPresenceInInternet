@@ -153,6 +153,7 @@ export default function ShapeDivider({ style }) {
                 </Grid>
                 <Grid item style={{ marginLeft: theme.spacing(6) }}>
                   <Typography component="div">REACT</Typography>
+                  <Typography component="div">NEXT.js</Typography>
                   <Typography component="div">REACT-ROUTER</Typography>
                   <Typography component="div">REACT-REDUX</Typography>
                   <Typography component="div">MATERIAL-UI</Typography>
@@ -401,21 +402,21 @@ export default function ShapeDivider({ style }) {
   function StackOverFlowStatus() {
     const { reputation } = useSpring({
       from: { reputation: 0 },
-      reputation: 311,
+      reputation: 581,
       delay: 200,
       config: config.molasses,
     });
 
     const { bronze } = useSpring({
       from: { bronze: 0 },
-      bronze: 5,
+      bronze: 11,
       delay: 200,
       config: config.molasses,
     });
 
     const { silver } = useSpring({
       from: { silver: 0 },
-      silver: 2,
+      silver: 5,
       delay: 200,
       config: config.molasses,
     });
@@ -702,6 +703,180 @@ export default function ShapeDivider({ style }) {
                     />
                   </a>
                 </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                    marginBottom: theme.spacing(1.5),
+                    marginLeft: theme.spacing(1),
+                    marginRight: theme.spacing(1),
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MONGODB UNIVERSITY: Mongodb Basics (M001)
+                  <a
+                    href="https://university.mongodb.com/courses/M001/about"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.text.tertiary,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                    marginBottom: theme.spacing(1.5),
+                    marginLeft: theme.spacing(1),
+                    marginRight: theme.spacing(1),
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MONGODB UNIVERSITY: Mongodb for Developers (M220)
+                  <a
+                    href="https://university.mongodb.com/courses/M220J/about"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.text.tertiary,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                    marginBottom: theme.spacing(1.5),
+                    marginLeft: theme.spacing(1),
+                    marginRight: theme.spacing(1),
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MONGODB UNIVERSITY: Aggregation Framework (M121)
+                  <a
+                    href="https://university.mongodb.com/courses/M121/about"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.text.tertiary,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                    marginBottom: theme.spacing(1.5),
+                    marginLeft: theme.spacing(1),
+                    marginRight: theme.spacing(1),
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MONGODB UNIVERSITY: MongoDB Performance (M201)
+                  <a
+                    href="https://university.mongodb.com/courses/M201/about"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.text.tertiary,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                    marginBottom: theme.spacing(1.5),
+                    marginLeft: theme.spacing(1),
+                    marginRight: theme.spacing(1),
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MONGODB UNIVERSITY: MongoDB Data Modeling (M320)
+                  <a
+                    href="https://university.mongodb.com/courses/M320/about"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.text.tertiary,
+                      }}
+                    />
+                  </a>
+                </Typography>
+                <Typography
+                  component="div"
+                  style={{
+                    fontSize: "1rem",
+                    color: theme.palette.text.tertiary,
+                    marginBottom: theme.spacing(1.5),
+                    marginLeft: theme.spacing(1),
+                    marginRight: theme.spacing(1),
+                  }}
+                >
+                  <Circle
+                    color={theme.palette.text.tertiary}
+                    marginRight={theme.spacing(1)}
+                  />
+                  MONGODB UNIVERSITY: Basic Cluster Administration (M103)
+                  <a
+                    href="https://university.mongodb.com/courses/M103/about"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink
+                      style={{
+                        width: theme.spacing(2),
+                        marginLeft: theme.spacing(1),
+                        fill: theme.palette.text.tertiary,
+                      }}
+                    />
+                  </a>
+                </Typography>
               </Grid>
             </Grid>
           </Paper>
@@ -766,7 +941,7 @@ export default function ShapeDivider({ style }) {
                     color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
-                  Next.js (on going...)
+                  Typescript
                 </Typography>
                 <Typography
                   component="div"
@@ -780,19 +955,6 @@ export default function ShapeDivider({ style }) {
                     marginRight={theme.spacing(1)}
                   />
                   React Native
-                </Typography>
-                <Typography
-                  component="div"
-                  style={{
-                    fontSize: "1rem",
-                    color: theme.palette.text.tertiary,
-                  }}
-                >
-                  <Circle
-                    color={theme.palette.text.tertiary}
-                    marginRight={theme.spacing(1)}
-                  />
-                  Typescript
                 </Typography>
               </Grid>
             </Grid>

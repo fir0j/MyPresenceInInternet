@@ -445,7 +445,7 @@ export default function Resume({ style }) {
                       align="center"
                       style={{ color: theme.palette.text.tertiary }}
                     >
-                      firoj.is.available@gmail.com
+                      er.firojsiddiki@gmail.com
                     </Typography>
                   </Grid>
                 </Grid>
@@ -532,10 +532,10 @@ export default function Resume({ style }) {
               paddingRight: theme.spacing(1),
             }}
           >
-            Looking forward to secure a challenging FullStack Javascript
-            Developer position in a reputable organization which can utilize my
-            learnings, knowledge, and skills while contributing for the
-            company's growth and in turn ensuring personal growth too.
+            Looking forward to join a reputable organization, with dedicated
+            team, as a FullStack Javascript Developer, on a challenging &
+            impactful reallife projects in order to hone my skills and push my
+            limits, while contributing for the company's growth.
           </Typography>
         </Grid>
 
@@ -829,7 +829,7 @@ export default function Resume({ style }) {
                     align="right"
                     style={{ color: theme.palette.text.tertiary }}
                   >
-                    I graduated from this course with 6.4 CGPA out 10 in 2020.
+                    I graduated from this course with 6.5 CGPA out 10 in 2020.
                   </Typography>
                 </Grid>
               </Grid>
