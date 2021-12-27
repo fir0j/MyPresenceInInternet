@@ -453,11 +453,13 @@ export default function Project({ style }) {
             })}
           </CardContent>
           <CardActions>
-            <a href={sourceCode} rel="noreferrer" target="_blank">
-              <IconButton aria-label="github-button-link">
-                <GitHub color="secondary" />
-              </IconButton>
-            </a>
+            {sourceCode !== "secret-url" && (
+              <a href={sourceCode} rel="noreferrer" target="_blank">
+                <IconButton aria-label="github-button-link">
+                  <GitHub color="secondary" />
+                </IconButton>
+              </a>
+            )}
 
             {live !== "url" && (
               <a href={live} rel="noreferrer" target="_blank">

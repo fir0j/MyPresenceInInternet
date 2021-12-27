@@ -188,10 +188,21 @@ const cardData = [
     id: 17,
     name: "Event Tracker",
     date: "2019-08-01",
-    data: "It is my very real world project. It displays events by scanning the folders from the client's computer in 3 different languages. The project link is not available as i have signed NDA for it.",
+    data: "It is my very first real world project. It displays events by scanning the folders from the client's computer in 3 different languages. The project link is not available as i have signed NDA for it.",
     type: "frontend",
     technologies: ["HTML", "CSS", "React", "multi-language"],
     live: "url",
+    sourceCode: "secret-url",
+  },
+
+  {
+    id: 18,
+    name: "Lifepathsaala.com",
+    date: "2020-11-01",
+    data: "It is a start up company from Nepal, aiming to guide students on various life skills which are absolutely necessary in real life but are not taught in schools and colleges. It's first of its kind started as a company.",
+    type: "frontend",
+    technologies: ["HTML", "CSS", "JS"],
+    live: "https://www.lifepathsaala.com/",
     sourceCode: "secret-url",
   },
 ];

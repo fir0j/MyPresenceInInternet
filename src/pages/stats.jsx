@@ -332,7 +332,7 @@ export default function ShapeDivider({ style }) {
                 }}
               />
             }
-            count="15"
+            count="18"
             accentColor={theme.palette.common.white}
             marginTop={theme.spacing(2)}
             marginBottom={theme.spacing(2)}
