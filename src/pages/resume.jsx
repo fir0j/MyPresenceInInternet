@@ -532,10 +532,13 @@ export default function Resume({ style }) {
               paddingRight: theme.spacing(1),
             }}
           >
-            Looking forward to join a reputable organization, with dedicated
-            team, as a FullStack Javascript Developer, on a challenging &
-            impactful reallife projects in order to hone my skills and push my
-            limits, while contributing for the company's growth.
+            I'm a professional web developer with 20 months working experience
+            with an academic background in computer science and engineering from
+            bangalore.
+            {/* Looking forward to join a reputable organization, with dedicated
+            team, as a Javascript Developer, on a challenging & impactful
+            reallife projects in order to hone my skills and push my limits,
+            while contributing for the company's growth. */}
           </Typography>
         </Grid>
 
@@ -648,10 +651,11 @@ export default function Resume({ style }) {
                 className={classes.pointerRight}
               >
                 <Grid item>
-                  <Typography variant="h6">09/2020</Typography>
+                  <Typography variant="h6">02/2020</Typography>
                 </Grid>
               </Grid>
             </Grid>
+
             <Grid
               item
               container
@@ -719,7 +723,7 @@ export default function Resume({ style }) {
                 className={classes.pointerRight}
               >
                 <Grid item>
-                  <Typography variant="h6">09/2020</Typography>
+                  <Typography variant="h6">11/2020</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -743,14 +747,75 @@ export default function Resume({ style }) {
                   variant="body1"
                   style={{ color: theme.palette.text.tertiary }}
                 >
-                  I built two Real World Projects as their intern before they
-                  offered me job position.
+                  I built two Real World Projects as their intern before I was
+                  offered job position.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid
+            item
+            container
+            justify="space-between"
+            style={{
+              flexWrap: "nowrap",
+              marginTop: theme.spacing(2),
+              marginBottom: theme.spacing(6),
+            }}
+          >
+            <Grid
+              item
+              container
+              justify="flex-end"
+              alignItems="flex-start"
+              style={{
+                width: "auto",
+              }}
+            >
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                className={classes.pointerRight}
+              >
+                <Grid item>
+                  <Typography variant="h6">01/2022</Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              container
+              direction="column"
+              justify="center"
+              alignItems="flex-start"
+            >
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  style={{ color: theme.palette.text.secondary }}
+                >
+                  As Frontend Developer @Mango Software Solutions, Kathmandu,
+                  Nepal
+                </Typography>
+              </Grid>
+              <Grid item style={{ marginTop: theme.spacing(1) }}>
+                <Typography
+                  variant="body1"
+                  style={{ color: theme.palette.text.tertiary }}
+                >
+                  I currently work here. Up until now in this company, I've
+                  built 3 different types of real world projects and have helped
+                  many of my collegues their projects.
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
+
       {/* education section */}
       <Grid
         item
@@ -829,7 +894,8 @@ export default function Resume({ style }) {
                     align="right"
                     style={{ color: theme.palette.text.tertiary }}
                   >
-                    I graduated from this course with 6.5 CGPA out 10 in 2020.
+                    Subjects: Data structure & Algorithms, Unix, Software Eng,
+                    Cryptography, ML etc.
                   </Typography>
                 </Grid>
               </Grid>
@@ -892,7 +958,7 @@ export default function Resume({ style }) {
                     align="right"
                     style={{ color: theme.palette.text.tertiary }}
                   >
-                    I Passed my high school with 59.9%
+                    Subjects: Maths, Physics, Chemistry, Computer Science etc.
                   </Typography>
                 </Grid>
               </Grid>
@@ -948,7 +1014,7 @@ export default function Resume({ style }) {
                     align="right"
                     style={{ color: theme.palette.text.tertiary }}
                   >
-                    I passed SLC with 79.87% from this school.
+                    Subjects: English, Science, Maths, Account etc.
                   </Typography>
                 </Grid>
               </Grid>
@@ -1360,7 +1426,7 @@ export default function Resume({ style }) {
                           variant="subtitle1"
                           style={{ color: theme.palette.text.secondary }}
                         >
-                          Singing
+                          Listening to music
                         </Typography>
                       </Grid>
                     </Grid>
@@ -1658,47 +1724,55 @@ export default function Resume({ style }) {
                     variant="determinate"
                     value={85}
                     size={matchesLG ? 100 : 120}
-                    label="REACT"
+                    label="React"
                   />
                 </Grid>
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={65}
+                    size={matchesLG ? 100 : 120}
+                    label="Redux"
+                  />
+                </Grid>
+
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={65}
+                    size={matchesLG ? 100 : 120}
+                    label="Typescript"
+                  />
+                </Grid>
+
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={75}
+                    size={matchesLG ? 100 : 120}
+                    label={
+                      <>
+                        Styled <br /> Compo.
+                      </>
+                    }
+                  />
+                </Grid>
+
                 <Grid item>
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={80}
                     size={matchesLG ? 100 : 120}
-                    label="Material-UI"
+                    label="MUI"
                   />
                 </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={65}
-                    size={matchesLG ? 100 : 120}
-                    label="REDUX"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={65}
-                    size={matchesLG ? 100 : 120}
-                    label="VISX"
-                  />
-                </Grid>
-                <Grid item>
-                  <CircularProgressWithLabel
-                    variant="determinate"
-                    value={65}
-                    size={matchesLG ? 100 : 120}
-                    label="React-Spring"
-                  />
-                </Grid>
+
                 <Grid item>
                   <CircularProgressWithLabel
                     variant="determinate"
                     value={80}
                     size={matchesLG ? 100 : 120}
-                    label="Node.js"
+                    label="Next.js"
                   />
                 </Grid>
                 <Grid item>
@@ -1723,6 +1797,15 @@ export default function Resume({ style }) {
                     value={70}
                     size={matchesLG ? 100 : 120}
                     label="REDIS"
+                  />
+                </Grid>
+
+                <Grid item>
+                  <CircularProgressWithLabel
+                    variant="determinate"
+                    value={80}
+                    size={matchesLG ? 100 : 120}
+                    label="Storybook"
                   />
                 </Grid>
               </Grid>
@@ -1976,7 +2059,7 @@ export default function Resume({ style }) {
                             variant="h6"
                             style={{ color: theme.palette.text.secondary }}
                           >
-                            Singing
+                            Listening to music
                           </Typography>
                         </Grid>
                       </Grid>

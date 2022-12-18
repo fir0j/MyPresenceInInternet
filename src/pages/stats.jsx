@@ -137,6 +137,7 @@ export default function ShapeDivider({ style }) {
                   <Typography component="div">HTML</Typography>
                   <Typography component="div">CSS</Typography>
                   <Typography component="div">JAVASCRIPT</Typography>
+                  <Typography component="div">TYPESCRIPT</Typography>
                 </Grid>
               </Grid>
 
@@ -153,9 +154,12 @@ export default function ShapeDivider({ style }) {
                 </Grid>
                 <Grid item style={{ marginLeft: theme.spacing(6) }}>
                   <Typography component="div">REACT</Typography>
-                  <Typography component="div">NEXT.js</Typography>
                   <Typography component="div">REACT-ROUTER</Typography>
                   <Typography component="div">REACT-REDUX</Typography>
+                  <Typography component="div">STYLED COMPONENTS</Typography>
+                  <Typography component="div">STORYBOOK</Typography>
+                  <Typography component="div">NEXT.js</Typography>
+                  <Typography component="div">EXPRESS.js</Typography>
                   <Typography component="div">MATERIAL-UI</Typography>
                   <Typography component="div">REACT-SPRING</Typography>
                   <Typography component="div">VISX</Typography>
@@ -350,7 +354,7 @@ export default function ShapeDivider({ style }) {
                 }}
               />
             }
-            count="1"
+            count="2"
             accentColor={theme.palette.common.white}
             marginTop={matchesXS ? undefined : theme.spacing(2)}
             marginBottom={theme.spacing(2)}
@@ -402,21 +406,21 @@ export default function ShapeDivider({ style }) {
   function StackOverFlowStatus() {
     const { reputation } = useSpring({
       from: { reputation: 0 },
-      reputation: 581,
+      reputation: 1295,
       delay: 200,
       config: config.molasses,
     });
 
     const { bronze } = useSpring({
       from: { bronze: 0 },
-      bronze: 11,
+      bronze: 18,
       delay: 200,
       config: config.molasses,
     });
 
     const { silver } = useSpring({
       from: { silver: 0 },
-      silver: 5,
+      silver: 16,
       delay: 200,
       config: config.molasses,
     });
@@ -434,8 +438,14 @@ export default function ShapeDivider({ style }) {
         >
           <Grid container justify="center">
             <Grid item>
-              <StackOverflow style={{ fill: theme.palette.secondary.main }} />
+              <a
+                href="https://stackoverflow.com/users/10146901/firoj-siddiki"
+                target="_blank"
+              >
+                <StackOverflow style={{ fill: theme.palette.secondary.main }} />
+              </a>
             </Grid>
+
             <Grid item container justify="space-around">
               <Grid item style={{ color: "#4e6f8a" }}>
                 <Typography
@@ -912,7 +922,7 @@ export default function ShapeDivider({ style }) {
                     paddingLeft: matchesSM ? theme.spacing(1) : "",
                   }}
                 >
-                  Upcoming Technology into my Skillset
+                  Next Technology into my skillsets
                 </Typography>
               </Grid>
 
@@ -941,7 +951,7 @@ export default function ShapeDivider({ style }) {
                     color={theme.palette.text.tertiary}
                     marginRight={theme.spacing(1)}
                   />
-                  Typescript
+                  Tensorflow.js
                 </Typography>
                 <Typography
                   component="div"
