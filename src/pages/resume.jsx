@@ -26,7 +26,6 @@ import MenuBookOutlinedIcon from "@material-ui/icons/MenuBookOutlined";
 import Hidden from "@material-ui/core/Hidden";
 import { HeaderWave, FooterWave } from "../components/ShapeDivider.component";
 import ContainerWithGradientBorder from "../components/ContainerWithGradientBorder.component";
-import PageContainer from "../components/PageContainer.component";
 import { animated, useSpring } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
