@@ -531,9 +531,10 @@ export default function Resume({ style }) {
               paddingRight: theme.spacing(1),
             }}
           >
-            I'm a professional web developer with 20 months working experience
-            with an academic background in computer science and engineering from
-            bangalore.
+            I'm a professional web developer with 20 months working experience,
+            academic background in computer science & engineering from
+            bangalore, passonate about solving business problems via
+            programming, elegant UI & immersive UX.
             {/* Looking forward to join a reputable organization, with dedicated
             team, as a Javascript Developer, on a challenging & impactful
             reallife projects in order to hone my skills and push my limits,

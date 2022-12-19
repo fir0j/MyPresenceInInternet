@@ -3,6 +3,47 @@
 const cardData = [
   {
     id: 1,
+    name: "Video KYC System",
+    date: "2023-01-01",
+    type: "fullstack",
+    data: "It is the real Video KYC System of Prabhu Bank, Nepal. It is composed of two applications. 1. Video KYC System App for customers 2. KYC desk App for admins.",
+    technologies: [
+      "React",
+      "Redux",
+      "HTTP",
+      "Web Socket",
+      "WebRTC",
+      "Styled Compo.",
+      "Djyango",
+    ],
+    live: "url",
+    sourceCode: "secret-url",
+  },
+
+  {
+    id: 2,
+    name: "Network Dashboard",
+    date: "2022-07-25",
+    type: "fullstack",
+    data: "The project is made for Prabhu Bank, Nepal. It focuses on realtime monitoring of active and inactive cctv, atms, firewalls and alerts the staffs about the same.",
+    technologies: ["React", "Redux", "Web Socket", "Styled Compo.", "Djyango"],
+    live: "url",
+    sourceCode: "secret-url",
+  },
+
+  {
+    id: 3,
+    name: "Digital Logbook",
+    date: "2022-02-18",
+    type: "fullstack",
+    data: "It is a very large application composed 4 independent applications which includes Courier System, Vehicle Reservation System, Data Chalani and Form Builder.",
+    technologies: ["React", "Redux", "HTTP", "Styled Compo.", "Djyango"],
+    live: "url",
+    sourceCode: "secret-url",
+  },
+
+  {
+    id: 4,
     name: "Ace-Development",
     date: "2021-05-11",
     type: "fullstack",
@@ -19,7 +60,7 @@ const cardData = [
   },
 
   {
-    id: 2,
+    id: 5,
     name: "Current Portfolio",
     date: "2020-02-01",
     data: "It is the portfolio which your are viewing right now. It is also my most recent work in frontend.",
@@ -36,7 +77,7 @@ const cardData = [
   },
 
   {
-    id: 3,
+    id: 5,
     name: "Google Calender Clone",
     date: "2018-10-02",
     type: "frontend",
@@ -47,7 +88,7 @@ const cardData = [
   },
 
   {
-    id: 4,
+    id: 7,
     name: "Social-Network API",
     date: "2021-05-10",
     type: "backend",
@@ -66,7 +107,7 @@ const cardData = [
   },
 
   {
-    id: 5,
+    id: 8,
     name: "Portfolio Server",
     date: "2017-07-07",
     type: "backend",
@@ -86,7 +127,7 @@ const cardData = [
   },
 
   {
-    id: 6,
+    id: 9,
     name: "UCGPA Calculator",
     date: "2018-10-01",
     type: "frontend",
@@ -97,7 +138,7 @@ const cardData = [
   },
 
   {
-    id: 7,
+    id: 10,
     name: "Select-n-Add Cart Assessment",
     date: "2018-10-01",
     type: "frontend",
@@ -108,7 +149,7 @@ const cardData = [
   },
 
   {
-    id: 9,
+    id: 11,
     name: "easymart.online",
     date: "2018-10-01",
     type: "fullstack",
@@ -119,7 +160,7 @@ const cardData = [
   },
 
   {
-    id: 10,
+    id: 12,
     name: "Google.com Clone",
     date: "2018-10-01",
     type: "frontend",
@@ -130,7 +171,7 @@ const cardData = [
   },
 
   {
-    id: 11,
+    id: 13,
     name: "Google Result Clone",
     date: "2018-10-01",
     type: "frontend",
@@ -141,7 +182,7 @@ const cardData = [
   },
 
   {
-    id: 12,
+    id: 14,
     name: "Facebook Login Clone",
     date: "2018-10-01",
     type: "frontend",
@@ -152,7 +193,7 @@ const cardData = [
   },
 
   {
-    id: 13,
+    id: 15,
     name: "Gradient-Generator",
     date: "2018-10-01",
     type: "frontend",
@@ -163,7 +204,7 @@ const cardData = [
   },
 
   {
-    id: 15,
+    id: 16,
     name: "Meeting Scheduler",
     date: "2018-10-01",
     type: "frontend",
@@ -174,7 +215,7 @@ const cardData = [
   },
 
   {
-    id: 16,
+    id: 17,
     name: "My Old Portfolio",
     date: "2011-10-01",
     data: "It is my very first portfolio app. It includes by academic background and work details.",
@@ -185,7 +226,7 @@ const cardData = [
   },
 
   {
-    id: 17,
+    id: 18,
     name: "Event Tracker",
     date: "2019-08-01",
     data: "It is my very first real world project. It displays events by scanning the folders from the client's computer in 3 different languages. The project link is not available as i have signed NDA for it.",
@@ -196,7 +237,7 @@ const cardData = [
   },
 
   {
-    id: 18,
+    id: 19,
     name: "Lifepathsaala.com",
     date: "2020-11-01",
     data: "It is a start up company from Nepal, aiming to guide students on various life skills which are absolutely necessary in real life but are not taught in schools and colleges. It's first of its kind started as a company.",
